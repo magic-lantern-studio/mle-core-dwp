@@ -1,0 +1,668 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2005 rel. 3 U (http://www.altova.com) by Tobin Wahlers (Vidiom Systems) -->
+<xs:schema xmlns:dwp="http://www.wizzerworks.com/DWPSchema" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.wizzerworks.com/DWPSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<!--======================================================================-->
+	<!--Attribute groups-->
+	<!--DEF and USE are DWP item-naming attributes common to all instantiable items. This attributeGroup is defined for all top-level item types in the interface hierarchy.-->
+	<xs:attributeGroup name="DEF_USE">
+		<xs:annotation>
+			<xs:documentation source="http://www.web3d.org/files/specifications/19775-1/V3.3/Part01/concepts.html#DEFL_USESemantics"/>
+		</xs:annotation>
+		<xs:attribute name="DEF" type="xs:ID">
+			<xs:annotation>
+				<xs:documentation source="http://www.web3d.org/files/specifications/19775-1/V3.3/Part01/concepts.html#DEFL_USESemantics"/>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="USE" type="xs:IDREF">
+			<xs:annotation>
+				<xs:documentation source="http://www.web3d.org/files/specifications/19775-1/V3.3/Part01/concepts.html#DEFL_USESemantics"/>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="version">
+		<xs:annotation>
+			<xs:documentation>Common version structure.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="major" type="xs:int" use="required"/>
+		<xs:attribute name="minor" type="xs:int"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="informative">
+		<xs:annotation>
+			<xs:documentation>Common tagging and documentation structure.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="tags" type="xs:NMTOKENS"/>
+		<xs:attribute name="appinfo" type="xs:string"/>
+		<xs:attribute name="documentation" type="xs:string"/>
+	</xs:attributeGroup>
+	<!--======================================================================-->
+	<!-- Simple types are used as data types for Digital Workprint properties.-->
+	<!-- Special-case range restrictions on regular base types also provided. -->
+	<xs:simpleType name="DwpSFBool">
+		<xs:annotation>
+			<xs:appinfo>
+                DwpSFBool is a logical type with possible values (true|false) to match the XML boolean type.
+                Hint:  Magic Lantern DwpSFBool values are lower case (true|false) in order to maintain
+                compatibility with other XML documents.
+            </xs:appinfo>
+			<xs:documentation source="http://www.web3d.org/files/specifications/19775-1/V3.3/Part01/fieldsDef.html#SFBoolAndMFBool">Boolean data type.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:boolean"/>
+	</xs:simpleType>
+	<xs:simpleType name="DwpMFBool">
+		<xs:annotation>
+			<xs:appinfo>
+                DwpMFBool is an array of Boolean values.
+                Type DwpMFBool was previously undefined in the VRML 97 Specification, but nevertheless needed for event utilities and scripting.
+                Example use: DwpMFBool is useful for defining a series of behavior states using a BooleanSequencer prototype.
+            </xs:appinfo>
+			<xs:documentation source="http://www.web3d.org/files/specifications/19775-1/V3.3/Part01/fieldsDef.html#SFBoolAndMFBool">Array of Boolean values.</xs:documentation>
+		</xs:annotation>
+		<xs:list itemType="xs:boolean"/>
+	</xs:simpleType>
+	<xs:simpleType name="DwpSFColor">
+		<xs:annotation>
+			<xs:documentation source="http://www.web3d.org/files/specifications/19775-1/V3.3/Part01/fieldsDef.html#SFColorAndMFColor">Color data type.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:whiteSpace value="collapse"/>
+			<xs:pattern value="((((\.[0-9]+|0(\.[0-9]*)?)((E|e)(\+|\-)?[0-9]+)?)|(1(\.[0]*)?((E|e)\-[0-9]+)?)|([1-9](\.[0-9]*)((E|e)\-[0-9]+))) (((\.[0-9]+|0(\.[0-9]*)?)((E|e)(\+|\-)?[0-9]+)?)|(1(\.[0]*)?((E|e)\-[0-9]+)?)|([1-9](\.[0-9]*)((E|e)\-[0-9]+))) (((\.[0-9]+|0(\.[0-9]*)?)((E|e)(\+|\-)?[0-9]+)?)|(1(\.[0]*)?((E|e)\-[0-9]+)?)|([1-9](\.[0-9]*)((E|e)\-[0-9]+))))?"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DwpMFColor">
+		<xs:annotation>
+			<xs:appinfo>Array values are optionally separated by commas.</xs:appinfo>
+			<xs:documentation source="http://www.web3d.org/files/specifications/19775-1/V3.3/Part01/fieldsDef.html#SFColorAndMFColor">Array of Color vlaues.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:whiteSpace value="collapse"/>
+			<xs:pattern value="((((\.[0-9]+|0(\.[0-9]*)?)((E|e)(\+|\-)?[0-9]+)?)|(1(\.[0]*)?((E|e)\-[0-9]+)?)|([1-9](\.[0-9]*)((E|e)\-[0-9]+))) (((\.[0-9]+|0(\.[0-9]*)?)((E|e)(\+|\-)?[0-9]+)?)|(1(\.[0]*)?((E|e)\-[0-9]+)?)|([1-9](\.[0-9]*)((E|e)\-[0-9]+))) (((\.[0-9]+|0(\.[0-9]*)?)((E|e)(\+|\-)?[0-9]+)?)|(1(\.[0]*)?((E|e)\-[0-9]+)?)|([1-9](\.[0-9]*)((E|e)\-[0-9]+)))( )?(,)?( )?)*"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DwpSFColorRGBA">
+		<xs:annotation>
+			<xs:documentation source="http://www.web3d.org/files/specifications/19775-1/V3.3/Part01/fieldsDef.html#SFColorRGBAAndMFColorRGBA">RGBA Color data type.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:whiteSpace value="collapse"/>
+			<xs:pattern value="((((\.[0-9]+|0(\.[0-9]*)?)((E|e)(\+|\-)?[0-9]+)?)|(1(\.[0]*)?((E|e)\-[0-9]+)?)|([1-9](\.[0-9]*)((E|e)\-[0-9]+))) (((\.[0-9]+|0(\.[0-9]*)?)((E|e)(\+|\-)?[0-9]+)?)|(1(\.[0]*)?((E|e)\-[0-9]+)?)|([1-9](\.[0-9]*)((E|e)\-[0-9]+))) (((\.[0-9]+|0(\.[0-9]*)?)((E|e)(\+|\-)?[0-9]+)?)|(1(\.[0]*)?((E|e)\-[0-9]+)?)|([1-9](\.[0-9]*)((E|e)\-[0-9]+))) (((\.[0-9]+|0(\.[0-9]*)?)((E|e)(\+|\-)?[0-9]+)?)|(1(\.[0]*)?((E|e)\-[0-9]+)?)|([1-9](\.[0-9]*)((E|e)\-[0-9]+))))?"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DwpMFColorRGBA">
+		<xs:annotation>
+			<xs:documentation source="http://www.web3d.org/files/specifications/19775-1/V3.3/Part01/fieldsDef.html#SFColorRGBAAndMFColorRGBA">Array of RGBA Color values.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:whiteSpace value="collapse"/>
+			<xs:pattern value="((((\.[0-9]+|0(\.[0-9]*)?)((E|e)(\+|\-)?[0-9]+)?)|(1(\.[0]*)?((E|e)\-[0-9]+)?)|([1-9](\.[0-9]*)((E|e)\-[0-9]+))) (((\.[0-9]+|0(\.[0-9]*)?)((E|e)(\+|\-)?[0-9]+)?)|(1(\.[0]*)?((E|e)\-[0-9]+)?)|([1-9](\.[0-9]*)((E|e)\-[0-9]+))) (((\.[0-9]+|0(\.[0-9]*)?)((E|e)(\+|\-)?[0-9]+)?)|(1(\.[0]*)?((E|e)\-[0-9]+)?)|([1-9](\.[0-9]*)((E|e)\-[0-9]+))) (((\.[0-9]+|0(\.[0-9]*)?)((E|e)(\+|\-)?[0-9]+)?)|(1(\.[0]*)?((E|e)\-[0-9]+)?)|([1-9](\.[0-9]*)((E|e)\-[0-9]+)))( )?(,)?( )?)*"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DwpSFDouble">
+		<xs:annotation>
+			<xs:appinfo>DwpSFDouble is a double-precision floating-point type.  Array values are optionally separated by commas.
+                See GeoVRML 1.0 Recommended Practice, Section 2.3, Limitations of Single Precision for rationale.
+            </xs:appinfo>
+			<xs:documentation source="http://www.web3d.org/files/specifications/19775-1/V3.3/Part01/fieldsDef.html#SFDoubleAndMFDouble">Double-precision floating-point data type.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:double"/>
+	</xs:simpleType>
+	<xs:simpleType name="DwpMFDouble">
+		<xs:annotation>
+			<xs:appinfo>DwpMFDouble is an array of SFDouble values, i.e. a double-precision floating-point array type.
+                See GeoVRML 1.0 Recommended Practice, Section 2.3, Limitations of Single Precision for rationale.
+                DwpSFDouble/DwpMFDouble are analagous to SFDouble/MFDouble.  Array values are optionally separated by commas.
+            </xs:appinfo>
+			<xs:documentation source="http://www.web3d.org/files/specifications/19775-1/V3.3/Part01/fieldsDef.html#SFDoubleAndMFDouble">Array of double-precision floating-point values.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:whiteSpace value="collapse"/>
+			<xs:pattern value="(((\+|\-)?(0|[1-9][0-9]*)?(\.[0-9]*)?((E|e)(\+|\-)?[0-9]+)?)?( )?(,)?( )?)*"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DwpSFFloat">
+		<xs:annotation>
+			<xs:appinfo>DwpSFFloat is a single-precision floating-point type.</xs:appinfo>
+			<xs:documentation source="http://www.web3d.org/files/specifications/19775-1/V3.3/Part01/fieldsDef.html#SFFloatAndMFFloat">Single-precision floating-point data type.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:float"/>
+	</xs:simpleType>
+	<xs:simpleType name="DwpMFFloat">
+		<xs:annotation>
+			<xs:appinfo>DwpMFFloat is an array of DwpSFFloat values, i.e. a single-precision floating-point array type.  Array values are optionally separated by commas.</xs:appinfo>
+			<xs:documentation source="http://www.web3d.org/files/specifications/19775-1/V3.3/Part01/fieldsDef.html#SFFloatAndMFFloat">Array of single-precision floating-point values.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:whiteSpace value="collapse"/>
+			<xs:pattern value="(((\+|\-)?(0|[1-9][0-9]*)?(\.[0-9]*)?((E|e)(\+|\-)?[0-9]+)?)?( )?(,)?( )?)*"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DwpSFImage">
+		<xs:annotation>
+			<xs:appinfo>The DwpSFImage field specifies a single uncompressed 2-dimensional pixel image.  DwpSFImage fields contain three integers representing the width, height and number of components in the image, followed by width×height hexadecimal or integer values representing the pixels in the image.</xs:appinfo>
+			<xs:documentation source="http://www.web3d.org/files/specifications/19775-1/V3.3/Part01/fieldsDef.html#SFImageAndMFImage">Image data type.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="5"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DwpMFImage">
+		<xs:annotation>
+			<xs:appinfo>DwpMFImage is an array of DwpSFImage values.</xs:appinfo>
+			<xs:documentation source="http://www.web3d.org/files/specifications/19775-1/V3.3/Part01/fieldsDef.html#SFImageAndMFImage">Array of image values.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="5"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DwpSFInt32">
+		<xs:annotation>
+			<xs:appinfo>An DwpSFInt32 field specifies one 32-bit signed integer.</xs:appinfo>
+			<xs:documentation source="http://www.web3d.org/files/specifications/19775-1/V3.3/Part01/fieldsDef.html#SFInt32AndMFInt32">32-bit integer data type.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:integer"/>
+	</xs:simpleType>
+	<xs:simpleType name="DwpMFInt32">
+		<xs:annotation>
+			<xs:appinfo>An DwpMFInt32 field defines an array of 32-bit signed integers.  Array values are optionally separated by commas.</xs:appinfo>
+			<xs:documentation source="http://www.web3d.org/files/specifications/19775-1/V3.3/Part01/fieldsDef.html#SFInt32AndMFInt32">Array of 32-bit integer values.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:whiteSpace value="collapse"/>
+			<xs:pattern value="((\+|\-)?(0|[1-9][0-9]*)?( )?(,)?( )?)*"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DwpSFRotation">
+		<xs:annotation>
+			<xs:appinfo>DWPSFRotation is an axis-angle 4-tuple, indicating X-Y-Z direction plus angle orientation about that axis.  The first three values specify a normalized rotation axis vector about which the rotation takes place. (Thus the first three values must be within the range [-1..+1] in order to represent a normalized unit vector.  Problem:  scientific notation allows leading digit.)  The fourth value specifies the amount of right-handed rotation about that axis in radians.</xs:appinfo>
+			<xs:documentation source="http://www.web3d.org/files/specifications/19775-1/V3.3/Part01/fieldsDef.html#SFRotationAndMFRotation">An axis-angle 4-tuple, indicating X-Y-Z direction plus angle orientation about that axis.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:whiteSpace value="collapse"/>
+			<xs:pattern value="((\+|\-)?(((\.[0-9]+|0(\.[0-9]*)?)((E|e)(\+|\-)?[0-9]+)?)|(1(\.[0]*)?((E|e)\-[0-9]+)?)|([1-9](\.[0-9]*)((E|e)\-[0-9]+))) (\+|\-)?(((\.[0-9]+|0(\.[0-9]*)?)((E|e)(\+|\-)?[0-9]+)?)|(1(\.[0]*)?((E|e)\-[0-9]+)?)|([1-9](\.[0-9]*)((E|e)\-[0-9]+))) (\+|\-)?(((\.[0-9]+|0(\.[0-9]*)?)((E|e)(\+|\-)?[0-9]+)?)|(1(\.[0]*)?((E|e)\-[0-9]+)?)|([1-9](\.[0-9]*)((E|e)\-[0-9]+))) (\+|\-)?(0|[1-9][0-9]*)?(\.[0-9]*)?((E|e)(\+|\-)?[0-9]+)?)?"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DwpMFRotation">
+		<xs:annotation>
+			<xs:appinfo>DWPMFRotation is an array of DWPSFRotation values.  Array values are optionally separated by commas.</xs:appinfo>
+			<xs:documentation source="http://www.web3d.org/files/specifications/19775-1/V3.3/Part01/fieldsDef.html#SFRotationAndMFRotation">An array of DwpSFRotation values.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:whiteSpace value="collapse"/>
+			<xs:pattern value="((\+|\-)?(((\.[0-9]+|0(\.[0-9]*)?)((E|e)(\+|\-)?[0-9]+)?)|(1(\.[0]*)?((E|e)\-[0-9]+)?)|([1-9](\.[0-9]*)((E|e)\-[0-9]+))) (\+|\-)?(((\.[0-9]+|0(\.[0-9]*)?)((E|e)(\+|\-)?[0-9]+)?)|(1(\.[0]*)?((E|e)\-[0-9]+)?)|([1-9](\.[0-9]*)((E|e)\-[0-9]+))) (\+|\-)?(((\.[0-9]+|0(\.[0-9]*)?)((E|e)(\+|\-)?[0-9]+)?)|(1(\.[0]*)?((E|e)\-[0-9]+)?)|([1-9](\.[0-9]*)((E|e)\-[0-9]+))) (\+|\-)?(0|[1-9][0-9]*)?(\.[0-9]*)?((E|e)(\+|\-)?[0-9]+)?( )?(,)?( )?)*"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DwpSFString">
+		<xs:annotation>
+			<xs:appinfo>DWPSFString defines a single string encoded with the UTF-8 universal character set.</xs:appinfo>
+			<xs:documentation source="http://www.web3d.org/files/specifications/19775-1/V3.3/Part01/fieldsDef.html#SFStringAndMFString">A single string encoded with the UTF-8 universal character set.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="DwpMFString">
+		<xs:annotation>
+			<xs:appinfo>DwpMFString is an array of DwpSFString values, each "quoted" and separated by whitespace.  Array values are optionally separated by commas.</xs:appinfo>
+			<xs:documentation source="http://www.web3d.org/files/specifications/19775-1/V3.3/Part01/fieldsDef.html#SFStringAndMFString">An array of DwpSFString values.</xs:documentation>
+		</xs:annotation>
+		<xs:list itemType="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="DwpSFTime">
+		<xs:annotation>
+			<xs:appinfo>The DwpSFTime field specifies a single time value.  Time values are specified as a double-precision floating point number. Typically, SFTime fields represent the number of seconds since Jan 1, 1970, 00:00:00 GMT.</xs:appinfo>
+			<xs:documentation source="http://www.web3d.org/files/specifications/19775-1/V3.3/Part01/fieldsDef.html#SFTimeAndMFTime">A single time value.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:whiteSpace value="collapse"/>
+			<xs:pattern value="((-1(.(0)*)?)|((\+)?(0|[1-9][0-9]*)?(\.[0-9]*)?((E|e)(\+|\-)?[0-9]+)?))?"/>
+		</xs:restriction>
+		<!-- base type xs:time not usable due to different nomenclatures for time values. -->
+	</xs:simpleType>
+	<xs:simpleType name="DwpMFTime">
+		<xs:annotation>
+			<xs:appinfo>DwpMFTime is an array of DwpSFTime values.  Array values are optionally separated by commas.</xs:appinfo>
+			<xs:documentation source="http://www.web3d.org/files/specifications/19775-1/V3.3/Part01/fieldsDef.html#SFTimeAndMFTime">An array of time values.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:whiteSpace value="collapse"/>
+			<xs:pattern value="((-1(.(0)*)?|(0|[1-9][0-9]*)?(\.[0-9]*)?((E|e)(\+|\-)?[0-9]+)?( )?(,)?( )?)*)?"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DwpSFVec2f">
+		<xs:annotation>
+			<xs:appinfo>DwpSFVec2f is a 2-tuple pair of DwpSFFloat values.
+                Hint: SFVec2f can be used to specify a 2D single-precision coordinate.
+            </xs:appinfo>
+			<xs:documentation source="http://www.web3d.org/files/specifications/19775-1/V3.3/Part01/fieldsDef.html#SFVec2fAndMFVec2f">A 2-tuple pair of DwpSFFloat values.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:whiteSpace value="collapse"/>
+			<xs:pattern value="((\+|\-)?(0|[1-9][0-9]*)?(\.[0-9]*)?((E|e)(\+|\-)?[0-9]+)? (\+|\-)?(0|[1-9][0-9]*)?(\.[0-9]*)?((E|e)(\+|\-)?[0-9]+)?)?"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DwpMFVec2f">
+		<xs:annotation>
+			<xs:appinfo>DwpMFVec2f is an array of DwpSFVec2f values.  Array values are optionally separated by commas.</xs:appinfo>
+			<xs:documentation source="http://www.web3d.org/files/specifications/19775-1/V3.3/Part01/fieldsDef.html#SFVec2fAndMFVec2f">An array of DwpSFVec2f values.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:whiteSpace value="collapse"/>
+			<xs:pattern value="((\+|\-)?(0|[1-9][0-9]*)?(\.[0-9]*)?((E|e)(\+|\-)?[0-9]+)? (\+|\-)?(0|[1-9][0-9]*)?(\.[0-9]*)?((E|e)(\+|\-)?[0-9]+)?( )?(,)?( )?)*"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DwpSFVec2d">
+		<xs:annotation>
+			<xs:appinfo>DwpSFVec2d is a 2-tuple pair of DwpSFDouble values.  Array values are optionally separated by commas.
+                Hint: DwpSFVec2d can be used to specify a 2D double-precision coordinate.
+            </xs:appinfo>
+			<xs:documentation source="http://www.web3d.org/files/specifications/19775-1/V3.3/Part01/fieldsDef.html#SFVec2dAndMFVec2d">A 2-tuple pair of DwpSFDouble values.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:whiteSpace value="collapse"/>
+			<xs:pattern value="((\+|\-)?([0-9]+(\.[0-9]*)?|\.[0-9]+)((E|e)(\+|\-)?[0-9]+)? (\+|\-)?([0-9]+(\.[0-9]*)?|\.[0-9]+)((E|e)(\+|\-)?[0-9]+)?)?"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DwpMFVec2d">
+		<xs:annotation>
+			<xs:appinfo>DwpMFVec2d is an array of DwpSFVec2d values.  Array values are optionally separated by commas.</xs:appinfo>
+			<xs:documentation source="http://www.web3d.org/files/specifications/19775-1/V3.3/Part01/fieldsDef.html#SFVec2dAndMFVec2d">An array of DwpSFVec2d values.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:whiteSpace value="collapse"/>
+			<xs:pattern value="((\+|\-)?(0|[1-9][0-9]*)?(\.[0-9]*)?((E|e)(\+|\-)?[0-9]+)? (\+|\-)?(0|[1-9][0-9]*)?(\.[0-9]*)?((E|e)(\+|\-)?[0-9]+)?( )?(,)?( )?)*"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DwpSFVec3f">
+		<xs:annotation>
+			<xs:appinfo>DwpSFVec3f is a 3-tuple triplet of DwpSFFloat values.
+                Hint:  DwpSFVec3f can be used to specify a 3D coordinate or a 3D scale value.
+            </xs:appinfo>
+			<xs:documentation source="http://www.web3d.org/files/specifications/19775-1/V3.3/Part01/fieldsDef.html#SFVec3fAndMFVec3f">A 3-tuple triplet of DwpSFFloat values.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:whiteSpace value="collapse"/>
+			<xs:pattern value="((\+|\-)?(0|[1-9][0-9]*)?(\.[0-9]*)?((E|e)(\+|\-)?[0-9]+)? (\+|\-)?(0|[1-9][0-9]*)?(\.[0-9]*)?((E|e)(\+|\-)?[0-9]+)? (\+|\-)?(0|[1-9][0-9]*)?(\.[0-9]*)?((E|e)(\+|\-)?[0-9]+)?)?"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DwpMFVec3f">
+		<xs:annotation>
+			<xs:appinfo>DwpMFVec3f is an array of DwpSFVec3f values.  Array values are optionally separated by commas.</xs:appinfo>
+			<xs:documentation source="http://www.web3d.org/files/specifications/19775-1/V3.3/Part01/fieldsDef.html#SFVec3fAndMFVec3f">An array of DwpSFVec3f values.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:whiteSpace value="collapse"/>
+			<xs:pattern value="((\+|\-)?(0|[1-9][0-9]*)?(\.[0-9]*)?((E|e)(\+|\-)?[0-9]+)? (\+|\-)?(0|[1-9][0-9]*)?(\.[0-9]*)?((E|e)(\+|\-)?[0-9]+)? (\+|\-)?(0|[1-9][0-9]*)?(\.[0-9]*)?((E|e)(\+|\-)?[0-9]+)?( )?(,)?( )?)*"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DwpSFVec3d">
+		<xs:annotation>
+			<xs:appinfo>DwpSFVec3d is a 3-tuple triplet of DwpSFDouble values.
+                See GeoVRML 1.0 Recommended Practice, Section 2.3, Limitations of Single Precision.
+                Hint:  DwpSFVec3d can be used to specify a georeferenced 3D coordinate.
+            </xs:appinfo>
+			<xs:documentation source="http://www.web3d.org/files/specifications/19775-1/V3.3/Part01/fieldsDef.html#SFVec3dAndMFVec3d">A 3-tuple triplet of DwpSFDouble values</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:whiteSpace value="collapse"/>
+			<xs:pattern value="((\+|\-)?(0|[1-9][0-9]*)?(\.[0-9]*)?((E|e)(\+|\-)?[0-9]+)? (\+|\-)?(0|[1-9][0-9]*)?(\.[0-9]*)?((E|e)(\+|\-)?[0-9]+)? (\+|\-)?(0|[1-9][0-9]*)?(\.[0-9]*)?((E|e)(\+|\-)?[0-9]+)?)?"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DwpMFVec3d">
+		<xs:annotation>
+			<xs:appinfo>DwpMFVec3d is an array of DwpSFVec3d values.  Array values are optionally separated by commas.
+                See GeoVRML 1.0 Recommended Practice, Section 2.3, Limitations of Single Precision.
+                Hint:  DwpMFVec3d can be used to specify a list of georeferenced 3D coordinates.
+            </xs:appinfo>
+			<xs:documentation source="http://www.web3d.org/files/specifications/19775-1/V3.3/Part01/fieldsDef.html#SFVec3dAndMFVec3d">An array of DwpSFVec3d values.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:whiteSpace value="collapse"/>
+			<xs:pattern value="((\+|\-)?(0|[1-9][0-9]*)?(\.[0-9]*)?((E|e)(\+|\-)?[0-9]+)? (\+|\-)?(0|[1-9][0-9]*)?(\.[0-9]*)?((E|e)(\+|\-)?[0-9]+)? (\+|\-)?(0|[1-9][0-9]*)?(\.[0-9]*)?((E|e)(\+|\-)?[0-9]+)?( )?(,)?( )?)*"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!--======================================================================-->
+	<!-- Digital Workprint canonical data types -->
+	<xs:simpleType name="DwpInteger">
+		<xs:annotation>
+			<xs:documentation>Digital Workprint integer data type.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="dwp:DwpSFInt32"/>
+	</xs:simpleType>
+	<xs:simpleType name="DwpFloat">
+		<xs:annotation>
+			<xs:documentation>Digital Workprint single-precision floating-point data type.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="dwp:DwpSFFloat"/>
+	</xs:simpleType>
+	<xs:simpleType name="DwpDouble">
+		<xs:annotation>
+			<xs:documentation>Digital Workprint double-precision floating-point data type.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="dwp:DwpSFDouble"/>
+	</xs:simpleType>
+	<xs:simpleType name="DwpString">
+		<xs:annotation>
+			<xs:documentation>Digital Workprint string data type.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="dwp:DwpSFString"/>
+	</xs:simpleType>
+	<!--======================================================================-->
+	<!-- Enumerations -->
+	<xs:simpleType name="propertyTypeName">
+		<xs:annotation>
+			<xs:appinfo>propertyTypeName contains the names of all DwpProperty types.</xs:appinfo>
+			<xs:documentation>Enumeration of data types for DwpProperty.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="SFBool"/>
+			<xs:enumeration value="MFBool"/>
+			<xs:enumeration value="SFColor"/>
+			<xs:enumeration value="MFColor"/>
+			<xs:enumeration value="SFColorRGBA"/>
+			<xs:enumeration value="MFColorRGBA"/>
+			<xs:enumeration value="SFDouble"/>
+			<xs:enumeration value="MFDouble"/>
+			<xs:enumeration value="SFFloat"/>
+			<xs:enumeration value="MFFloat"/>
+			<xs:enumeration value="SFImage"/>
+			<xs:enumeration value="MFImage"/>
+			<xs:enumeration value="SFInt32"/>
+			<xs:enumeration value="SFNode"/>
+			<xs:enumeration value="MFNode"/>
+			<xs:enumeration value="MFInt32"/>
+			<xs:enumeration value="SFRotation"/>
+			<xs:enumeration value="MFRotation"/>
+			<xs:enumeration value="SFString"/>
+			<xs:enumeration value="MFString"/>
+			<xs:enumeration value="SFTime"/>
+			<xs:enumeration value="MFTime"/>
+			<xs:enumeration value="SFVec2d"/>
+			<xs:enumeration value="MFVec2d"/>
+			<xs:enumeration value="SFVec2f"/>
+			<xs:enumeration value="MFVec2f"/>
+			<xs:enumeration value="SFVec3d"/>
+			<xs:enumeration value="MFVec3d"/>
+			<xs:enumeration value="SFVec3f"/>
+			<xs:enumeration value="MFVec3f"/>
+			<xs:enumeration value="int"/>
+			<xs:enumeration value="float"/>
+			<xs:enumeration value="double"/>
+			<xs:enumeration value="string"/>
+			<xs:enumeration value="intArray"/>
+			<xs:enumeration value="FloatArray"/>
+			<xs:enumeration value="DoubleArray"/>
+			<xs:enumeration value="MlScalar"/>
+			<xs:enumeration value="MlVector2"/>
+			<xs:enumeration value="MlVector3"/>
+			<xs:enumeration value="MlVector4"/>
+			<xs:enumeration value="MlMatrix3"/>
+			<xs:enumeration value="MlMatrix4"/>
+			<xs:enumeration value="MlTransform"/>
+			<xs:enumeration value="MlRotation"/>
+			<xs:enumeration value="MediaRef"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!--======================================================================-->
+	<!-- Digital Workprint items -->
+	<xs:complexType name="DwpProperty">
+		<xs:annotation>
+			<xs:documentation>Digital Workprint property.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="name" type="xs:NMTOKEN" use="required"/>
+		<xs:attribute name="type" type="dwp:propertyTypeName" use="required"/>
+		<xs:attribute name="value" type="xs:string"/>
+		<xs:attributeGroup ref="dwp:informative"/>
+	</xs:complexType>
+	<xs:element name="DigitalWorkprint">
+		<xs:annotation>
+			<xs:documentation>Magic Lantern Digital Workprint container.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:choice maxOccurs="unbounded">
+				<xs:element ref="dwp:Include" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="dwp:Stage" maxOccurs="unbounded"/>
+				<xs:element ref="dwp:ActorDef" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="dwp:RoleDef" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="dwp:MediaRef" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="dwp:Scene" maxOccurs="unbounded"/>
+				<xs:element ref="dwp:BootItem" minOccurs="0"/>
+			</xs:choice>
+			<xs:attribute name="name" type="xs:string" use="required"/>
+			<xs:attributeGroup ref="dwp:version"/>
+			<xs:attribute name="author" type="xs:string"/>
+			<xs:attribute name="publisher" type="xs:string"/>
+			<xs:attribute name="description" type="xs:string"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Include">
+		<xs:annotation>
+			<xs:documentation>Digital Workprint include item.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="path" type="xs:string" use="required"/>
+			<xs:attributeGroup ref="dwp:informative"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Package">
+		<xs:annotation>
+			<xs:documentation>Java or C# package name.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="path" type="xs:string" use="required"/>
+			<xs:attributeGroup ref="dwp:informative"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="HeaderFile">
+		<xs:annotation>
+			<xs:documentation>C/C++ Header file name.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="path" type="xs:string" use="required"/>
+			<xs:attributeGroup ref="dwp:informative"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="SourceFile">
+		<xs:annotation>
+			<xs:documentation>C/C++ Source file name.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="path" type="xs:string" use="required"/>
+			<xs:attributeGroup ref="dwp:informative"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ActorDef">
+		<xs:annotation>
+			<xs:documentation>Digital Workprint actor definition.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="dwp:Package"/>
+				<xs:element ref="dwp:PropertyDef" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="dwp:RoleSetMappng" minOccurs="0"/>
+			</xs:sequence>
+			<xs:attribute name="name" type="xs:string" use="required"/>
+			<xs:attributeGroup ref="dwp:informative"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="RoleDef">
+		<xs:annotation>
+			<xs:documentation>Digital Workprint role definition.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="dwp:Package" minOccurs="0"/>
+				<xs:element name="Property" type="dwp:DwpProperty" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attribute name="name" type="xs:string" use="required"/>
+			<xs:attributeGroup ref="dwp:informative"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="PropertyDef">
+		<xs:annotation>
+			<xs:documentation>Digital Workprint property defintion.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="name" type="xs:string" use="required"/>
+			<xs:attribute name="type" type="dwp:propertyTypeName" use="required"/>
+			<xs:attributeGroup ref="dwp:informative"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Stage">
+		<xs:annotation>
+			<xs:documentation>Digital Workprint stage.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="dwp:Set"/>
+			</xs:sequence>
+			<xs:attribute name="name" type="xs:string" use="required"/>
+			<xs:attribute name="class" type="xs:string" use="required"/>
+			<xs:attributeGroup ref="dwp:informative"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Set">
+		<xs:annotation>
+			<xs:documentation>Digital Workprint set.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence minOccurs="0" maxOccurs="unbounded">
+				<xs:element name="Property" type="dwp:DwpProperty"/>
+			</xs:sequence>
+			<xs:attribute name="name" type="xs:string" use="required"/>
+			<xs:attribute name="class" type="xs:string" use="required"/>
+			<xs:attributeGroup ref="dwp:informative"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Cast">
+		<xs:annotation>
+			<xs:documentation>Digital Workprint cast.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="dwp:Package" minOccurs="0"/>
+				<xs:element ref="dwp:Actor" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="dwp:RoleAttachment" minOccurs="0"/>
+			</xs:sequence>
+			<xs:attribute name="name" type="xs:string" use="required"/>
+			<xs:attribute name="class" type="xs:string" use="required"/>
+			<xs:attributeGroup ref="dwp:informative"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Scene">
+		<xs:annotation>
+			<xs:documentation>Digital Workprint scene.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="dwp:Package" minOccurs="0"/>
+				<xs:element ref="dwp:Cast" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="dwp:CastRef" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attribute name="name" type="xs:string" use="required"/>
+			<xs:attribute name="class" type="xs:string" use="required"/>
+			<xs:attributeGroup ref="dwp:informative"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Actor">
+		<xs:annotation>
+			<xs:documentation>Digital Workprint actor.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Property" type="dwp:DwpProperty" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="dwp:RoleBinding" minOccurs="0"/>
+			</xs:sequence>
+			<xs:attribute name="name" type="xs:string" use="required"/>
+			<xs:attribute name="class" type="xs:string" use="required"/>
+			<xs:attributeGroup ref="dwp:informative"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="RoleBinding">
+		<xs:annotation>
+			<xs:documentation>Digital Workprint actor role binding.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="role" type="xs:string" use="required"/>
+			<xs:attribute name="set" type="xs:string" use="required"/>
+			<xs:attributeGroup ref="dwp:informative"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="RoleSetMappng">
+		<xs:annotation>
+			<xs:documentation>Digital Workprint role to set mapping.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="roleClass" type="xs:string" use="required"/>
+			<xs:attribute name="setClass" type="xs:string" use="required"/>
+			<xs:attributeGroup ref="dwp:informative"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="MediaRefTarget">
+		<xs:annotation>
+			<xs:documentation>Digital Workprint media reference target.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="dwp:Media" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attribute name="id" type="xs:string"/>
+			<xs:attributeGroup ref="dwp:informative"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="MediaRefSource">
+		<xs:annotation>
+			<xs:documentation>Digital Workprint media reference source.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="dwp:Media" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attributeGroup ref="dwp:informative"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Media">
+		<xs:annotation>
+			<xs:documentation>Digital Workprint media.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="id" type="xs:string" use="required"/>
+			<xs:attribute name="name" type="xs:string" use="required"/>
+			<xs:attribute name="path" type="xs:string" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="MediaRef">
+		<xs:annotation>
+			<xs:documentation>Digital Workprint media reference.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="dwp:Package" minOccurs="0"/>
+				<xs:element ref="dwp:MediaRefSource"/>
+				<xs:element ref="dwp:MediaRefTarget"/>
+			</xs:sequence>
+			<xs:attribute name="name" type="xs:string" use="required"/>
+			<xs:attribute name="class" type="xs:string" use="required"/>
+			<xs:attributeGroup ref="dwp:informative"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="CastRef">
+		<xs:annotation>
+			<xs:documentation>Digital Workprint cast reference.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="cast" type="xs:string" use="required"/>
+			<xs:attributeGroup ref="dwp:informative"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="RoleAttachment">
+		<xs:annotation>
+			<xs:documentation>Digital Workprint role attachment</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="BootItem">
+		<xs:annotation>
+			<xs:documentation>Digital Workprint boot item.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="scene" type="xs:string" use="required"/>
+			<xs:attributeGroup ref="dwp:informative"/>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

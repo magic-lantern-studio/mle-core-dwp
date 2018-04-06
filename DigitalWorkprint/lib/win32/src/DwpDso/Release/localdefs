@@ -1,0 +1,70 @@
+# -*- Makefile -*-
+#
+#  Copyright (C) 2000-2007  Wizzer Works
+#
+#  Wizzer Works makes available all content in this file ("Content").
+#  Unless otherwise indicated below, the Content is provided to you
+#  under the terms and conditions of the Common Public License Version 1.0
+#  ("CPL"). A copy of the CPL is available at
+#
+#      http://opensource.org/licenses/cpl1.0.php
+#
+#  For purposes of the CPL, "Program" will mean the Content.
+#
+#  For information concerning this Makefile, contact Mark S. Millard,
+#  of Wizzer Works at msm@wizzerworks.com.
+#
+#*************************************************************************
+#
+# localdefs - for setting definitions specfic to building the Magic
+# Lantern Digital Workprint DSO.
+#
+# $Id$
+#
+#*************************************************************************
+
+TARGETS = DWP.dll
+
+LCXXDEFS = \
+    -DML_MATH_DEBUG=0 \
+    -DML_FIXED_POINT=0\
+    -DML_CDECL \
+    -DDWPDSO_EXPORTS \
+    -DMLE_INTERNAL \
+    -DMLE_MAKE_DLL \
+    -DMLE_DLL \
+    -D_WINDOWS \
+    -D_MBCS \
+    -D_USRDLL \
+    $(NULL)
+
+LCOPTS = \
+    -O2 -MT \
+    -Fp"DWP.pch" \
+    -FD \
+    $(NULL)
+
+LCXXOPTS = \
+    -O2 -MT \
+    -Fp"DWP.pch" \
+    -FD \
+    $(NULL)
+
+LLDOPTS = \
+    -dll -nologo \
+    -libpath:$(MLE_ROOT)/Core/math/win32/src/mlmath_DLL/Release \
+    -libpath:$(MLE_ROOT)/Core/util/win32/lib \
+    -machine:I386 \
+    -out:"DWP.dll" \
+    -map:"DWP.map" \
+    $(NULL)
+
+LCXXFILES = \
+    DwpDso.cpp \
+    StdAfx.cpp \
+    $(NULL)
+
+LLDLIBS = \
+    mlmath.lib \
+    psapi.lib \
+    $(NULL)

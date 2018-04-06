@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2005 rel. 3 U (http://www.altova.com) by Tobin Wahlers (Vidiom Systems) -->
+<DigitalWorkprint xmlns="http://www.wizzerworks.com/DWPSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.wizzerworks.com/DWPSchema
+DigitalWorkprint.xsd" name="HelloWorld Example Title" major="1" description="DWP 1.0 XML" author="Wizzer Works">
+	<Include path="$MLE_WORKPRINTS/parts/sets/java/workprints/MleJ2dSet.wpf"/>
+	<Stage class="Mle2dStage" name="MyStage" tags="java2d">
+		<Set class="Mle2dSet" name="2dSet">
+			<Property name="position" type="MlVector2" value="0.0 0.0"/>
+			<Property name="size" type="MlVector2" value="640.0 480.0"/>
+		</Set>
+	</Stage>
+	<ActorDef name="LabelWidgetActor">
+		<Package path="helloworld.actors"/>
+		<PropertyDef name="id" type="string"/>
+		<PropertyDef name="position" type="MlVector2"/>
+		<PropertyDef name="text" type="string"/>
+		<RoleSetMappng setClass="Mle2dSet" roleClass="LabelWidgetRole"/>
+	</ActorDef>
+	<RoleDef name="LabelWidgetRole">
+		<Package path="helloworld.roles"/>
+	</RoleDef>
+	<Scene class="MleScene" name="scene1">
+		<Package path="com.wizzer.mle.runtime.core"/>
+		<Cast class="MleGroup" name="group1">
+			<Package path="com.wizzer.mle.runtime.core"/>
+			<Actor class="LabelWidgetActor" name="label">
+				<Property name="id" type="string" value="LabelWidget"/>
+				<Property name="position" type="MlVector2" value="50.0 50.0"/>
+				<Property name="text" type="string" value="Hello World!"/>
+				<RoleBinding set="2dSet" role="LabelWidgetRole"/>
+			</Actor>
+		</Cast>
+	</Scene>
+</DigitalWorkprint>

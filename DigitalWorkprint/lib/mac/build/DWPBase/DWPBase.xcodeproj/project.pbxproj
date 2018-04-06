@@ -1,0 +1,303 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		296AA62415B7522E00A6BFEB /* DwpContainer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 296AA61315B7522E00A6BFEB /* DwpContainer.cpp */; };
+		296AA62515B7522E00A6BFEB /* DwpDict.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 296AA61415B7522E00A6BFEB /* DwpDict.cpp */; };
+		296AA62615B7522E00A6BFEB /* DwpDiscriminator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 296AA61515B7522E00A6BFEB /* DwpDiscriminator.cpp */; };
+		296AA62715B7522E00A6BFEB /* DwpDSOFile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 296AA61615B7522E00A6BFEB /* DwpDSOFile.cpp */; };
+		296AA62815B7522E00A6BFEB /* DwpFile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 296AA61715B7522E00A6BFEB /* DwpFile.cpp */; };
+		296AA62915B7522E00A6BFEB /* DwpFilename.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 296AA61815B7522E00A6BFEB /* DwpFilename.cpp */; };
+		296AA62A15B7522E00A6BFEB /* DwpFinder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 296AA61915B7522E00A6BFEB /* DwpFinder.cpp */; };
+		296AA62B15B7522E00A6BFEB /* DwpInclude.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 296AA61A15B7522E00A6BFEB /* DwpInclude.cpp */; };
+		296AA62C15B7522E00A6BFEB /* DwpInput.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 296AA61B15B7522E00A6BFEB /* DwpInput.cpp */; };
+		296AA62D15B7522E00A6BFEB /* DwpItem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 296AA61C15B7522E00A6BFEB /* DwpItem.cpp */; };
+		296AA62E15B7522E00A6BFEB /* DwpMonitor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 296AA61D15B7522E00A6BFEB /* DwpMonitor.cpp */; };
+		296AA62F15B7522E00A6BFEB /* DwpNotifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 296AA61E15B7522E00A6BFEB /* DwpNotifier.cpp */; };
+		296AA63015B7522E00A6BFEB /* DwpOutput.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 296AA61F15B7522E00A6BFEB /* DwpOutput.cpp */; };
+		296AA63115B7522E00A6BFEB /* DwpStrKeyDict.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 296AA62015B7522E00A6BFEB /* DwpStrKeyDict.cpp */; };
+		296AA63215B7522E00A6BFEB /* DwpTagAllDiscriminator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 296AA62115B7522E00A6BFEB /* DwpTagAllDiscriminator.cpp */; };
+		296AA63315B7522E00A6BFEB /* DwpTagDiscriminator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 296AA62215B7522E00A6BFEB /* DwpTagDiscriminator.cpp */; };
+		296AA63415B7522E00A6BFEB /* DwpUnknown.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 296AA62315B7522E00A6BFEB /* DwpUnknown.cpp */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		296AA56E15B750A400A6BFEB /* libDWPBase.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libDWPBase.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		296AA61315B7522E00A6BFEB /* DwpContainer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DwpContainer.cpp; sourceTree = "<group>"; };
+		296AA61415B7522E00A6BFEB /* DwpDict.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DwpDict.cpp; sourceTree = "<group>"; };
+		296AA61515B7522E00A6BFEB /* DwpDiscriminator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DwpDiscriminator.cpp; sourceTree = "<group>"; };
+		296AA61615B7522E00A6BFEB /* DwpDSOFile.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DwpDSOFile.cpp; sourceTree = "<group>"; };
+		296AA61715B7522E00A6BFEB /* DwpFile.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DwpFile.cpp; sourceTree = "<group>"; };
+		296AA61815B7522E00A6BFEB /* DwpFilename.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DwpFilename.cpp; sourceTree = "<group>"; };
+		296AA61915B7522E00A6BFEB /* DwpFinder.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DwpFinder.cpp; sourceTree = "<group>"; };
+		296AA61A15B7522E00A6BFEB /* DwpInclude.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DwpInclude.cpp; sourceTree = "<group>"; };
+		296AA61B15B7522E00A6BFEB /* DwpInput.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DwpInput.cpp; sourceTree = "<group>"; };
+		296AA61C15B7522E00A6BFEB /* DwpItem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DwpItem.cpp; sourceTree = "<group>"; };
+		296AA61D15B7522E00A6BFEB /* DwpMonitor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DwpMonitor.cpp; sourceTree = "<group>"; };
+		296AA61E15B7522E00A6BFEB /* DwpNotifier.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DwpNotifier.cpp; sourceTree = "<group>"; };
+		296AA61F15B7522E00A6BFEB /* DwpOutput.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DwpOutput.cpp; sourceTree = "<group>"; };
+		296AA62015B7522E00A6BFEB /* DwpStrKeyDict.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DwpStrKeyDict.cpp; sourceTree = "<group>"; };
+		296AA62115B7522E00A6BFEB /* DwpTagAllDiscriminator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DwpTagAllDiscriminator.cpp; sourceTree = "<group>"; };
+		296AA62215B7522E00A6BFEB /* DwpTagDiscriminator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DwpTagDiscriminator.cpp; sourceTree = "<group>"; };
+		296AA62315B7522E00A6BFEB /* DwpUnknown.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DwpUnknown.cpp; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		296AA56B15B750A400A6BFEB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		296AA56315B750A400A6BFEB = {
+			isa = PBXGroup;
+			children = (
+				296AA61215B7522E00A6BFEB /* DWPBase */,
+				296AA56F15B750A400A6BFEB /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		296AA56F15B750A400A6BFEB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				296AA56E15B750A400A6BFEB /* libDWPBase.dylib */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		296AA61215B7522E00A6BFEB /* DWPBase */ = {
+			isa = PBXGroup;
+			children = (
+				296AA61315B7522E00A6BFEB /* DwpContainer.cpp */,
+				296AA61415B7522E00A6BFEB /* DwpDict.cpp */,
+				296AA61515B7522E00A6BFEB /* DwpDiscriminator.cpp */,
+				296AA61615B7522E00A6BFEB /* DwpDSOFile.cpp */,
+				296AA61715B7522E00A6BFEB /* DwpFile.cpp */,
+				296AA61815B7522E00A6BFEB /* DwpFilename.cpp */,
+				296AA61915B7522E00A6BFEB /* DwpFinder.cpp */,
+				296AA61A15B7522E00A6BFEB /* DwpInclude.cpp */,
+				296AA61B15B7522E00A6BFEB /* DwpInput.cpp */,
+				296AA61C15B7522E00A6BFEB /* DwpItem.cpp */,
+				296AA61D15B7522E00A6BFEB /* DwpMonitor.cpp */,
+				296AA61E15B7522E00A6BFEB /* DwpNotifier.cpp */,
+				296AA61F15B7522E00A6BFEB /* DwpOutput.cpp */,
+				296AA62015B7522E00A6BFEB /* DwpStrKeyDict.cpp */,
+				296AA62115B7522E00A6BFEB /* DwpTagAllDiscriminator.cpp */,
+				296AA62215B7522E00A6BFEB /* DwpTagDiscriminator.cpp */,
+				296AA62315B7522E00A6BFEB /* DwpUnknown.cpp */,
+			);
+			name = DWPBase;
+			path = ../../../common/src/DWPBase;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		296AA56C15B750A400A6BFEB /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		296AA56D15B750A400A6BFEB /* DWPBase */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 296AA57215B750A400A6BFEB /* Build configuration list for PBXNativeTarget "DWPBase" */;
+			buildPhases = (
+				296AA56A15B750A400A6BFEB /* Sources */,
+				296AA56B15B750A400A6BFEB /* Frameworks */,
+				296AA56C15B750A400A6BFEB /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DWPBase;
+			productName = DWPBase;
+			productReference = 296AA56E15B750A400A6BFEB /* libDWPBase.dylib */;
+			productType = "com.apple.product-type.library.dynamic";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		296AA56515B750A400A6BFEB /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0430;
+				ORGANIZATIONNAME = "Wizzer Works";
+			};
+			buildConfigurationList = 296AA56815B750A400A6BFEB /* Build configuration list for PBXProject "DWPBase" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 296AA56315B750A400A6BFEB;
+			productRefGroup = 296AA56F15B750A400A6BFEB /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				296AA56D15B750A400A6BFEB /* DWPBase */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		296AA56A15B750A400A6BFEB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				296AA62415B7522E00A6BFEB /* DwpContainer.cpp in Sources */,
+				296AA62515B7522E00A6BFEB /* DwpDict.cpp in Sources */,
+				296AA62615B7522E00A6BFEB /* DwpDiscriminator.cpp in Sources */,
+				296AA62715B7522E00A6BFEB /* DwpDSOFile.cpp in Sources */,
+				296AA62815B7522E00A6BFEB /* DwpFile.cpp in Sources */,
+				296AA62915B7522E00A6BFEB /* DwpFilename.cpp in Sources */,
+				296AA62A15B7522E00A6BFEB /* DwpFinder.cpp in Sources */,
+				296AA62B15B7522E00A6BFEB /* DwpInclude.cpp in Sources */,
+				296AA62C15B7522E00A6BFEB /* DwpInput.cpp in Sources */,
+				296AA62D15B7522E00A6BFEB /* DwpItem.cpp in Sources */,
+				296AA62E15B7522E00A6BFEB /* DwpMonitor.cpp in Sources */,
+				296AA62F15B7522E00A6BFEB /* DwpNotifier.cpp in Sources */,
+				296AA63015B7522E00A6BFEB /* DwpOutput.cpp in Sources */,
+				296AA63115B7522E00A6BFEB /* DwpStrKeyDict.cpp in Sources */,
+				296AA63215B7522E00A6BFEB /* DwpTagAllDiscriminator.cpp in Sources */,
+				296AA63315B7522E00A6BFEB /* DwpTagDiscriminator.cpp in Sources */,
+				296AA63415B7522E00A6BFEB /* DwpUnknown.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		296AA57015B750A400A6BFEB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					MLE_NOT_DLL,
+					OSX,
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					../../../common/include,
+					../../../mac/include,
+					/Users/markmillard/Projects/MagicLantern/trunk/Core/util/common/include,
+					/Users/markmillard/Projects/MagicLantern/trunk/Core/util/mac/include,
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				USER_HEADER_SEARCH_PATHS = "../../../common/include ../../../mac/include /Users/markmillard/Projects/MagicLantern/trunk/Core/util/common/include /Users/markmillard/Projects/MagicLantern/trunk/Core/util/mac/include";
+			};
+			name = Debug;
+		};
+		296AA57115B750A400A6BFEB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					MLE_NOT_DLL,
+					OSX,
+				);
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					../../../common/include,
+					../../../mac/include,
+					/Users/markmillard/Projects/MagicLantern/trunk/Core/util/common/include,
+					/Users/markmillard/Projects/MagicLantern/trunk/Core/util/mac/include,
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				SDKROOT = macosx;
+				USER_HEADER_SEARCH_PATHS = "../../../common/include ../../../mac/include /Users/markmillard/Projects/MagicLantern/trunk/Core/util/common/include /Users/markmillard/Projects/MagicLantern/trunk/Core/util/mac/include";
+			};
+			name = Release;
+		};
+		296AA57315B750A400A6BFEB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				EXECUTABLE_PREFIX = lib;
+				HEADER_SEARCH_PATHS = (
+					../../../common/include,
+					../../../mac/include,
+					/Users/markmillard/Projects/MagicLantern/trunk/Core/util/common/include,
+					/Users/markmillard/Projects/MagicLantern/trunk/Core/util/mac/include,
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		296AA57415B750A400A6BFEB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				EXECUTABLE_PREFIX = lib;
+				HEADER_SEARCH_PATHS = (
+					../../../common/include,
+					../../../mac/include,
+					/Users/markmillard/Projects/MagicLantern/trunk/Core/util/common/include,
+					/Users/markmillard/Projects/MagicLantern/trunk/Core/util/mac/include,
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		296AA56815B750A400A6BFEB /* Build configuration list for PBXProject "DWPBase" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				296AA57015B750A400A6BFEB /* Debug */,
+				296AA57115B750A400A6BFEB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		296AA57215B750A400A6BFEB /* Build configuration list for PBXNativeTarget "DWPBase" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				296AA57315B750A400A6BFEB /* Debug */,
+				296AA57415B750A400A6BFEB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 296AA56515B750A400A6BFEB /* Project object */;
+}

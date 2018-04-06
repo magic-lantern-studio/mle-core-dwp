@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2005 rel. 3 U (http://www.altova.com) by Tobin Wahlers (Vidiom Systems) -->
+<DigitalWorkprint xmlns="http://www.wizzerworks.com/DWPSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.wizzerworks.com/DWPSchema
+DigitalWorkprint.xsd" name="Simple Example Title" major="1" description="DWP 1.0 XML" author="Wizzer Works">
+	<Include path="$MLE_WORKPRINTS/parts/sets/java/workprints/MleJ2dSet.wpf"/>
+	<Stage class="Mle2dStage" name="MyStage" tags="java2d">
+		<Set class="Mle2dSet" name="2dSet">
+			<Property name="position" type="MlVector2" value="0 0"/>
+			<Property name="size" type="MlVector2" value="640 48"/>
+		</Set>
+	</Stage>
+	<Scene class="MleScene" name="scene1">
+		<Package path="com.wizzer.mle.runtime.core"/>
+		<Cast class="MleGroup" name="group1">
+			<Package path="com.wizzer.mle.runtime.core"/>
+		</Cast>
+	</Scene>
+</DigitalWorkprint>

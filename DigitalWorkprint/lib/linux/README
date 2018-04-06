@@ -1,0 +1,25 @@
+Digital Workprint Library
+
+The Digital Workprint is a collection of files that contain the definition,
+scores and scripts that make up the unchanging represenstation of a dynamic
+and interactive title. The workprint contains the definitions for actors,
+properties, messages, packages and actions that are used in the title.
+The workprint also identifies the scores and scripts that control the creation
+of the actors and the actor behavior during the running of the title. The
+Digital Workprint is also used to manage external references to media items
+used in the title and may contain some actual media items directly. 
+
+libDwp is a utility library for creating and maintaining a Digital Workprint.
+It is used by the Magic Lantern software fomr Wizzer Works to implement a
+Digital Workprint.
+
+DWPChecker is an executable that may be used to check the syntax and semantics
+of a valid Digital Workprint.
+
+For information concerning this software, contact Mark S. Millard,
+of Wizzer Works at msm@wizzerworks.com.
+
+More information concerning Wizzer Works may be found at
+
+    http://www.wizzerworks.com
+    
