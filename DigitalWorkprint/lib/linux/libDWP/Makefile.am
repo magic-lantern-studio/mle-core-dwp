@@ -87,12 +87,12 @@ libDWP_la_SOURCES = \
 	../../common/src/DWPModel/DwpSourceFile.cpp \
 	../../common/src/DWPModel/DwpStage.cpp \
 	../../common/src/DWPModel/DwpStageDef.cpp \
-	../../../../Core/util/linux/src/MleLinuxPath.cxx \
-	../../../../Core/util/linux/src/MleLinuxMemoryManager.cxx \
-	../../../../Core/util/common/src/MleMemoryManager.cxx \
-	../../../../Core/util/common/src/MleDsoLoader.cxx \
-	../../../../Core/util/common/src/mlExpandFilename.c \
-	../../../../Core/util/common/src/mlUnique.c
+	$(MLE_HOME)/Core/util/linux/src/MleLinuxPath.cxx \
+	$(MLE_HOME)/Core/util/linux/src/MleLinuxMemoryManager.cxx \
+	$(MLE_HOME)/Core/util/common/src/MleMemoryManager.cxx \
+	$(MLE_HOME)/Core/util/common/src/MleDsoLoader.cxx \
+	$(MLE_HOME)/Core/util/common/src/mlExpandFilename.c \
+	$(MLE_HOME)/Core/util/common/src/mlUnique.c
 
 # Linker options libTestProgram
 libDWP_la_LDFLAGS = -L/opt/MagicLantern/lib -lmlmath -ldl
@@ -103,6 +103,6 @@ libDWP_la_CPPFLAGS = \
 	-DMLE_NOT_DLL \
 	-I$(top_srcdir)/include \
 	-I$(top_srcdir)/../common/include \
-	-I$(top_srcdir)/../../../Core/util/common/include \
-	-I$(top_srcdir)/../../../Core/util/linux/include \
-	-I$(top_srcdir)/../../../Core/math/common/include
+	-I$(MLE_HOME)/Core/util/common/include \
+	-I$(MLE_HOME)/Core/util/linux/include \
+	-I$(MLE_HOME)/Core/math/common/include

@@ -86,23 +86,23 @@ include_HEADERS = \
 	$(top_srcdir)/../common/include/mle/DwpVector3.h \
 	$(top_srcdir)/../common/include/mle/DwpVector4.h \
 	$(top_srcdir)/../common/include/mle/DwpVoidStarType.h \
-	$(top_srcdir)/../../../Core/util/linux/include/mle/MleLinuxPath.h \
-	$(top_srcdir)/../../../Core/util/linux/include/mle/mlPlatformDefs.h \
-	$(top_srcdir)/../../../Core/util/common/include/mle/mle.h \
-	$(top_srcdir)/../../../Core/util/common/include/mle/mlArray.h \
-	$(top_srcdir)/../../../Core/util/common/include/mle/mlAssert.h \
-	$(top_srcdir)/../../../Core/util/common/include/mle/mlConfig.h \
-	$(top_srcdir)/../../../Core/util/common/include/mle/mlDebug.h \
-	$(top_srcdir)/../../../Core/util/common/include/mle/MleDsoLoader.h \
-	$(top_srcdir)/../../../Core/util/common/include/mle/MleMemoryManager.h \
-	$(top_srcdir)/../../../Core/util/common/include/mle/MlePath.h \
-	$(top_srcdir)/../../../Core/util/common/include/mle/mlErrno.h \
-	$(top_srcdir)/../../../Core/util/common/include/mle/MleTemplate.h \
-	$(top_srcdir)/../../../Core/util/common/include/mle/mlExpandFilename.h \
-	$(top_srcdir)/../../../Core/util/common/include/mle/mlFileio.h \
-	$(top_srcdir)/../../../Core/util/common/include/mle/mlLogFile.h \
-	$(top_srcdir)/../../../Core/util/common/include/mle/mlMacros.h \
-	$(top_srcdir)/../../../Core/util/common/include/mle/mlMalloc.h \
-	$(top_srcdir)/../../../Core/util/common/include/mle/mlToken.h \
-	$(top_srcdir)/../../../Core/util/common/include/mle/mlTypes.h \
-	$(top_srcdir)/../../../Core/util/common/include/mle/mlUnique.h
+	$(MLE_HOME)/Core/util/linux/include/mle/MleLinuxPath.h \
+	$(MLE_HOME)/Core/util/linux/include/mle/mlPlatformDefs.h \
+	$(MLE_HOME)/Core/util/common/include/mle/mle.h \
+	$(MLE_HOME)/Core/util/common/include/mle/mlArray.h \
+	$(MLE_HOME)/Core/util/common/include/mle/mlAssert.h \
+	$(MLE_HOME)/Core/util/common/include/mle/mlConfig.h \
+	$(MLE_HOME)/Core/util/common/include/mle/mlDebug.h \
+	$(MLE_HOME)/Core/util/common/include/mle/MleDsoLoader.h \
+	$(MLE_HOME)/Core/util/common/include/mle/MleMemoryManager.h \
+	$(MLE_HOME)/Core/util/common/include/mle/MlePath.h \
+	$(MLE_HOME)/Core/util/common/include/mle/mlErrno.h \
+	$(MLE_HOME)/Core/util/common/include/mle/MleTemplate.h \
+	$(MLE_HOME)/Core/util/common/include/mle/mlExpandFilename.h \
+	$(MLE_HOME)/Core/util/common/include/mle/mlFileio.h \
+	$(MLE_HOME)/Core/util/common/include/mle/mlLogFile.h \
+	$(MLE_HOME)/Core/util/common/include/mle/mlMacros.h \
+	$(MLE_HOME)/Core/util/common/include/mle/mlMalloc.h \
+	$(MLE_HOME)/Core/util/common/include/mle/mlToken.h \
+	$(MLE_HOME)/Core/util/common/include/mle/mlTypes.h \
+	$(MLE_HOME)/Core/util/common/include/mle/mlUnique.h
