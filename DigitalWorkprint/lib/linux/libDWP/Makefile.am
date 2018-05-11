@@ -101,6 +101,7 @@ libDWP_la_LDFLAGS = -L/opt/MagicLantern/lib -lmlmath -ldl
 # to be searched for headers included in the source code.
 libDWP_la_CPPFLAGS = \
 	-DMLE_NOT_DLL \
+	-DDEBUG \
 	-I$(top_srcdir)/include \
 	-I$(top_srcdir)/../common/include \
 	-I$(MLE_HOME)/Core/util/common/include \
