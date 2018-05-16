@@ -15,7 +15,7 @@
 //
 // The MIT License (MIT)
 //
-// Copyright (c) 2015 Wizzer Works
+// Copyright (c) 2015-2018 Wizzer Works
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -170,6 +170,19 @@ void
 MleDwpDatatype::operator delete(void *p)
 {
 	mlFree(p);
+}
+
+void
+MleDwpDatatype::dumpRegistry(void)
+{
+	MleDwpDictIter iterator(*g_registry);
+
+	do {
+        const void *key = iterator.getKey();
+        fprintf(stdout, "DwpDatatype key: %s\n", (const char *)key);
+
+        const void *value = iterator.getValue();
+	} while (iterator.next());
 }
 
 void *

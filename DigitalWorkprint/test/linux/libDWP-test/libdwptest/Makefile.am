@@ -8,7 +8,7 @@ lib_LTLIBRARIES = libdwptest.la
 # Build information for each library
 
 # Sources for libdwptest
-libdwptest_la_SOURCES = libdwptest.cxx testMlVector2.cxx testString.cxx
+libdwptest_la_SOURCES = libdwptest.cxx testMlVector2.cxx testString.cxx testFloatArray.cxx
 
 # Linker options libTestProgram
 libdwptest_la_LDFLAGS = 
