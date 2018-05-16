@@ -44,12 +44,12 @@
 #include <mle/DwpFinder.h>
 #include <mle/DwpProperty.h>
 #include <mle/DwpDatatype.h>
-#include <mle/DwpVector2.h>
+#include <mle/DwpString.h>
 
-class MlVector2TestFixture: public ::testing::Test
+class StringTestFixture: public ::testing::Test
 {
   public:
-	MlVector2TestFixture( ) {
+	StringTestFixture( ) {
         // Initialization code here.
 		m_workprint = NULL;
 
@@ -70,7 +70,7 @@ class MlVector2TestFixture: public ::testing::Test
     	// TBD: unload the Digital Workprint.
     }
 
-    ~MlVector2TestFixture( )  {
+    ~StringTestFixture( )  {
         // Cleanup any pending stuff, but no exceptions allowed.
 
     	// TBD: delete m_workprint.
@@ -80,38 +80,40 @@ class MlVector2TestFixture: public ::testing::Test
     MleDwpItem *m_workprint;
 };
 
-TEST_F(MlVector2TestFixture, LoadWorkprint) {
-    // This test is named "LoadWorkprint", and belongs to the "MlVector2TestFixture"
+TEST_F(StringTestFixture, LoadWorkprint) {
+    // This test is named "LoadWorkprint", and belongs to the "StringTestFixture"
     // test case.
 
 	// Load the test Digital Workprint.
 	EXPECT_TRUE(m_workprint != NULL);
 }
 
-TEST_F(MlVector2TestFixture, ProcessMlVector2Property) {
-    // This test is named "ProcessMlVector2Property", and belongs to the "MlVector2TestFixture"
+TEST_F(StringTestFixture, ProcessStringProperty) {
+    // This test is named "ProcessStringProperty", and belongs to the "StringTestFixture"
     // test case.
 
 	// Set up search constraints.
-	MleDwpFinder findVectors;
-	findVectors.setType(MleDwpProperty::typeId);
-	findVectors.setName("vector2Test");
+	MleDwpFinder findStrings;
+	findStrings.setType(MleDwpProperty::typeId);
+	findStrings.setName("stringTest");
 
-	// Find the vector2Test Property for the TestActor in the DWP.
-	MleDwpItem *item = findVectors.find(m_workprint);
+	// Find the stringTest Property for the TestActor in the DWP.
+	MleDwpItem *item = findStrings.find(m_workprint);
 	EXPECT_TRUE(item != NULL);
 	EXPECT_TRUE(item->isa(MleDwpProperty::typeId));
 
 	// Make sure it is of data type MleDwpVector2.
 	MleDwpProperty *property = (MleDwpProperty *)item;
 	const MleDwpDatatype *datatype = property->getDatatype();
-	EXPECT_TRUE(datatype->isa(MleDwpVector2::typeId));
+	EXPECT_TRUE(datatype->isa(MleDwpString::typeId));
 
 	// Retrieve and test the value of the Property.
-	MlVector2 vector;
-	const MleDwpVector2 *vectortype = (MleDwpVector2 *)datatype;
-	vectortype->get(&property->m_data, &vector);
-	EXPECT_FLOAT_EQ(50.0, vector[0]);
-	EXPECT_FLOAT_EQ(50.0, vector[1]);
+	char *testStr;
+	const MleDwpString *stringtype = (MleDwpString *)datatype;
+	stringtype->get(&property->m_data, &testStr);
+	ASSERT_STREQ("Test", testStr);
+
+	// Note that memory is allocated for the returned string.
+	delete testStr;
 }
 
