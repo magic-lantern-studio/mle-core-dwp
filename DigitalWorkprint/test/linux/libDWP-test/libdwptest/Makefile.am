@@ -9,8 +9,9 @@ lib_LTLIBRARIES = libdwptest.la
 
 # Sources for libdwptest
 libdwptest_la_SOURCES = \
-    libdwptest.cxx testMlVector2.cxx testString.cxx testFloatArray.cxx \
-    testInt.cxx testFloat.cxx
+    libdwptest.cxx testString.cxx testInt.cxx testFloat.cxx \
+    testMlVector2.cxx testMlVector3.cxx testMlVector4.cxx \
+    testFloatArray.cxx
 
 # Linker options libTestProgram
 libdwptest_la_LDFLAGS = 
