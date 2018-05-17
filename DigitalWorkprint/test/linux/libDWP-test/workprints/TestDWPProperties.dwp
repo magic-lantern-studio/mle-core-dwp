@@ -9,6 +9,8 @@
 ( ActorDef TestActor
   ( HeaderFile actors/TestActor.h )
   ( PropertyDef stringTest string )
+  ( PropertyDef intTest int )
+  ( PropertyDef floatTest float )
   ( PropertyDef vector2Test MlVector2 )
   ( PropertyDef floatArrayTest FloatArray )
   ( RoleSetMapping TestRole Mle2dSet )
@@ -22,6 +24,8 @@
     ( HeaderFile mle/MleGroup.h ) 
     ( Actor test TestActor
       ( Property stringTest string "Test" )
+      ( Property intTest int "100" )
+      ( Property floatTest float "0.25" )
       ( Property vector2Test MlVector2 50.0 50.0 )
       ( Property floatArrayTest FloatArray [ 1.0, 2.0, 3.0, 4.0, 5.0 ] )
       ( RoleBinding TestRole 2dSet )

@@ -37,7 +37,6 @@
 // Include Magic Lantern header files.
 #include "math/vector.h"
 #include <mle/MleLoad.h>
-#include <mle/mlArray.h>
 
 // Include Magic Lantern Digital Workprint header files.
 #include <mle/Dwp.h>
@@ -45,12 +44,12 @@
 #include <mle/DwpFinder.h>
 #include <mle/DwpProperty.h>
 #include <mle/DwpDatatype.h>
-#include <mle/DwpFloatArray.h>
+#include <mle/DwpInt.h>
 
-class FloatArrayTestFixture: public ::testing::Test
+class IntTestFixture: public ::testing::Test
 {
   public:
-	FloatArrayTestFixture( ) {
+	IntTestFixture( ) {
 		// Initialize DWP library.
 		mleDwpInit();
     }
@@ -68,7 +67,7 @@ class FloatArrayTestFixture: public ::testing::Test
     	// TBD: unload the Digital Workprint.
     }
 
-    ~FloatArrayTestFixture( )  {
+    ~IntTestFixture( )  {
         // Cleanup any pending stuff, but no exceptions allowed.
 
     	// TBD: delete g_workprint.
@@ -78,44 +77,39 @@ class FloatArrayTestFixture: public ::testing::Test
     static MleDwpItem *g_workprint;
 };
 
-MleDwpItem *FloatArrayTestFixture::g_workprint = NULL;
+MleDwpItem *IntTestFixture::g_workprint = NULL;
 
-TEST_F(FloatArrayTestFixture, LoadWorkprint) {
-    // This test is named "LoadWorkprint", and belongs to the "FloatArrayTestFixture"
+TEST_F(IntTestFixture, LoadWorkprint) {
+    // This test is named "LoadWorkprint", and belongs to the "IntTestFixture"
     // test case.
 
 	// Load the test Digital Workprint.
 	EXPECT_TRUE(g_workprint != NULL);
 }
 
-TEST_F(FloatArrayTestFixture, ProcessFloatArrayProperty) {
-    // This test is named "ProcessFloatArrayProperty", and belongs to the "FloatArrayTestFixture"
+TEST_F(IntTestFixture, ProcessIntProperty) {
+    // This test is named "ProcessIntProperty", and belongs to the "IntTestFixture"
     // test case.
 
 	// Set up search constraints.
-	MleDwpFinder findArrays;
-	findArrays.setType(MleDwpProperty::typeId);
-	findArrays.setName("floatArrayTest");
+	MleDwpFinder findInts;
+	findInts.setType(MleDwpProperty::typeId);
+	findInts.setName("intTest");
 
-	// Find the floatArrayTest Property for the TestActor in the DWP.
-	MleDwpItem *item = findArrays.find(g_workprint);
+	// Find the intTest Property for the TestActor in the DWP.
+	MleDwpItem *item = findInts.find(g_workprint);
 	EXPECT_TRUE(item != NULL);
 	EXPECT_TRUE(item->isa(MleDwpProperty::typeId));
 
-	// Make sure it is of data type MleDwpFloatArray.
+	// Make sure it is of data type MleDwpVector2.
 	MleDwpProperty *property = (MleDwpProperty *)item;
 	const MleDwpDatatype *datatype = property->getDatatype();
-	EXPECT_TRUE(datatype->isa(MleDwpFloatArray::typeId));
+	EXPECT_TRUE(datatype->isa(MleDwpInt::typeId));
 
 	// Retrieve and test the value of the Property.
-	MleArray<float> array;
-	const MleDwpFloatArray *arraytype = (MleDwpFloatArray *)datatype;
-	arraytype->get(&property->m_data, &array);
-	EXPECT_EQ(5, array.size());
-	EXPECT_FLOAT_EQ(1.0, array[0]);
-	EXPECT_FLOAT_EQ(2.0, array[1]);
-	EXPECT_FLOAT_EQ(3.0, array[2]);
-	EXPECT_FLOAT_EQ(4.0, array[3]);
-	EXPECT_FLOAT_EQ(5.0, array[4]);
+	int testInt;
+	const MleDwpInt *inttype = (MleDwpInt *)datatype;
+	inttype->get(&property->m_data, &testInt);
+	ASSERT_EQ(100, testInt);
 }
 

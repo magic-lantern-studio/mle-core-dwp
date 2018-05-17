@@ -1,4 +1,4 @@
-// COPYRTIGH_BEGIN
+// COPYRIGHT_BEGIN
 //
 // The MIT License (MIT)
 //
@@ -50,17 +50,14 @@ class StringTestFixture: public ::testing::Test
 {
   public:
 	StringTestFixture( ) {
-        // Initialization code here.
-		m_workprint = NULL;
-
 		// Initialize DWP library.
 		mleDwpInit();
     }
 
     void SetUp( ) {
         // Code here will execute just before the test ensues .
-    	if (m_workprint == NULL)
-    	    m_workprint = mlLoadWorkprint("workprints/TestDWPProperties.dwp");
+    	if (g_workprint == NULL)
+    	    g_workprint = mlLoadWorkprint("workprints/TestDWPProperties.dwp");
     }
 
     void TearDown( ) {
@@ -77,15 +74,17 @@ class StringTestFixture: public ::testing::Test
     }
 
     // Put in any custom data members that you need.
-    MleDwpItem *m_workprint;
+    static MleDwpItem *g_workprint;
 };
+
+MleDwpItem *StringTestFixture::g_workprint = NULL;
 
 TEST_F(StringTestFixture, LoadWorkprint) {
     // This test is named "LoadWorkprint", and belongs to the "StringTestFixture"
     // test case.
 
 	// Load the test Digital Workprint.
-	EXPECT_TRUE(m_workprint != NULL);
+	EXPECT_TRUE(g_workprint != NULL);
 }
 
 TEST_F(StringTestFixture, ProcessStringProperty) {
@@ -98,7 +97,7 @@ TEST_F(StringTestFixture, ProcessStringProperty) {
 	findStrings.setName("stringTest");
 
 	// Find the stringTest Property for the TestActor in the DWP.
-	MleDwpItem *item = findStrings.find(m_workprint);
+	MleDwpItem *item = findStrings.find(g_workprint);
 	EXPECT_TRUE(item != NULL);
 	EXPECT_TRUE(item->isa(MleDwpProperty::typeId));
 
