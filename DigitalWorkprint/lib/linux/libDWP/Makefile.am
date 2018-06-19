@@ -27,6 +27,7 @@ libDWP_la_SOURCES = \
 	../../common/src/DWPBase/DwpInput.cpp \
 	../../common/src/DWPBase/DwpOutput.cpp \
 	../../common/src/DWPBase/DwpItem.cpp \
+	../../common/src/DWPBase/DwpLoad.cpp \
 	../../common/src/DWPType/DwpArray.cpp \
 	../../common/src/DWPType/DwpDatatype.cpp \
 	../../common/src/DWPType/DwpDataUnion.cpp \

@@ -49,6 +49,7 @@ include_HEADERS = \
 	$(top_srcdir)/../common/include/mle/DwpInt.h \
 	$(top_srcdir)/../common/include/mle/DwpItem.h \
 	$(top_srcdir)/../common/include/mle/DwpLimits.h \
+	$(top_srcdir)/../common/include/mle/DwpLoad.h \
 	$(top_srcdir)/../common/include/mle/DwpMatrix34.h \
 	$(top_srcdir)/../common/include/mle/DwpMedia.h \
 	$(top_srcdir)/../common/include/mle/DwpMediaRefClass.h \
