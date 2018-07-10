@@ -62,6 +62,9 @@
     <ClCompile Include="..\..\..\common\src\DWPBase\DwpUnknown.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\common\src\DWPBase\DwpLoad.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\common\include\mle\Dwp.h">
@@ -116,6 +119,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\common\include\mle\DwpUnknown.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\common\include\mle\DwpLoad.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

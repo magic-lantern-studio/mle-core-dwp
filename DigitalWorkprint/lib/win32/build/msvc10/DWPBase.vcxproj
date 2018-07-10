@@ -484,6 +484,7 @@ copy win32\Release\DWPBase.lib $(MLE_HOME)\lib\tools\DWPBase.lib
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|x64'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|x64'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
+    <ClCompile Include="..\..\..\common\src\DWPBase\DwpLoad.cpp" />
     <ClCompile Include="..\..\..\common\src\DWPBase\DwpMonitor.cpp">
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='DSO Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='DSO Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -595,6 +596,7 @@ copy win32\Release\DWPBase.lib $(MLE_HOME)\lib\tools\DWPBase.lib
     <ClInclude Include="..\..\..\common\include\mle\DwpInclude.h" />
     <ClInclude Include="..\..\..\common\include\mle\DwpInput.h" />
     <ClInclude Include="..\..\..\common\include\mle\DwpItem.h" />
+    <ClInclude Include="..\..\..\common\include\mle\DwpLoad.h" />
     <ClInclude Include="..\..\..\common\include\mle\DwpMonitor.h" />
     <ClInclude Include="..\..\..\common\include\mle\DwpNotifier.h" />
     <ClInclude Include="..\..\..\common\include\mle\DwpOutput.h" />
