@@ -87,13 +87,7 @@ libDWP_la_SOURCES = \
 	../../common/src/DWPModel/DwpSetDef.cpp \
 	../../common/src/DWPModel/DwpSourceFile.cpp \
 	../../common/src/DWPModel/DwpStage.cpp \
-	../../common/src/DWPModel/DwpStageDef.cpp \
-	$(MLE_HOME)/Core/util/linux/src/MleLinuxPath.cxx \
-	$(MLE_HOME)/Core/util/linux/src/MleLinuxMemoryManager.cxx \
-	$(MLE_HOME)/Core/util/common/src/MleMemoryManager.cxx \
-	$(MLE_HOME)/Core/util/common/src/MleDsoLoader.cxx \
-	$(MLE_HOME)/Core/util/common/src/mlExpandFilename.c \
-	$(MLE_HOME)/Core/util/common/src/mlUnique.c
+	../../common/src/DWPModel/DwpStageDef.cpp
 
 # Linker options libTestProgram
 libDWP_la_LDFLAGS = -L/opt/MagicLantern/lib -lmlmath -ldl

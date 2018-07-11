@@ -23,7 +23,9 @@ DWPChecker_SOURCES= ../../common/test/dwpCheckerTest.cpp
 # Libraries for a.out
 DWPChecker_LDADD = \
 	$(top_srcdir)/libDWP/libDWP.la \
-	$(MLE_ROOT)/lib/libmlmath.la
+	$(MLE_ROOT)/lib/libmlutil.la \
+	$(MLE_ROOT)/lib/libmlmath.la \
+	-ldl
 
 # Linker options for a.out
 DWPChecker_LDFLAGS = -rpath `cd $(top_srcdir);pwd`/libDWP/.libs
