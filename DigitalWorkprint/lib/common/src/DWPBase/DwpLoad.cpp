@@ -51,16 +51,9 @@
 #include "mle/Dwp.h"
 #include "mle/DwpItem.h"
 #include "mle/DwpDSOFile.h"
-#include "mle/DwpSet.h"
-#include "mle/DwpGroup.h"
-#include "mle/DwpScene.h"
-#include "mle/DwpMediaRef.h"
-#include "mle/DwpFinder.h"
+#include "mle/DwpLoad.h"
 
-// Include ATK header files.
-//#include "mle/MlePlayer.h"
 
-//MLE_DWP_API MlePlayer *_mlPlayer = NULL;
 MLE_DWP_API MleDwpItem *_mlWorkprint =  NULL;
 
 MLE_DWP_API MleDwpItem *mlLoadWorkprint(const char *filename)
@@ -75,105 +68,3 @@ MLE_DWP_API MleDwpItem *mlLoadWorkprint(const char *filename)
 
 	return _mlWorkprint;
 }
-
-#if 0
-static void releaseItem(MleDwpItem *item)
-{
-	if ( _mlPlayer )
-	{
-		// Find the root.
-		while ( item->getParent() )
-			item = item->getParent();
-		
-		delete item;
-	}
-}
-
-MleDwpGroup *_mlGetWorkprintGroup(const char *id)
-{
-	if ( _mlPlayer )
-		_mlWorkprint = _mlPlayer->sendGetWorkprintGroup(id);
-
-	MLE_ASSERT(_mlWorkprint);
-#if defined(WIN32)
-    MleDwpFinder groupFinder("MleDwpGroup",id,0);
-#else
-	MleDwpFinder groupFinder(MleDwpGroup::typeId,id,0);
-#endif
-	return (MleDwpGroup *)groupFinder.find(_mlWorkprint);
-}
-
-void _mlReleaseWorkprintGroup(MleDwpItem *group)
-{
-	releaseItem(group);
-}
-
-MleDwpScene *_mlGetWorkprintScene(const char *id)
-{
-	if ( _mlPlayer )
-		_mlWorkprint = _mlPlayer->sendGetWorkprintScene(id);
-
-	MLE_ASSERT(_mlWorkprint);
-#if defined(WIN32)
-	MleDwpFinder sceneFinder("MleDwpScene",id,0);
-#else
-	MleDwpFinder sceneFinder(MleDwpScene::typeId,id,0);
-#endif
-	return (MleDwpScene *)sceneFinder.find(_mlWorkprint);
-}
-
-void _mlReleaseWorkprintScene(MleDwpItem *scene)
-{
-	releaseItem(scene);
-}
-
-MleDwpMediaRef *_mlGetWorkprintMediaRef(const char *id)
-{
-	if ( _mlPlayer )
-	{
-		_mlWorkprint = _mlPlayer->sendGetWorkprintMediaRef(id);
-
-		// If we fail, just return NULL.
-		if ( _mlWorkprint == NULL )
-			return NULL;
-	}
-
-	MLE_ASSERT(_mlWorkprint);
-#if defined(WIN32)
-	MleDwpFinder mediaRefFinder("MleDwpMediaRef",id,0);
-#else
-	MleDwpFinder mediaRefFinder(MleDwpMediaRef::typeId,id,0);
-#endif
-	return (MleDwpMediaRef *)mediaRefFinder.find(_mlWorkprint);
-}
-
-void _mlReleaseWorkprintMediaRef(MleDwpMediaRef *mediaRef)
-{
-	releaseItem(mediaRef);
-}
-
-MleDwpSet *_mlGetWorkprintSet(const char *id)
-{
-	if ( _mlPlayer )
-	{
-		_mlWorkprint = _mlPlayer->sendGetWorkprintSet(id);
-
-		// If we fail, just return NULL.
-		if ( _mlWorkprint == NULL )
-			return NULL;
-	}
-
-	MLE_ASSERT(_mlWorkprint);
-#if defined(WIN32)
-	MleDwpFinder setFinder("MleDwpSet",id,0);
-#else
-	MleDwpFinder setFinder(MleDwpSet::typeId,id,0);
-#endif
-	return (MleDwpSet *)setFinder.find(_mlWorkprint);
-}
-
-void _mlReleaseWorkprintSet(MleDwpItem *set)
-{
-	releaseItem(set);
-}
-#endif /* 0 */
