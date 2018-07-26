@@ -497,6 +497,9 @@
     <ClInclude Include="..\..\src\DwpDso\StdAfx.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\common\include\mle\DwpLoad.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\src\DwpDso\ReadMe.txt" />

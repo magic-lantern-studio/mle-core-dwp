@@ -56,6 +56,7 @@
 #include "mle/DwpScene.h"
 #include "mle/DwpMediaRef.h"
 #include "mle/DwpFinder.h"
+#include "mle/DwpLoad.h"
 
 // Include ATK header files.
 //#include "mle/MlePlayer.h"

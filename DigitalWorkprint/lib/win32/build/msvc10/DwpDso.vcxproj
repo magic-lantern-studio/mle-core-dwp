@@ -1696,6 +1696,7 @@ xcopy /y $(MLE_HOME)\DigitalWorkprint\lib\win32\include\mle\* $(MLE_HOME)\includ
     <ClInclude Include="..\..\..\common\include\mle\DwpIntArray.h" />
     <ClInclude Include="..\..\..\common\include\mle\DwpItem.h" />
     <ClInclude Include="..\..\..\common\include\mle\DwpLimits.h" />
+    <ClInclude Include="..\..\..\common\include\mle\DwpLoad.h" />
     <ClInclude Include="..\..\..\common\include\mle\DwpMatrix34.h" />
     <ClInclude Include="..\..\..\common\include\mle\DwpMedia.h" />
     <ClInclude Include="..\..\..\common\include\mle\DwpMediaRef.h" />

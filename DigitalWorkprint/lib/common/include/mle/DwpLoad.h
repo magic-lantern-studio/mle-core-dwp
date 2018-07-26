@@ -49,7 +49,7 @@
 #include "mle/mlMalloc.h"
 
 // Include Magic Lantern Digital Workprint header files.
-#include "mle/DwpLoad.h"
+#include "mle/Dwp.h"
 
 class MleDwpItem;
 
