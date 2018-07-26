@@ -1048,7 +1048,8 @@ MleDwpItem::read(MleDwpInput *in,MleDwpItem *parent)
 	}
 
 #ifdef DEBUG
-	printf("reading %s\n",buffer);
+        printf("DwpItem: reading %s.\n", buffer);
+        fflush(stdout);
 #endif
 
 	/* look up creation function in type registry */

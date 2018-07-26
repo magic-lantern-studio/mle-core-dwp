@@ -23,7 +23,9 @@ exampleProgram_SOURCES= exampleProgram.cpp
 # Libraries for a.out
 exampleProgram_LDADD = \
 	$(top_srcdir)/libDWP/libDWP.la \
-	$(MLE_ROOT)/lib/libmlmath.la
+	$(MLE_ROOT)/lib/libmlutil.la \
+	$(MLE_ROOT)/lib/libmlmath.la \
+	-ldl
 
 # Linker options for a.out
 exampleProgram_LDFLAGS = -rpath `cd $(top_srcdir);pwd`/libDWP/.libs
