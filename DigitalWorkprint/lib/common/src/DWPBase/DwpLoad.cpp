@@ -58,8 +58,18 @@
 #include "mle/DwpFinder.h"
 #include "mle/DwpLoad.h"
 
+// _mlWorkprint is a global handle for the last loaded Digital Workprint.
+static MleDwpItem *_mlWorkprint =  NULL;
 
-MLE_DWP_API MleDwpItem *_mlWorkprint =  NULL;
+MLE_DWP_API MleDwpItem *mlGetWorkprint()
+{
+	return _mlWorkprint;
+}
+
+MLE_DWP_API void mlSetWorkprint(MleDwpItem *dwp)
+{
+    _mlWorkprint = dwp;
+}
 
 MLE_DWP_API MleDwpItem *mlLoadWorkprint(const char *filename)
 {

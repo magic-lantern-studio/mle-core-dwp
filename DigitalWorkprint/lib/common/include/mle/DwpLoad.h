@@ -54,9 +54,11 @@
 // Declare classes.
 class MleDwpItem;
 
-// _mlWorkprint is a global handle for the last loaded Digital Workprint.
+// mlGetWorkprint() returns the last loaded Digital Workprint.
 // See mlLoadWorkprint().
-extern MLE_DWP_API MleDwpItem *_mlWorkprint;
+extern MLE_DWP_API MleDwpItem *mlGetWorkprint();
+
+extern MLE_DWP_API void mlSetWorkprint(MleDwpItem *dwp);
 
 // mlLoadWorkprint() is a utility call that loads the indicated
 // workprint from the file system and roots the hierarchy at

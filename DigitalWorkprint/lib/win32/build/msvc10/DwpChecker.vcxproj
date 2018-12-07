@@ -425,24 +425,6 @@ copy win32\Release\DWPChecker.exe $(MLE_HOME)\bin\DWPChecker.exe
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|x64'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="DWP.vcxproj">
-      <Project>{dfb0d8e4-dc89-4ba8-b8de-7041c5b0c969}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-    <ProjectReference Include="DWPBase.vcxproj">
-      <Project>{14fd11e3-2311-4824-93f3-4c15df4ed199}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-    <ProjectReference Include="DWPModel.vcxproj">
-      <Project>{826cc409-cf92-49fd-8195-a3ca37e521a9}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-    <ProjectReference Include="DWPType.vcxproj">
-      <Project>{52a0fa69-96ba-4841-8549-c7e2fd41d543}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
