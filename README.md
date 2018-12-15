@@ -5,5 +5,5 @@ The mle-core-dwp project contains the source for building the Magic Lantern Digi
 
 The Digital Workprint is a collection of files that contain the definition, scores and scripts that make up the
 unchanging represenstation of a dynamic and interactive title. More information about the Digital Workprint may be
-found on the [Digital Workprint](https://github.com/magic-lantern-studio/mle-documentation/wiki/Digital-Workprint)
-wiki documented in the mle-documentation Github project.
+found on the [Digital Workprint wiki](https://github.com/magic-lantern-studio/mle-documentation/wiki/Digital-Workprint)
+documented in the mle-documentation Github project.
