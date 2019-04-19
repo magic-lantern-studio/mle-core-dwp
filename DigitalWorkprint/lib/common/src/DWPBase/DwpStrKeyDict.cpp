@@ -15,7 +15,7 @@
 //
 // The MIT License (MIT)
 //
-// Copyright (c) 2015 Wizzer Works
+// Copyright (c) 2015-2019 Wizzer Works
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -67,6 +67,18 @@ MleDwpStrKeyDict::hash(const void *key) const
 	} while ( *(char *)(key = (char *)key + 1) );
 
 	return value;
+}
+
+
+void
+MleDwpStrKeyDict::dump()
+{
+    MleDwpDictIter iter(*this);
+    do {
+        const void *key = iter.getKey();
+        const void *value = iter.getValue();
+        fprintf(stdout, "key = %s, value = 0x%x\n", (char *)key, value);
+    } while(iter.next());
 }
 
 
