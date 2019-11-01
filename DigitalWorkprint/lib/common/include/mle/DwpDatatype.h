@@ -216,7 +216,7 @@ class MLE_DWP_API MleDwpDatatype
 // included as part of a DLL.
 #pragma data_seg( ".GLOBALS" )
 #endif
-	  static MleDwpDatatypeDict *g_registry;
+    static MleDwpDatatypeDict *g_registry;
 #if defined(WIN32)
 #pragma data_seg()
 #endif

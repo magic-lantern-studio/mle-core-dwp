@@ -58,7 +58,8 @@
 #include "mle/DwpOutput.h"
 //#include "mle/DppActorGroupOutput.h"
 
-MLE_DWP_DATATYPE_SOURCE(MleDwpMatrix34,"MlMatrix43",MleDwpDatatype);
+//MLE_DWP_DATATYPE_SOURCE(MleDwpMatrix34,"MlMatrix43",MleDwpDatatype);
+MLE_DWP_DATATYPE_SOURCE(MleDwpMatrix34,"MlMatrix34",MleDwpDatatype);
 
 int MleDwpMatrix34::read(MleDwpInput *in,MleDwpDataUnion *data) const
 {
