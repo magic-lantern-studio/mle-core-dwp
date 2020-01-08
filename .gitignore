@@ -19,4 +19,4 @@
 **/ltmain.sh
 **/depcomp
 **/exampleProgram
-**/DWPChecker
+DigitalWorkprint/lib/linux/DwpChecker/DWPChecker
