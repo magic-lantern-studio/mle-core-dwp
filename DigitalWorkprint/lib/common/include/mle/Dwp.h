@@ -10,71 +10,6 @@
  * @author Mark S. Millard
  * @date May 1, 2003
  *
- * \mainpage Magic Lantern Digital Workprint Library API
- *
- * \section overview Overview
- * <p>
- * The Magic Lantern Digital Workprint Library is a component of Magic Lantern,
- * an interactive, title development platform for authoring highly interactive titles,
- * such as interactive TV applications, games, educational programs, and
- * point-of-information/sales kiosks. The DWP library provides utilities for
- * constructing and maintaining a Digital Workprint.
- * </p>
- * <p>
- * The Magic Lantern DWP Library is distributed as two static libraries and two
- * dynamic link libraries. The build environment distributed with the source for the
- * DWP library can be used to build any or all of these libraries.
- * The libraries are
- * <ul>
- * <li>tools/DWP.lib       - Release Static Library</li>
- * <li>tools/DWPd.lib      - Debug Static Library</li>
- * <li>rehearsal/DWP.dll   - Release Dynamic Link Library</li>
- * <li>rehearsal/DWPd.dll  - Debug Dynamic Link Library</li>
- * </ul>
- * </p>
- * <p>
- * The tools version of the libraries are used with Magic Lantern
- * tools and can be found under <b>MLE_HOME/lib/tools</b>. The rehearsal version
- * of the libraries are distributed as a DLL/DSO and are used with the Magic Lantern
- * Rehearsal Player. They can be found under <b>MLE_HOME/bin/rehearsal</b>.
- * </p>
- *
- * \section ms_build Building for Microsoft Windows
- * <p>
- * On Microsoft Windows platforms, one of these defines must always be set when
- * building application programs:
- * <ul>
- * <li><b>MLE_DLL</b>, when the application programmer is using the
- *     library in the form of a dynamic link library (DLL)
- * </li>
- * <li><b>MLE_NOT_DLL</b>, when the application programmer is using the
- *     library in the form of a static object library (LIB)
- * </ul></p>
- * <p>
- * Note that either MLE_DLL or MLE_NOT_DLL <b><i>must</i></b> be defined by
- * the application programmer on MSWindows platforms, or else the
- * #error statement will be processed (see DWP.h). Set up one or the other of these two
- * defines in your compiler environment according to how the library
- * was built -- as a DLL (use "MLE_DLL") or as a LIB (use
- * "MLE_NOT_DLL").
- * </p><p>
- * Setting up defines for the compiler is typically done by either
- * adding something like "/DMLE_DLL" to the compiler's argument
- * line (for command-line build processes), or by adding the define to
- * the list of preprocessor symbols in your IDE GUI (in the MSVC IDE,
- * this is done from the "Project->Settings" menu; choose the "C/C++"
- * tab, then "Preprocessor" from the dropdown box and add the
- * appropriate define)).
- * </p><p>
- * It is extremely important that the application programmer uses the
- * correct define, as using "MLE_NOT_DLL" when "MLE_DLL" is
- * correct is likely to cause mysterious crashes.
- * </p>
- *
- * \section linux_build Building for Linux
- * <p>
- * Instructions for building on this platform are forthcoming.
- * </p>
  */
 
 
@@ -82,7 +17,7 @@
 //
 // The MIT License (MIT)
 //
-// Copyright (c) 2015 Wizzer Works
+// Copyright (c) 2015-2020 Wizzer Works
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
