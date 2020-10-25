@@ -8,14 +8,13 @@
  * Workprint Library API.
  *
  * @author Mark S. Millard
- * @date May 1, 2003
  */
 
 // COPYRIGHT_BEGIN
 //
 // The MIT License (MIT)
 //
-// Copyright (c) 2015 Wizzer Works
+// Copyright (c) 2015-2020 Wizzer Works
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -109,7 +108,7 @@ MleDwpOutput::writeMagic(void)
 	if ( !writeHeader )
 		return;
 
-	char *magic = "#DWP 1.0 ascii";
+	char *magic = const_cast<char*>("#DWP 1.0 ascii");
 
 	writeString(magic);
 	writeTerminal();

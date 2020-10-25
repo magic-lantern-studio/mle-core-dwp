@@ -8,14 +8,13 @@
  * Workprint Library API.
  *
  * @author Mark S. Millard
- * @date May 1, 2003
  */
 
 // COPYRIGHT_BEGIN
 //
 // The MIT License (MIT)
 //
-// Copyright (c) 2015-2018 Wizzer Works
+// Copyright (c) 2015-2020 Wizzer Works
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -353,7 +352,7 @@ MleDwpInput::readMagic(void)
 
 	// Look for the magic start.
 	int c;
-	char *magic = "#DWP";
+	char *magic = const_cast<char*>("#DWP");
 	while ( c = getNextByte() )
 	{
 		if ( c != *magic++ )
@@ -826,7 +825,7 @@ MleDwpInput::readTable(const MleDwpInputTable *table)
 					char err[2*MLE_DWP_INPUT_BUFSIZE];
 					sprintf(err,
 					  "bad token: expected \"%s\" found \"%s\"",
-					  table[i].ptr,buffer);
+					  (char *)(table[i].ptr), buffer);
 					reportError(err);
 
 					return 1;

@@ -7,14 +7,13 @@
  * Magic Lantern Digital Workprint Library API.
  *
  * @author Mark S. Millard
- * @date May 1, 2003
  */
 
 // COPYRIGHT_BEGIN
 //
 // The MIT License (MIT)
 //
-// Copyright (c) 2015 Wizzer Works
+// Copyright (c) 2015-2020 Wizzer Works
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -81,7 +80,7 @@ class MLE_DWP_API MleDwpGroup : public MleDwpItem
 	 * @param className A reasonable default value for the runtime class type of the group.
 	 * Any subclass should override this.
 	 */
-	MleDwpGroup(char *className = "MleGroup");
+	MleDwpGroup(char *className = const_cast<char*>("MleGroup"));
 
 	/**
 	 * The destructor.
