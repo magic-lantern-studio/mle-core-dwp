@@ -96,7 +96,7 @@ class MLE_DWP_API MleDwpTagDiscriminator : public MleDwpDiscriminator
 	/**
 	 * The destructor.
 	 */
-	~MleDwpTagDiscriminator(void);
+    virtual ~MleDwpTagDiscriminator(void);
 
 	/**
 	 * This is the discrimination function.
