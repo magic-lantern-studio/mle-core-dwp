@@ -90,7 +90,7 @@ libDWP_la_SOURCES = \
 	../../common/src/DWPModel/DwpStageDef.cpp
 
 # Linker options libTestProgram
-libDWP_la_LDFLAGS = -L/opt/MagicLantern/lib -lmlmath -ldl
+libDWP_la_LDFLAGS = -version-info 1:0:0 -L/opt/MagicLantern/lib -lmlmath -ldl
 
 # Compiler options. Here we are adding the include directory
 # to be searched for headers included in the source code.
