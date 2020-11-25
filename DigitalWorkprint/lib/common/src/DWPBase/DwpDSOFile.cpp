@@ -139,9 +139,23 @@ MleDwpDSOFile::copy(int copyChildren,MleDwpItem *parent)
 void
 MleDwpDSOFile::load(void)
 {
-	// Load the DSO file as a side effect.
-	if ( MleDSOLoader::loadFile(m_dsofile.getPath() ? m_dsofile.getPath() : m_dsofile.getName()) == NULL )
-		printf("error loading DSO %s.\n",getDSOFile());
+    const char *filepath = m_dsofile.getPath() ? m_dsofile.getPath() : m_dsofile.getName();
+    char dso_file[1028];
+#if defined(__linux__)
+    sprintf(dso_file,"%s.so",filepath);
+#endif /* __linux__ */
+#if defined(WIN32)
+#ifdef MLE_DEBUG
+    sprintf(dso_file,"%sd.dll",filepath);
+#else
+    sprintf(dso_file,"%s.dll",filepath);
+#endif /* ! MLE_DEBUG */
+#endif /* WIN32 */
+
+    // Load the DSO file.
+    void *handle = MleDSOLoader::loadFile(dso_file);
+    if ( handle == NULL )
+        printf("MleDwpDSOFile: Error loading DSO %s.\n",getDSOFile());
 }
 
 void
