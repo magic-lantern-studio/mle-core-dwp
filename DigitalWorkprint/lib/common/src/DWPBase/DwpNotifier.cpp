@@ -6,16 +6,13 @@
  *
  * This file implements the notifier used by the Magic Lantern Digital
  * Workprint Library API.
- *
- * @author Mark S. Millard
- * @date May 1, 2003
  */
 
 // COPYRIGHT_BEGIN
 //
 // The MIT License (MIT)
 //
-// Copyright (c) 2015 Wizzer Works
+// Copyright (c) 2015-2020 Wizzer Works
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -342,7 +339,7 @@ MleDwpNotifier::hash(const void *key) const
 
     // This hash function is a little ad hoc, but seems to work
     // reasonably well.  It is the classic multiply/modulo thing.
-#ifdef __linux__
+#if defined(__linux__) || defined(__APPLE__)
     rval = ((0xa74b2193*(unsigned long)key) >> 16) % m_nbuckets;
 #else
     rval = ((0xa74b2193*(unsigned int)key) >> 16) % m_nbuckets;

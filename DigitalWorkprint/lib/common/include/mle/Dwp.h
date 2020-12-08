@@ -6,10 +6,6 @@
  *
  * This file contains the definitions for initializing the Digital Workprint
  * library.
- *
- * @author Mark S. Millard
- * @date May 1, 2003
- *
  */
 
 

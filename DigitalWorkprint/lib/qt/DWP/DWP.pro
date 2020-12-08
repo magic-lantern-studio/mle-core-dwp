@@ -195,6 +195,10 @@ HEADERS += \
     $$PWD/../../linux/include/mle/DwpPlatformDefs.h \
     $$PWD/../../linux/include/mle/DwpPlatformTypes.h
 
+unix {
+    LIBS += -L/opt/MagicLantern/lib -lmlmath -lmlutil
+}
+
 # Default rules for deployment.
 unix {
     target.path = /opt/MagicLantern/lib

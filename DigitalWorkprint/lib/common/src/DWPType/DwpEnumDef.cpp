@@ -6,16 +6,13 @@
  *
  * This file implements the enumeration definition used by the Magic Lantern Digital
  * Workprint Library API.
- *
- * @author Mark S. Millard
- * @date February 6, 2004
  */
 
 // COPYRIGHT_BEGIN
 //
 // The MIT License (MIT)
 //
-// Copyright (c) 2015 Wizzer Works
+// Copyright (c) 2015-2020 Wizzer Works
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -47,7 +44,7 @@
 // Include system header files.
 #include <stdio.h>
 #include <stdlib.h>
-#if defined(WIN32) || defined(__linux__)
+#if defined(WIN32) || defined(__linux__) || defined(__APPLE__)
 #include <string.h>
 #else
 #include <strings.h>

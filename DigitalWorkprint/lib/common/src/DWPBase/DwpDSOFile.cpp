@@ -5,16 +5,13 @@
  * @ingroup MleDWPAccess
  *
  * This file implements the DSO File workprint item.
- *
- * @author Mark S. Millard
- * @date July 10, 2003
  */
 
 // COPYRIGHT_BEGIN
 //
 // The MIT License (MIT)
 //
-// Copyright (c) 2015-2018 Wizzer Works
+// Copyright (c) 2015-2020 Wizzer Works
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -144,6 +141,9 @@ MleDwpDSOFile::load(void)
 #if defined(__linux__)
     sprintf(dso_file,"%s.so",filepath);
 #endif /* __linux__ */
+#if defined(__APPLE__)
+    sprintf(dso_file,"%s.dylib",filepath);
+#endif /* __APPLE__ */
 #if defined(WIN32)
 #ifdef MLE_DEBUG
     sprintf(dso_file,"%sd.dll",filepath);

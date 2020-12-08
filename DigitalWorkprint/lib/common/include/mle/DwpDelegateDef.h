@@ -6,9 +6,6 @@
  *
  * Magic Lantern Digital Workprint Library API.
  *
- * @author Mark S. Millard
- * @date March 23, 2005
- *
  * @deprecated The MleDwpDelegateDef class has been replaced with the 
  * MleDwpRoleDef class.
  */
@@ -17,7 +14,7 @@
 //
 // The MIT License (MIT)
 //
-// Copyright (c) 2015 Wizzer Works
+// Copyright (c) 2015-2020 Wizzer Works
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal

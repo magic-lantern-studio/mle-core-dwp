@@ -6,8 +6,6 @@
  *
  * This file implements the output object used by the Magic Lantern Digital
  * Workprint Library API.
- *
- * @author Mark S. Millard
  */
 
 // COPYRIGHT_BEGIN

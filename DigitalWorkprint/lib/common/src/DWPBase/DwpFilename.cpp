@@ -6,16 +6,13 @@
  *
  * This file implements the filename object used by the Magic Lantern Digital
  * Workprint Library API.
- *
- * @author Mark S. Millard
- * @date July 10, 2003
  */
 
 // COPYRIGHT_BEGIN
 //
 // The MIT License (MIT)
 //
-// Copyright (c) 2015 Wizzer Works
+// Copyright (c) 2015-2020 Wizzer Works
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal

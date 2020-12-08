@@ -6,8 +6,6 @@
  *
  * This file implements the input object used by the Magic Lantern Digital
  * Workprint Library API.
- *
- * @author Mark S. Millard
  */
 
 // COPYRIGHT_BEGIN
@@ -116,7 +114,7 @@ struct MleDwpInputFile
  */
 static const char *_mleDir[] = {
 	"./",
-#if defined(__sgi) || defined (__linux__)
+#if defined (__linux__) || defined(__APPLE__)
 	"$MLE_ROOT/usr/WizzerWorks/MagicLantern/parts/actors/",
 #else
 #if defined(WIN32)
@@ -243,7 +241,8 @@ MleDwpInputFile::MleDwpInputFile(const char *f,MleDwpInputFile *n)
 		m_path->setPath((MlChar *)tmpPath);
 
         // Attempt to open the new path.
-		if ( m_fp = mlFOpen((char *)m_path->getPlatformPath(),"r") )
+        m_fp = mlFOpen((char *)m_path->getPlatformPath(),"r");
+        if (m_fp)
 		{
 			mlFree(tmpPath);
 			mlFree(expand);
@@ -274,7 +273,8 @@ MleDwpInputFile::MleDwpInputFile(const char *f,MleDwpInputFile *n)
 		m_path->setPath((MlChar *)tmpExpand);
 
 		// Attempt to open the new path.
-		if ( m_fp = mlFOpen((char *)m_path->getPlatformPath(),"r") )
+        m_fp = mlFOpen((char *)m_path->getPlatformPath(),"r");
+        if (m_fp)
 		{
 			mlFree(tmpExpand);
 			mlFree(tmpPath);
@@ -351,9 +351,9 @@ MleDwpInput::readMagic(void)
 		return 0;
 
 	// Look for the magic start.
-	int c;
 	char *magic = const_cast<char*>("#DWP");
-	while ( c = getNextByte() )
+    int c = getNextByte();
+    while (c)
 	{
 		if ( c != *magic++ )
 		{
@@ -570,7 +570,7 @@ MleDwpInput::readFilename(MleDwpFilename *f)
 
 				f->setPath(path);
 
-				delete path;
+                delete[] path;
 			}
 			else
 			{
@@ -608,7 +608,7 @@ MleDwpInput::readFilename(MleDwpFilename *f)
 
 				f->setPath(path);
 
-				delete path;
+                delete[] path;
 			}
 
 			mlFree(expand);
@@ -647,7 +647,7 @@ MleDwpInput::readFilename(MleDwpFilename *f)
 	
 	// Recover memory.
 	mlFree(expand);
-	delete path;
+    delete[] path;
 
 #ifdef COMMAHACK
 	}

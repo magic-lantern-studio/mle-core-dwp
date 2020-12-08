@@ -5,8 +5,6 @@
  * @ingroup MleDWPModel
  *
  * Magic Lantern Digital Workprint Library API.
- *
- * @author Mark S. Millard
  */
 
 // COPYRIGHT_BEGIN
