@@ -101,6 +101,17 @@
 #include "mle/DwpMediaRefClass.h"
 #include "mle/DwpFiletype.h"
 
+#if defined(__linux__)
+#if defined(WITH_LOG4CXX)
+#include "log4cxx/logger.h"
+#include "log4cxx/basicconfigurator.h"
+#include "log4cxx/helpers/exception.h"
+
+using namespace log4cxx;
+using namespace log4cxx::helpers;
+#endif /* WITH_LOG4CXX */
+#endif
+
 /*
  * This function initializes Magic Lantern system types.  It is possible
  * to link these in on demand using a DSO, but since they will be
@@ -169,4 +180,13 @@ void mleDwpInit(void)
 	MleDwpMedia::initClass();
 	MleDwpMediaRefClass::initClass();
 	MleDwpFiletype::initClass();
+
+#if defined(__linux__)
+#if defined(WITH_LOG4CXX)
+	printf("***** Initializing log4cxx *****\n");
+	BasicConfigurator::configure();
+	LoggerPtr logger(Logger::getLogger("main"));
+	LOG4CXX_DEBUG(logger, "log4cxx Initialized");
+#endif /* WITH_LOG4CXX */
+#endif
 }

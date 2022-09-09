@@ -31,3 +31,13 @@ libdwptest_la_CPPFLAGS = \
 	-I$(MLE_HOME)/Core/math/common/include \
 	-I$(MLE_HOME)/Core/mlert/common/src/foundation \
 	-std=c++11
+
+if HAVE_LOG4CXX
+#libdwptest_la_SOURCES += \
+#    audio_random_portaudio.h \
+#    audio_random_portaudio.cpp
+
+libdwptest_la_CPPFLAGS += $(LOG4CXX_CFLAGS)
+
+libdwptest_la_LDADD += $(LOG4CXX_LIBS)
+endif

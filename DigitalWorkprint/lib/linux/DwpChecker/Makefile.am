@@ -36,4 +36,18 @@ DWPChecker_CPPFLAGS = \
 	-I$(top_srcdir)/include \
 	-I$(top_srcdir)/../common/include \
 	-I$(MLE_HOME)/Core/util/common/include \
-	-I$(MLE_HOME)/Core/util/linux/include
+	-I$(MLE_HOME)/Core/util/linux/include \
+	-std=c++11
+
+if WITH_LOG4CXX
+#DWPChecker_SOURCES += \
+#    source.h \
+#    source.cpp
+	
+DWPChecker_CPPFLAGS += $(LOG4CXX_CFLAGS)
+#DWPChecker_CPPFLAGS += -DLINUX -D_REENTRANT -D_GNU_SOURCE -I/usr/local/include -I/usr/include/apr-1.0
+
+DWPChecker_LDFLAGS += -Wl,-rpath=/usr/local/lib
+DWPChecker_LDADD += $(LOG4CXX_LIBS)
+#DWPChecker_LDADD += -L/usr/local/lib -llog4cxx
+endif

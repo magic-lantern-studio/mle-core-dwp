@@ -101,4 +101,15 @@ libDWP_la_CPPFLAGS = \
 	-I$(top_srcdir)/../common/include \
 	-I$(MLE_HOME)/Core/util/common/include \
 	-I$(MLE_HOME)/Core/util/linux/include \
-	-I$(MLE_HOME)/Core/math/common/include
+	-I$(MLE_HOME)/Core/math/common/include \
+	-std=c++11
+
+if WITH_LOG4CXX
+#libDWP_la_SOURCES += \
+#    audio_random_portaudio.h \
+#    audio_random_portaudio.cpp
+	
+libDWP_la_CPPFLAGS += $(LOG4CXX_CFLAGS)
+
+#libDWP_la_LDFLAGS += $(LOG4CXX_LIBS)
+endif

@@ -42,3 +42,16 @@ exampleProgram_CPPFLAGS = \
     -I$(top_srcdir)/include \
     -I$/usr/local/include \
     -std=c++11
+
+if HAVE_LOG4CXX
+#libdwptest_la_SOURCES += \
+#    source.h \
+#    source.cpp
+	
+exampleProgram_CPPFLAGS += $(LOG4CXX_CFLAGS)
+#exampleProgram_CPPFLAGS += -DLINUX -D_REENTRANT -D_GNU_SOURCE -I/usr/local/include -I/usr/include/apr-1.0
+
+exampleProgram_LDFLAGS += -Wl,-rpath=/usr/local/lib
+exampleProgram_LDADD += $(LOG4CXX_LIBS)
+#exampleProgram_LDADD += -L/usr/local/lib -llog4cxx
+endif
