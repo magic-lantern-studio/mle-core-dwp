@@ -12,7 +12,7 @@
 //
 // The MIT License (MIT)
 //
-// Copyright (c) 2015-2020 Wizzer Works
+// Copyright (c) 2015-2022 Wizzer Works
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -109,6 +109,9 @@
 
 using namespace log4cxx;
 using namespace log4cxx::helpers;
+
+LoggerPtr g_dwpLogger(Logger::getLogger("DWP"));
+static MlBoolean g_dwpLoggerInitialized = FALSE;
 #endif /* HAVE_LOG4CXX */
 #endif
 
@@ -183,10 +186,13 @@ void mleDwpInit(void)
 
 #if defined(__linux__)
 #if defined(HAVE_LOG4CXX)
-	printf("***** Initializing log4cxx *****\n");
-	BasicConfigurator::configure();
-	LoggerPtr logger(Logger::getLogger("main"));
-	LOG4CXX_DEBUG(logger, "log4cxx Initialized");
+	if (!g_dwpLoggerInitialized) {
+		/// Set up a simple configuration that logs to the console.
+	    BasicConfigurator::configure();
+	    //LoggerPtr logger(Logger::getLogger("main"));
+	    LOG4CXX_DEBUG(g_dwpLogger, "log4cxx Initialized");
+	    g_dwpLoggerInitialized = TRUE;
+	}
 #endif /* HAVE_LOG4CXX */
 #endif
 }

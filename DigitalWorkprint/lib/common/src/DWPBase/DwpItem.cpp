@@ -1045,9 +1045,18 @@ MleDwpItem::read(MleDwpInput *in,MleDwpItem *parent)
 	}
 
 #ifdef DEBUG
-        printf("DwpItem: reading %s.\n", buffer);
-        fflush(stdout);
-#endif
+#if defined(__linux__)
+#if defined(HAVE_LOG4CXX)
+	LOG4CXX_DEBUG(g_dwpLogger, "DwpItem: reading " << buffer);
+#else
+	printf("DwpItem: reading %s.\n", buffer);
+	fflush(stdout);
+#endif /* HAVE_LOG4CXX */
+#else
+    printf("DwpItem: reading %s.\n", buffer);
+    fflush(stdout);
+#endif /* __linux__ */
+#endif /* DEBUG */
 
 	/* look up creation function in type registry */
 	MleDwpItem *(*create)(void) =

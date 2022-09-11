@@ -13,7 +13,7 @@
 //
 // The MIT License (MIT)
 //
-// Copyright (c) 2015-2020 Wizzer Works
+// Copyright (c) 2015-2022 Wizzer Works
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -95,16 +95,6 @@
 # define MLE_DWP_API
 #endif /* !MLE_DWP_API */
 
-//
-// The MLE_ASSERT macro replacement for assert().
-//
-//#include "mle/mlAssert.h"
-
-//
-// The MLE_TRACE macro/function.
-//
-//#include "mle/mlTrace.h"
-
 //#define DEBUG_MEMORY_FAILURE 1
 
 //
@@ -115,6 +105,15 @@
 #include "mle/DwpMemoryManager.h"
 
 #endif /* DEBUG_MEMORY_FAILURE */
+
+#if defined(__linux__)
+#if defined(HAVE_LOG4CXX)
+#include "log4cxx/logger.h"
+
+using namespace log4cxx;
+extern LoggerPtr g_dwpLogger;;
+#endif /* HAVE_LOG4CXX */
+#endif
 
 /**
  * @brief Initialize Digital Workprint library.
