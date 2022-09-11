@@ -31,10 +31,10 @@ AC_ARG_WITH([log4cxx],
 AS_IF([test "x$with_log4cxx" != xno],
 	[
 	PKG_CHECK_MODULES([LOG4CXX], [liblog4cxx])
-	AM_CONDITIONAL(WITH_LOG4CXX, true)
-	AC_DEFINE(WITH_LOG4CXX,[],[Use log4cxx])
+	AM_CONDITIONAL(HAVE_LOG4CXX, true)
+	AC_DEFINE(HAVE_LOG4CXX,[],[Use log4cxx])
 	], [
-	AM_CONDITIONAL(WITH_LOG4CXX, false)
+	AM_CONDITIONAL(HAVE_LOG4CXX, false)
 	])
 
 AC_CONFIG_FILES(Makefile

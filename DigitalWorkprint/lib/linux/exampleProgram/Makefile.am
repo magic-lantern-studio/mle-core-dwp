@@ -38,7 +38,7 @@ exampleProgram_CPPFLAGS = \
 	-I$(MLE_HOME)/Core/util/common/include \
 	-I$(MLE_HOME)/Core/util/linux/include
 
-if WITH_LOG4CXX
+if HAVE_LOG4CXX
 #libdwptest_la_SOURCES += \
 #    source.h \
 #    source.cpp

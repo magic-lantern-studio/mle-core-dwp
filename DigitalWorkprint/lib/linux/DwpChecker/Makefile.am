@@ -39,7 +39,7 @@ DWPChecker_CPPFLAGS = \
 	-I$(MLE_HOME)/Core/util/linux/include \
 	-std=c++11
 
-if WITH_LOG4CXX
+if HAVE_LOG4CXX
 #DWPChecker_SOURCES += \
 #    source.h \
 #    source.cpp

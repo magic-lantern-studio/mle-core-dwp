@@ -102,14 +102,14 @@
 #include "mle/DwpFiletype.h"
 
 #if defined(__linux__)
-#if defined(WITH_LOG4CXX)
+#if defined(HAVE_LOG4CXX)
 #include "log4cxx/logger.h"
 #include "log4cxx/basicconfigurator.h"
 #include "log4cxx/helpers/exception.h"
 
 using namespace log4cxx;
 using namespace log4cxx::helpers;
-#endif /* WITH_LOG4CXX */
+#endif /* HAVE_LOG4CXX */
 #endif
 
 /*
@@ -182,11 +182,11 @@ void mleDwpInit(void)
 	MleDwpFiletype::initClass();
 
 #if defined(__linux__)
-#if defined(WITH_LOG4CXX)
+#if defined(HAVE_LOG4CXX)
 	printf("***** Initializing log4cxx *****\n");
 	BasicConfigurator::configure();
 	LoggerPtr logger(Logger::getLogger("main"));
 	LOG4CXX_DEBUG(logger, "log4cxx Initialized");
-#endif /* WITH_LOG4CXX */
+#endif /* HAVE_LOG4CXX */
 #endif
 }
