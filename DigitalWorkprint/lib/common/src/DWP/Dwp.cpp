@@ -106,6 +106,8 @@
 #include "log4cxx/logger.h"
 #include "log4cxx/basicconfigurator.h"
 #include "log4cxx/helpers/exception.h"
+#include "log4cxx/consoleappender.h"
+#include "log4cxx/patternlayout.h"
 
 using namespace log4cxx;
 using namespace log4cxx::helpers;
@@ -187,8 +189,12 @@ void mleDwpInit(void)
 #if defined(__linux__)
 #if defined(HAVE_LOG4CXX)
 	if (!g_dwpLoggerInitialized) {
+		// Create an appender for the logging output pattern.
+		PatternLayoutPtr patternLayout = new PatternLayout("[%-5p] %d %c - %m%n");
+		ConsoleAppenderPtr appender = new ConsoleAppender(patternLayout);
+
 		/// Set up a simple configuration that logs to the console.
-	    BasicConfigurator::configure();
+	    BasicConfigurator::configure(appender);
 	    //LoggerPtr logger(Logger::getLogger("main"));
 	    LOG4CXX_DEBUG(g_dwpLogger, "log4cxx Initialized");
 	    g_dwpLoggerInitialized = TRUE;
