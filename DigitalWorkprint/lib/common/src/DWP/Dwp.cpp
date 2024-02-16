@@ -12,7 +12,7 @@
 //
 // The MIT License (MIT)
 //
-// Copyright (c) 2015-2022 Wizzer Works
+// Copyright (c) 2015-2024 Wizzer Works
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -190,8 +190,10 @@ void mleDwpInit(void)
 #if defined(HAVE_LOG4CXX)
 	if (!g_dwpLoggerInitialized) {
 		// Create an appender for the logging output pattern.
-		PatternLayoutPtr patternLayout = new PatternLayout("[%-5p] %d %c - %m%n");
-		ConsoleAppenderPtr appender = new ConsoleAppender(patternLayout);
+		//PatternLayoutPtr patternLayout = std::shared_ptr<log4cxx::PatternLayout>(new PatternLayout("[%-5p] %d %c - %m%n"));
+		//ConsoleAppenderPtr appender = std::shared_ptr<log4cxx::ConsoleAppender>(new ConsoleAppender(patternLayout));
+		PatternLayoutPtr patternLayout = (PatternLayoutPtr)(new PatternLayout("[%-5p] %d %c - %m%n"));
+		ConsoleAppenderPtr appender = (ConsoleAppenderPtr)(new ConsoleAppender(patternLayout));
 
 		/// Set up a simple configuration that logs to the console.
 	    BasicConfigurator::configure(appender);

@@ -86,24 +86,4 @@ include_HEADERS = \
 	$(top_srcdir)/../common/include/mle/DwpVector3Array.h \
 	$(top_srcdir)/../common/include/mle/DwpVector3.h \
 	$(top_srcdir)/../common/include/mle/DwpVector4.h \
-	$(top_srcdir)/../common/include/mle/DwpVoidStarType.h \
-	$(MLE_HOME)/Core/util/linux/include/mle/MleLinuxPath.h \
-	$(MLE_HOME)/Core/util/linux/include/mle/mlPlatformDefs.h \
-	$(MLE_HOME)/Core/util/common/include/mle/mle.h \
-	$(MLE_HOME)/Core/util/common/include/mle/mlArray.h \
-	$(MLE_HOME)/Core/util/common/include/mle/mlAssert.h \
-	$(MLE_HOME)/Core/util/common/include/mle/mlConfig.h \
-	$(MLE_HOME)/Core/util/common/include/mle/mlDebug.h \
-	$(MLE_HOME)/Core/util/common/include/mle/MleDsoLoader.h \
-	$(MLE_HOME)/Core/util/common/include/mle/MleMemoryManager.h \
-	$(MLE_HOME)/Core/util/common/include/mle/MlePath.h \
-	$(MLE_HOME)/Core/util/common/include/mle/mlErrno.h \
-	$(MLE_HOME)/Core/util/common/include/mle/MleTemplate.h \
-	$(MLE_HOME)/Core/util/common/include/mle/mlExpandFilename.h \
-	$(MLE_HOME)/Core/util/common/include/mle/mlFileio.h \
-	$(MLE_HOME)/Core/util/common/include/mle/mlLogFile.h \
-	$(MLE_HOME)/Core/util/common/include/mle/mlMacros.h \
-	$(MLE_HOME)/Core/util/common/include/mle/mlMalloc.h \
-	$(MLE_HOME)/Core/util/common/include/mle/mlToken.h \
-	$(MLE_HOME)/Core/util/common/include/mle/mlTypes.h \
-	$(MLE_HOME)/Core/util/common/include/mle/mlUnique.h
+	$(top_srcdir)/../common/include/mle/DwpVoidStarType.h

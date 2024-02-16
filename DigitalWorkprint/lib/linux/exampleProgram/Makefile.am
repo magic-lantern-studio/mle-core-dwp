@@ -35,8 +35,7 @@ exampleProgram_CPPFLAGS = \
 	-DMLE_NOT_DLL \
 	-I$(top_srcdir)/include \
 	-I$(top_srcdir)/../common/include \
-	-I$(MLE_HOME)/Core/util/common/include \
-	-I$(MLE_HOME)/Core/util/linux/include
+	-I$(MLE_ROOT)/include
 
 if HAVE_LOG4CXX
 #libdwptest_la_SOURCES += \

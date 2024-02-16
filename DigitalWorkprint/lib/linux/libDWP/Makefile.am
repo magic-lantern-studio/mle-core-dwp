@@ -99,10 +99,8 @@ libDWP_la_CPPFLAGS = \
 	-DDEBUG \
 	-I$(top_srcdir)/include \
 	-I$(top_srcdir)/../common/include \
-	-I$(MLE_HOME)/Core/util/common/include \
-	-I$(MLE_HOME)/Core/util/linux/include \
-	-I$(MLE_HOME)/Core/math/common/include \
-	-std=c++11
+	-I$(MLE_ROOT)/include \
+	-std=c++17
 
 if HAVE_LOG4CXX
 #libDWP_la_SOURCES += \
