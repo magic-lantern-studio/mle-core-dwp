@@ -11,7 +11,7 @@
 //
 // The MIT License (MIT)
 //
-// Copyright (c) 2017-2020 Wizzer Works
+// Copyright (c) 2017-2024 Wizzer Works
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -510,7 +510,7 @@ MlErr MleDwpChecker::actorSetTypeMatches(void)
 				{
 					char errorBuffer[1024];
 
-					sprintf(errorBuffer, "Actor %s doesn't have either an"
+					sprintf(errorBuffer, "Actor %s doesn't have either an %s", actorList[i]->getName(),
 						"ActorDef or an ActorTemplate.");
 					setErrorMsg(errorBuffer);
 					error = 1;
