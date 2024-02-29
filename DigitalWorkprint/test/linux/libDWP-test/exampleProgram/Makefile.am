@@ -40,8 +40,9 @@ exampleProgram_CPPFLAGS = \
 	-DMLE_NOT_DLL \
 	-DMLE_REHEARSAL \
     -I$(top_srcdir)/include \
+    -I$(MLE_ROOT)/include \
     -I$/usr/local/include \
-    -std=c++11
+    -std=c++17
 
 if HAVE_LOG4CXX
 #libdwptest_la_SOURCES += \
