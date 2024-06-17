@@ -77,6 +77,15 @@
 		296AA61215B7522E00A6BFEB /* DWPBase */ = {
 			isa = PBXGroup;
 			children = (
+				2FD607F12C207EB400677C04 /* Source Files */,
+			);
+			name = DWPBase;
+			path = ../../../common/src/DWPBase;
+			sourceTree = "<group>";
+		};
+		2FD607F12C207EB400677C04 /* Source Files */ = {
+			isa = PBXGroup;
+			children = (
 				296AA61315B7522E00A6BFEB /* DwpContainer.cpp */,
 				296AA61415B7522E00A6BFEB /* DwpDict.cpp */,
 				296AA61515B7522E00A6BFEB /* DwpDiscriminator.cpp */,
@@ -95,8 +104,7 @@
 				296AA62215B7522E00A6BFEB /* DwpTagDiscriminator.cpp */,
 				296AA62315B7522E00A6BFEB /* DwpUnknown.cpp */,
 			);
-			name = DWPBase;
-			path = ../../../common/src/DWPBase;
+			name = "Source Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -143,6 +151,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 			);
 			mainGroup = 296AA56315B750A400A6BFEB;
@@ -208,13 +217,13 @@
 				HEADER_SEARCH_PATHS = (
 					../../../common/include,
 					../../../mac/include,
-					/Users/markmillard/Projects/MagicLantern/trunk/Core/util/common/include,
-					/Users/markmillard/Projects/MagicLantern/trunk/Core/util/mac/include,
+					../../include,
+					/opt/MagicLantern/include,
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
-				USER_HEADER_SEARCH_PATHS = "../../../common/include ../../../mac/include /Users/markmillard/Projects/MagicLantern/trunk/Core/util/common/include /Users/markmillard/Projects/MagicLantern/trunk/Core/util/mac/include";
+				USER_HEADER_SEARCH_PATHS = "../../../common/include ../../../mac/include ../../include /opt/MagicLantern/include";
 			};
 			name = Debug;
 		};
@@ -239,12 +248,12 @@
 				HEADER_SEARCH_PATHS = (
 					../../../common/include,
 					../../../mac/include,
-					/Users/markmillard/Projects/MagicLantern/trunk/Core/util/common/include,
-					/Users/markmillard/Projects/MagicLantern/trunk/Core/util/mac/include,
+					../../include,
+					/opt/MagicLantern/include,
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				SDKROOT = macosx;
-				USER_HEADER_SEARCH_PATHS = "../../../common/include ../../../mac/include /Users/markmillard/Projects/MagicLantern/trunk/Core/util/common/include /Users/markmillard/Projects/MagicLantern/trunk/Core/util/mac/include";
+				USER_HEADER_SEARCH_PATHS = "../../../common/include ../../../mac/include ../../include /opt/MagicLantern/include";
 			};
 			name = Release;
 		};
