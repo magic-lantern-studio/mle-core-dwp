@@ -24,6 +24,26 @@
 		296AA63215B7522E00A6BFEB /* DwpTagAllDiscriminator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 296AA62115B7522E00A6BFEB /* DwpTagAllDiscriminator.cpp */; };
 		296AA63315B7522E00A6BFEB /* DwpTagDiscriminator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 296AA62215B7522E00A6BFEB /* DwpTagDiscriminator.cpp */; };
 		296AA63415B7522E00A6BFEB /* DwpUnknown.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 296AA62315B7522E00A6BFEB /* DwpUnknown.cpp */; };
+		2F73D4E12C21C92A008C8596 /* DwpLoad.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F73D4E02C21C92A008C8596 /* DwpLoad.cpp */; };
+		2F73D4E32C21C9CD008C8596 /* DwpContainer.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F73D4E22C21C9CD008C8596 /* DwpContainer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2F73D4E72C21CA32008C8596 /* DwpDSOFile.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F73D4E42C21CA32008C8596 /* DwpDSOFile.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2F73D4E82C21CA32008C8596 /* DwpDiscriminator.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F73D4E52C21CA32008C8596 /* DwpDiscriminator.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2F73D4E92C21CA32008C8596 /* DwpDict.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F73D4E62C21CA32008C8596 /* DwpDict.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2F73D4EC2C21CA73008C8596 /* DwpFile.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F73D4EA2C21CA73008C8596 /* DwpFile.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2F73D4ED2C21CA73008C8596 /* DwpFilename.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F73D4EB2C21CA73008C8596 /* DwpFilename.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2F73D4F22C21CABB008C8596 /* DwpItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F73D4EE2C21CABB008C8596 /* DwpItem.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2F73D4F32C21CABB008C8596 /* DwpFinder.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F73D4EF2C21CABB008C8596 /* DwpFinder.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2F73D4F42C21CABB008C8596 /* DwpInput.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F73D4F02C21CABB008C8596 /* DwpInput.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2F73D4F52C21CABB008C8596 /* DwpInclude.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F73D4F12C21CABB008C8596 /* DwpInclude.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2F73D4FD2C21CB7E008C8596 /* DwpLoad.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F73D4F62C21CB7E008C8596 /* DwpLoad.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2F73D4FE2C21CB7E008C8596 /* DwpTagAllDiscriminator.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F73D4F72C21CB7E008C8596 /* DwpTagAllDiscriminator.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2F73D4FF2C21CB7E008C8596 /* DwpStrKeyDict.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F73D4F82C21CB7E008C8596 /* DwpStrKeyDict.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2F73D5002C21CB7E008C8596 /* DwpNotifier.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F73D4F92C21CB7E008C8596 /* DwpNotifier.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2F73D5012C21CB7E008C8596 /* DwpUnknown.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F73D4FA2C21CB7E008C8596 /* DwpUnknown.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2F73D5022C21CB7E008C8596 /* DwpTagDiscriminator.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F73D4FB2C21CB7E008C8596 /* DwpTagDiscriminator.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2F73D5032C21CB7E008C8596 /* DwpMonitor.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F73D4FC2C21CB7E008C8596 /* DwpMonitor.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2F73D5052C21CBE1008C8596 /* DwpOutput.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F73D5042C21CBE1008C8596 /* DwpOutput.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2F84B1EB2C25C74500018F87 /* libmlutil.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F84B1EA2C25C74500018F87 /* libmlutil.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +65,26 @@
 		296AA62115B7522E00A6BFEB /* DwpTagAllDiscriminator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DwpTagAllDiscriminator.cpp; sourceTree = "<group>"; };
 		296AA62215B7522E00A6BFEB /* DwpTagDiscriminator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DwpTagDiscriminator.cpp; sourceTree = "<group>"; };
 		296AA62315B7522E00A6BFEB /* DwpUnknown.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DwpUnknown.cpp; sourceTree = "<group>"; };
+		2F73D4E02C21C92A008C8596 /* DwpLoad.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DwpLoad.cpp; sourceTree = "<group>"; };
+		2F73D4E22C21C9CD008C8596 /* DwpContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DwpContainer.h; path = ../../include/mle/DwpContainer.h; sourceTree = "<group>"; };
+		2F73D4E42C21CA32008C8596 /* DwpDSOFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DwpDSOFile.h; path = ../../include/mle/DwpDSOFile.h; sourceTree = "<group>"; };
+		2F73D4E52C21CA32008C8596 /* DwpDiscriminator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DwpDiscriminator.h; path = ../../include/mle/DwpDiscriminator.h; sourceTree = "<group>"; };
+		2F73D4E62C21CA32008C8596 /* DwpDict.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DwpDict.h; path = ../../include/mle/DwpDict.h; sourceTree = "<group>"; };
+		2F73D4EA2C21CA73008C8596 /* DwpFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DwpFile.h; path = ../../include/mle/DwpFile.h; sourceTree = "<group>"; };
+		2F73D4EB2C21CA73008C8596 /* DwpFilename.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DwpFilename.h; path = ../../include/mle/DwpFilename.h; sourceTree = "<group>"; };
+		2F73D4EE2C21CABB008C8596 /* DwpItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DwpItem.h; path = ../../include/mle/DwpItem.h; sourceTree = "<group>"; };
+		2F73D4EF2C21CABB008C8596 /* DwpFinder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DwpFinder.h; path = ../../include/mle/DwpFinder.h; sourceTree = "<group>"; };
+		2F73D4F02C21CABB008C8596 /* DwpInput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DwpInput.h; path = ../../include/mle/DwpInput.h; sourceTree = "<group>"; };
+		2F73D4F12C21CABB008C8596 /* DwpInclude.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DwpInclude.h; path = ../../include/mle/DwpInclude.h; sourceTree = "<group>"; };
+		2F73D4F62C21CB7E008C8596 /* DwpLoad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DwpLoad.h; path = ../../include/mle/DwpLoad.h; sourceTree = "<group>"; };
+		2F73D4F72C21CB7E008C8596 /* DwpTagAllDiscriminator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DwpTagAllDiscriminator.h; path = ../../include/mle/DwpTagAllDiscriminator.h; sourceTree = "<group>"; };
+		2F73D4F82C21CB7E008C8596 /* DwpStrKeyDict.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DwpStrKeyDict.h; path = ../../include/mle/DwpStrKeyDict.h; sourceTree = "<group>"; };
+		2F73D4F92C21CB7E008C8596 /* DwpNotifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DwpNotifier.h; path = ../../include/mle/DwpNotifier.h; sourceTree = "<group>"; };
+		2F73D4FA2C21CB7E008C8596 /* DwpUnknown.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DwpUnknown.h; path = ../../include/mle/DwpUnknown.h; sourceTree = "<group>"; };
+		2F73D4FB2C21CB7E008C8596 /* DwpTagDiscriminator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DwpTagDiscriminator.h; path = ../../include/mle/DwpTagDiscriminator.h; sourceTree = "<group>"; };
+		2F73D4FC2C21CB7E008C8596 /* DwpMonitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DwpMonitor.h; path = ../../include/mle/DwpMonitor.h; sourceTree = "<group>"; };
+		2F73D5042C21CBE1008C8596 /* DwpOutput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DwpOutput.h; path = ../../include/mle/DwpOutput.h; sourceTree = "<group>"; };
+		2F84B1EA2C25C74500018F87 /* libmlutil.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libmlutil.dylib; path = ../../../../../../../../../../opt/MagicLantern/lib/libmlutil.dylib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,6 +92,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2F84B1EB2C25C74500018F87 /* libmlutil.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,6 +104,7 @@
 			children = (
 				296AA61215B7522E00A6BFEB /* DWPBase */,
 				296AA56F15B750A400A6BFEB /* Products */,
+				2F84B1E92C25C74500018F87 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -77,10 +119,44 @@
 		296AA61215B7522E00A6BFEB /* DWPBase */ = {
 			isa = PBXGroup;
 			children = (
+				2F73D4DF2C21C8F5008C8596 /* Header Files */,
 				2FD607F12C207EB400677C04 /* Source Files */,
 			);
 			name = DWPBase;
 			path = ../../../common/src/DWPBase;
+			sourceTree = "<group>";
+		};
+		2F73D4DF2C21C8F5008C8596 /* Header Files */ = {
+			isa = PBXGroup;
+			children = (
+				2F73D4E22C21C9CD008C8596 /* DwpContainer.h */,
+				2F73D4E62C21CA32008C8596 /* DwpDict.h */,
+				2F73D4E52C21CA32008C8596 /* DwpDiscriminator.h */,
+				2F73D4E42C21CA32008C8596 /* DwpDSOFile.h */,
+				2F73D4EA2C21CA73008C8596 /* DwpFile.h */,
+				2F73D4EB2C21CA73008C8596 /* DwpFilename.h */,
+				2F73D4EF2C21CABB008C8596 /* DwpFinder.h */,
+				2F73D4F12C21CABB008C8596 /* DwpInclude.h */,
+				2F73D4F02C21CABB008C8596 /* DwpInput.h */,
+				2F73D4EE2C21CABB008C8596 /* DwpItem.h */,
+				2F73D4F62C21CB7E008C8596 /* DwpLoad.h */,
+				2F73D4FC2C21CB7E008C8596 /* DwpMonitor.h */,
+				2F73D4F92C21CB7E008C8596 /* DwpNotifier.h */,
+				2F73D5042C21CBE1008C8596 /* DwpOutput.h */,
+				2F73D4F82C21CB7E008C8596 /* DwpStrKeyDict.h */,
+				2F73D4F72C21CB7E008C8596 /* DwpTagAllDiscriminator.h */,
+				2F73D4FB2C21CB7E008C8596 /* DwpTagDiscriminator.h */,
+				2F73D4FA2C21CB7E008C8596 /* DwpUnknown.h */,
+			);
+			name = "Header Files";
+			sourceTree = "<group>";
+		};
+		2F84B1E92C25C74500018F87 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2F84B1EA2C25C74500018F87 /* libmlutil.dylib */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		2FD607F12C207EB400677C04 /* Source Files */ = {
@@ -96,6 +172,7 @@
 				296AA61A15B7522E00A6BFEB /* DwpInclude.cpp */,
 				296AA61B15B7522E00A6BFEB /* DwpInput.cpp */,
 				296AA61C15B7522E00A6BFEB /* DwpItem.cpp */,
+				2F73D4E02C21C92A008C8596 /* DwpLoad.cpp */,
 				296AA61D15B7522E00A6BFEB /* DwpMonitor.cpp */,
 				296AA61E15B7522E00A6BFEB /* DwpNotifier.cpp */,
 				296AA61F15B7522E00A6BFEB /* DwpOutput.cpp */,
@@ -114,6 +191,24 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2F73D4E82C21CA32008C8596 /* DwpDiscriminator.h in Headers */,
+				2F73D4FF2C21CB7E008C8596 /* DwpStrKeyDict.h in Headers */,
+				2F73D4ED2C21CA73008C8596 /* DwpFilename.h in Headers */,
+				2F73D4E32C21C9CD008C8596 /* DwpContainer.h in Headers */,
+				2F73D4F42C21CABB008C8596 /* DwpInput.h in Headers */,
+				2F73D5052C21CBE1008C8596 /* DwpOutput.h in Headers */,
+				2F73D4E92C21CA32008C8596 /* DwpDict.h in Headers */,
+				2F73D4F52C21CABB008C8596 /* DwpInclude.h in Headers */,
+				2F73D4EC2C21CA73008C8596 /* DwpFile.h in Headers */,
+				2F73D5002C21CB7E008C8596 /* DwpNotifier.h in Headers */,
+				2F73D4F22C21CABB008C8596 /* DwpItem.h in Headers */,
+				2F73D4FE2C21CB7E008C8596 /* DwpTagAllDiscriminator.h in Headers */,
+				2F73D5032C21CB7E008C8596 /* DwpMonitor.h in Headers */,
+				2F73D4FD2C21CB7E008C8596 /* DwpLoad.h in Headers */,
+				2F73D4F32C21CABB008C8596 /* DwpFinder.h in Headers */,
+				2F73D4E72C21CA32008C8596 /* DwpDSOFile.h in Headers */,
+				2F73D5012C21CB7E008C8596 /* DwpUnknown.h in Headers */,
+				2F73D5022C21CB7E008C8596 /* DwpTagDiscriminator.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -127,6 +222,7 @@
 				296AA56A15B750A400A6BFEB /* Sources */,
 				296AA56B15B750A400A6BFEB /* Frameworks */,
 				296AA56C15B750A400A6BFEB /* Headers */,
+				2F84B1E82C246F4F00018F87 /* Install libDWPBase library */,
 			);
 			buildRules = (
 			);
@@ -164,6 +260,27 @@
 		};
 /* End PBXProject section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		2F84B1E82C246F4F00018F87 /* Install libDWPBase library */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Install libDWPBase library";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "echo \"Installing libDWPBase.dylib and headers files.\"\necho `pwd`\necho ${BUILT_PRODUCTS_DIR}\n\nif [ -d \"/opt/MagicLantern/lib\" ] \nthen\n    echo \"Directory /opt/MagicLantern/lib exists.\" \nelse\n    #echo \"Warning: Directory /opt/MagicLantern/lib does not exist. Creating it.\"\n    #sudo mkdir -p /opt/MagicLantern/lib\n\n    echo \"Error: Directory /opt/MagicLantern/lib does not exist.\"\n    exit 1\nfi\n\necho \"Installing libDWPBase.dylib to /opt/MagicLantern/lib.\"\ncp ${BUILT_PRODUCTS_DIR}/libDWPBase.dylib /opt/MagicLantern/lib\n\nif [ -d \"/opt/MagicLantern/include/mle\" ] \nthen\n    echo \"Directory /opt/MagicLantern/include/mle exists.\" \nelse\n    #echo \"Warning: Directory /opt/MagicLantern/include/mle does not exist. Creating it.\"\n    #sudo mkdir -p /opt/MagicLantern/include/mle\n        \n    echo \"Error: Directory /opt/MagicLantern/include/mle does not existt.\"\n    exit 1\nfi\n\necho \"Installing libDWPBase header files to /opt/MagicLantern/include/mle.\"\ncp -R ${BUILT_PRODUCTS_DIR}/usr/local/include/* /opt/MagicLantern/include/mle\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		296AA56A15B750A400A6BFEB /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -174,6 +291,7 @@
 				296AA62615B7522E00A6BFEB /* DwpDiscriminator.cpp in Sources */,
 				296AA62715B7522E00A6BFEB /* DwpDSOFile.cpp in Sources */,
 				296AA62815B7522E00A6BFEB /* DwpFile.cpp in Sources */,
+				2F73D4E12C21C92A008C8596 /* DwpLoad.cpp in Sources */,
 				296AA62915B7522E00A6BFEB /* DwpFilename.cpp in Sources */,
 				296AA62A15B7522E00A6BFEB /* DwpFinder.cpp in Sources */,
 				296AA62B15B7522E00A6BFEB /* DwpInclude.cpp in Sources */,
@@ -195,7 +313,7 @@
 		296AA57015B750A400A6BFEB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -220,6 +338,9 @@
 					../../include,
 					/opt/MagicLantern/include,
 				);
+				INSTALL_GROUP = wizzerworks;
+				INSTALL_OWNER = wizzerworks;
+				LIBRARY_SEARCH_PATHS = /opt/MagicLantern/lib;
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
@@ -230,7 +351,7 @@
 		296AA57115B750A400A6BFEB /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -251,6 +372,9 @@
 					../../include,
 					/opt/MagicLantern/include,
 				);
+				INSTALL_GROUP = wizzerworks;
+				INSTALL_OWNER = wizzerworks;
+				LIBRARY_SEARCH_PATHS = /opt/MagicLantern/lib;
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				SDKROOT = macosx;
 				USER_HEADER_SEARCH_PATHS = "../../../common/include ../../../mac/include ../../include /opt/MagicLantern/include";
@@ -267,6 +391,7 @@
 					/Users/markmillard/Projects/MagicLantern/trunk/Core/util/common/include,
 					/Users/markmillard/Projects/MagicLantern/trunk/Core/util/mac/include,
 				);
+				INSTALL_PATH = /opt/MagicLantern/lib;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -281,6 +406,7 @@
 					/Users/markmillard/Projects/MagicLantern/trunk/Core/util/common/include,
 					/Users/markmillard/Projects/MagicLantern/trunk/Core/util/mac/include,
 				);
+				INSTALL_PATH = /opt/MagicLantern/lib;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
