@@ -1,0 +1,666 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2F84B29A2C2B055400018F87 /* DwpLimits.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F84B2742C2B055300018F87 /* DwpLimits.cpp */; };
+		2F84B29B2C2B055400018F87 /* DwpActor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F84B2752C2B055300018F87 /* DwpActor.cpp */; };
+		2F84B29C2C2B055400018F87 /* DwpGroup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F84B2762C2B055300018F87 /* DwpGroup.cpp */; };
+		2F84B29D2C2B055400018F87 /* DwpDelegateBinding.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F84B2772C2B055300018F87 /* DwpDelegateBinding.cpp */; };
+		2F84B29E2C2B055400018F87 /* DwpHeaderFile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F84B2782C2B055300018F87 /* DwpHeaderFile.cpp */; };
+		2F84B29F2C2B055400018F87 /* DwpMedia.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F84B2792C2B055300018F87 /* DwpMedia.cpp */; };
+		2F84B2A02C2B055400018F87 /* DwpPackage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F84B27A2C2B055300018F87 /* DwpPackage.cpp */; };
+		2F84B2A12C2B055400018F87 /* DwpProperty.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F84B27B2C2B055300018F87 /* DwpProperty.cpp */; };
+		2F84B2A22C2B055400018F87 /* DwpForumDef.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F84B27C2C2B055300018F87 /* DwpForumDef.cpp */; };
+		2F84B2A32C2B055400018F87 /* DwpSetDef.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F84B27D2C2B055300018F87 /* DwpSetDef.cpp */; };
+		2F84B2A42C2B055400018F87 /* DwpStage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F84B27E2C2B055300018F87 /* DwpStage.cpp */; };
+		2F84B2A52C2B055400018F87 /* DwpRoleSetMapping.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F84B27F2C2B055300018F87 /* DwpRoleSetMapping.cpp */; };
+		2F84B2A62C2B055400018F87 /* DwpScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F84B2802C2B055300018F87 /* DwpScene.cpp */; };
+		2F84B2A72C2B055400018F87 /* DwpDelegateDef.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F84B2812C2B055300018F87 /* DwpDelegateDef.cpp */; };
+		2F84B2A82C2B055400018F87 /* DwpSourceFile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F84B2822C2B055300018F87 /* DwpSourceFile.cpp */; };
+		2F84B2A92C2B055400018F87 /* DwpActorTemplate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F84B2832C2B055300018F87 /* DwpActorTemplate.cpp */; };
+		2F84B2AA2C2B055400018F87 /* DwpSet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F84B2842C2B055300018F87 /* DwpSet.cpp */; };
+		2F84B2AB2C2B055400018F87 /* DwpForum.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F84B2852C2B055300018F87 /* DwpForum.cpp */; };
+		2F84B2AC2C2B055400018F87 /* DwpStageDef.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F84B2862C2B055300018F87 /* DwpStageDef.cpp */; };
+		2F84B2AD2C2B055400018F87 /* DwpGroupRef.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F84B2872C2B055300018F87 /* DwpGroupRef.cpp */; };
+		2F84B2AE2C2B055400018F87 /* DwpChecker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F84B2882C2B055300018F87 /* DwpChecker.cpp */; };
+		2F84B2AF2C2B055400018F87 /* DwpActorDef.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F84B2892C2B055300018F87 /* DwpActorDef.cpp */; };
+		2F84B2B02C2B055400018F87 /* DwpConverter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F84B28A2C2B055300018F87 /* DwpConverter.cpp */; };
+		2F84B2B12C2B055400018F87 /* DwpRoleAttachment.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F84B28B2C2B055400018F87 /* DwpRoleAttachment.cpp */; };
+		2F84B2B22C2B055400018F87 /* DwpCastRef.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F84B28C2C2B055400018F87 /* DwpCastRef.cpp */; };
+		2F84B2B32C2B055400018F87 /* DwpDelegateAttachment.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F84B28D2C2B055400018F87 /* DwpDelegateAttachment.cpp */; };
+		2F84B2B42C2B055400018F87 /* DwpDelegateForumMapping.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F84B28E2C2B055400018F87 /* DwpDelegateForumMapping.cpp */; };
+		2F84B2B52C2B055400018F87 /* DwpRoleDef.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F84B28F2C2B055400018F87 /* DwpRoleDef.cpp */; };
+		2F84B2B62C2B055400018F87 /* DwpMediaRef.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F84B2902C2B055400018F87 /* DwpMediaRef.cpp */; };
+		2F84B2B72C2B055400018F87 /* DwpCast.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F84B2912C2B055400018F87 /* DwpCast.cpp */; };
+		2F84B2B82C2B055400018F87 /* DwpMediaRefClass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F84B2922C2B055400018F87 /* DwpMediaRefClass.cpp */; };
+		2F84B2B92C2B055400018F87 /* DwpRoleBinding.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F84B2932C2B055400018F87 /* DwpRoleBinding.cpp */; };
+		2F84B2BA2C2B055400018F87 /* DwpBoot.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F84B2942C2B055400018F87 /* DwpBoot.cpp */; };
+		2F84B2BB2C2B055400018F87 /* DwpFiletype.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F84B2952C2B055400018F87 /* DwpFiletype.cpp */; };
+		2F84B2BC2C2B055400018F87 /* DwpMediaRefSource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F84B2962C2B055400018F87 /* DwpMediaRefSource.cpp */; };
+		2F84B2BD2C2B055400018F87 /* DwpActorSet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F84B2972C2B055400018F87 /* DwpActorSet.cpp */; };
+		2F84B2BE2C2B055400018F87 /* DwpPropertyDef.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F84B2982C2B055400018F87 /* DwpPropertyDef.cpp */; };
+		2F84B2BF2C2B055400018F87 /* DwpMediaRefTarget.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F84B2992C2B055400018F87 /* DwpMediaRefTarget.cpp */; };
+		2F84B2E22C2B084400018F87 /* DwpMediaRef.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F84B2C02C2B084300018F87 /* DwpMediaRef.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2F84B2E32C2B084400018F87 /* DwpPropertyDef.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F84B2C12C2B084300018F87 /* DwpPropertyDef.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2F84B2E42C2B084400018F87 /* DwpRoleAttachment.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F84B2C22C2B084300018F87 /* DwpRoleAttachment.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2F84B2E52C2B084400018F87 /* DwpMediaRefClass.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F84B2C32C2B084400018F87 /* DwpMediaRefClass.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2F84B2E62C2B084400018F87 /* DwpMediaRefSource.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F84B2C42C2B084400018F87 /* DwpMediaRefSource.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2F84B2E72C2B084400018F87 /* DwpPackage.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F84B2C52C2B084400018F87 /* DwpPackage.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2F84B2E82C2B084400018F87 /* DwpGroup.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F84B2C62C2B084400018F87 /* DwpGroup.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2F84B2E92C2B084400018F87 /* DwpActorTemplate.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F84B2C72C2B084400018F87 /* DwpActorTemplate.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2F84B2EA2C2B084400018F87 /* DwpFiletype.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F84B2C82C2B084400018F87 /* DwpFiletype.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2F84B2EB2C2B084400018F87 /* DwpGroupRef.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F84B2C92C2B084400018F87 /* DwpGroupRef.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2F84B2EC2C2B084400018F87 /* DwpConverter.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F84B2CA2C2B084400018F87 /* DwpConverter.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2F84B2ED2C2B084400018F87 /* DwpDelegateBinding.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F84B2CB2C2B084400018F87 /* DwpDelegateBinding.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2F84B2EE2C2B084400018F87 /* DwpRoleDef.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F84B2CC2C2B084400018F87 /* DwpRoleDef.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2F84B2EF2C2B084400018F87 /* DwpForum.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F84B2CD2C2B084400018F87 /* DwpForum.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2F84B2F02C2B084400018F87 /* DwpMediaRefTarget.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F84B2CE2C2B084400018F87 /* DwpMediaRefTarget.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2F84B2F12C2B084400018F87 /* DwpProperty.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F84B2CF2C2B084400018F87 /* DwpProperty.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2F84B2F22C2B084400018F87 /* DwpChecker.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F84B2D02C2B084400018F87 /* DwpChecker.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2F84B2F32C2B084400018F87 /* DwpDelegateDef.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F84B2D12C2B084400018F87 /* DwpDelegateDef.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2F84B2F42C2B084400018F87 /* DwpBoot.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F84B2D22C2B084400018F87 /* DwpBoot.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2F84B2F52C2B084400018F87 /* DwpActorDef.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F84B2D32C2B084400018F87 /* DwpActorDef.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2F84B2F62C2B084400018F87 /* DwpScene.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F84B2D42C2B084400018F87 /* DwpScene.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2F84B2F72C2B084400018F87 /* DwpLimits.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F84B2D52C2B084400018F87 /* DwpLimits.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2F84B2F82C2B084400018F87 /* DwpRotation.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F84B2D62C2B084400018F87 /* DwpRotation.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2F84B2F92C2B084400018F87 /* DwpForumDef.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F84B2D72C2B084400018F87 /* DwpForumDef.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2F84B2FA2C2B084400018F87 /* DwpDelegateForumMapping.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F84B2D82C2B084400018F87 /* DwpDelegateForumMapping.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2F84B2FB2C2B084400018F87 /* DwpActor.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F84B2D92C2B084400018F87 /* DwpActor.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2F84B2FC2C2B084400018F87 /* DwpActorSet.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F84B2DA2C2B084400018F87 /* DwpActorSet.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2F84B2FD2C2B084400018F87 /* DwpCast.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F84B2DB2C2B084400018F87 /* DwpCast.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2F84B2FE2C2B084400018F87 /* DwpHeaderFile.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F84B2DC2C2B084400018F87 /* DwpHeaderFile.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2F84B2FF2C2B084400018F87 /* DwpCastRef.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F84B2DD2C2B084400018F87 /* DwpCastRef.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2F84B3002C2B084400018F87 /* DwpMedia.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F84B2DE2C2B084400018F87 /* DwpMedia.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2F84B3012C2B084400018F87 /* DwpRoleBinding.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F84B2DF2C2B084400018F87 /* DwpRoleBinding.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2F84B3022C2B084400018F87 /* DwpDelegateAttachment.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F84B2E02C2B084400018F87 /* DwpDelegateAttachment.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2F84B3032C2B084400018F87 /* DwpRoleSetMapping.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F84B2E12C2B084400018F87 /* DwpRoleSetMapping.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2F84B3092C2B08B700018F87 /* DwpSourceFile.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F84B3042C2B08B700018F87 /* DwpSourceFile.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2F84B30A2C2B08B700018F87 /* DwpSetDef.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F84B3052C2B08B700018F87 /* DwpSetDef.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2F84B30B2C2B08B700018F87 /* DwpSet.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F84B3062C2B08B700018F87 /* DwpSet.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2F84B30C2C2B08B700018F87 /* DwpStageDef.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F84B3072C2B08B700018F87 /* DwpStageDef.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2F84B30D2C2B08B700018F87 /* DwpStage.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F84B3082C2B08B700018F87 /* DwpStage.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2F84B3102C2B098B00018F87 /* libmlutil.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F84B30F2C2B098B00018F87 /* libmlutil.dylib */; };
+		2F84B3132C2B0A5400018F87 /* libDWPBase.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F84B3122C2B0A5400018F87 /* libDWPBase.dylib */; };
+		2F84B3152C2B0AB200018F87 /* libDWPType.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F84B3142C2B0AB200018F87 /* libDWPType.dylib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		2F84B26B2C2B02D100018F87 /* libDWPModel.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libDWPModel.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		2F84B2742C2B055300018F87 /* DwpLimits.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = DwpLimits.cpp; path = ../../../common/src/DWPModel/DwpLimits.cpp; sourceTree = "<group>"; };
+		2F84B2752C2B055300018F87 /* DwpActor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = DwpActor.cpp; path = ../../../common/src/DWPModel/DwpActor.cpp; sourceTree = "<group>"; };
+		2F84B2762C2B055300018F87 /* DwpGroup.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = DwpGroup.cpp; path = ../../../common/src/DWPModel/DwpGroup.cpp; sourceTree = "<group>"; };
+		2F84B2772C2B055300018F87 /* DwpDelegateBinding.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = DwpDelegateBinding.cpp; path = ../../../common/src/DWPModel/DwpDelegateBinding.cpp; sourceTree = "<group>"; };
+		2F84B2782C2B055300018F87 /* DwpHeaderFile.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = DwpHeaderFile.cpp; path = ../../../common/src/DWPModel/DwpHeaderFile.cpp; sourceTree = "<group>"; };
+		2F84B2792C2B055300018F87 /* DwpMedia.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = DwpMedia.cpp; path = ../../../common/src/DWPModel/DwpMedia.cpp; sourceTree = "<group>"; };
+		2F84B27A2C2B055300018F87 /* DwpPackage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = DwpPackage.cpp; path = ../../../common/src/DWPModel/DwpPackage.cpp; sourceTree = "<group>"; };
+		2F84B27B2C2B055300018F87 /* DwpProperty.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = DwpProperty.cpp; path = ../../../common/src/DWPModel/DwpProperty.cpp; sourceTree = "<group>"; };
+		2F84B27C2C2B055300018F87 /* DwpForumDef.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = DwpForumDef.cpp; path = ../../../common/src/DWPModel/DwpForumDef.cpp; sourceTree = "<group>"; };
+		2F84B27D2C2B055300018F87 /* DwpSetDef.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = DwpSetDef.cpp; path = ../../../common/src/DWPModel/DwpSetDef.cpp; sourceTree = "<group>"; };
+		2F84B27E2C2B055300018F87 /* DwpStage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = DwpStage.cpp; path = ../../../common/src/DWPModel/DwpStage.cpp; sourceTree = "<group>"; };
+		2F84B27F2C2B055300018F87 /* DwpRoleSetMapping.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = DwpRoleSetMapping.cpp; path = ../../../common/src/DWPModel/DwpRoleSetMapping.cpp; sourceTree = "<group>"; };
+		2F84B2802C2B055300018F87 /* DwpScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = DwpScene.cpp; path = ../../../common/src/DWPModel/DwpScene.cpp; sourceTree = "<group>"; };
+		2F84B2812C2B055300018F87 /* DwpDelegateDef.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = DwpDelegateDef.cpp; path = ../../../common/src/DWPModel/DwpDelegateDef.cpp; sourceTree = "<group>"; };
+		2F84B2822C2B055300018F87 /* DwpSourceFile.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = DwpSourceFile.cpp; path = ../../../common/src/DWPModel/DwpSourceFile.cpp; sourceTree = "<group>"; };
+		2F84B2832C2B055300018F87 /* DwpActorTemplate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = DwpActorTemplate.cpp; path = ../../../common/src/DWPModel/DwpActorTemplate.cpp; sourceTree = "<group>"; };
+		2F84B2842C2B055300018F87 /* DwpSet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = DwpSet.cpp; path = ../../../common/src/DWPModel/DwpSet.cpp; sourceTree = "<group>"; };
+		2F84B2852C2B055300018F87 /* DwpForum.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = DwpForum.cpp; path = ../../../common/src/DWPModel/DwpForum.cpp; sourceTree = "<group>"; };
+		2F84B2862C2B055300018F87 /* DwpStageDef.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = DwpStageDef.cpp; path = ../../../common/src/DWPModel/DwpStageDef.cpp; sourceTree = "<group>"; };
+		2F84B2872C2B055300018F87 /* DwpGroupRef.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = DwpGroupRef.cpp; path = ../../../common/src/DWPModel/DwpGroupRef.cpp; sourceTree = "<group>"; };
+		2F84B2882C2B055300018F87 /* DwpChecker.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = DwpChecker.cpp; path = ../../../common/src/DWPModel/DwpChecker.cpp; sourceTree = "<group>"; };
+		2F84B2892C2B055300018F87 /* DwpActorDef.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = DwpActorDef.cpp; path = ../../../common/src/DWPModel/DwpActorDef.cpp; sourceTree = "<group>"; };
+		2F84B28A2C2B055300018F87 /* DwpConverter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = DwpConverter.cpp; path = ../../../common/src/DWPModel/DwpConverter.cpp; sourceTree = "<group>"; };
+		2F84B28B2C2B055400018F87 /* DwpRoleAttachment.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = DwpRoleAttachment.cpp; path = ../../../common/src/DWPModel/DwpRoleAttachment.cpp; sourceTree = "<group>"; };
+		2F84B28C2C2B055400018F87 /* DwpCastRef.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = DwpCastRef.cpp; path = ../../../common/src/DWPModel/DwpCastRef.cpp; sourceTree = "<group>"; };
+		2F84B28D2C2B055400018F87 /* DwpDelegateAttachment.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = DwpDelegateAttachment.cpp; path = ../../../common/src/DWPModel/DwpDelegateAttachment.cpp; sourceTree = "<group>"; };
+		2F84B28E2C2B055400018F87 /* DwpDelegateForumMapping.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = DwpDelegateForumMapping.cpp; path = ../../../common/src/DWPModel/DwpDelegateForumMapping.cpp; sourceTree = "<group>"; };
+		2F84B28F2C2B055400018F87 /* DwpRoleDef.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = DwpRoleDef.cpp; path = ../../../common/src/DWPModel/DwpRoleDef.cpp; sourceTree = "<group>"; };
+		2F84B2902C2B055400018F87 /* DwpMediaRef.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = DwpMediaRef.cpp; path = ../../../common/src/DWPModel/DwpMediaRef.cpp; sourceTree = "<group>"; };
+		2F84B2912C2B055400018F87 /* DwpCast.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = DwpCast.cpp; path = ../../../common/src/DWPModel/DwpCast.cpp; sourceTree = "<group>"; };
+		2F84B2922C2B055400018F87 /* DwpMediaRefClass.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = DwpMediaRefClass.cpp; path = ../../../common/src/DWPModel/DwpMediaRefClass.cpp; sourceTree = "<group>"; };
+		2F84B2932C2B055400018F87 /* DwpRoleBinding.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = DwpRoleBinding.cpp; path = ../../../common/src/DWPModel/DwpRoleBinding.cpp; sourceTree = "<group>"; };
+		2F84B2942C2B055400018F87 /* DwpBoot.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = DwpBoot.cpp; path = ../../../common/src/DWPModel/DwpBoot.cpp; sourceTree = "<group>"; };
+		2F84B2952C2B055400018F87 /* DwpFiletype.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = DwpFiletype.cpp; path = ../../../common/src/DWPModel/DwpFiletype.cpp; sourceTree = "<group>"; };
+		2F84B2962C2B055400018F87 /* DwpMediaRefSource.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = DwpMediaRefSource.cpp; path = ../../../common/src/DWPModel/DwpMediaRefSource.cpp; sourceTree = "<group>"; };
+		2F84B2972C2B055400018F87 /* DwpActorSet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = DwpActorSet.cpp; path = ../../../common/src/DWPModel/DwpActorSet.cpp; sourceTree = "<group>"; };
+		2F84B2982C2B055400018F87 /* DwpPropertyDef.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = DwpPropertyDef.cpp; path = ../../../common/src/DWPModel/DwpPropertyDef.cpp; sourceTree = "<group>"; };
+		2F84B2992C2B055400018F87 /* DwpMediaRefTarget.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = DwpMediaRefTarget.cpp; path = ../../../common/src/DWPModel/DwpMediaRefTarget.cpp; sourceTree = "<group>"; };
+		2F84B2C02C2B084300018F87 /* DwpMediaRef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DwpMediaRef.h; path = ../../../common/include/mle/DwpMediaRef.h; sourceTree = "<group>"; };
+		2F84B2C12C2B084300018F87 /* DwpPropertyDef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DwpPropertyDef.h; path = ../../../common/include/mle/DwpPropertyDef.h; sourceTree = "<group>"; };
+		2F84B2C22C2B084300018F87 /* DwpRoleAttachment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DwpRoleAttachment.h; path = ../../../common/include/mle/DwpRoleAttachment.h; sourceTree = "<group>"; };
+		2F84B2C32C2B084400018F87 /* DwpMediaRefClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DwpMediaRefClass.h; path = ../../../common/include/mle/DwpMediaRefClass.h; sourceTree = "<group>"; };
+		2F84B2C42C2B084400018F87 /* DwpMediaRefSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DwpMediaRefSource.h; path = ../../../common/include/mle/DwpMediaRefSource.h; sourceTree = "<group>"; };
+		2F84B2C52C2B084400018F87 /* DwpPackage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DwpPackage.h; path = ../../../common/include/mle/DwpPackage.h; sourceTree = "<group>"; };
+		2F84B2C62C2B084400018F87 /* DwpGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DwpGroup.h; path = ../../../common/include/mle/DwpGroup.h; sourceTree = "<group>"; };
+		2F84B2C72C2B084400018F87 /* DwpActorTemplate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DwpActorTemplate.h; path = ../../../common/include/mle/DwpActorTemplate.h; sourceTree = "<group>"; };
+		2F84B2C82C2B084400018F87 /* DwpFiletype.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DwpFiletype.h; path = ../../../common/include/mle/DwpFiletype.h; sourceTree = "<group>"; };
+		2F84B2C92C2B084400018F87 /* DwpGroupRef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DwpGroupRef.h; path = ../../../common/include/mle/DwpGroupRef.h; sourceTree = "<group>"; };
+		2F84B2CA2C2B084400018F87 /* DwpConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DwpConverter.h; path = ../../../common/include/mle/DwpConverter.h; sourceTree = "<group>"; };
+		2F84B2CB2C2B084400018F87 /* DwpDelegateBinding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DwpDelegateBinding.h; path = ../../../common/include/mle/DwpDelegateBinding.h; sourceTree = "<group>"; };
+		2F84B2CC2C2B084400018F87 /* DwpRoleDef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DwpRoleDef.h; path = ../../../common/include/mle/DwpRoleDef.h; sourceTree = "<group>"; };
+		2F84B2CD2C2B084400018F87 /* DwpForum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DwpForum.h; path = ../../../common/include/mle/DwpForum.h; sourceTree = "<group>"; };
+		2F84B2CE2C2B084400018F87 /* DwpMediaRefTarget.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DwpMediaRefTarget.h; path = ../../../common/include/mle/DwpMediaRefTarget.h; sourceTree = "<group>"; };
+		2F84B2CF2C2B084400018F87 /* DwpProperty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DwpProperty.h; path = ../../../common/include/mle/DwpProperty.h; sourceTree = "<group>"; };
+		2F84B2D02C2B084400018F87 /* DwpChecker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DwpChecker.h; path = ../../../common/include/mle/DwpChecker.h; sourceTree = "<group>"; };
+		2F84B2D12C2B084400018F87 /* DwpDelegateDef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DwpDelegateDef.h; path = ../../../common/include/mle/DwpDelegateDef.h; sourceTree = "<group>"; };
+		2F84B2D22C2B084400018F87 /* DwpBoot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DwpBoot.h; path = ../../../common/include/mle/DwpBoot.h; sourceTree = "<group>"; };
+		2F84B2D32C2B084400018F87 /* DwpActorDef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DwpActorDef.h; path = ../../../common/include/mle/DwpActorDef.h; sourceTree = "<group>"; };
+		2F84B2D42C2B084400018F87 /* DwpScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DwpScene.h; path = ../../../common/include/mle/DwpScene.h; sourceTree = "<group>"; };
+		2F84B2D52C2B084400018F87 /* DwpLimits.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DwpLimits.h; path = ../../../common/include/mle/DwpLimits.h; sourceTree = "<group>"; };
+		2F84B2D62C2B084400018F87 /* DwpRotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DwpRotation.h; path = ../../../common/include/mle/DwpRotation.h; sourceTree = "<group>"; };
+		2F84B2D72C2B084400018F87 /* DwpForumDef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DwpForumDef.h; path = ../../../common/include/mle/DwpForumDef.h; sourceTree = "<group>"; };
+		2F84B2D82C2B084400018F87 /* DwpDelegateForumMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DwpDelegateForumMapping.h; path = ../../../common/include/mle/DwpDelegateForumMapping.h; sourceTree = "<group>"; };
+		2F84B2D92C2B084400018F87 /* DwpActor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DwpActor.h; path = ../../../common/include/mle/DwpActor.h; sourceTree = "<group>"; };
+		2F84B2DA2C2B084400018F87 /* DwpActorSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DwpActorSet.h; path = ../../../common/include/mle/DwpActorSet.h; sourceTree = "<group>"; };
+		2F84B2DB2C2B084400018F87 /* DwpCast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DwpCast.h; path = ../../../common/include/mle/DwpCast.h; sourceTree = "<group>"; };
+		2F84B2DC2C2B084400018F87 /* DwpHeaderFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DwpHeaderFile.h; path = ../../../common/include/mle/DwpHeaderFile.h; sourceTree = "<group>"; };
+		2F84B2DD2C2B084400018F87 /* DwpCastRef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DwpCastRef.h; path = ../../../common/include/mle/DwpCastRef.h; sourceTree = "<group>"; };
+		2F84B2DE2C2B084400018F87 /* DwpMedia.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DwpMedia.h; path = ../../../common/include/mle/DwpMedia.h; sourceTree = "<group>"; };
+		2F84B2DF2C2B084400018F87 /* DwpRoleBinding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DwpRoleBinding.h; path = ../../../common/include/mle/DwpRoleBinding.h; sourceTree = "<group>"; };
+		2F84B2E02C2B084400018F87 /* DwpDelegateAttachment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DwpDelegateAttachment.h; path = ../../../common/include/mle/DwpDelegateAttachment.h; sourceTree = "<group>"; };
+		2F84B2E12C2B084400018F87 /* DwpRoleSetMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DwpRoleSetMapping.h; path = ../../../common/include/mle/DwpRoleSetMapping.h; sourceTree = "<group>"; };
+		2F84B3042C2B08B700018F87 /* DwpSourceFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DwpSourceFile.h; path = ../../../common/include/mle/DwpSourceFile.h; sourceTree = "<group>"; };
+		2F84B3052C2B08B700018F87 /* DwpSetDef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DwpSetDef.h; path = ../../../common/include/mle/DwpSetDef.h; sourceTree = "<group>"; };
+		2F84B3062C2B08B700018F87 /* DwpSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DwpSet.h; path = ../../../common/include/mle/DwpSet.h; sourceTree = "<group>"; };
+		2F84B3072C2B08B700018F87 /* DwpStageDef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DwpStageDef.h; path = ../../../common/include/mle/DwpStageDef.h; sourceTree = "<group>"; };
+		2F84B3082C2B08B700018F87 /* DwpStage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DwpStage.h; path = ../../../common/include/mle/DwpStage.h; sourceTree = "<group>"; };
+		2F84B30F2C2B098B00018F87 /* libmlutil.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libmlutil.dylib; path = ../../../../../../../../../../opt/MagicLantern/lib/libmlutil.dylib; sourceTree = "<group>"; };
+		2F84B3122C2B0A5400018F87 /* libDWPBase.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libDWPBase.dylib; path = ../../../../../../../../../../opt/MagicLantern/lib/libDWPBase.dylib; sourceTree = "<group>"; };
+		2F84B3142C2B0AB200018F87 /* libDWPType.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libDWPType.dylib; path = ../../../../../../../../../../opt/MagicLantern/lib/libDWPType.dylib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		2F84B2692C2B02D100018F87 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2F84B3132C2B0A5400018F87 /* libDWPBase.dylib in Frameworks */,
+				2F84B3152C2B0AB200018F87 /* libDWPType.dylib in Frameworks */,
+				2F84B3102C2B098B00018F87 /* libmlutil.dylib in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2F84B2622C2B02D100018F87 = {
+			isa = PBXGroup;
+			children = (
+				2F84B2732C2B052700018F87 /* Header Files */,
+				2F84B2722C2B051A00018F87 /* Source Files */,
+				2F84B26C2C2B02D100018F87 /* Products */,
+				2F84B30E2C2B098B00018F87 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		2F84B26C2C2B02D100018F87 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2F84B26B2C2B02D100018F87 /* libDWPModel.dylib */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		2F84B2722C2B051A00018F87 /* Source Files */ = {
+			isa = PBXGroup;
+			children = (
+				2F84B2752C2B055300018F87 /* DwpActor.cpp */,
+				2F84B2892C2B055300018F87 /* DwpActorDef.cpp */,
+				2F84B2972C2B055400018F87 /* DwpActorSet.cpp */,
+				2F84B2832C2B055300018F87 /* DwpActorTemplate.cpp */,
+				2F84B2942C2B055400018F87 /* DwpBoot.cpp */,
+				2F84B2912C2B055400018F87 /* DwpCast.cpp */,
+				2F84B28C2C2B055400018F87 /* DwpCastRef.cpp */,
+				2F84B2882C2B055300018F87 /* DwpChecker.cpp */,
+				2F84B28A2C2B055300018F87 /* DwpConverter.cpp */,
+				2F84B28D2C2B055400018F87 /* DwpDelegateAttachment.cpp */,
+				2F84B2772C2B055300018F87 /* DwpDelegateBinding.cpp */,
+				2F84B2812C2B055300018F87 /* DwpDelegateDef.cpp */,
+				2F84B28E2C2B055400018F87 /* DwpDelegateForumMapping.cpp */,
+				2F84B2952C2B055400018F87 /* DwpFiletype.cpp */,
+				2F84B2852C2B055300018F87 /* DwpForum.cpp */,
+				2F84B27C2C2B055300018F87 /* DwpForumDef.cpp */,
+				2F84B2762C2B055300018F87 /* DwpGroup.cpp */,
+				2F84B2872C2B055300018F87 /* DwpGroupRef.cpp */,
+				2F84B2782C2B055300018F87 /* DwpHeaderFile.cpp */,
+				2F84B2742C2B055300018F87 /* DwpLimits.cpp */,
+				2F84B2792C2B055300018F87 /* DwpMedia.cpp */,
+				2F84B2902C2B055400018F87 /* DwpMediaRef.cpp */,
+				2F84B2922C2B055400018F87 /* DwpMediaRefClass.cpp */,
+				2F84B2962C2B055400018F87 /* DwpMediaRefSource.cpp */,
+				2F84B2992C2B055400018F87 /* DwpMediaRefTarget.cpp */,
+				2F84B27A2C2B055300018F87 /* DwpPackage.cpp */,
+				2F84B27B2C2B055300018F87 /* DwpProperty.cpp */,
+				2F84B2982C2B055400018F87 /* DwpPropertyDef.cpp */,
+				2F84B28B2C2B055400018F87 /* DwpRoleAttachment.cpp */,
+				2F84B2932C2B055400018F87 /* DwpRoleBinding.cpp */,
+				2F84B28F2C2B055400018F87 /* DwpRoleDef.cpp */,
+				2F84B27F2C2B055300018F87 /* DwpRoleSetMapping.cpp */,
+				2F84B2802C2B055300018F87 /* DwpScene.cpp */,
+				2F84B2842C2B055300018F87 /* DwpSet.cpp */,
+				2F84B27D2C2B055300018F87 /* DwpSetDef.cpp */,
+				2F84B2822C2B055300018F87 /* DwpSourceFile.cpp */,
+				2F84B27E2C2B055300018F87 /* DwpStage.cpp */,
+				2F84B2862C2B055300018F87 /* DwpStageDef.cpp */,
+			);
+			name = "Source Files";
+			sourceTree = "<group>";
+		};
+		2F84B2732C2B052700018F87 /* Header Files */ = {
+			isa = PBXGroup;
+			children = (
+				2F84B2D92C2B084400018F87 /* DwpActor.h */,
+				2F84B2D32C2B084400018F87 /* DwpActorDef.h */,
+				2F84B2DA2C2B084400018F87 /* DwpActorSet.h */,
+				2F84B2C72C2B084400018F87 /* DwpActorTemplate.h */,
+				2F84B2D22C2B084400018F87 /* DwpBoot.h */,
+				2F84B2DB2C2B084400018F87 /* DwpCast.h */,
+				2F84B2DD2C2B084400018F87 /* DwpCastRef.h */,
+				2F84B2D02C2B084400018F87 /* DwpChecker.h */,
+				2F84B2CA2C2B084400018F87 /* DwpConverter.h */,
+				2F84B2E02C2B084400018F87 /* DwpDelegateAttachment.h */,
+				2F84B2CB2C2B084400018F87 /* DwpDelegateBinding.h */,
+				2F84B2D12C2B084400018F87 /* DwpDelegateDef.h */,
+				2F84B2D82C2B084400018F87 /* DwpDelegateForumMapping.h */,
+				2F84B2C82C2B084400018F87 /* DwpFiletype.h */,
+				2F84B2CD2C2B084400018F87 /* DwpForum.h */,
+				2F84B2D72C2B084400018F87 /* DwpForumDef.h */,
+				2F84B2C62C2B084400018F87 /* DwpGroup.h */,
+				2F84B2C92C2B084400018F87 /* DwpGroupRef.h */,
+				2F84B2DC2C2B084400018F87 /* DwpHeaderFile.h */,
+				2F84B2D52C2B084400018F87 /* DwpLimits.h */,
+				2F84B2DE2C2B084400018F87 /* DwpMedia.h */,
+				2F84B2C02C2B084300018F87 /* DwpMediaRef.h */,
+				2F84B2C32C2B084400018F87 /* DwpMediaRefClass.h */,
+				2F84B2C42C2B084400018F87 /* DwpMediaRefSource.h */,
+				2F84B2CE2C2B084400018F87 /* DwpMediaRefTarget.h */,
+				2F84B2C52C2B084400018F87 /* DwpPackage.h */,
+				2F84B2CF2C2B084400018F87 /* DwpProperty.h */,
+				2F84B2C12C2B084300018F87 /* DwpPropertyDef.h */,
+				2F84B2C22C2B084300018F87 /* DwpRoleAttachment.h */,
+				2F84B2DF2C2B084400018F87 /* DwpRoleBinding.h */,
+				2F84B2CC2C2B084400018F87 /* DwpRoleDef.h */,
+				2F84B2E12C2B084400018F87 /* DwpRoleSetMapping.h */,
+				2F84B2D62C2B084400018F87 /* DwpRotation.h */,
+				2F84B2D42C2B084400018F87 /* DwpScene.h */,
+				2F84B3062C2B08B700018F87 /* DwpSet.h */,
+				2F84B3052C2B08B700018F87 /* DwpSetDef.h */,
+				2F84B3042C2B08B700018F87 /* DwpSourceFile.h */,
+				2F84B3082C2B08B700018F87 /* DwpStage.h */,
+				2F84B3072C2B08B700018F87 /* DwpStageDef.h */,
+			);
+			name = "Header Files";
+			sourceTree = "<group>";
+		};
+		2F84B30E2C2B098B00018F87 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2F84B3142C2B0AB200018F87 /* libDWPType.dylib */,
+				2F84B3122C2B0A5400018F87 /* libDWPBase.dylib */,
+				2F84B30F2C2B098B00018F87 /* libmlutil.dylib */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		2F84B2672C2B02D100018F87 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2F84B2EB2C2B084400018F87 /* DwpGroupRef.h in Headers */,
+				2F84B3092C2B08B700018F87 /* DwpSourceFile.h in Headers */,
+				2F84B2FD2C2B084400018F87 /* DwpCast.h in Headers */,
+				2F84B2E92C2B084400018F87 /* DwpActorTemplate.h in Headers */,
+				2F84B2F62C2B084400018F87 /* DwpScene.h in Headers */,
+				2F84B3032C2B084400018F87 /* DwpRoleSetMapping.h in Headers */,
+				2F84B2E22C2B084400018F87 /* DwpMediaRef.h in Headers */,
+				2F84B2FC2C2B084400018F87 /* DwpActorSet.h in Headers */,
+				2F84B2F12C2B084400018F87 /* DwpProperty.h in Headers */,
+				2F84B3022C2B084400018F87 /* DwpDelegateAttachment.h in Headers */,
+				2F84B30B2C2B08B700018F87 /* DwpSet.h in Headers */,
+				2F84B2ED2C2B084400018F87 /* DwpDelegateBinding.h in Headers */,
+				2F84B2F32C2B084400018F87 /* DwpDelegateDef.h in Headers */,
+				2F84B2FF2C2B084400018F87 /* DwpCastRef.h in Headers */,
+				2F84B2E82C2B084400018F87 /* DwpGroup.h in Headers */,
+				2F84B2F82C2B084400018F87 /* DwpRotation.h in Headers */,
+				2F84B2E42C2B084400018F87 /* DwpRoleAttachment.h in Headers */,
+				2F84B2FE2C2B084400018F87 /* DwpHeaderFile.h in Headers */,
+				2F84B2FB2C2B084400018F87 /* DwpActor.h in Headers */,
+				2F84B2E52C2B084400018F87 /* DwpMediaRefClass.h in Headers */,
+				2F84B2EE2C2B084400018F87 /* DwpRoleDef.h in Headers */,
+				2F84B2F02C2B084400018F87 /* DwpMediaRefTarget.h in Headers */,
+				2F84B2F22C2B084400018F87 /* DwpChecker.h in Headers */,
+				2F84B2F92C2B084400018F87 /* DwpForumDef.h in Headers */,
+				2F84B2EF2C2B084400018F87 /* DwpForum.h in Headers */,
+				2F84B2E62C2B084400018F87 /* DwpMediaRefSource.h in Headers */,
+				2F84B2EC2C2B084400018F87 /* DwpConverter.h in Headers */,
+				2F84B2F42C2B084400018F87 /* DwpBoot.h in Headers */,
+				2F84B2E32C2B084400018F87 /* DwpPropertyDef.h in Headers */,
+				2F84B3002C2B084400018F87 /* DwpMedia.h in Headers */,
+				2F84B2F72C2B084400018F87 /* DwpLimits.h in Headers */,
+				2F84B30D2C2B08B700018F87 /* DwpStage.h in Headers */,
+				2F84B2EA2C2B084400018F87 /* DwpFiletype.h in Headers */,
+				2F84B2FA2C2B084400018F87 /* DwpDelegateForumMapping.h in Headers */,
+				2F84B2F52C2B084400018F87 /* DwpActorDef.h in Headers */,
+				2F84B3012C2B084400018F87 /* DwpRoleBinding.h in Headers */,
+				2F84B2E72C2B084400018F87 /* DwpPackage.h in Headers */,
+				2F84B30A2C2B08B700018F87 /* DwpSetDef.h in Headers */,
+				2F84B30C2C2B08B700018F87 /* DwpStageDef.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		2F84B26A2C2B02D100018F87 /* DWPModel */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2F84B26F2C2B02D100018F87 /* Build configuration list for PBXNativeTarget "DWPModel" */;
+			buildPhases = (
+				2F84B2672C2B02D100018F87 /* Headers */,
+				2F84B2682C2B02D100018F87 /* Sources */,
+				2F84B2692C2B02D100018F87 /* Frameworks */,
+				2F84B3112C2B09B000018F87 /* Install libDWPModel library */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DWPModel;
+			productName = DWPModel;
+			productReference = 2F84B26B2C2B02D100018F87 /* libDWPModel.dylib */;
+			productType = "com.apple.product-type.library.dynamic";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		2F84B2632C2B02D100018F87 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					2F84B26A2C2B02D100018F87 = {
+						CreatedOnToolsVersion = 14.3.1;
+					};
+				};
+			};
+			buildConfigurationList = 2F84B2662C2B02D100018F87 /* Build configuration list for PBXProject "DWPModel" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 2F84B2622C2B02D100018F87;
+			productRefGroup = 2F84B26C2C2B02D100018F87 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				2F84B26A2C2B02D100018F87 /* DWPModel */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2F84B3112C2B09B000018F87 /* Install libDWPModel library */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Install libDWPModel library";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\necho \"Installing libDWPModel.dylib and headers files.\"\necho `pwd`\necho ${BUILT_PRODUCTS_DIR}\n\nif [ -d \"/opt/MagicLantern/lib\" ] \nthen\n    echo \"Directory /opt/MagicLantern/lib exists.\" \nelse\n    #echo \"Warning: Directory /opt/MagicLantern/lib does not exist. Creating it.\"\n    #sudo mkdir -p /opt/MagicLantern/lib\n\n    echo \"Error: Directory /opt/MagicLantern/lib does not exist.\"\n    exit 1\nfi\n\necho \"Installing libDWPModel.dylib to /opt/MagicLantern/lib.\"\ncp ${BUILT_PRODUCTS_DIR}/libDWPModel.dylib /opt/MagicLantern/lib\n\nif [ -d \"/opt/MagicLantern/include/mle\" ] \nthen\n    echo \"Directory /opt/MagicLantern/include/mle exists.\" \nelse\n    #echo \"Warning: Directory /opt/MagicLantern/include/mle does not exist. Creating it.\"\n    #sudo mkdir -p /opt/MagicLantern/include/mle\n        \n    echo \"Error: Directory /opt/MagicLantern/include/mle does not existt.\"\n    exit 1\nfi\n\necho \"Installing libDWPModel header files to /opt/MagicLantern/include/mle.\"\ncp -R ${BUILT_PRODUCTS_DIR}/usr/local/include/* /opt/MagicLantern/include/mle\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		2F84B2682C2B02D100018F87 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2F84B2AC2C2B055400018F87 /* DwpStageDef.cpp in Sources */,
+				2F84B2B82C2B055400018F87 /* DwpMediaRefClass.cpp in Sources */,
+				2F84B2B42C2B055400018F87 /* DwpDelegateForumMapping.cpp in Sources */,
+				2F84B2BC2C2B055400018F87 /* DwpMediaRefSource.cpp in Sources */,
+				2F84B2BA2C2B055400018F87 /* DwpBoot.cpp in Sources */,
+				2F84B2B32C2B055400018F87 /* DwpDelegateAttachment.cpp in Sources */,
+				2F84B2B52C2B055400018F87 /* DwpRoleDef.cpp in Sources */,
+				2F84B2A12C2B055400018F87 /* DwpProperty.cpp in Sources */,
+				2F84B29E2C2B055400018F87 /* DwpHeaderFile.cpp in Sources */,
+				2F84B2BF2C2B055400018F87 /* DwpMediaRefTarget.cpp in Sources */,
+				2F84B2AE2C2B055400018F87 /* DwpChecker.cpp in Sources */,
+				2F84B2B62C2B055400018F87 /* DwpMediaRef.cpp in Sources */,
+				2F84B2B12C2B055400018F87 /* DwpRoleAttachment.cpp in Sources */,
+				2F84B2A62C2B055400018F87 /* DwpScene.cpp in Sources */,
+				2F84B2A02C2B055400018F87 /* DwpPackage.cpp in Sources */,
+				2F84B2BB2C2B055400018F87 /* DwpFiletype.cpp in Sources */,
+				2F84B2AD2C2B055400018F87 /* DwpGroupRef.cpp in Sources */,
+				2F84B29D2C2B055400018F87 /* DwpDelegateBinding.cpp in Sources */,
+				2F84B2A92C2B055400018F87 /* DwpActorTemplate.cpp in Sources */,
+				2F84B29C2C2B055400018F87 /* DwpGroup.cpp in Sources */,
+				2F84B29A2C2B055400018F87 /* DwpLimits.cpp in Sources */,
+				2F84B2BD2C2B055400018F87 /* DwpActorSet.cpp in Sources */,
+				2F84B2B72C2B055400018F87 /* DwpCast.cpp in Sources */,
+				2F84B2A82C2B055400018F87 /* DwpSourceFile.cpp in Sources */,
+				2F84B2A32C2B055400018F87 /* DwpSetDef.cpp in Sources */,
+				2F84B2AF2C2B055400018F87 /* DwpActorDef.cpp in Sources */,
+				2F84B2AA2C2B055400018F87 /* DwpSet.cpp in Sources */,
+				2F84B2A72C2B055400018F87 /* DwpDelegateDef.cpp in Sources */,
+				2F84B2A52C2B055400018F87 /* DwpRoleSetMapping.cpp in Sources */,
+				2F84B2BE2C2B055400018F87 /* DwpPropertyDef.cpp in Sources */,
+				2F84B29F2C2B055400018F87 /* DwpMedia.cpp in Sources */,
+				2F84B2B22C2B055400018F87 /* DwpCastRef.cpp in Sources */,
+				2F84B29B2C2B055400018F87 /* DwpActor.cpp in Sources */,
+				2F84B2B92C2B055400018F87 /* DwpRoleBinding.cpp in Sources */,
+				2F84B2A42C2B055400018F87 /* DwpStage.cpp in Sources */,
+				2F84B2A22C2B055400018F87 /* DwpForumDef.cpp in Sources */,
+				2F84B2AB2C2B055400018F87 /* DwpForum.cpp in Sources */,
+				2F84B2B02C2B055400018F87 /* DwpConverter.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		2F84B26D2C2B02D100018F87 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					MLE_NOT_DLL,
+					OSX,
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					../../../common/include,
+					../../../mac/include,
+					../../include,
+					/opt/MagicLantern/include,
+				);
+				INSTALL_GROUP = wizzerworks;
+				INSTALL_OWNER = wizzerworks;
+				LIBRARY_SEARCH_PATHS = /opt/MagicLantern/lib;
+				MACOSX_DEPLOYMENT_TARGET = 13.3;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		2F84B26E2C2B02D100018F87 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					MLE_NOT_DLL,
+					OSX,
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					../../../common/include,
+					../../../mac/include,
+					../../include,
+					/opt/MagicLantern/include,
+				);
+				INSTALL_GROUP = wizzerworks;
+				INSTALL_OWNER = wizzerworks;
+				LIBRARY_SEARCH_PATHS = /opt/MagicLantern/lib;
+				MACOSX_DEPLOYMENT_TARGET = 13.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		2F84B2702C2B02D100018F87 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				EXECUTABLE_PREFIX = lib;
+				INSTALL_GROUP = wizzerworks;
+				INSTALL_PATH = /opt/MagicLantern/lib;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		2F84B2712C2B02D100018F87 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				EXECUTABLE_PREFIX = lib;
+				INSTALL_GROUP = wizzerworks;
+				INSTALL_PATH = /opt/MagicLantern/lib;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2F84B2662C2B02D100018F87 /* Build configuration list for PBXProject "DWPModel" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2F84B26D2C2B02D100018F87 /* Debug */,
+				2F84B26E2C2B02D100018F87 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2F84B26F2C2B02D100018F87 /* Build configuration list for PBXNativeTarget "DWPModel" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2F84B2702C2B02D100018F87 /* Debug */,
+				2F84B2712C2B02D100018F87 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 2F84B2632C2B02D100018F87 /* Project object */;
+}

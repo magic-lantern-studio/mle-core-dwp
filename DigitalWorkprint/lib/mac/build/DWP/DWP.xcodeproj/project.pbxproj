@@ -1,0 +1,374 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2F84B3292C2B0BBC00018F87 /* Dwp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F84B3282C2B0BBC00018F87 /* Dwp.cpp */; };
+		2F84B32B2C2B0C0F00018F87 /* Dwp.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F84B32A2C2B0C0F00018F87 /* Dwp.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2F84B3332C2B0CAE00018F87 /* libmlutil.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F84B32E2C2B0CAE00018F87 /* libmlutil.dylib */; };
+		2F84B3342C2B0CAE00018F87 /* libDWPBase.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F84B32F2C2B0CAE00018F87 /* libDWPBase.dylib */; };
+		2F84B3352C2B0CAE00018F87 /* libDWPType.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F84B3302C2B0CAE00018F87 /* libDWPType.dylib */; };
+		2F84B3362C2B0CAE00018F87 /* libmlmath.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F84B3312C2B0CAE00018F87 /* libmlmath.dylib */; };
+		2F84B3372C2B0CAE00018F87 /* libDWPModel.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F84B3322C2B0CAE00018F87 /* libDWPModel.dylib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		2F84B31F2C2B0B5D00018F87 /* libDWP.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libDWP.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		2F84B3282C2B0BBC00018F87 /* Dwp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Dwp.cpp; path = ../../../common/src/DWP/Dwp.cpp; sourceTree = "<group>"; };
+		2F84B32A2C2B0C0F00018F87 /* Dwp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Dwp.h; path = ../../../common/include/mle/Dwp.h; sourceTree = "<group>"; };
+		2F84B32E2C2B0CAE00018F87 /* libmlutil.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libmlutil.dylib; path = ../../../../../../../../../../opt/MagicLantern/lib/libmlutil.dylib; sourceTree = "<group>"; };
+		2F84B32F2C2B0CAE00018F87 /* libDWPBase.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libDWPBase.dylib; path = ../../../../../../../../../../opt/MagicLantern/lib/libDWPBase.dylib; sourceTree = "<group>"; };
+		2F84B3302C2B0CAE00018F87 /* libDWPType.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libDWPType.dylib; path = ../../../../../../../../../../opt/MagicLantern/lib/libDWPType.dylib; sourceTree = "<group>"; };
+		2F84B3312C2B0CAE00018F87 /* libmlmath.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libmlmath.dylib; path = ../../../../../../../../../../opt/MagicLantern/lib/libmlmath.dylib; sourceTree = "<group>"; };
+		2F84B3322C2B0CAE00018F87 /* libDWPModel.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libDWPModel.dylib; path = ../../../../../../../../../../opt/MagicLantern/lib/libDWPModel.dylib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		2F84B31D2C2B0B5D00018F87 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2F84B3332C2B0CAE00018F87 /* libmlutil.dylib in Frameworks */,
+				2F84B3342C2B0CAE00018F87 /* libDWPBase.dylib in Frameworks */,
+				2F84B3352C2B0CAE00018F87 /* libDWPType.dylib in Frameworks */,
+				2F84B3362C2B0CAE00018F87 /* libmlmath.dylib in Frameworks */,
+				2F84B3372C2B0CAE00018F87 /* libDWPModel.dylib in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2F84B3162C2B0B5D00018F87 = {
+			isa = PBXGroup;
+			children = (
+				2F84B3272C2B0B7C00018F87 /* Header Files */,
+				2F84B3262C2B0B6500018F87 /* Source Files */,
+				2F84B3202C2B0B5D00018F87 /* Products */,
+				2F84B32D2C2B0CAE00018F87 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		2F84B3202C2B0B5D00018F87 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2F84B31F2C2B0B5D00018F87 /* libDWP.dylib */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		2F84B3262C2B0B6500018F87 /* Source Files */ = {
+			isa = PBXGroup;
+			children = (
+				2F84B3282C2B0BBC00018F87 /* Dwp.cpp */,
+			);
+			name = "Source Files";
+			sourceTree = "<group>";
+		};
+		2F84B3272C2B0B7C00018F87 /* Header Files */ = {
+			isa = PBXGroup;
+			children = (
+				2F84B32A2C2B0C0F00018F87 /* Dwp.h */,
+			);
+			name = "Header Files";
+			sourceTree = "<group>";
+		};
+		2F84B32D2C2B0CAE00018F87 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2F84B32F2C2B0CAE00018F87 /* libDWPBase.dylib */,
+				2F84B3322C2B0CAE00018F87 /* libDWPModel.dylib */,
+				2F84B3302C2B0CAE00018F87 /* libDWPType.dylib */,
+				2F84B3312C2B0CAE00018F87 /* libmlmath.dylib */,
+				2F84B32E2C2B0CAE00018F87 /* libmlutil.dylib */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		2F84B31B2C2B0B5D00018F87 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2F84B32B2C2B0C0F00018F87 /* Dwp.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		2F84B31E2C2B0B5D00018F87 /* DWP */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2F84B3232C2B0B5D00018F87 /* Build configuration list for PBXNativeTarget "DWP" */;
+			buildPhases = (
+				2F84B31B2C2B0B5D00018F87 /* Headers */,
+				2F84B31C2C2B0B5D00018F87 /* Sources */,
+				2F84B31D2C2B0B5D00018F87 /* Frameworks */,
+				2F84B32C2C2B0C3100018F87 /* Install libDWP library */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DWP;
+			productName = DWP;
+			productReference = 2F84B31F2C2B0B5D00018F87 /* libDWP.dylib */;
+			productType = "com.apple.product-type.library.dynamic";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		2F84B3172C2B0B5D00018F87 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					2F84B31E2C2B0B5D00018F87 = {
+						CreatedOnToolsVersion = 14.3.1;
+					};
+				};
+			};
+			buildConfigurationList = 2F84B31A2C2B0B5D00018F87 /* Build configuration list for PBXProject "DWP" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 2F84B3162C2B0B5D00018F87;
+			productRefGroup = 2F84B3202C2B0B5D00018F87 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				2F84B31E2C2B0B5D00018F87 /* DWP */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2F84B32C2C2B0C3100018F87 /* Install libDWP library */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Install libDWP library";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "echo \"Installing libDWP.dylib and headers files.\"\necho `pwd`\necho ${BUILT_PRODUCTS_DIR}\n\nif [ -d \"/opt/MagicLantern/lib\" ] \nthen\n    echo \"Directory /opt/MagicLantern/lib exists.\" \nelse\n    #echo \"Warning: Directory /opt/MagicLantern/lib does not exist. Creating it.\"\n    #sudo mkdir -p /opt/MagicLantern/lib\n\n    echo \"Error: Directory /opt/MagicLantern/lib does not exist.\"\n    exit 1\nfi\n\necho \"Installing libDWP.dylib to /opt/MagicLantern/lib.\"\ncp ${BUILT_PRODUCTS_DIR}/libDWP.dylib /opt/MagicLantern/lib\n\nif [ -d \"/opt/MagicLantern/include/mle\" ] \nthen\n    echo \"Directory /opt/MagicLantern/include/mle exists.\" \nelse\n    #echo \"Warning: Directory /opt/MagicLantern/include/mle does not exist. Creating it.\"\n    #sudo mkdir -p /opt/MagicLantern/include/mle\n        \n    echo \"Error: Directory /opt/MagicLantern/include/mle does not existt.\"\n    exit 1\nfi\n\necho \"Installing libDWP header files to /opt/MagicLantern/include/mle.\"\ncp -R ${BUILT_PRODUCTS_DIR}/usr/local/include/* /opt/MagicLantern/include/mle\n Type a script or drag a script file from your workspace to insert its path.\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		2F84B31C2C2B0B5D00018F87 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2F84B3292C2B0BBC00018F87 /* Dwp.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		2F84B3212C2B0B5D00018F87 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					MLE_NOT_DLL,
+					OSX,
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					../../../common/include,
+					../../../mac/include,
+					../../include,
+					/opt/MagicLantern/include,
+				);
+				LIBRARY_SEARCH_PATHS = /opt/MagicLantern/lib;
+				MACOSX_DEPLOYMENT_TARGET = 13.3;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		2F84B3222C2B0B5D00018F87 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					MLE_NOT_DLL,
+					OSX,
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					../../../common/include,
+					../../../mac/include,
+					../../include,
+					/opt/MagicLantern/include,
+				);
+				LIBRARY_SEARCH_PATHS = /opt/MagicLantern/lib;
+				MACOSX_DEPLOYMENT_TARGET = 13.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		2F84B3242C2B0B5D00018F87 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				EXECUTABLE_PREFIX = lib;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/opt/MagicLantern/lib,
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		2F84B3252C2B0B5D00018F87 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				EXECUTABLE_PREFIX = lib;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/opt/MagicLantern/lib,
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2F84B31A2C2B0B5D00018F87 /* Build configuration list for PBXProject "DWP" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2F84B3212C2B0B5D00018F87 /* Debug */,
+				2F84B3222C2B0B5D00018F87 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2F84B3232C2B0B5D00018F87 /* Build configuration list for PBXNativeTarget "DWP" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2F84B3242C2B0B5D00018F87 /* Debug */,
+				2F84B3252C2B0B5D00018F87 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 2F84B3172C2B0B5D00018F87 /* Project object */;
+}
