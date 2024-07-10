@@ -120,17 +120,17 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup>
     <_ProjectFileVersion>10.0.40219.1</_ProjectFileVersion>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(Platform)\$(Configuration)\</OutDir>
-    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(Platform)\$(Configuration)\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(Platform)\$(Configuration)\DwpChecker\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(Platform)\$(Configuration)\DwpChecker\</IntDir>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(Platform)\$(Configuration)\</OutDir>
-    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(Platform)\$(Configuration)\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(Platform)\$(Configuration)\DwpChecker\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(Platform)\$(Configuration)\DwpChecker\</IntDir>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkIncremental>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(Platform)\$(Configuration)\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(Platform)\$(Configuration)\</IntDir>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</LinkIncremental>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(Platform)\$(Configuration)\</OutDir>
-    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(Platform)\$(Configuration)\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(Platform)\$(Configuration)\DwpChecker\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(Platform)\$(Configuration)\DwpChecker\</IntDir>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</LinkIncremental>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='DSO Debug|Win32'">$(Configuration)\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='DSO Debug|Win32'">$(Configuration)\</IntDir>
@@ -157,10 +157,10 @@
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
-      <PrecompiledHeaderOutputFile>$(Platform)\$(Configuration)\DwpChecker.pch</PrecompiledHeaderOutputFile>
-      <AssemblerListingLocation>$(Platform)\$(Configuration)\</AssemblerListingLocation>
-      <ObjectFileName>$(Platform)\$(Configuration)\</ObjectFileName>
-      <ProgramDataBaseFileName>$(Platform)\$(Configuration)\</ProgramDataBaseFileName>
+      <PrecompiledHeaderOutputFile>$(Platform)\$(Configuration)\DwpChecker\DwpChecker.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>$(Platform)\$(Configuration)\DwpChecker\</AssemblerListingLocation>
+      <ObjectFileName>$(Platform)\$(Configuration)\DwpChecker\</ObjectFileName>
+      <ProgramDataBaseFileName>$(Platform)\$(Configuration)\DwpChecker\</ProgramDataBaseFileName>
       <WarningLevel>Level3</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
     </ClCompile>
@@ -170,21 +170,21 @@
     </ResourceCompile>
     <Link>
       <AdditionalDependencies>DWP.lib;DWPBase.lib;DWPModel.lib;DWPType.lib;util.lib;mlmath.lib;odbc32.lib;odbccp32.lib;psapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>$(Platform)\$(Configuration)\DwpChecker.exe</OutputFile>
+      <OutputFile>$(Platform)\$(Configuration)\DwpChecker\DwpChecker.exe</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>$(MLE_HOME)/lib/tools;$(MLE_HOME)\Core\util\win32\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <ProgramDatabaseFile>$(Platform)\$(Configuration)\DwpChecker.pdb</ProgramDatabaseFile>
+      <ProgramDatabaseFile>$(Platform)\$(Configuration)\DwpChecker\DwpChecker.pdb</ProgramDatabaseFile>
       <SubSystem>Console</SubSystem>
       <TargetMachine>MachineX86</TargetMachine>
     </Link>
     <Bscmake>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <OutputFile>$(Platform)\$(Configuration)/DwpChecker.bsc</OutputFile>
+      <OutputFile>$(Platform)\$(Configuration)\DwpChecker\DwpChecker.bsc</OutputFile>
     </Bscmake>
     <PostBuildEvent>
       <Message>Install Executable</Message>
       <Command>mkdir $(MLE_HOME)\bin
-copy win32\Release\DWPChecker.exe $(MLE_HOME)\bin\DWPChecker.exe
+copy win32\Release\DwpChecker\DWPChecker.exe $(MLE_HOME)\bin\DWPChecker.exe
 </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
@@ -203,10 +203,10 @@ copy win32\Release\DWPChecker.exe $(MLE_HOME)\bin\DWPChecker.exe
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
-      <PrecompiledHeaderOutputFile>$(Platform)\$(Configuration)\DwpChecker.pch</PrecompiledHeaderOutputFile>
-      <AssemblerListingLocation>$(Platform)\$(Configuration)\</AssemblerListingLocation>
-      <ObjectFileName>$(Platform)\$(Configuration)\</ObjectFileName>
-      <ProgramDataBaseFileName>$(Platform)\$(Configuration)\</ProgramDataBaseFileName>
+      <PrecompiledHeaderOutputFile>$(Platform)\$(Configuration)\DwpChecker\DwpChecker.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>$(Platform)\$(Configuration)\DwpChecker\</AssemblerListingLocation>
+      <ObjectFileName>$(Platform)\$(Configuration)\DwpChecker\</ObjectFileName>
+      <ProgramDataBaseFileName>$(Platform)\$(Configuration)\DwpChecker\</ProgramDataBaseFileName>
       <WarningLevel>Level3</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
     </ClCompile>
@@ -216,21 +216,21 @@ copy win32\Release\DWPChecker.exe $(MLE_HOME)\bin\DWPChecker.exe
     </ResourceCompile>
     <Link>
       <AdditionalDependencies>DWP.lib;DWPBase.lib;DWPModel.lib;DWPType.lib;util.lib;mlmath.lib;odbc32.lib;odbccp32.lib;psapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>$(Platform)\$(Configuration)\DwpChecker.exe</OutputFile>
+      <OutputFile>$(Platform)\$(Configuration)\DwpChecker\DwpChecker.exe</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>$(MLE_HOME)/lib64/tools;$(MLE_HOME)\Core\util\win32\lib64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <ProgramDatabaseFile>$(Platform)\$(Configuration)\DwpChecker.pdb</ProgramDatabaseFile>
+      <ProgramDatabaseFile>$(Platform)\$(Configuration)\DwpChecker\DwpChecker.pdb</ProgramDatabaseFile>
       <SubSystem>Console</SubSystem>
       <TargetMachine>MachineX64</TargetMachine>
     </Link>
     <Bscmake>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <OutputFile>$(Platform)\$(Configuration)/DwpChecker.bsc</OutputFile>
+      <OutputFile>$(Platform)\$(Configuration)\DwpChecker\DwpChecker.bsc</OutputFile>
     </Bscmake>
     <PostBuildEvent>
       <Message>Install Executable</Message>
       <Command>mkdir $(MLE_HOME)\bin64
-copy x64\Release\DWPChecker.exe $(MLE_HOME)\bin64\DWPChecker.exe
+copy x64\Release\DwpChecker\DWPChecker.exe $(MLE_HOME)\bin64\DWPChecker.exe
 </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
@@ -294,10 +294,10 @@ copy win32\Debug\DWPChecker.exe $(MLE_HOME)\bin\DWPChecker.exe
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
-      <PrecompiledHeaderOutputFile>$(Platform)\$(Configuration)\DwpChecker.pch</PrecompiledHeaderOutputFile>
-      <AssemblerListingLocation>$(Platform)\$(Configuration)\</AssemblerListingLocation>
-      <ObjectFileName>$(Platform)\$(Configuration)\</ObjectFileName>
-      <ProgramDataBaseFileName>$(Platform)\$(Configuration)\</ProgramDataBaseFileName>
+      <PrecompiledHeaderOutputFile>$(Platform)\$(Configuration)\DwpChecker\DwpChecker.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>$(Platform)\$(Configuration)\DwpChecker\</AssemblerListingLocation>
+      <ObjectFileName>$(Platform)\$(Configuration)\DwpChecker\</ObjectFileName>
+      <ProgramDataBaseFileName>$(Platform)\$(Configuration)\DwpChecker\</ProgramDataBaseFileName>
       <WarningLevel>Level3</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -308,22 +308,22 @@ copy win32\Debug\DWPChecker.exe $(MLE_HOME)\bin\DWPChecker.exe
     </ResourceCompile>
     <Link>
       <AdditionalDependencies>DWPd.lib;DWPBased.lib;DWPModeld.lib;DWPTyped.lib;utild.lib;mlmathd.lib;odbc32.lib;odbccp32.lib;psapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>$(Platform)\$(Configuration)\DwpChecker.exe</OutputFile>
+      <OutputFile>$(Platform)\$(Configuration)\DwpChecker\DwpChecker.exe</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>$(MLE_HOME)/lib64/tools;$(MLE_HOME)\Core\util\win32\lib64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <ProgramDatabaseFile>$(Platform)\$(Configuration)\DwpChecker.pdb</ProgramDatabaseFile>
+      <ProgramDatabaseFile>$(Platform)\$(Configuration)\DwpChecker\DwpChecker.pdb</ProgramDatabaseFile>
       <SubSystem>Console</SubSystem>
       <TargetMachine>MachineX64</TargetMachine>
     </Link>
     <Bscmake>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <OutputFile>$(Platform)\$(Configuration)/DwpChecker.bsc</OutputFile>
+      <OutputFile>$(Platform)\$(Configuration)\DwpChecker\DwpChecker.bsc</OutputFile>
     </Bscmake>
     <PostBuildEvent>
       <Message>Install Executable</Message>
       <Command>mkdir $(MLE_HOME)\bin64
-copy x64\Debug\DWPChecker.exe $(MLE_HOME)\bin64\DWPChecker.exe
+copy x64\Debug\DwpChecker\DWPChecker.exe $(MLE_HOME)\bin64\DWPChecker.exe
 </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>

@@ -120,34 +120,40 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup>
     <_ProjectFileVersion>10.0.40219.1</_ProjectFileVersion>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(Platform)\$(Configuration)\</OutDir>
-    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(Platform)\$(Configuration)\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(Platform)\$(Configuration)\DwpDso\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(Platform)\$(Configuration)\DwpDso\</IntDir>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(Platform)\$(Configuration)\</OutDir>
-    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(Platform)\$(Configuration)\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(Platform)\$(Configuration)\DwpDso\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(Platform)\$(Configuration)\DwpDso\</IntDir>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkIncremental>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(Platform)\$(Configuration)\</OutDir>
-    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(Platform)\$(Configuration)\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(Platform)\$(Configuration)\DwpDso\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(Platform)\$(Configuration)\DwpDso\</IntDir>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</LinkIncremental>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(Platform)\$(Configuration)\</OutDir>
-    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(Platform)\$(Configuration)\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(Platform)\$(Configuration)\DwpDso\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(Platform)\$(Configuration)\DwpDso\</IntDir>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</LinkIncremental>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='DSO Debug|Win32'">$(Platform)\$(Configuration)\</OutDir>
-    <IntDir Condition="'$(Configuration)|$(Platform)'=='DSO Debug|Win32'">$(Platform)\$(Configuration)\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='DSO Debug|Win32'">$(Platform)\$(Configuration)\DwpDso\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='DSO Debug|Win32'">$(Platform)\$(Configuration)\DwpDso\</IntDir>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='DSO Debug|Win32'">false</LinkIncremental>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='DSO Debug|x64'">$(Platform)\$(Configuration)\</OutDir>
-    <IntDir Condition="'$(Configuration)|$(Platform)'=='DSO Debug|x64'">$(Platform)\$(Configuration)\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='DSO Debug|x64'">$(Platform)\$(Configuration)\DwpDso\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='DSO Debug|x64'">$(Platform)\$(Configuration)\DwpDso\</IntDir>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='DSO Debug|x64'">false</LinkIncremental>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='DSO Release|Win32'">$(Platform)\$(Configuration)\</OutDir>
-    <IntDir Condition="'$(Configuration)|$(Platform)'=='DSO Release|Win32'">$(Platform)\$(Configuration)\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='DSO Release|Win32'">$(Platform)\$(Configuration)\DwpDso\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='DSO Release|Win32'">$(Platform)\$(Configuration)\DwpDso\</IntDir>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='DSO Release|Win32'">false</LinkIncremental>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='DSO Release|x64'">$(Platform)\$(Configuration)\</OutDir>
-    <IntDir Condition="'$(Configuration)|$(Platform)'=='DSO Release|x64'">$(Platform)\$(Configuration)\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='DSO Release|x64'">$(Platform)\$(Configuration)\DwpDso\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='DSO Release|x64'">$(Platform)\$(Configuration)\DwpDso\</IntDir>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='DSO Release|x64'">false</LinkIncremental>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='DSO Debug|x64'">DWPd</TargetName>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='DSO Release|x64'">DWP</TargetName>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='DSO Release|Win32'">DWP</TargetName>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='DSO Debug|Win32'">DWPd</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <TargetName>DWPd</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <TargetName>DWPd</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <Midl>
@@ -167,10 +173,10 @@
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
-      <PrecompiledHeaderOutputFile>$(Platform)\$(Configuration)\DwpDso.pch</PrecompiledHeaderOutputFile>
-      <AssemblerListingLocation>$(Platform)\$(Configuration)\</AssemblerListingLocation>
-      <ObjectFileName>$(Platform)\$(Configuration)\</ObjectFileName>
-      <ProgramDataBaseFileName>$(Platform)\$(Configuration)\</ProgramDataBaseFileName>
+      <PrecompiledHeaderOutputFile>$(Platform)\$(Configuration)\DwpDso\DWP.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>$(Platform)\$(Configuration)\DwpDso\</AssemblerListingLocation>
+      <ObjectFileName>$(Platform)\$(Configuration)\DwpDso\</ObjectFileName>
+      <ProgramDataBaseFileName>$(Platform)\$(Configuration)\DwpDso\</ProgramDataBaseFileName>
       <WarningLevel>Level3</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
     </ClCompile>
@@ -180,25 +186,25 @@
     </ResourceCompile>
     <Link>
       <AdditionalDependencies>mlmath.lib;util.lib;odbc32.lib;odbccp32.lib;psapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>$(Platform)\$(Configuration)\DWP.dll</OutputFile>
+      <OutputFile>$(Platform)\$(Configuration)\DwpDso\DWP.dll</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>$(MLE_HOME)\lib\rehearsal;$(MLE_HOME)\Core\util\win32\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <ProgramDatabaseFile>$(Platform)\$(Configuration)\DWP.pdb</ProgramDatabaseFile>
+      <ProgramDatabaseFile>$(Platform)\$(Configuration)\DwpDso\DWP.pdb</ProgramDatabaseFile>
       <GenerateMapFile>true</GenerateMapFile>
-      <MapFileName>$(Platform)\$(Configuration)\DWP.map</MapFileName>
-      <ImportLibrary>$(Platform)\$(Configuration)\DWP.lib</ImportLibrary>
+      <MapFileName>$(Platform)\$(Configuration)\DwpDso\DWP.map</MapFileName>
+      <ImportLibrary>$(Platform)\$(Configuration)\DwpDso\DWP.lib</ImportLibrary>
       <TargetMachine>MachineX86</TargetMachine>
     </Link>
     <Bscmake>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <OutputFile>$(Platform)\$(Configuration)/DwpDso.bsc</OutputFile>
+      <OutputFile>$(Platform)\$(Configuration)\DwpDso\DWP.bsc</OutputFile>
     </Bscmake>
     <PostBuildEvent>
       <Message>Install DLL</Message>
       <Command>mkdir $(MLE_HOME)\lib\rehearsal
-copy "win32\DSO Release\DWP.lib" $(MLE_HOME)\lib\rehearsal\DWP.lib
+copy "win32\Release\DwpDso\DWP.lib" $(MLE_HOME)\lib\rehearsal\DWP.lib
 mkdir $(MLE_HOME)\bin\rehearsal
-copy "win32\DSO Release\DWP.dll" $(MLE_HOME)\bin\rehearsal\DWP.dll
+copy "win32\Release\DwpDso\DWP.dll" $(MLE_HOME)\bin\rehearsal\DWP.dll
 mkdir $(MLE_HOME)\include\mle
 xcopy /y $(MLE_HOME)\DigitalWorkprint\lib\common\include\mle\* $(MLE_HOME)\include\mle
 xcopy /y $(MLE_HOME)\DigitalWorkprint\lib\win32\include\mle\* $(MLE_HOME)\include\mle
@@ -223,10 +229,10 @@ xcopy /y $(MLE_HOME)\DigitalWorkprint\lib\win32\include\mle\* $(MLE_HOME)\includ
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
-      <PrecompiledHeaderOutputFile>$(Platform)\$(Configuration)\DwpDso.pch</PrecompiledHeaderOutputFile>
-      <AssemblerListingLocation>$(Platform)\$(Configuration)\</AssemblerListingLocation>
-      <ObjectFileName>$(Platform)\$(Configuration)\</ObjectFileName>
-      <ProgramDataBaseFileName>$(Platform)\$(Configuration)\</ProgramDataBaseFileName>
+      <PrecompiledHeaderOutputFile>$(Platform)\$(Configuration)\DwpDso\DWP.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>$(Platform)\$(Configuration)\DwpDso\</AssemblerListingLocation>
+      <ObjectFileName>$(Platform)\$(Configuration)\DwpDso\</ObjectFileName>
+      <ProgramDataBaseFileName>$(Platform)\$(Configuration)\DwpDso\</ProgramDataBaseFileName>
       <WarningLevel>Level3</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
     </ClCompile>
@@ -236,25 +242,25 @@ xcopy /y $(MLE_HOME)\DigitalWorkprint\lib\win32\include\mle\* $(MLE_HOME)\includ
     </ResourceCompile>
     <Link>
       <AdditionalDependencies>mlmath.lib;odbc32.lib;odbccp32.lib;psapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>$(Platform)\$(Configuration)\DWP.dll</OutputFile>
+      <OutputFile>$(Platform)\$(Configuration)\DwpDso\DWP.dll</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>$(MLE_HOME)\lib64\rehearsal;$(MLE_HOME)\Core\util\win32\lib64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <ProgramDatabaseFile>$(Platform)\$(Configuration)\DWP.pdb</ProgramDatabaseFile>
+      <ProgramDatabaseFile>$(Platform)\$(Configuration)\DwpDso\DWP.pdb</ProgramDatabaseFile>
       <GenerateMapFile>true</GenerateMapFile>
-      <MapFileName>$(Platform)\$(Configuration)\DWP.map</MapFileName>
-      <ImportLibrary>$(Platform)\$(Configuration)\DWP.lib</ImportLibrary>
+      <MapFileName>$(Platform)\$(Configuration)\DwpDso\DWP.map</MapFileName>
+      <ImportLibrary>$(Platform)\$(Configuration)\DwpDso\DWP.lib</ImportLibrary>
       <TargetMachine>MachineX64</TargetMachine>
     </Link>
     <Bscmake>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <OutputFile>$(Platform)\$(Configuration)/DwpDso.bsc</OutputFile>
+      <OutputFile>$(Platform)\$(Configuration)\DwpDso\DWP.bsc</OutputFile>
     </Bscmake>
     <PostBuildEvent>
       <Message>Install DLL</Message>
       <Command>mkdir $(MLE_HOME)\lib64\rehearsal
-copy x64\Release\DWP.lib $(MLE_HOME)\lib64\rehearsal\DWP.lib
+copy x64\Release\DwpDso\DWP.lib $(MLE_HOME)\lib64\rehearsal\DWP.lib
 mkdir $(MLE_HOME)\bin64\rehearsal
-copy x64\Release\DWP.dll $(MLE_HOME)\bin64\rehearsal\DWP.dll
+copy x64\Release\DwpDso\DWP.dll $(MLE_HOME)\bin64\rehearsal\DWP.dll
 mkdir $(MLE_HOME)\include\mle
 xcopy /y $(MLE_HOME)\DigitalWorkprint\lib\common\include\mle\* $(MLE_HOME)\include\mle
 xcopy /y $(MLE_HOME)\DigitalWorkprint\lib\win32\include\mle\* $(MLE_HOME)\include\mle
@@ -278,10 +284,10 @@ xcopy /y $(MLE_HOME)\DigitalWorkprint\lib\win32\include\mle\* $(MLE_HOME)\includ
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-      <PrecompiledHeaderOutputFile>$(Platform)\$(Configuration)\DwpDso.pch</PrecompiledHeaderOutputFile>
-      <AssemblerListingLocation>$(Platform)\$(Configuration)\</AssemblerListingLocation>
-      <ObjectFileName>$(Platform)\$(Configuration)\</ObjectFileName>
-      <ProgramDataBaseFileName>$(Platform)\$(Configuration)\</ProgramDataBaseFileName>
+      <PrecompiledHeaderOutputFile>$(Platform)\$(Configuration)\DwpDso\DWP.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>$(Platform)\$(Configuration)\DwpDso\</AssemblerListingLocation>
+      <ObjectFileName>$(Platform)\$(Configuration)\DwpDso\</ObjectFileName>
+      <ProgramDataBaseFileName>$(Platform)\$(Configuration)\DwpDso\</ProgramDataBaseFileName>
       <WarningLevel>Level3</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
@@ -292,26 +298,26 @@ xcopy /y $(MLE_HOME)\DigitalWorkprint\lib\win32\include\mle\* $(MLE_HOME)\includ
     </ResourceCompile>
     <Link>
       <AdditionalDependencies>mlmathd.lib;utild.lib;odbc32.lib;odbccp32.lib;psapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>$(Platform)\$(Configuration)\DWPd.dll</OutputFile>
+      <OutputFile>$(Platform)\$(Configuration)\DwpDso\DWPd.dll</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>$(MLE_HOME)\lib\rehearsal;$(MLE_HOME)\Core\util\win32\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <ProgramDatabaseFile>$(Platform)\$(Configuration)\DWPd.pdb</ProgramDatabaseFile>
+      <ProgramDatabaseFile>$(Platform)\$(Configuration)\DwpDso\DWPd.pdb</ProgramDatabaseFile>
       <GenerateMapFile>true</GenerateMapFile>
-      <MapFileName>$(Platform)\$(Configuration)\DWPd.map</MapFileName>
-      <ImportLibrary>$(Platform)\$(Configuration)\DWPd.lib</ImportLibrary>
+      <MapFileName>$(Platform)\$(Configuration)\DwpDso\DWPd.map</MapFileName>
+      <ImportLibrary>$(Platform)\$(Configuration)\DwpDso\DWPd.lib</ImportLibrary>
       <TargetMachine>MachineX86</TargetMachine>
     </Link>
     <Bscmake>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <OutputFile>$(Platform)\$(Configuration)/DwpDso.bsc</OutputFile>
+      <OutputFile>$(Platform)\$(Configuration)\DwpDso\DWP.bsc</OutputFile>
     </Bscmake>
     <PostBuildEvent>
       <Message>Install DLL</Message>
       <Command>mkdir $(MLE_HOME)\lib\rehearsal
-copy "win32\DSO Debug\DWPd.lib" $(MLE_HOME)\lib\rehearsal\DWPd.lib
+copy "win32\DSO Debug\DwpDso\DWPd.lib" $(MLE_HOME)\lib\rehearsal\DWPd.lib
 mkdir $(MLE_HOME)\bin\rehearsal
-copy "win32\DSO Debug\DWPd.dll" $(MLE_HOME)\bin\rehearsal\DWPd.dll
+copy "win32\DSO Debug\DwpDso\DWPd.dll" $(MLE_HOME)\bin\rehearsal\DWPd.dll
 mkdir $(MLE_HOME)\include\mle
 xcopy /y $(MLE_HOME)\DigitalWorkprint\lib\common\include\mle\* $(MLE_HOME)\include\mle
 xcopy /y $(MLE_HOME)\DigitalWorkprint\lib\win32\include\mle\* $(MLE_HOME)\include\mle
@@ -335,10 +341,10 @@ xcopy /y $(MLE_HOME)\DigitalWorkprint\lib\win32\include\mle\* $(MLE_HOME)\includ
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-      <PrecompiledHeaderOutputFile>$(Platform)\$(Configuration)\DwpDso.pch</PrecompiledHeaderOutputFile>
-      <AssemblerListingLocation>$(Platform)\$(Configuration)\</AssemblerListingLocation>
-      <ObjectFileName>$(Platform)\$(Configuration)\</ObjectFileName>
-      <ProgramDataBaseFileName>$(Platform)\$(Configuration)\</ProgramDataBaseFileName>
+      <PrecompiledHeaderOutputFile>$(Platform)\$(Configuration)\DwpDso\DWP.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>$(Platform)\$(Configuration)\DwpDso\</AssemblerListingLocation>
+      <ObjectFileName>$(Platform)\$(Configuration)\DwpDso\</ObjectFileName>
+      <ProgramDataBaseFileName>$(Platform)\$(Configuration)\DwpDso\</ProgramDataBaseFileName>
       <WarningLevel>Level3</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -349,26 +355,26 @@ xcopy /y $(MLE_HOME)\DigitalWorkprint\lib\win32\include\mle\* $(MLE_HOME)\includ
     </ResourceCompile>
     <Link>
       <AdditionalDependencies>mlmathd.lib;odbc32.lib;odbccp32.lib;psapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>$(Platform)\$(Configuration)\DWPd.dll</OutputFile>
+      <OutputFile>$(Platform)\$(Configuration)\DwpDso\DWPd.dll</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>$(MLE_HOME)\lib64\rehearsal;$(MLE_HOME)\Core\util\win32\lib64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <ProgramDatabaseFile>$(Platform)\$(Configuration)\DWPd.pdb</ProgramDatabaseFile>
+      <ProgramDatabaseFile>$(Platform)\$(Configuration)\DwpDso\DWPd.pdb</ProgramDatabaseFile>
       <GenerateMapFile>true</GenerateMapFile>
-      <MapFileName>$(Platform)\$(Configuration)\DWPd.map</MapFileName>
-      <ImportLibrary>$(Platform)\$(Configuration)\DWPd.lib</ImportLibrary>
+      <MapFileName>$(Platform)\$(Configuration)\DwpDso\DWPd.map</MapFileName>
+      <ImportLibrary>$(Platform)\$(Configuration)\DwpDso\DWPd.lib</ImportLibrary>
       <TargetMachine>MachineX64</TargetMachine>
     </Link>
     <Bscmake>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <OutputFile>$(Platform)\$(Configuration)/DwpDso.bsc</OutputFile>
+      <OutputFile>$(Platform)\$(Configuration)\DwpDso\DWP.bsc</OutputFile>
     </Bscmake>
     <PostBuildEvent>
       <Message>Install DLL</Message>
       <Command>mkdir $(MLE_HOME)\lib64\rehearsal
-copy x64\Debug\DWPd.lib $(MLE_HOME)\lib64\rehearsal\DWPd.lib
+copy x64\DSO Debug\DwpDso\DWPd.lib $(MLE_HOME)\lib64\rehearsal\DWPd.lib
 mkdir $(MLE_HOME)\bin64\rehearsal
-copy x64\Debug\DWPd.dll $(MLE_HOME)\bin64\rehearsal\DWPd.dll
+copy x64\DSO Debug\DwpDso\DWPd.dll $(MLE_HOME)\bin64\rehearsal\DWPd.dll
 mkdir $(MLE_HOME)\include\mle
 xcopy /y $(MLE_HOME)\DigitalWorkprint\lib\common\include\mle\* $(MLE_HOME)\include\mle
 xcopy /y $(MLE_HOME)\DigitalWorkprint\lib\win32\include\mle\* $(MLE_HOME)\include\mle
@@ -392,10 +398,10 @@ xcopy /y $(MLE_HOME)\DigitalWorkprint\lib\win32\include\mle\* $(MLE_HOME)\includ
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-      <PrecompiledHeaderOutputFile>$(Platform)\$(Configuration)\DwpDso.pch</PrecompiledHeaderOutputFile>
-      <AssemblerListingLocation>$(Platform)\$(Configuration)\</AssemblerListingLocation>
-      <ObjectFileName>$(Platform)\$(Configuration)\</ObjectFileName>
-      <ProgramDataBaseFileName>$(Platform)\$(Configuration)\</ProgramDataBaseFileName>
+      <PrecompiledHeaderOutputFile>$(Platform)\$(Configuration)\DwpDso\DwpDso.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>$(Platform)\$(Configuration)\DwpDso\</AssemblerListingLocation>
+      <ObjectFileName>$(Platform)\$(Configuration)\DwpDso\</ObjectFileName>
+      <ProgramDataBaseFileName>$(Platform)\$(Configuration)\DwpDso\</ProgramDataBaseFileName>
       <WarningLevel>Level3</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
@@ -406,26 +412,26 @@ xcopy /y $(MLE_HOME)\DigitalWorkprint\lib\win32\include\mle\* $(MLE_HOME)\includ
     </ResourceCompile>
     <Link>
       <AdditionalDependencies>mlmathd.lib;utild.lib;odbc32.lib;odbccp32.lib;psapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>$(Platform)\$(Configuration)\DWPd.dll</OutputFile>
+      <OutputFile>$(Platform)\$(Configuration)\DwpDso\DWPd.dll</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>$(MLE_HOME)\lib\rehearsal;$(MLE_HOME)\Core\util\win32\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <ProgramDatabaseFile>$(Platform)\$(Configuration)\DWPd.pdb</ProgramDatabaseFile>
+      <ProgramDatabaseFile>$(Platform)\$(Configuration)\DwpDso\DWPd.pdb</ProgramDatabaseFile>
       <GenerateMapFile>true</GenerateMapFile>
-      <MapFileName>$(Platform)\$(Configuration)\DWPd.map</MapFileName>
-      <ImportLibrary>$(Platform)\$(Configuration)\DWPd.lib</ImportLibrary>
+      <MapFileName>$(Platform)\$(Configuration)\DwpDso\DWPd.map</MapFileName>
+      <ImportLibrary>$(Platform)\$(Configuration)\DwpDso\DWPd.lib</ImportLibrary>
       <TargetMachine>MachineX86</TargetMachine>
     </Link>
     <Bscmake>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <OutputFile>$(Platform)\$(Configuration)/DwpDso.bsc</OutputFile>
+      <OutputFile>$(Platform)\$(Configuration)\DwpDso\DwpDso.bsc</OutputFile>
     </Bscmake>
     <PostBuildEvent>
       <Message>Install DLL</Message>
       <Command>mkdir $(MLE_HOME)\lib\rehearsal
-copy "win32\DSO Debug\DWPd.lib" $(MLE_HOME)\lib\rehearsal\DWPd.lib
+copy "win32\DSO Debug\DwpDso\DWPd.lib" $(MLE_HOME)\lib\rehearsal\DWPd.lib
 mkdir $(MLE_HOME)\bin\rehearsal
-copy "win32\DSO Debug\DWPd.dll" $(MLE_HOME)\bin\rehearsal\DWPd.dll
+copy "win32\DSO Debug\DwpDso\DWPd.dll" $(MLE_HOME)\bin\rehearsal\DWPd.dll
 mkdir $(MLE_HOME)\include\mle
 xcopy /y $(MLE_HOME)\DigitalWorkprint\lib\common\include\mle\* $(MLE_HOME)\include\mle
 xcopy /y $(MLE_HOME)\DigitalWorkprint\lib\win32\include\mle\* $(MLE_HOME)\include\mle
@@ -440,32 +446,32 @@ xcopy /y $(MLE_HOME)\DigitalWorkprint\lib\win32\include\mle\* $(MLE_HOME)\includ
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-      <PrecompiledHeaderOutputFile>$(Platform)\$(Configuration)\DwpDso.pch</PrecompiledHeaderOutputFile>
-      <AssemblerListingLocation>$(Platform)\$(Configuration)\</AssemblerListingLocation>
-      <ObjectFileName>$(Platform)\$(Configuration)\</ObjectFileName>
-      <ProgramDataBaseFileName>$(Platform)\$(Configuration)\</ProgramDataBaseFileName>
+      <PrecompiledHeaderOutputFile>$(Platform)\$(Configuration)\DwpDso\DwpDso.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>$(Platform)\$(Configuration)\DwpDso\</AssemblerListingLocation>
+      <ObjectFileName>$(Platform)\$(Configuration)\DwpDso\</ObjectFileName>
+      <ProgramDataBaseFileName>$(Platform)\$(Configuration)\DwpDso\</ProgramDataBaseFileName>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
     <Link>
       <AdditionalDependencies>mlmathd.lib;utild.lib;odbc32.lib;odbccp32.lib;psapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>$(Platform)\$(Configuration)\DWPd.dll</OutputFile>
+      <OutputFile>$(Platform)\$(Configuration)\DwpDso\DWPd.dll</OutputFile>
       <AdditionalLibraryDirectories>$(MLE_HOME)\lib64\rehearsal;$(MLE_HOME)\Core\util\win32\lib64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <ProgramDatabaseFile>$(Platform)\$(Configuration)\DWPd.pdb</ProgramDatabaseFile>
+      <ProgramDatabaseFile>$(Platform)\$(Configuration)\DwpDso\DWPd.pdb</ProgramDatabaseFile>
       <GenerateMapFile>true</GenerateMapFile>
-      <MapFileName>$(Platform)\$(Configuration)\DWPd.map</MapFileName>
-      <ImportLibrary>$(Platform)\$(Configuration)\DWPd.lib</ImportLibrary>
+      <MapFileName>$(Platform)\$(Configuration)\DwpDso\DWPd.map</MapFileName>
+      <ImportLibrary>$(Platform)\$(Configuration)\DwpDso\DWPd.lib</ImportLibrary>
       <TargetMachine>MachineX64</TargetMachine>
     </Link>
     <Bscmake>
-      <OutputFile>$(Platform)\$(Configuration)/DwpDso.bsc</OutputFile>
+      <OutputFile>$(Platform)\$(Configuration)\DwpDso\DwpDso.bsc</OutputFile>
     </Bscmake>
     <PostBuildEvent>
       <Message>Install DLL</Message>
       <Command>mkdir $(MLE_HOME)\lib64\rehearsal
-copy "x64\DSO Debug\DWPd.lib" $(MLE_HOME)\lib64\rehearsal\DWPd.lib
+copy "x64\DSO Debug\DwpDso\DWPd.lib" $(MLE_HOME)\lib64\rehearsal\DWPd.lib
 mkdir $(MLE_HOME)\bin64\rehearsal
-copy "x64\DSO Debug\DWPd.dll" $(MLE_HOME)\bin64\rehearsal\DWPd.dll
+copy "x64\DSO Debug\DwpDso\DWPd.dll" $(MLE_HOME)\bin64\rehearsal\DWPd.dll
 mkdir $(MLE_HOME)\include\mle
 xcopy /y $(MLE_HOME)\DigitalWorkprint\lib\common\include\mle\* $(MLE_HOME)\include\mle
 xcopy /y $(MLE_HOME)\DigitalWorkprint\lib\win32\include\mle\* $(MLE_HOME)\include\mle
@@ -490,10 +496,10 @@ xcopy /y $(MLE_HOME)\DigitalWorkprint\lib\win32\include\mle\* $(MLE_HOME)\includ
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
-      <PrecompiledHeaderOutputFile>$(Platform)\$(Configuration)\DwpDso.pch</PrecompiledHeaderOutputFile>
-      <AssemblerListingLocation>$(Platform)\$(Configuration)\</AssemblerListingLocation>
-      <ObjectFileName>$(Platform)\$(Configuration)\</ObjectFileName>
-      <ProgramDataBaseFileName>$(Platform)\$(Configuration)\</ProgramDataBaseFileName>
+      <PrecompiledHeaderOutputFile>$(Platform)\$(Configuration)\DwpDso\DWP.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>$(Platform)\$(Configuration)\DwpDso\</AssemblerListingLocation>
+      <ObjectFileName>$(Platform)\$(Configuration)\DwpDso\</ObjectFileName>
+      <ProgramDataBaseFileName>$(Platform)\$(Configuration)\DwpDso\</ProgramDataBaseFileName>
       <WarningLevel>Level3</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
     </ClCompile>
@@ -503,25 +509,25 @@ xcopy /y $(MLE_HOME)\DigitalWorkprint\lib\win32\include\mle\* $(MLE_HOME)\includ
     </ResourceCompile>
     <Link>
       <AdditionalDependencies>mlmath.lib;util.lib;odbc32.lib;odbccp32.lib;psapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>$(Platform)\$(Configuration)\DWP.dll</OutputFile>
+      <OutputFile>$(Platform)\$(Configuration)\DwpDso\DWP.dll</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>$(MLE_HOME)\lib\rehearsal;$(MLE_HOME)\Core\util\win32\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <ProgramDatabaseFile>$(Platform)\$(Configuration)\DWP.pdb</ProgramDatabaseFile>
+      <ProgramDatabaseFile>$(Platform)\$(Configuration)\DwpDso\DWP.pdb</ProgramDatabaseFile>
       <GenerateMapFile>true</GenerateMapFile>
-      <MapFileName>$(Platform)\$(Configuration)\DWP.map</MapFileName>
-      <ImportLibrary>$(Platform)\$(Configuration)\DWP.lib</ImportLibrary>
+      <MapFileName>$(Platform)\$(Configuration)\DwpDso\DWP.map</MapFileName>
+      <ImportLibrary>$(Platform)\$(Configuration)\DwpDso\DWP.lib</ImportLibrary>
       <TargetMachine>MachineX86</TargetMachine>
     </Link>
     <Bscmake>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <OutputFile>$(Platform)\$(Configuration)/DwpDso.bsc</OutputFile>
+      <OutputFile>$(Platform)\$(Configuration)\DwpDso\DPP.bsc</OutputFile>
     </Bscmake>
     <PostBuildEvent>
       <Message>Install DLL</Message>
       <Command>mkdir $(MLE_HOME)\lib\rehearsal
-copy "win32\DSO Release\DWP.lib" $(MLE_HOME)\lib\rehearsal\DWP.lib
+copy "win32\DSO Release\DwpDso\DWP.lib" $(MLE_HOME)\lib\rehearsal\DWP.lib
 mkdir $(MLE_HOME)\bin\rehearsal
-copy "win32\DSO Release\DWP.dll" $(MLE_HOME)\bin\rehearsal\DWP.dll
+copy "win32\DSO Release\DwpDso\DWP.dll" $(MLE_HOME)\bin\rehearsal\DWP.dll
 mkdir $(MLE_HOME)\include\mle
 xcopy /y $(MLE_HOME)\DigitalWorkprint\lib\common\include\mle\* $(MLE_HOME)\include\mle
 xcopy /y $(MLE_HOME)\DigitalWorkprint\lib\win32\include\mle\* $(MLE_HOME)\include\mle
@@ -536,29 +542,29 @@ xcopy /y $(MLE_HOME)\DigitalWorkprint\lib\win32\include\mle\* $(MLE_HOME)\includ
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
-      <PrecompiledHeaderOutputFile>$(Platform)\$(Configuration)\DwpDso.pch</PrecompiledHeaderOutputFile>
-      <AssemblerListingLocation>$(Platform)\$(Configuration)\</AssemblerListingLocation>
-      <ObjectFileName>$(Platform)\$(Configuration)\</ObjectFileName>
-      <ProgramDataBaseFileName>$(Platform)\$(Configuration)\</ProgramDataBaseFileName>
+      <PrecompiledHeaderOutputFile>$(Platform)\$(Configuration)\DwpDso\DWP.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>$(Platform)\$(Configuration)\DwpDso\</AssemblerListingLocation>
+      <ObjectFileName>$(Platform)\$(Configuration)\DwpDso\</ObjectFileName>
+      <ProgramDataBaseFileName>$(Platform)\$(Configuration)\DwpDso\</ProgramDataBaseFileName>
     </ClCompile>
     <Link>
       <AdditionalDependencies>mlmath.lib;util.lib;odbc32.lib;odbccp32.lib;psapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>$(Platform)\$(Configuration)\DWP.dll</OutputFile>
+      <OutputFile>$(Platform)\$(Configuration)\DwpDso\DWP.dll</OutputFile>
       <AdditionalLibraryDirectories>$(MLE_HOME)\lib64\rehearsal;$(MLE_HOME)\Core\util\win32\lib64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <ProgramDatabaseFile>$(Platform)\$(Configuration)\DWP.pdb</ProgramDatabaseFile>
+      <ProgramDatabaseFile>$(Platform)\$(Configuration)\DwpDso\DWP.pdb</ProgramDatabaseFile>
       <GenerateMapFile>true</GenerateMapFile>
-      <MapFileName>$(Platform)\$(Configuration)\DWP.map</MapFileName>
-      <ImportLibrary>$(Platform)\$(Configuration)\DWP.lib</ImportLibrary>
+      <MapFileName>$(Platform)\$(Configuration)\DwpDso\DWP.map</MapFileName>
+      <ImportLibrary>$(Platform)\$(Configuration)\DwpDso\DWP.lib</ImportLibrary>
       <TargetMachine>MachineX64</TargetMachine>
     </Link>
     <Bscmake>
-      <OutputFile>$(Platform)\$(Configuration)/DwpDso.bsc</OutputFile>
+      <OutputFile>$(Platform)\$(Configuration)\DwpDso\DPP.bsc</OutputFile>
     </Bscmake>
     <PostBuildEvent>
       <Command>mkdir $(MLE_HOME)\lib64\rehearsal
-copy "x64\DSO Release\DWP.lib" $(MLE_HOME)\lib64\rehearsal\DWP.lib
+copy "x64\DSO Release\DwpDso\DWP.lib" $(MLE_HOME)\lib64\rehearsal\DWP.lib
 mkdir $(MLE_HOME)\bin64\rehearsal
-copy "x64\DSO Release\DWP.dll" $(MLE_HOME)\bin64\rehearsal\DWP.dll
+copy "x64\DSO Release\DwpDso\DWP.dll" $(MLE_HOME)\bin64\rehearsal\DWP.dll
 mkdir $(MLE_HOME)\include\mle
 xcopy /y $(MLE_HOME)\DigitalWorkprint\lib\common\include\mle\* $(MLE_HOME)\include\mle
 xcopy /y $(MLE_HOME)\DigitalWorkprint\lib\win32\include\mle\* $(MLE_HOME)\include\mle

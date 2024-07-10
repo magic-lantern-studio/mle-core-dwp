@@ -120,14 +120,14 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup>
     <_ProjectFileVersion>10.0.40219.1</_ProjectFileVersion>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(Platform)\$(Configuration)\</OutDir>
-    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(Platform)\$(Configuration)\</IntDir>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(Platform)\$(Configuration)\</OutDir>
-    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(Platform)\$(Configuration)\</IntDir>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(Platform)\$(Configuration)\</OutDir>
-    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(Platform)\$(Configuration)\</IntDir>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(Platform)\$(Configuration)\</OutDir>
-    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(Platform)\$(Configuration)\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(Platform)\$(Configuration)\DWP\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(Platform)\$(Configuration)\DWP\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(Platform)\$(Configuration)\DWP\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(Platform)\$(Configuration)\DWP\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(Platform)\$(Configuration)\DWP\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(Platform)\$(Configuration)\DWP\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(Platform)\$(Configuration)\DWP\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(Platform)\$(Configuration)\DWP\</IntDir>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='DSO Debug|Win32'">$(Configuration)\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='DSO Debug|Win32'">$(Configuration)\</IntDir>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='DSO Debug|x64'">$(SolutionDir)$(Platform)\$(Configuration)\</OutDir>
@@ -137,6 +137,12 @@
     <OutDir Condition="'$(Configuration)|$(Platform)'=='DSO Release|x64'">$(SolutionDir)$(Platform)\$(Configuration)\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='DSO Release|x64'">$(Platform)\$(Configuration)\</IntDir>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <TargetName>DWPd</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <TargetName>DWPd</TargetName>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
@@ -145,10 +151,10 @@
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
-      <PrecompiledHeaderOutputFile>$(Platform)\$(Configuration)\DWP.pch</PrecompiledHeaderOutputFile>
-      <AssemblerListingLocation>$(Platform)\$(Configuration)\</AssemblerListingLocation>
-      <ObjectFileName>$(Platform)\$(Configuration)\</ObjectFileName>
-      <ProgramDataBaseFileName>$(Platform)\$(Configuration)\</ProgramDataBaseFileName>
+      <PrecompiledHeaderOutputFile>$(Platform)\$(Configuration)\DWP\DWP.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>$(Platform)\$(Configuration)\DWP\</AssemblerListingLocation>
+      <ObjectFileName>$(Platform)\$(Configuration)\DWP\</ObjectFileName>
+      <ProgramDataBaseFileName>$(Platform)\$(Configuration)\DWP\</ProgramDataBaseFileName>
       <WarningLevel>Level3</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
@@ -158,17 +164,17 @@
       <Culture>0x0409</Culture>
     </ResourceCompile>
     <Lib>
-      <OutputFile>$(Platform)\$(Configuration)\DWPd.lib</OutputFile>
+      <OutputFile>$(Platform)\$(Configuration)\DWP\DWPd.lib</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
     </Lib>
     <Bscmake>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <OutputFile>$(Platform)\$(Configuration)/DWP.bsc</OutputFile>
+      <OutputFile>$(Platform)\$(Configuration)\DWP\DWP.bsc</OutputFile>
     </Bscmake>
     <PostBuildEvent>
       <Message>Install Library</Message>
       <Command>mkdir $(MLE_HOME)\lib\tools
-copy win32\Debug\DWPd.lib $(MLE_HOME)\lib\tools\DWPd.lib
+copy win32\Debug\DWP\DWPd.lib $(MLE_HOME)\lib\tools\DWPd.lib
 mkdir $(MLE_HOME)\include\mle
 xcopy /y $(MLE_HOME)\DigitalWorkprint\lib\common\include\mle\* $(MLE_HOME)\include\mle
 xcopy /y $(MLE_HOME)\DigitalWorkprint\lib\win32\include\mle\* $(MLE_HOME)\include\mle
@@ -186,10 +192,10 @@ xcopy /y $(MLE_HOME)\DigitalWorkprint\lib\win32\include\mle\* $(MLE_HOME)\includ
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
-      <PrecompiledHeaderOutputFile>$(Platform)\$(Configuration)\DWP.pch</PrecompiledHeaderOutputFile>
-      <AssemblerListingLocation>$(Platform)\$(Configuration)\</AssemblerListingLocation>
-      <ObjectFileName>$(Platform)\$(Configuration)\</ObjectFileName>
-      <ProgramDataBaseFileName>$(Platform)\$(Configuration)\</ProgramDataBaseFileName>
+      <PrecompiledHeaderOutputFile>$(Platform)\$(Configuration)\DWP\DWP.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>$(Platform)\$(Configuration)\DWP\</AssemblerListingLocation>
+      <ObjectFileName>$(Platform)\$(Configuration)\DWP\</ObjectFileName>
+      <ProgramDataBaseFileName>$(Platform)\$(Configuration)\DWP\</ProgramDataBaseFileName>
       <WarningLevel>Level3</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -199,17 +205,17 @@ xcopy /y $(MLE_HOME)\DigitalWorkprint\lib\win32\include\mle\* $(MLE_HOME)\includ
       <Culture>0x0409</Culture>
     </ResourceCompile>
     <Lib>
-      <OutputFile>$(Platform)\$(Configuration)\DWPd.lib</OutputFile>
+      <OutputFile>$(Platform)\$(Configuration)\DWP\DWPd.lib</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
     </Lib>
     <Bscmake>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <OutputFile>$(Platform)\$(Configuration)/DWP.bsc</OutputFile>
+      <OutputFile>$(Platform)\$(Configuration)\DWP\DWP.bsc</OutputFile>
     </Bscmake>
     <PostBuildEvent>
       <Message>Install Library</Message>
       <Command>mkdir $(MLE_HOME)\lib64\tools
-copy x64\Debug\DWPd.lib $(MLE_HOME)\lib64\tools\DWPd.lib
+copy x64\Debug\DWP\DWPd.lib $(MLE_HOME)\lib64\tools\DWPd.lib
 mkdir $(MLE_HOME)\include\mle
 xcopy /y $(MLE_HOME)\DigitalWorkprint\lib\common\include\mle\* $(MLE_HOME)\include\mle
 xcopy /y $(MLE_HOME)\DigitalWorkprint\lib\win32\include\mle\* $(MLE_HOME)\include\mle
@@ -225,10 +231,10 @@ xcopy /y $(MLE_HOME)\DigitalWorkprint\lib\win32\include\mle\* $(MLE_HOME)\includ
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
-      <PrecompiledHeaderOutputFile>$(Platform)\$(Configuration)\DWP.pch</PrecompiledHeaderOutputFile>
-      <AssemblerListingLocation>$(Platform)\$(Configuration)\</AssemblerListingLocation>
-      <ObjectFileName>$(Platform)\$(Configuration)\</ObjectFileName>
-      <ProgramDataBaseFileName>$(Platform)\$(Configuration)\</ProgramDataBaseFileName>
+      <PrecompiledHeaderOutputFile>$(Platform)\$(Configuration)\DWP\DWP.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>$(Platform)\$(Configuration)\DWP\</AssemblerListingLocation>
+      <ObjectFileName>$(Platform)\$(Configuration)\DWP\</ObjectFileName>
+      <ProgramDataBaseFileName>$(Platform)\$(Configuration)\DWP\</ProgramDataBaseFileName>
       <WarningLevel>Level3</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
     </ClCompile>
@@ -237,17 +243,17 @@ xcopy /y $(MLE_HOME)\DigitalWorkprint\lib\win32\include\mle\* $(MLE_HOME)\includ
       <Culture>0x0409</Culture>
     </ResourceCompile>
     <Lib>
-      <OutputFile>$(Platform)\$(Configuration)\DWP.lib</OutputFile>
+      <OutputFile>$(Platform)\$(Configuration)\DWP\DWP.lib</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
     </Lib>
     <Bscmake>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <OutputFile>$(Platform)\$(Configuration)/DWP.bsc</OutputFile>
+      <OutputFile>$(Platform)\$(Configuration)\DWP\DWP.bsc</OutputFile>
     </Bscmake>
     <PostBuildEvent>
       <Message>Install Library</Message>
       <Command>mkdir $(MLE_HOME)\lib\tools
-copy win32\Release\DWP.lib $(MLE_HOME)\lib\tools\DWP.lib
+copy win32\Release\DWP\DWP.lib $(MLE_HOME)\lib\tools\DWP.lib
 mkdir $(MLE_HOME)\include\mle
 xcopy /y $(MLE_HOME)\DigitalWorkprint\lib\common\include\mle\* $(MLE_HOME)\include\mle
 xcopy /y $(MLE_HOME)\DigitalWorkprint\lib\win32\include\mle\* $(MLE_HOME)\include\mle
@@ -266,10 +272,10 @@ xcopy /y $(MLE_HOME)\DigitalWorkprint\lib\win32\include\mle\* $(MLE_HOME)\includ
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
-      <PrecompiledHeaderOutputFile>$(Platform)\$(Configuration)\DWP.pch</PrecompiledHeaderOutputFile>
-      <AssemblerListingLocation>$(Platform)\$(Configuration)\</AssemblerListingLocation>
-      <ObjectFileName>$(Platform)\$(Configuration)\</ObjectFileName>
-      <ProgramDataBaseFileName>$(Platform)\$(Configuration)\</ProgramDataBaseFileName>
+      <PrecompiledHeaderOutputFile>$(Platform)\$(Configuration)\DWP\DWP.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>$(Platform)\$(Configuration)\DWP\</AssemblerListingLocation>
+      <ObjectFileName>$(Platform)\$(Configuration)\DWP\</ObjectFileName>
+      <ProgramDataBaseFileName>$(Platform)\$(Configuration)\DWP\</ProgramDataBaseFileName>
       <WarningLevel>Level3</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
     </ClCompile>
@@ -278,17 +284,17 @@ xcopy /y $(MLE_HOME)\DigitalWorkprint\lib\win32\include\mle\* $(MLE_HOME)\includ
       <Culture>0x0409</Culture>
     </ResourceCompile>
     <Lib>
-      <OutputFile>$(Platform)\$(Configuration)\DWP.lib</OutputFile>
+      <OutputFile>$(Platform)\$(Configuration)\DWP\DWP.lib</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
     </Lib>
     <Bscmake>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <OutputFile>.\Release/DWP.bsc</OutputFile>
+      <OutputFile>$(Platform)\$(Configuration)\DWP\DWP.bsc</OutputFile>
     </Bscmake>
     <PostBuildEvent>
       <Message>Install Library</Message>
       <Command>mkdir $(MLE_HOME)\lib64\tools
-copy x64\Release\DWP.lib $(MLE_HOME)\lib64\tools\DWP.lib
+copy x64\Release\DWP\DWP.lib $(MLE_HOME)\lib64\tools\DWP.lib
 mkdir $(MLE_HOME)\include\mle
 xcopy /y $(MLE_HOME)\DigitalWorkprint\lib\common\include\mle\* $(MLE_HOME)\include\mle
 xcopy /y $(MLE_HOME)\DigitalWorkprint\lib\win32\include\mle\* $(MLE_HOME)\include\mle
