@@ -35,7 +35,7 @@ install:
 # Custom script to build libmlmath.so using autoconf tools.
 build_script:
 - sh: >-
-    cd /home/appveyor/projects/mle-core-dwp/DigitalWorkprint/lib/linux
+    cd /home/appveyor/projects/mle-core-dwp/DigitalWorkprint/lib/linux;
     libtoolize;
     aclocal;
     automake --add-missing --ignore-deps;
@@ -46,8 +46,8 @@ build_script:
     cd /home/appveyor/projects/mle-core-util/util/linux/build;
     sudo make uninstall;
     cd /home/appveyor/projects/mle-core-math/math/linux/libmlmath;
-    sudo make uninstall
-    cd /home/appveyor/projects/mle-core-dwp/DigitalWorkprint/lib/linux
+    sudo make uninstall;
+    cd /home/appveyor/projects/mle-core-dwp/DigitalWorkprint/lib/linux;
     sudo make install
 
 # Custom script to create an .zip file containing the libDWP artifacts.
