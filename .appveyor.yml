@@ -43,12 +43,12 @@ build_script:
     ./configure;
     make
 - sh: >-
+    cd /home/appveyor/projects/mle-core-dwp/DigitalWorkprint/lib/linux;
+    sudo make install;
     cd /home/appveyor/projects/mle-core-util/util/linux/build;
     sudo make uninstall;
     cd /home/appveyor/projects/mle-core-math/math/linux/libmlmath;
-    sudo make uninstall;
-    cd /home/appveyor/projects/mle-core-dwp/DigitalWorkprint/lib/linux;
-    sudo make install
+    sudo make uninstall
 
 # Custom script to create an .zip file containing the libDWP artifacts.
 after_build:
