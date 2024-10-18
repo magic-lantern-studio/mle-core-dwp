@@ -52,9 +52,11 @@ build_script:
 
 # Custom script to create an .zip file containing the libDWP artifacts.
 after_build:
+- sh: >-
+    cd /home/appveyor/projects/mle-core-dwp;
     7z a dwp.zip $MLE_ROOT
 
 # Define artifacts to push to AppVeyor
 artifacts:
-- path: DigitalWorkprint/lib/linux/dwp.zip
+- path: dwp.zip
   name: mle-core-dwp
