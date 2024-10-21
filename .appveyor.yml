@@ -41,10 +41,9 @@ build_script:
     automake --add-missing --ignore-deps;
     autoconf;
     ./configure;
-    make
+    make;
+    sudo make install
 - sh: >-
-    cd /home/appveyor/projects/mle-core-dwp/DigitalWorkprint/lib/linux;
-    sudo make install;
     cd /home/appveyor/projects/mle-core-util/util/linux/build;
     sudo make uninstall;
     cd /home/appveyor/projects/mle-core-math/math/linux/libmlmath;
