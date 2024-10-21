@@ -7,3 +7,6 @@ The Digital Workprint is a collection of files that contain the definition, scor
 unchanging represenstation of a dynamic and interactive title. More information about the Digital Workprint may be
 found on the [Digital Workprint wiki](https://github.com/magic-lantern-studio/mle-documentation/wiki/Digital-Workprint)
 documented in the [mle-documentation Github project](https://github.com/magic-lantern-studio/mle-documentation).
+
+# Build Status
+AppVeyor CI: <img src="https://ci.appveyor.com/api/projects/status/32r7s2skrgm9ubva?svg=true" alt="Project Badge" width="300">
