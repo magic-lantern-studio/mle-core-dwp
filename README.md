@@ -9,4 +9,4 @@ found on the [Digital Workprint wiki](https://github.com/magic-lantern-studio/ml
 documented in the [mle-documentation Github project](https://github.com/magic-lantern-studio/mle-documentation).
 
 # Build Status
-AppVeyor CI: <img src="https://ci.appveyor.com/api/projects/status/32r7s2skrgm9ubva?svg=true" alt="Project Badge" width="300">
+AppVeyor CI: <img src="https://ci.appveyor.com/api/projects/status/32r7s2skrgm9ubva?svg=true" alt="Project Badge">
