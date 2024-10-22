@@ -20,7 +20,7 @@ install:
     autoconf;
     ./configure;
     make;
-    sudo make install
+    sudo MLE_ROOT=$MLE_ROOT make install
 - sh: >-
     git clone -q --branch=master https://github.com/magic-lantern-studio/mle-core-math.git /home/appveyor/projects/mle-core-math;
     cd /home/appveyor/projects/mle-core-math/math/linux/libmlmath;
@@ -30,7 +30,7 @@ install:
     autoconf;
     ./configure;
     make;
-    sudo make install
+    sudo MLE_ROOT=$MLE_ROOT make install
 
 # Custom script to build libmlmath.so using autoconf tools.
 build_script:
@@ -42,12 +42,12 @@ build_script:
     autoconf;
     ./configure;
     make;
-    sudo make install
+    sudo MLE_ROOT=$MLE_ROOT make install
 - sh: >-
     cd /home/appveyor/projects/mle-core-util/util/linux/build;
-    sudo make uninstall;
+    sudo MLE_ROOT=$MLE_ROOT make uninstall;
     cd /home/appveyor/projects/mle-core-math/math/linux/libmlmath;
-    sudo make uninstall
+    sudo MLE_ROOT=$MLE_ROOT make uninstall
 
 # Custom script to create an .zip file containing the libDWP artifacts.
 after_build:
