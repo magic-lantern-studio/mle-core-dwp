@@ -12,7 +12,7 @@
 //
 // The MIT License (MIT)
 //
-// Copyright (c) 2015-2020 Wizzer Works
+// Copyright (c) 2015-2024 Wizzer Works
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -54,7 +54,7 @@
 /**
  * Default hash table size for dictionaries.
  */
-#define MLE_DWP_DICT_DEFHASHSIZE 15
+#define MLE_DWP_DICT_DEFHASHSIZE 16
 
 
 /**
@@ -82,7 +82,7 @@ class MLE_DWP_API MleDwpDictEntry
 	/**
 	 * @brief The default constructor.
 	 */
-    MleDwpDictEntry(void) { m_next = NULL; m_key = NULL; m_value = NULL; }
+    MleDwpDictEntry(void) { m_next = nullptr; m_key = nullptr; m_value = nullptr; }
 
 	/**
 	 * @brief The destructor.
