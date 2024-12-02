@@ -53,9 +53,9 @@ build_script:
 after_build:
 - sh: >-
     cd /home/appveyor/projects/mle-core-dwp;
-    7z a dwp.zip $MLE_ROOT
+    7z a mldwp.zip $MLE_ROOT
 
 # Define artifacts to push to AppVeyor
 artifacts:
-- path: dwp.zip
+- path: mldwp.zip
   name: mle-core-dwp
