@@ -76,18 +76,18 @@
 #endif /* MLE_DWP_API */
 
 // Magic Lantern Digital Workprint export rules.
-# ifdef MLE_INTERNAL
+# ifdef MLE_DWP_EXPORTS
 #  ifdef MLE_MAKE_DLL
 #   define MLE_DWP_API MLE_DWP_EXPORT
 #  endif /* MLE_MAKE_DLL */
-# else /* !MLE_INTERNAL */
-#  ifdef MLE_DLL
+# else /* !MLE_DWP_EXPORTS */
+#  ifdef MLE_DWP_DLL
 #   define MLE_DWP_API MLE_DWP_IMPORT
-#  else /* !MLE_DLL */
-#   ifndef MLE_NOT_DLL
-#    error Define either MLE_DLL or MLE_NOT_DLL as appropriate for your linkage! See mle/Dwp.h for further instructions.
-#   endif /* MLE_NOT_DLL */
-#  endif /* !MLE_DLL */
+#  else /* !MLE_DWP_DLL */
+#   ifndef MLE_NOT_DWP_DLL
+#    error Define either MLE_DWP_DLL or MLE_NOT_DWP_DLL as appropriate for your linkage! See mle/Dwp.h for further instructions.
+#   endif /* MLE_NOT_DWP_DLL */
+#  endif /* !MLE_DWP_DLL */
 # endif /* !MLE_INTERNAL */
 
 /* Empty define to avoid errors when _not_ compiling an MSWindows DLL. */
