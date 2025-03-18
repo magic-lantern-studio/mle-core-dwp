@@ -23,7 +23,9 @@ libdwptest_la_LIBDADD =
 libdwptest_la_CPPFLAGS = \
 	-DML_MATH_DEBUG=0 \
 	-DML_FIXED_POINT=0 \
-	-DMLE_NOT_DLL \
+	-DMLE_NOT_UTIL_DLL \
+	-DMLE_NOT_MATH_DLL \
+	-DMLE_NOT_DWP_DLL \
 	-DMLE_REHEARSAL \
 	-I$(top_srcdir)/include \
 	-I$(MLE_ROOT)/include \
