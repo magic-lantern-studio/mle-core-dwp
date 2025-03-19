@@ -9,4 +9,11 @@ found on the [Digital Workprint wiki](https://github.com/magic-lantern-studio/ml
 documented in the [mle-documentation Github project](https://github.com/magic-lantern-studio/mle-documentation).
 
 # Build Status
-AppVeyor CI: <img src="https://ci.appveyor.com/api/projects/status/6pgwemavf8x68ec9?svg=true" alt="Project Badge">
+AppVeyor CI for Ubuntu 22.04 LTS 64-bit: <img src="https://ci.appveyor.com/api/projects/status/6pgwemavf8x68ec9?svg=true" alt="Project Badge">
+
+# Documentation
+Documentation on the Magic Lantern Digitial Workprint library can be found at:
+
+  * [Digital Workprint Overview](https://github.com/magic-lantern-studio/mle-documentation/wiki/Digital-Workprint)
+  * [mle-core-dwp wiki](https://github.com/magic-lantern-studio/mle-core-dwp/wiki)
+  * [mle-documentation project wiki](https://github.com/magic-lantern-studio/mle-documentation/wiki)
