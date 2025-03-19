@@ -32,7 +32,9 @@ exampleProgram_LDFLAGS = -rpath `cd $(top_srcdir);pwd`/libDWP/.libs
 
 # Compiler options for a.out
 exampleProgram_CPPFLAGS = \
-	-DMLE_NOT_DLL \
+	-DMLE_NOT_UTIL_DLL \
+	-DMLE_NOT_MATH_DLL \
+	-DMLE_NOT_DWP_DLL \
 	-I$(top_srcdir)/include \
 	-I$(top_srcdir)/../common/include \
 	-I$(MLE_ROOT)/include
