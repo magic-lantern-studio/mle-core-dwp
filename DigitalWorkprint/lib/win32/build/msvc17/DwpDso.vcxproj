@@ -468,13 +468,13 @@ xcopy /y $(MLE_HOME)\DigitalWorkprint\lib\win32\include\mle\* $(MLE_HOME)\includ
     </Bscmake>
     <PostBuildEvent>
       <Message>Install DLL</Message>
-      <Command>mkdir $(MLE_HOME)\lib64\rehearsal
-copy "x64\DSO Debug\DwpDso\DWPd.lib" $(MLE_HOME)\lib64\rehearsal\DWPd.lib
-mkdir $(MLE_HOME)\bin64\rehearsal
-copy "x64\DSO Debug\DwpDso\DWPd.dll" $(MLE_HOME)\bin64\rehearsal\DWPd.dll
-mkdir $(MLE_HOME)\include\mle
-xcopy /y $(MLE_HOME)\DigitalWorkprint\lib\common\include\mle\* $(MLE_HOME)\include\mle
-xcopy /y $(MLE_HOME)\DigitalWorkprint\lib\win32\include\mle\* $(MLE_HOME)\include\mle
+      <Command>mkdir $(MLE_ROOT)\lib64\rehearsal
+copy "x64\DSO Debug\DwpDso\DWPd.lib" $(MLE_ROOT)\lib64\rehearsal\DWPd.lib
+mkdir $(MLE_ROOT)\bin64\rehearsal
+copy "x64\DSO Debug\DwpDso\DWPd.dll" $(MLE_ROOT)\bin64\rehearsal\DWPd.dll
+mkdir $(MLE_ROOT)\include\mle
+xcopy /y $(MLE_HOME)\DigitalWorkprint\lib\common\include\mle\* $(MLE_ROOT)\include\mle
+xcopy /y $(MLE_HOME)\DigitalWorkprint\lib\win32\include\mle\* $(MLE_ROOT)\include\mle
 </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
