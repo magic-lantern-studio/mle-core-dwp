@@ -11,7 +11,7 @@
 // COPYRIGHT_BEGIN
 // The MIT License (MIT)
 //
-// Copyright (c) 2015-2021 Wizzer Works
+// Copyright (c) 2015-2025 Wizzer Works
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -42,7 +42,7 @@
 
 
 // Include system header files.
-#ifdef WIN32
+#ifdef _WINDOWS
 #include <windows.h>
 #endif
 #include <stdlib.h>
@@ -52,13 +52,13 @@
 // Include Magic Lantern header files.
 #include "mle/mlErrno.h"
 #include <mle/MlePath.h>
-#ifdef WIN32
+#ifdef _WINDOWS
 #include "mle/mlGetOpt.h"
 #include <mle/MleWin32Path.h>
 #else
 #include <unistd.h>
 #include <mle/MleLinuxPath.h>
-#endif /* WIN32 */
+#endif /* _WINDOWS */
 
 // Include Digital Wrokprint header files.
 #include "mle/Dwp.h"
@@ -70,21 +70,21 @@
 extern void mleDwpInit(void);
 
 
-#ifdef WIN32
+#ifdef _WINDOWS
 static char *getCanonicalPath(char *path)
 {
-	char *cpath = NULL;
-	MleWin32Path *wpath = new MleWin32Path((MlChar *)path, true);
+    char *cpath = NULL;
+    MleWin32Path *wpath = new MleWin32Path((MlChar *)path, true);
     cpath = strdup((char *)wpath->getPath());
-	delete wpath;
-	return cpath;
+    delete wpath;
+    return cpath;
 }
 #else
 static char *getCanonicalPath(char *path)
 {
-	return strdup(path);
+    return strdup(path);
 }
-#endif /* WIN32 */
+#endif /* _WINDOWS */
 
 
 // Argument structures for parser.
@@ -100,7 +100,7 @@ typedef struct _ArgStruct
     char       *workprint;    /* name of workprint file to build */
     char       *tags;         /* Digital Workprint tags */
     MlBoolean  dumpRegistry;  /* Dump internal registries. */
-	MlBoolean  verbose;       /* Be verbose. */
+    MlBoolean  verbose;       /* Be verbose. */
 } ArgStruct;
 
 
@@ -125,43 +125,43 @@ int parseArgs(int argc, char *argv[], ArgStruct *args)
 
     errflg = 0;
     while ((c = getopt(argc, argv, "vrt:")) != -1)
-	{
+    {
         switch (c)
-		{
-		  case 'r':
-			/* Dump internal registries. */
-			args->dumpRegistry = TRUE;
-			break;
-		  case 't':
-			if (! args->tags)
-			    args->tags = strdup(optarg);
-			break;
+        {
+          case 'r':
+            /* Dump internal registries. */
+            args->dumpRegistry = TRUE;
+            break;
+          case 't':
+            if (! args->tags)
+                args->tags = strdup(optarg);
+            break;
           case 'v':
-        	// Set verbosity flag.
-        	args->verbose = TRUE;
-        	break;
+            // Set verbosity flag.
+            args->verbose = TRUE;
+            break;
           case '?':
             errflg++;
         }
     }
 
     if (errflg)
-	{
+    {
         (void)fprintf(stderr, "%s\n", usage_str);
         return FALSE;
     }
 
     for ( ; optind < argc; optind++)
-	{
-    	// The -r option is mutually exclusive to <workprint> specification.
-    	if (args->dumpRegistry)
-    		return FALSE;
+    {
+        // The -r option is mutually exclusive to <workprint> specification.
+        if (args->dumpRegistry)
+            return FALSE;
 
         if (! args->workprint)
-		{
+        {
             args->workprint = getCanonicalPath(argv[optind]);
         } else
-		{
+        {
             fprintf(stderr,"%s\n",usage_str);
             return FALSE;
         }
@@ -169,7 +169,7 @@ int parseArgs(int argc, char *argv[], ArgStruct *args)
 
     /* If there is no specified workprint, complain. */
     if ((args->dumpRegistry == FALSE) && (args->workprint == NULL))
-	{
+    {
         fprintf(stderr,"%s\n",usage_str);
         return FALSE;
     }
@@ -184,9 +184,9 @@ int parseArgs(int argc, char *argv[], ArgStruct *args)
 
 void printDwpDatatypeDictionary(ArgStruct *args)
 {
-	if (args->verbose)
-		fprintf(stdout, "*** Dumping Registered DwpDatatypes ***\n");
-	MleDwpDatatype::dumpRegistry();
+    if (args->verbose)
+        fprintf(stdout, "*** Dumping Registered DwpDatatypes ***\n");
+    MleDwpDatatype::dumpRegistry();
 }
 
 
@@ -199,51 +199,51 @@ int main(int argc,char **argv)
     args.commandName = argv[0];
     args.workprint = NULL;
     args.tags = NULL;
-	args.dumpRegistry = FALSE;
-	args.verbose = FALSE;
+    args.dumpRegistry = FALSE;
+    args.verbose = FALSE;
     if (! parseArgs(argc, argv, &args))
-	{
+    {
         exit(1);
     }
 
-	// Initialize the DWP API.
+    // Initialize the DWP API.
     mleDwpInit();
 
     if (args.dumpRegistry)
     {
-    	// Dump the internal DWP registries.
-    	if (args.verbose)
-    		fprintf(stdout, "*** Dumping DWP Registries ****\n");
-    	printDwpDatatypeDictionary(&args);
+        // Dump the internal DWP registries.
+        if (args.verbose)
+            fprintf(stdout, "*** Dumping DWP Registries ****\n");
+        printDwpDatatypeDictionary(&args);
     } else
     {
-    	// Check the Digital Workprint.
+        // Check the Digital Workprint.
 
-	    // Open the DWP.
-	    MleDwpInput in;
-	    if (in.openFile(args.workprint))
-	    {
-		    fprintf(stderr, "DwpChecker: can't open file '%s'\n", args.workprint);
-		    return 1;
-	    }
+        // Open the DWP.
+        MleDwpInput in;
+        if (in.openFile(args.workprint))
+        {
+            fprintf(stderr, "DwpChecker: can't open file '%s'\n", args.workprint);
+            return 1;
+        }
     
-	    // Read the DWP.
-	    MleDwpItem *root = new MleDwpItem;
-	    while ( MleDwpItem::read(&in,root) )
-		    ;
-		
-	    // Check the semantics of the DWP.
-	    MleDwpChecker checker(root);
-	    MlErr err = checker.check();
-	    if (err)
-	    {
-		    fprintf(stderr, "DwpChecker: file '%s': %s\n",
-		            args.workprint, checker.getErrorMsg());
-		    return err;
-	    }
+        // Read the DWP.
+        MleDwpItem *root = new MleDwpItem;
+        while ( MleDwpItem::read(&in,root) )
+            ;
+        
+        // Check the semantics of the DWP.
+        MleDwpChecker checker(root);
+        MlErr err = checker.check();
+        if (err)
+        {
+            fprintf(stderr, "DwpChecker: file '%s': %s\n",
+                    args.workprint, checker.getErrorMsg());
+            return err;
+        }
 
-	    // Return status of 0 indicates that there were no known issues with
-	    // the specified Digital Workprint.
+        // Return status of 0 indicates that there were no known issues with
+        // the specified Digital Workprint.
         return 0;
     }
 }

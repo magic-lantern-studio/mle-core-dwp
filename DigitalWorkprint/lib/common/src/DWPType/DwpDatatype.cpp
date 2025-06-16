@@ -12,7 +12,7 @@
 //
 // The MIT License (MIT)
 //
-// Copyright (c) 2015-2022 Wizzer Works
+// Copyright (c) 2015-2025 Wizzer Works
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -56,14 +56,14 @@
 #include "mle/DwpOutput.h"
 //#include "mle/DppActorGroupOutput.h"
 
-#if defined(WIN32)
+#if defined(_WINDOWS)
 // Make sure that the registry can be shared if the library is
 // included as part of a DLL.
 #pragma data_seg( ".GLOBALS" )
 #endif
 //MleDwpDatatypeDict MleDwpDatatype::g_registry(MLE_DWP_DICT_DEFHASHSIZE);
 MleDwpDatatypeDict *MleDwpDatatype::g_registry = new MleDwpDatatypeDict(MLE_DWP_DICT_DEFHASHSIZE);
-#if defined(WIN32)
+#if defined(_WINDOWS)
 #pragma data_seg()
 #pragma comment(linker, "/section:.GLOBALS,rws")
 #endif

@@ -12,7 +12,7 @@
 //
 // The MIT License (MIT)
 //
-// Copyright (c) 2015-2020 Wizzer Works
+// Copyright (c) 2015-2025 Wizzer Works
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -57,11 +57,11 @@
 #include <mle/mlFileio.h>
 #include <mle/mlExpandFilename.h>
 #include <mle/MlePath.h>
-#ifdef WIN32
+#ifdef _WINDOWS
 #include <mle/MleWin32Path.h>
 #else
 #include <mle/MleLinuxPath.h>
-#endif /* WIN32 */
+#endif /* _WINDOWS */
 
 
 /*
@@ -117,7 +117,7 @@ static const char *_mleDir[] = {
 #if defined (__linux__) || defined(__APPLE__)
     "$MLE_ROOT/usr/WizzerWorks/MagicLantern/parts/actors/",
 #else
-#if defined(WIN32)
+#if defined(_WINDOWS)
     "//C/Program Files/WizzerWorks/MagicLantern/parts/actors/",
     "$MLE_ROOT/parts/actors/",
 #endif
@@ -214,11 +214,11 @@ MleDwpInputFile::MleDwpInputFile(const char *f,MleDwpInputFile *n)
     int explen = strlen(expand);
 
     // Initialize the path. The input is expected to be in its canonical form.
-#ifdef WIN32
+#ifdef _WINDOWS
     m_path = new MleWin32Path((MlChar *)expand,false);
 #else 
     m_path = new MleLinuxPath((MlChar *)expand,false);
-#endif /* WIN32 */
+#endif /* _WINDOWS */
 
     MLE_ASSERT(m_path);
 

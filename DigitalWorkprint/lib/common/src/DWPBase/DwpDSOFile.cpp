@@ -11,7 +11,7 @@
 //
 // The MIT License (MIT)
 //
-// Copyright (c) 2015-2020 Wizzer Works
+// Copyright (c) 2015-2025 Wizzer Works
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -144,13 +144,13 @@ MleDwpDSOFile::load(void)
 #if defined(__APPLE__)
     sprintf(dso_file,"%s.dylib",filepath);
 #endif /* __APPLE__ */
-#if defined(WIN32)
+#if defined(_WINDOWS)
 #ifdef MLE_DEBUG
     sprintf(dso_file,"%sd.dll",filepath);
 #else
     sprintf(dso_file,"%s.dll",filepath);
 #endif /* ! MLE_DEBUG */
-#endif /* WIN32 */
+#endif /* _WINDOWS */
 
     // Load the DSO file.
     void *handle = MleDSOLoader::loadFile(dso_file);
