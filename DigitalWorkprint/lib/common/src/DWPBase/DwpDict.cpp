@@ -12,7 +12,7 @@
 //
 // The MIT License (MIT)
 //
-// Copyright (c) 2015-2024 Wizzer Works
+// Copyright (c) 2015-2025 Wizzer Works
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -222,6 +222,19 @@ MleDwpDict::operator delete(void *p)
 	mlFree(p);
 }
 
+void*
+MleDwpDict::operator new[](size_t tSize)
+{
+    void* p = mlMalloc(tSize);
+    return p;
+}
+
+void
+MleDwpDict::operator delete[](void* p)
+{
+    mlFree(p);
+}
+
 void
 MleDwpDictEntry::setKey(const void *k)
 {
@@ -248,6 +261,21 @@ void
 MleDwpDictEntry::operator delete(void *p)
 {
 	mlFree(p);
+}
+
+
+void*
+MleDwpDictEntry::operator new[](size_t tSize)
+{
+    void* p = mlMalloc(tSize);
+    return p;
+}
+
+
+void
+MleDwpDictEntry::operator delete[](void* p)
+{
+    mlFree(p);
 }
 
 
@@ -292,7 +320,6 @@ MleDwpDictIter::next(void)
     return m_entry != NULL;
 }
 
-
 void *
 MleDwpDictIter::operator new(size_t tSize)
 {
@@ -300,9 +327,21 @@ MleDwpDictIter::operator new(size_t tSize)
 	return p;
 }
 
-
 void
 MleDwpDictIter::operator delete(void *p)
 {
 	mlFree(p);
+}
+
+void*
+MleDwpDictIter::operator new[](size_t tSize)
+{
+    void* p = mlMalloc(tSize);
+    return p;
+}
+
+void
+MleDwpDictIter::operator delete[](void* p)
+{
+    mlFree(p);
 }

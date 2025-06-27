@@ -11,7 +11,7 @@
 //
 // The MIT License (MIT)
 //
-// Copyright (c) 2015-2020 Wizzer Works
+// Copyright (c) 2015-2025 Wizzer Works
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -94,7 +94,6 @@ MleDwpActorDef::writeContents(MleDwpOutput *out)
 	return 0;
 }
 
-
 void *
 MleDwpActorDef::operator new(size_t tSize)
 {
@@ -104,6 +103,19 @@ MleDwpActorDef::operator new(size_t tSize)
 
 void
 MleDwpActorDef::operator delete(void *p)
+{
+	mlFree(p);
+}
+
+void*
+MleDwpActorDef::operator new[](size_t tSize)
+{
+	void* p = mlMalloc(tSize);
+	return p;
+}
+
+void
+MleDwpActorDef::operator delete[](void* p)
 {
 	mlFree(p);
 }

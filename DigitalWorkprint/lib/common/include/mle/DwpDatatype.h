@@ -83,11 +83,25 @@ class MLE_DWP_API MleDwpDatatypeDict : public MleDwpStrKeyDict
 	void* operator new(size_t tSize);
 
 	/**
+     * Override operator new array.
+     *
+     * @param tSize The size, in bytes, to allocate.
+    */
+	void* operator new[](size_t tSize);
+
+	/**
 	 * Override operator delete.
 	 *
 	 * @param p A pointer to the memory to delete.
 	 */
     void  operator delete(void *p);
+
+	/**
+     * Override operator delete array.
+     *
+     * @param p A pointer to the memory to delete.
+     */
+	void  operator delete[](void* p);
 };
 
 /**
@@ -195,11 +209,25 @@ class MLE_DWP_API MleDwpDatatype
 	void* operator new(size_t tSize);
 
 	/**
+     * Override operator new array.
+     *
+     * @param tSize The size, in bytes, to allocate.
+     */
+	void* operator new[](size_t tSize);
+
+	/**
 	 * Override operator delete.
 	 *
 	 * @param p A pointer to the memory to delete.
 	 */
     void  operator delete(void *p);
+
+	/**
+     * Override operator delete array.
+     *
+     * @param p A pointer to the memory to delete.
+     */
+	void  operator delete[](void* p);
 
     /**
      * Dump the MleDwpDatatype Dictionary for debugging purposes.

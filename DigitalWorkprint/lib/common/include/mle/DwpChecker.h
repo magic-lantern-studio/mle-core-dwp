@@ -134,11 +134,25 @@ class MLE_DWP_API MleDwpChecker
 	void* operator new(size_t tSize);
 
 	/**
+     * Override operator new array.
+     *
+     * @param tSize The size, in bytes, to allocate.
+     */
+	void* operator new[](size_t tSize);
+
+	/**
 	 * Override operator delete.
 	 *
 	 * @param p A pointer to the memory to delete.
 	 */
     void  operator delete(void *p);
+
+	/**
+     * Override operator delete.
+     *
+     * @param p A pointer to the memory to delete.
+     */
+	void  operator delete[](void* p);
 
   protected:
 

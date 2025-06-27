@@ -84,11 +84,25 @@ class MleDwpDatatypeDictEntry : public MleDwpStrKeyDictEntry
 	void* operator new(size_t tSize);
 
 	/**
+     * Override operator new array.
+     *
+     * @param tSize The size, in bytes, to allocate.
+     */
+	void* operator new[](size_t tSize);
+
+	/**
 	 * Override operator delete.
 	 *
 	 * @param p A pointer to the memory to delete.
 	 */
     void  operator delete(void *p);
+
+	/**
+     * Override operator delete array.
+     *
+     * @param p A pointer to the memory to delete.
+     */
+	void  operator delete[](void* p);
 };
 
 // This function is the override for MleDwpStrKeyDict that
@@ -108,6 +122,19 @@ MleDwpDatatypeDict::operator new(size_t tSize)
 
 void
 MleDwpDatatypeDict::operator delete(void *p)
+{
+	mlFree(p);
+}
+
+void*
+MleDwpDatatypeDict::operator new[](size_t tSize)
+{
+	void* p = mlMalloc(tSize);
+	return p;
+}
+
+void
+MleDwpDatatypeDict::operator delete[](void* p)
 {
 	mlFree(p);
 }
@@ -169,6 +196,19 @@ MleDwpDatatype::operator delete(void *p)
 	mlFree(p);
 }
 
+void*
+MleDwpDatatype::operator new[](size_t tSize)
+{
+	void* p = mlMalloc(tSize);
+	return p;
+}
+
+void
+MleDwpDatatype::operator delete[](void* p)
+{
+	mlFree(p);
+}
+
 void
 MleDwpDatatype::dumpRegistry(void)
 {
@@ -191,6 +231,19 @@ MleDwpDatatypeDictEntry::operator new(size_t tSize)
 
 void
 MleDwpDatatypeDictEntry::operator delete(void *p)
+{
+	mlFree(p);
+}
+
+void*
+MleDwpDatatypeDictEntry::operator new[](size_t tSize)
+{
+	void* p = mlMalloc(tSize);
+	return p;
+}
+
+void
+MleDwpDatatypeDictEntry::operator delete[](void* p)
 {
 	mlFree(p);
 }

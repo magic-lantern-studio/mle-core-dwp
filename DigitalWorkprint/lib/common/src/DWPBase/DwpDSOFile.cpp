@@ -176,3 +176,16 @@ MleDwpDSOFile::operator delete(void *p)
 {
 	mlFree(p);
 }
+
+void*
+MleDwpDSOFile::operator new[](size_t tSize)
+{
+	void* p = mlMalloc(tSize);
+	return p;
+}
+
+void
+MleDwpDSOFile::operator delete[](void* p)
+{
+	mlFree(p);
+}
