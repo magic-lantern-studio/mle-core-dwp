@@ -51,6 +51,8 @@ set(CMAKE_DEBUG_POSTFIX "d")
 # Fail early if one of the required packages cannot be found
 include(FindMLUTIL)
 find_package(MLUTIL REQUIRED)
+include(FindMLMATH)
+find_package(MLMATH REQUIRED)
 find_package(PkgConfig REQUIRED)
 
 # Check for Magic Lantern environment variables
@@ -284,11 +286,89 @@ add_library(
   # Install the header files
   install(
     FILES
-      ../common/include/mle/playprnt.h
-      ../common/include/mle/ppinput.h
-      ../common/include/mle/pp.h
-      ../common/include/mle/chunk.h
-     DESTINATION
+      ../common/include/mle/DwpActorDef.h
+      ../common/include/mle/DwpActor.h
+      ../common/include/mle/DwpActorSet.h
+      ../common/include/mle/DwpActorTemplate.h
+      ../common/include/mle/DwpArray.h
+      ../common/include/mle/DwpBoot.h
+      ../common/include/mle/DwpCast.h
+      ../common/include/mle/DwpCastRef.h
+      ../common/include/mle/DwpChecker.h
+      ../common/include/mle/DwpCommonDefs.h
+      ../common/include/mle/DwpCommonTypes.h
+      ../common/include/mle/DwpContainer.h
+      ../common/include/mle/DwpConverter.h
+      ../common/include/mle/DwpDatatype.h
+      ../common/include/mle/DwpDataUnion.h
+      ../common/include/mle/DwpDelegateAttachment.h
+      ../common/include/mle/DwpDelegateBinding.h
+      ../common/include/mle/DwpDelegateDef.h
+      ../common/include/mle/DwpDelegateForumMapping.h
+      ../common/include/mle/DwpDict.h
+      ../common/include/mle/DwpDiscriminator.h
+      ../common/include/mle/DwpDSOFile.h
+      ../common/include/mle/DwpEnumDef.h
+      ../common/include/mle/DwpEnum.h
+      ../common/include/mle/DwpFile.h
+      ../common/include/mle/DwpFilename.h
+      ../common/include/mle/DwpFiletype.h
+      ../common/include/mle/DwpFinder.h
+      ../common/include/mle/DwpFloat3.h
+      ../common/include/mle/DwpFloat4.h
+      ../common/include/mle/DwpFloatArray.h
+      ../common/include/mle/DwpFloat.h
+      ../common/include/mle/DwpForumDef.h
+      ../common/include/mle/DwpForum.h
+      ../common/include/mle/DwpGroup.h
+      ../common/include/mle/DwpGroupRef.h
+      ../common/include/mle/Dwp.h
+      ../common/include/mle/DwpHeaderFile.h
+      ../common/include/mle/DwpInclude.h
+      ../common/include/mle/DwpInput.h
+      ../common/include/mle/DwpIntArray.h
+      ../common/include/mle/DwpInt.h
+      ../common/include/mle/DwpItem.h
+      ../common/include/mle/DwpLimits.h
+      ../common/include/mle/DwpLoad.h
+      ../common/include/mle/DwpMatrix34.h
+      ../common/include/mle/DwpMedia.h
+      ../common/include/mle/DwpMediaRefClass.h
+      ../common/include/mle/DwpMediaRef.h
+      ../common/include/mle/DwpMediaRefSource.h
+      ../common/include/mle/DwpMediaRefTarget.h
+      ../common/include/mle/DwpMonitor.h
+      ../common/include/mle/DwpNotifier.h
+      ../common/include/mle/DwpOutput.h
+      ../common/include/mle/DwpPackage.h
+      ../common/include/mle/DwpPropertyDef.h
+      ../common/include/mle/DwpProperty.h
+      ../common/include/mle/DwpRoleAttachment.h
+      ../common/include/mle/DwpRoleBinding.h
+      ../common/include/mle/DwpRoleDef.h
+      ../common/include/mle/DwpRoleSetMapping.h
+      ../common/include/mle/DwpRotation.h
+      ../common/include/mle/DwpScalarArray.h
+      ../common/include/mle/DwpScalar.h
+      ../common/include/mle/DwpScene.h
+      ../common/include/mle/DwpSetDef.h
+      ../common/include/mle/DwpSet.h
+      ../common/include/mle/DwpSourceFile.h
+      ../common/include/mle/DwpStageDef.h
+      ../common/include/mle/DwpStage.h
+      ../common/include/mle/DwpString.h
+      ../common/include/mle/DwpStrKeyDict.h
+      ../common/include/mle/DwpTagAllDiscriminator.h
+      ../common/include/mle/DwpTagDiscriminator.h
+      ../common/include/mle/DwpTblMgr.h
+      ../common/include/mle/DwpTransform.h
+      ../common/include/mle/DwpUnknown.h
+      ../common/include/mle/DwpVector2.h
+      ../common/include/mle/DwpVector3Array.h
+      ../common/include/mle/DwpVector3.h
+      ../common/include/mle/DwpVector4.h
+      ../common/include/mle/DwpVoidStarType.h
+    DESTINATION
       include/mle)
 
   # Uninstall libraries and header files
