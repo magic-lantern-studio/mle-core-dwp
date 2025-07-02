@@ -12,7 +12,7 @@
 //
 // The MIT License (MIT)
 //
-// Copyright (c) 2015-2020 Wizzer Works
+// Copyright (c) 2015-2025 Wizzer Works
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -92,12 +92,26 @@ struct MLE_DWP_API MleDwpNotifierEntry
 	 */
 	void* operator new(size_t tSize);
 
+    /**
+     * Override operator new array.
+     *
+     * @param tSize The size, in bytes, to allocate.
+     */
+    void* operator new[](size_t tSize);
+
 	/**
 	 * Override operator delete.
 	 *
 	 * @param p A pointer to the memory to delete.
 	 */
     void  operator delete(void *p);
+
+    /**
+     * Override operator delete.
+     *
+     * @param p A pointer to the memory to delete.
+     */
+    void  operator delete[](void* p);
 };
 
 
@@ -129,12 +143,26 @@ class MLE_DWP_API MleDwpNotifierPool
 	 */
 	void* operator new(size_t tSize);
 
+    /**
+     * Override operator new array.
+     *
+     * @param tSize The size, in bytes, to allocate.
+     */
+    void* operator new[](size_t tSize);
+
 	/**
 	 * Override operator delete.
 	 *
 	 * @param p A pointer to the memory to delete.
 	 */
     void  operator delete(void *p);
+
+    /**
+     * Override operator delete array.
+     *
+     * @param p A pointer to the memory to delete.
+     */
+    void  operator delete[](void* p);
 
   private:
 
@@ -299,12 +327,26 @@ class MLE_DWP_API MleDwpNotifier
 	 */
 	void* operator new(size_t tSize);
 
+    /**
+     * Override operator new array.
+     *
+     * @param tSize The size, in bytes, to allocate.
+     */
+    void* operator new[](size_t tSize);
+
 	/**
 	 * Override operator delete.
 	 *
 	 * @param p A pointer to the memory to delete.
 	 */
     void  operator delete(void *p);
+
+    /**
+     * Override operator delete.
+     *
+     * @param p A pointer to the memory to delete.
+     */
+    void  operator delete[](void* p);
 
   protected:
 
@@ -329,6 +371,5 @@ class MLE_DWP_API MleDwpNotifier
 
     MleDwpNotifierPool *m_pool;      /**< Pointer to the allocation pool. */
 };
-
 
 #endif /* __MLE_DWP_NOTIFIER_H_ */

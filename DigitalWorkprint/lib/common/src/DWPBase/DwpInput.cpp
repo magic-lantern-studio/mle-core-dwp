@@ -99,11 +99,25 @@ struct MleDwpInputFile
     void* operator new(size_t tSize);
 
     /**
+     * Override operator new array.
+     *
+     * @param tSize The size, in bytes, to allocate.
+     */
+    void* operator new[](size_t tSize);
+
+    /**
      * Override operator delete.
      *
      * @param p A pointer to the memory to delete.
      */
     void  operator delete(void *p);
+
+    /**
+     * Override operator delete array.
+     *
+     * @param p A pointer to the memory to delete.
+     */
+    void  operator delete[](void* p);
 };
 
 
@@ -1155,7 +1169,6 @@ int MleDwpInput::lex(char *token,int bufsize)
     }
 }
 
-
 void *
 MleDwpInput::operator new(size_t tSize)
 {
@@ -1163,13 +1176,24 @@ MleDwpInput::operator new(size_t tSize)
     return p;
 }
 
-
 void
 MleDwpInput::operator delete(void *p)
 {
     mlFree(p);
 }
 
+void*
+MleDwpInput::operator new[](size_t tSize)
+{
+    void* p = mlMalloc(tSize);
+    return p;
+}
+
+void
+MleDwpInput::operator delete[](void* p)
+{
+    mlFree(p);
+}
 
 void *
 MleDwpInputTable::operator new(size_t tSize)
@@ -1178,13 +1202,24 @@ MleDwpInputTable::operator new(size_t tSize)
     return p;
 }
 
-
 void
 MleDwpInputTable::operator delete(void *p)
 {
     mlFree(p);
 }
 
+void*
+MleDwpInputTable::operator new[](size_t tSize)
+{
+    void* p = mlMalloc(tSize);
+    return p;
+}
+
+void
+MleDwpInputTable::operator delete[](void* p)
+{
+    mlFree(p);
+}
 
 void *
 MleDwpInputFile::operator new(size_t tSize)
@@ -1193,13 +1228,24 @@ MleDwpInputFile::operator new(size_t tSize)
     return p;
 }
 
-
 void
 MleDwpInputFile::operator delete(void *p)
 {
     mlFree(p);
 }
 
+void*
+MleDwpInputFile::operator new[](size_t tSize)
+{
+    void* p = mlMalloc(tSize);
+    return p;
+}
+
+void
+MleDwpInputFile::operator delete[](void* p)
+{
+    mlFree(p);
+}
 
 #ifdef UNIT_TEST
 

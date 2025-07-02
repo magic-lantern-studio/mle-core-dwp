@@ -7,14 +7,11 @@
  * This is the include file for standard system include files,
  * or project specific include files that are used frequently, but
  * are changed infrequently
- *
- * @author Mark S. Millard
- * @date February 6, 2004
  */
 
 // COPYRIGHT_BEGIN
 //
-//  Copyright (C) 2000-2007  Wizzer Works
+//  Copyright (C) 2000-2025  Wizzer Works
 //
 //  Wizzer Works makes available all content in this file ("Content").
 //  Unless otherwise indicated below, the Content is provided to you

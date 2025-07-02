@@ -12,7 +12,7 @@
 //
 // The MIT License (MIT)
 //
-// Copyright (c) 2015-2020 Wizzer Works
+// Copyright (c) 2015-2025 Wizzer Works
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -76,16 +76,29 @@ class MLE_DWP_API MleDwpVoidStar : public MleDwpDatatype
 	void* operator new(size_t tSize);
 
 	/**
+     * Override operator new array.
+     *
+     * @param tSize The size, in bytes, to allocate.
+     */
+	void* operator new[](size_t tSize);
+
+	/**
 	 * Override operator delete.
 	 *
 	 * @param p A pointer to the memory to delete.
 	 */
     void  operator delete(void *p);
 
+	/**
+     * Override operator delete array.
+     *
+     * @param p A pointer to the memory to delete.
+     */
+	void  operator delete[](void* p);
 };
 
 
-// Note. Move to its own data type file.
+// Todo: Move to its own data type file.
 class MLE_DWP_API MleDwpMediaRefType : public MleDwpVoidStar
 {
 	MLE_DWP_DATATYPE_HEADER(MleDwpMediaRefType);
@@ -98,11 +111,25 @@ class MLE_DWP_API MleDwpMediaRefType : public MleDwpVoidStar
 	void* operator new(size_t tSize);
 
 	/**
+     * Override operator new.
+     *
+     * @param tSize The size, in bytes, to allocate.
+     */
+	void* operator new[](size_t tSize);
+
+	/**
 	 * Override operator delete.
 	 *
 	 * @param p A pointer to the memory to delete.
 	 */
     void  operator delete(void *p);
+
+	/**
+     * Override operator delete.
+     *
+     * @param p A pointer to the memory to delete.
+     */
+	void  operator delete[](void* p);
 };
 
 

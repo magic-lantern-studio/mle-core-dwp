@@ -9,7 +9,9 @@
 
 // COPYRIGHT_BEGIN
 //
-// Copyright (c) 2015-2020 Wizzer Works
+// The MIT License (MIT)
+// 
+// Copyright (c) 2015-2025 Wizzer Works
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -196,6 +198,19 @@ void
 MleDwpGroup::operator delete(void *p)
 {
 	mlFree(p);
+}
+
+void*
+MleDwpGroup::operator new[](size_t tSize)
+{
+    void* p = mlMalloc(tSize);
+    return p;
+}
+
+void
+MleDwpGroup::operator delete[](void* p)
+{
+    mlFree(p);
 }
 
 #if 0

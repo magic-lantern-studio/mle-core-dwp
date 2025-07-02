@@ -12,7 +12,7 @@
 //
 // The MIT License (MIT)
 //
-// Copyright (c) 2015-2020 Wizzer Works
+// Copyright (c) 2015-2025 Wizzer Works
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -163,6 +163,21 @@ MleDwpTagDiscriminator::operator delete(void *p)
 }
 
 
+void*
+MleDwpTagDiscriminator::operator new[](size_t tSize)
+{
+	void* p = mlMalloc(tSize);
+	return p;
+}
+
+
+void
+MleDwpTagDiscriminator::operator delete[](void* p)
+{
+	mlFree(p);
+}
+
+
 void *
 _MleDwpTag::operator new(size_t tSize)
 {
@@ -173,6 +188,21 @@ _MleDwpTag::operator new(size_t tSize)
 
 void
 _MleDwpTag::operator delete(void *p)
+{
+	mlFree(p);
+}
+
+
+void*
+_MleDwpTag::operator new[](size_t tSize)
+{
+	void* p = mlMalloc(tSize);
+	return p;
+}
+
+
+void
+_MleDwpTag::operator delete[](void* p)
 {
 	mlFree(p);
 }
