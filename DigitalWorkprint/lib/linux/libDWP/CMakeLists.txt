@@ -35,7 +35,7 @@
 cmake_minimum_required(VERSION 3.0 FATAL_ERROR)
 
 # Project name and enable C++ support
-project(libdwp VERSION 1.0.0 LANGUAGES CXX)
+project(libdwp VERSION 1.0.0 LANGUAGES C CXX)
 
 # Require C++17
 set(CMAKE_CXX_STANDARD 17)
@@ -44,6 +44,9 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # Specify where to find CMake modules
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
+
+# Turn on verbose mode.
+set(CMAKE_VERBOSE_MAKEFILE ON)
 
 # Specify Debug postfix
 set(CMAKE_DEBUG_POSTFIX "d")
@@ -372,12 +375,3 @@ add_library(
       ../../common/include/mle/DwpVoidStarType.h
     DESTINATION
       include/mle)
-
-  # Uninstall libraries and header files
-  add_custom_target("uninstall" COMMENT "Uninstall installed files")
-  add_custom_command(
-    TARGET "uninstall"
-    POST_BUILD
-    COMMENT "Uninstall files with install_manifest.txt"
-    COMMAND xargs rm -vf < ../install_manifest.txt || echo Nothing in
-            install_manifest.txt to be uninstalled!)

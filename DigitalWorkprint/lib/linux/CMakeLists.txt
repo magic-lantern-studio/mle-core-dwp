@@ -39,4 +39,13 @@ project(DigitalWorkprint VERSION 1.0.0 LANGUAGES CXX)
 
 # Specify sub directories to build
 add_subdirectory(libDWP)
-#add_subdirectory(DwpChecker)
+add_subdirectory(DwpChecker)
+
+# Uninstall libraries and header files
+  add_custom_target("uninstall" COMMENT "Uninstall installed files")
+  add_custom_command(
+    TARGET "uninstall"
+    POST_BUILD
+    COMMENT "Uninstall files with install_manifest.txt"
+    COMMAND xargs rm -vf < install_manifest.txt || echo Nothing in
+            install_manifest.txt to be uninstalled!)
