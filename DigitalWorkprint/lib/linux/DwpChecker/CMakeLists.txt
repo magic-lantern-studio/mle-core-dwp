@@ -87,21 +87,20 @@ add_compile_definitions(
 add_executable(DwpChecker ../../common/test/dwpCheckerTest.cpp)
 
 target_compile_options(DwpChecker
-    PRIVATE
-      $<$<CONFIG:Debug>:-O0>
-      $<$<CONFIG:Release>:>)
+  PRIVATE
+    $<$<CONFIG:Debug>:-O0>
+    $<$<CONFIG:Release>:>)
 
 target_compile_definitions(DwpChecker
-    PRIVATE
-      $<$<CONFIG:Debug>: MLE_DEBUG DEBUG>
-      $<$<CONFIG:Release>:>)
+  PRIVATE
+    $<$<CONFIG:Debug>: MLE_DEBUG DEBUG>
+    $<$<CONFIG:Release>:>)
 
 target_link_libraries(DwpChecker
-    PRIVATE
-        ../libDWP/libdwp.a
-    PUBLIC
-        $ENV{MLE_ROOT}/lib/libmlmath.a
-        $ENV{MLE_ROOT}/lib/libmlutil.a)
+  PRIVATE
+    ${DwpChecker_BINARY_DIR}/../libDWP/libdwp.a
+    $ENV{MLE_ROOT}/lib/libmlmath.a
+    $ENV{MLE_ROOT}/lib/libmlutil.a)
 
 # Install the libraries
 install(
