@@ -535,6 +535,14 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+            }
         }
         "Release"
         {
@@ -551,6 +559,14 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+            }
         }
     }
     "Deployable"
@@ -2384,7 +2400,7 @@
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
         "ProductVersion" = "8:1.0.0"
-        "Manufacturer" = "8:mark.s.millard@gmail.com"
+        "Manufacturer" = "8:Wizzer Works"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
         "Title" = "8:Digital Workprint Debug DSO"
@@ -2392,7 +2408,7 @@
         "ARPCONTACT" = "8:mark.s.millard@gmail.com"
         "Keywords" = "8:"
         "ARPCOMMENTS" = "8:Magic Lantern Digital Workprint Debug DSO Library"
-        "ARPURLINFOABOUT" = "8:"
+        "ARPURLINFOABOUT" = "8:www.wizzerworks.com"
         "ARPPRODUCTICON" = "8:"
         "ARPIconIndex" = "3:0"
         "SearchPath" = "8:"
@@ -2897,7 +2913,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_5503440CB3DE4DEAA01A5ECED25F363A"
             {
-            "SourcePath" = "8:"
+            "SourcePath" = "8:..\\x64\\DSO Debug\\DwpDso\\DWPd.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_E584298B6411420CBCB74335AE37F6BE"
