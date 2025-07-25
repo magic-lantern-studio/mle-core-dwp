@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.14.36202.13 d17.14
+VisualStudioVersion = 17.14.36202.13
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DWP", "DWP.vcxproj", "{DFB0D8E4-DC89-4BA8-B8DE-7041C5B0C969}"
 EndProject
@@ -319,12 +319,14 @@ Global
 		{A0218693-D85B-5E17-A051-5996D0E3A26B}.Float Release|x64.ActiveCfg = Release
 		{A0218693-D85B-5E17-A051-5996D0E3A26B}.Release|Win32.ActiveCfg = Release
 		{A0218693-D85B-5E17-A051-5996D0E3A26B}.Release|x64.ActiveCfg = Release
+		{A0218693-D85B-5E17-A051-5996D0E3A26B}.Release|x64.Build.0 = Release
 		{A0218693-D85B-5E17-A051-5996D0E3A26B}.Tools Float Debug|Win32.ActiveCfg = Release
 		{A0218693-D85B-5E17-A051-5996D0E3A26B}.Tools Float Debug|x64.ActiveCfg = Release
 		{A0218693-D85B-5E17-A051-5996D0E3A26B}.Tools Float Release|Win32.ActiveCfg = Release
 		{A0218693-D85B-5E17-A051-5996D0E3A26B}.Tools Float Release|x64.ActiveCfg = Release
 		{6AA64450-210E-C1E6-CDC2-A2FC0B055BEE}.Debug|Win32.ActiveCfg = Debug
 		{6AA64450-210E-C1E6-CDC2-A2FC0B055BEE}.Debug|x64.ActiveCfg = Debug
+		{6AA64450-210E-C1E6-CDC2-A2FC0B055BEE}.Debug|x64.Build.0 = Debug
 		{6AA64450-210E-C1E6-CDC2-A2FC0B055BEE}.DSO Debug|Win32.ActiveCfg = Release
 		{6AA64450-210E-C1E6-CDC2-A2FC0B055BEE}.DSO Debug|x64.ActiveCfg = Release
 		{6AA64450-210E-C1E6-CDC2-A2FC0B055BEE}.DSO Release|Win32.ActiveCfg = Release
