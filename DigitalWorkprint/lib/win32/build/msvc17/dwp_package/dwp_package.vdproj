@@ -27,7 +27,7 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_03459B5B6C574CB3B862DC8E7AF08ECE"
+        "MsmKey" = "8:_03123D635D5B45EE9489FEF429C7378B"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -130,6 +130,12 @@
         "Entry"
         {
         "MsmKey" = "8:_4126E3E7865D4A388C9B05BBA3CAF077"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_418696DFC8A74CF2A470A27870CE2342"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -243,6 +249,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_7C597C06C3D64CFCA79BE8411BA42606"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_803B125CF4BD4402BEED1642E578BF0C"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -262,6 +274,12 @@
         "Entry"
         {
         "MsmKey" = "8:_81E52F6DDAA44DF7A8E28BA44E98C8D0"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_85CC96DA8EAF43888C59705825D7DB92"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -447,6 +465,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_D242C33B834C4285839A2FF49284C4CC"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_D77DBBD6CF8146B98FBA62B73E223260"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -548,6 +572,14 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.7.2"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.7.2 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.7.2"
+                    }
+                }
             }
         }
         "Release"
@@ -572,6 +604,14 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.7.2"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.7.2 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.7.2"
+                    }
+                }
             }
         }
     }
@@ -620,6 +660,26 @@
             "TargetName" = "8:DwpStage.h"
             "Tag" = "8:"
             "Folder" = "8:_99CB4534E5804D589F3DD26F65E47596"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_03123D635D5B45EE9489FEF429C7378B"
+            {
+            "SourcePath" = "8:..\\x64\\Release\\DWPModel\\DWPModel.lib"
+            "TargetName" = "8:DWPModel.lib"
+            "Tag" = "8:"
+            "Folder" = "8:_45664ACB154E49A88C824ADE1E7BC324"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -960,6 +1020,26 @@
             "TargetName" = "8:DwpVoidStarType.h"
             "Tag" = "8:"
             "Folder" = "8:_99CB4534E5804D589F3DD26F65E47596"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_418696DFC8A74CF2A470A27870CE2342"
+            {
+            "SourcePath" = "8:..\\x64\\Release\\DwpChecker\\DwpChecker.exe"
+            "TargetName" = "8:DwpChecker.exe"
+            "Tag" = "8:"
+            "Folder" = "8:_806BB69CC2B346818309DE26094DCB54"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -1334,6 +1414,26 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_7C597C06C3D64CFCA79BE8411BA42606"
+            {
+            "SourcePath" = "8:..\\x64\\Release\\DWPType\\DWPType.lib"
+            "TargetName" = "8:DWPType.lib"
+            "Tag" = "8:"
+            "Folder" = "8:_45664ACB154E49A88C824ADE1E7BC324"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_803B125CF4BD4402BEED1642E578BF0C"
             {
             "SourcePath" = "8:..\\..\\..\\..\\common\\include\\mle\\DwpOutput.h"
@@ -1400,6 +1500,26 @@
             "TargetName" = "8:DwpVector4.h"
             "Tag" = "8:"
             "Folder" = "8:_99CB4534E5804D589F3DD26F65E47596"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_85CC96DA8EAF43888C59705825D7DB92"
+            {
+            "SourcePath" = "8:..\\x64\\Release\\DWP\\DWP.lib"
+            "TargetName" = "8:DWP.lib"
+            "Tag" = "8:"
+            "Folder" = "8:_45664ACB154E49A88C824ADE1E7BC324"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -2014,6 +2134,26 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_D242C33B834C4285839A2FF49284C4CC"
+            {
+            "SourcePath" = "8:..\\x64\\Release\\DWPBase\\DWPBase.lib"
+            "TargetName" = "8:DWPBase.lib"
+            "Tag" = "8:"
+            "Folder" = "8:_45664ACB154E49A88C824ADE1E7BC324"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_D77DBBD6CF8146B98FBA62B73E223260"
             {
             "SourcePath" = "8:..\\..\\..\\..\\common\\include\\mle\\DwpSetDef.h"
@@ -2396,7 +2536,7 @@
         "Product"
         {
         "Name" = "8:Microsoft Visual Studio"
-        "ProductName" = "8:dwp_package"
+        "ProductName" = "8:dwp"
         "ProductCode" = "8:{204B0B3A-BB11-4DC1-B8AC-96CF20C5B0D7}"
         "PackageCode" = "8:{9B9A9F5E-1445-47DC-BC28-3582B766ACAA}"
         "UpgradeCode" = "8:{0AEFAD3F-1235-448F-AD0F-957D0B4D63EA}"
@@ -2411,7 +2551,7 @@
         "ARPHELPLINK" = "8:"
         "Title" = "8:Digital Workprint Release"
         "Subject" = "8:"
-        "ARPCONTACT" = "8:mark.s.millard@gmail.com"
+        "ARPCONTACT" = "8:msm@wizzerworks.com"
         "Keywords" = "8:"
         "ARPCOMMENTS" = "8:Magic Lantern Digital Workprint Release Library and Tools"
         "ARPURLINFOABOUT" = "8:www.wizzerworks.com"
@@ -2917,146 +3057,6 @@
         }
         "ProjectOutput"
         {
-            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_03459B5B6C574CB3B862DC8E7AF08ECE"
-            {
-            "SourcePath" = "8:..\\x64\\Release\\DwpChecker\\DwpChecker.exe"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_806BB69CC2B346818309DE26094DCB54"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            "ProjectOutputGroupRegister" = "3:1"
-            "OutputConfiguration" = "8:Release|x64"
-            "OutputGroupCanonicalName" = "8:Built"
-            "OutputProjectGuid" = "8:{14D53A08-99D2-43F0-9B00-88FC9D74D95C}"
-            "ShowKeyOutput" = "11:TRUE"
-                "ExcludeFilters"
-                {
-                }
-            }
-            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_34D002A24A334D3B9513CFF3DAC24FFB"
-            {
-            "SourcePath" = "8:"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_45664ACB154E49A88C824ADE1E7BC324"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            "ProjectOutputGroupRegister" = "3:1"
-            "OutputConfiguration" = "8:Release|x64"
-            "OutputGroupCanonicalName" = "8:Built"
-            "OutputProjectGuid" = "8:{52A0FA69-96BA-4841-8549-C7E2FD41D543}"
-            "ShowKeyOutput" = "11:TRUE"
-                "ExcludeFilters"
-                {
-                }
-            }
-            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_3DC5F9A0D8CA4622AE31544E0F4A88E5"
-            {
-            "SourcePath" = "8:"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_45664ACB154E49A88C824ADE1E7BC324"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            "ProjectOutputGroupRegister" = "3:1"
-            "OutputConfiguration" = "8:Release|x64"
-            "OutputGroupCanonicalName" = "8:Built"
-            "OutputProjectGuid" = "8:{DFB0D8E4-DC89-4BA8-B8DE-7041C5B0C969}"
-            "ShowKeyOutput" = "11:TRUE"
-                "ExcludeFilters"
-                {
-                }
-            }
-            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_CE932E55FFDA43A5B223D6A1DA50214B"
-            {
-            "SourcePath" = "8:"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_45664ACB154E49A88C824ADE1E7BC324"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            "ProjectOutputGroupRegister" = "3:1"
-            "OutputConfiguration" = "8:Release|x64"
-            "OutputGroupCanonicalName" = "8:Built"
-            "OutputProjectGuid" = "8:{14FD11E3-2311-4824-93F3-4C15DF4ED199}"
-            "ShowKeyOutput" = "11:TRUE"
-                "ExcludeFilters"
-                {
-                }
-            }
-            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_D74FA1E8781C498C9A3B0AA6DE46B6A1"
-            {
-            "SourcePath" = "8:"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_45664ACB154E49A88C824ADE1E7BC324"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            "ProjectOutputGroupRegister" = "3:1"
-            "OutputConfiguration" = "8:Release|x64"
-            "OutputGroupCanonicalName" = "8:Built"
-            "OutputProjectGuid" = "8:{826CC409-CF92-49FD-8195-A3CA37E521A9}"
-            "ShowKeyOutput" = "11:TRUE"
-                "ExcludeFilters"
-                {
-                }
-            }
         }
     }
 }

@@ -171,6 +171,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_44BDEF3A6AB3418CBCAB61CD16629E80"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_4A220B5BD5784D038AC00EABD283C186"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -196,6 +202,12 @@
         "Entry"
         {
         "MsmKey" = "8:_5A9AD16359DC43E6A7B2BD698F71FECA"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_5C99C6DE8CE74B698E211C864F4FD886"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -542,6 +554,14 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.7.2"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.7.2 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.7.2"
+                    }
+                }
             }
         }
         "Release"
@@ -566,6 +586,14 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.7.2"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.7.2 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.7.2"
+                    }
+                }
             }
         }
     }
@@ -1108,6 +1136,26 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_44BDEF3A6AB3418CBCAB61CD16629E80"
+            {
+            "SourcePath" = "8:..\\x64\\DSO Debug\\DwpDso\\DWPd.lib"
+            "TargetName" = "8:DWPd.lib"
+            "Tag" = "8:"
+            "Folder" = "8:_4D1EB49D7BC74FC9A5AFC496C33C08AC"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_4A220B5BD5784D038AC00EABD283C186"
             {
             "SourcePath" = "8:..\\..\\..\\..\\common\\include\\mle\\DwpActorDef.h"
@@ -1194,6 +1242,26 @@
             "TargetName" = "8:DwpCastRef.h"
             "Tag" = "8:"
             "Folder" = "8:_DAB2071AADE4497BA2C3B75A3AFDE4D4"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_5C99C6DE8CE74B698E211C864F4FD886"
+            {
+            "SourcePath" = "8:..\\x64\\DSO Debug\\DwpDso\\DWPd.dll"
+            "TargetName" = "8:DWPd.dll"
+            "Tag" = "8:"
+            "Folder" = "8:_E584298B6411420CBCB74335AE37F6BE"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -2390,7 +2458,7 @@
         "Product"
         {
         "Name" = "8:Microsoft Visual Studio"
-        "ProductName" = "8:dwp_dso_debug_package"
+        "ProductName" = "8:dwpd"
         "ProductCode" = "8:{955647C3-4D3D-451E-AD64-CE9AC1F770E7}"
         "PackageCode" = "8:{C7DD7B61-FC2B-4D7D-A879-E7E9BAF0DE12}"
         "UpgradeCode" = "8:{D5C84F97-F152-4122-B759-412E33DED9FB}"
@@ -2405,7 +2473,7 @@
         "ARPHELPLINK" = "8:"
         "Title" = "8:Digital Workprint Debug DSO"
         "Subject" = "8:"
-        "ARPCONTACT" = "8:mark.s.millard@gmail.com"
+        "ARPCONTACT" = "8:msm@wizzerworks.com"
         "Keywords" = "8:"
         "ARPCOMMENTS" = "8:Magic Lantern Digital Workprint Debug DSO Library"
         "ARPURLINFOABOUT" = "8:www.wizzerworks.com"
@@ -2911,34 +2979,6 @@
         }
         "ProjectOutput"
         {
-            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_5503440CB3DE4DEAA01A5ECED25F363A"
-            {
-            "SourcePath" = "8:..\\x64\\DSO Debug\\DwpDso\\DWPd.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_E584298B6411420CBCB74335AE37F6BE"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            "ProjectOutputGroupRegister" = "3:1"
-            "OutputConfiguration" = "8:DSO Debug|x64"
-            "OutputGroupCanonicalName" = "8:Built"
-            "OutputProjectGuid" = "8:{CDACCA86-25BE-42F6-AC8E-473ADDF7DE7C}"
-            "ShowKeyOutput" = "11:TRUE"
-                "ExcludeFilters"
-                {
-                }
-            }
         }
     }
 }
