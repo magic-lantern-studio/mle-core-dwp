@@ -82,9 +82,20 @@
 			</Component>
 		</DirectoryRef>
 		<ComponentGroup Id="DwpComponents" Directory="MLEROOT">
-			<Component Id="dwp_rehearsal" Directory="LIB64_REHEARSAL">
-				<File Id="dwp_rehearsal" Source="$(var.DwpDso.TargetPath)"/>
+			<Component Id="dwp_dll_rehearsal_loc" Directory="BIN64_REHEARSAL">
+				<File Id="dwp_dll_rehearsal" Source="$(var.DwpDso.TargetPath)"/>
 			</Component>
+			<?if $(var.Configuration) = "Debug" ?>
+				<!-- Debug Package -->
+				<Component Id="dwp_lib_rehearsal_loc" Directory="LIB64_REHEARSAL">
+					<File Id="dwp_lib_rehearsal" Source="$(var.DwpDso.TargetDir)\DWPd.lib"/>
+				</Component>
+			<?else?>
+				<!-- Release Package -->
+				<Component Id="dwp_lib_rehearsal_loc" Directory="LIB64_REHEARSAL">
+					<File Id="dwp_lib_rehearsal" Source="$(var.DwpDso.TargetDir)\DWP.lib"/>
+				</Component>
+			<?endif?>
 			<ComponentRef Id="HeaderFiles" />
 		</ComponentGroup>
 	</Fragment>
