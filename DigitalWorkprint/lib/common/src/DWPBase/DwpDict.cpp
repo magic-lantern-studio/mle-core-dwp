@@ -197,7 +197,7 @@ MleDwpDict::hash(const void *key) const
 #if defined(__linux__) || defined(__APPLE__)
 	return (long)key >> 2;
 #else
-    return (int)key >> 2;
+    return reinterpret_cast<intptr_t>(key) >> 2;
 #endif
 }
 

@@ -355,9 +355,9 @@ MleDwpNotifier::hash(const void *key) const
     // This hash function is a little ad hoc, but seems to work
     // reasonably well.  It is the classic multiply/modulo thing.
 #if defined(__linux__) || defined(__APPLE__)
-    rval = ((0xa74b2193*(unsigned long)key) >> 16) % m_nbuckets;
+    rval = ((0xa74b2193 * (unsigned long)key) >> 16) % m_nbuckets;
 #else
-    rval = ((0xa74b2193*(unsigned int)key) >> 16) % m_nbuckets;
+    rval = ((0xa74b2193 * reinterpret_cast<uintptr_t>(key)) >> 16) % m_nbuckets;
 #endif
 
     return rval;
