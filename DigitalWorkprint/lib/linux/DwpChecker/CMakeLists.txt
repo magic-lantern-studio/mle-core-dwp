@@ -96,11 +96,12 @@ target_compile_definitions(DwpChecker
     $<$<CONFIG:Debug>: MLE_DEBUG DEBUG>
     $<$<CONFIG:Release>:>)
 
-target_link_libraries(DwpChecker
-  PRIVATE
-    ${DwpChecker_BINARY_DIR}/../libDWP/libdwp.a
-    $ENV{MLE_ROOT}/lib/libmlmath.a
-    $ENV{MLE_ROOT}/lib/libmlutil.a)
+set(DwpChecker_LIBRARIES
+  debug ${DwpChecker_BINARY_DIR}/../libDWP/libdwpd.a optimized ${DwpChecker_BINARY_DIR}/../libDWP/libdwp.a
+  debug $ENV{MLE_ROOT}/lib/libmlmathd.a optimized $ENV{MLE_ROOT}/lib/libmlmath.a
+  debug $ENV{MLE_ROOT}/lib/libmlutild.a optimized $ENV{MLE_ROOT}/lib/libmlutil.a)
+
+target_link_libraries(DwpChecker ${DwpChecker_LIBRARIES})
 
 # Install the libraries
 install(
