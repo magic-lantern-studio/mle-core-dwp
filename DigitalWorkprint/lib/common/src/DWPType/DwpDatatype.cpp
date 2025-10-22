@@ -56,17 +56,7 @@
 #include "mle/DwpOutput.h"
 //#include "mle/DppActorGroupOutput.h"
 
-#if defined(_WINDOWS)
-// Make sure that the registry can be shared if the library is
-// included as part of a DLL.
-#pragma data_seg( ".GLOBALS" )
-#endif
-//MleDwpDatatypeDict MleDwpDatatype::g_registry(MLE_DWP_DICT_DEFHASHSIZE);
-MleDwpDatatypeDict *MleDwpDatatype::g_registry = new MleDwpDatatypeDict(MLE_DWP_DICT_DEFHASHSIZE);
-#if defined(_WINDOWS)
-#pragma data_seg()
-#pragma comment(linker, "/section:.GLOBALS,rws")
-#endif
+MleDwpDatatypeDict MleDwpDatatype::g_registry(MLE_DWP_DICT_DEFHASHSIZE);
 
 // This class is the datatype dict entry that knows how to delete the
 // datatype when the datatype registry is deleted.
@@ -162,11 +152,11 @@ MleDwpDatatype::isa(MleDwpDatatypeType type) const
 const MleDwpDatatype *
 MleDwpDatatype::findType(const char *type)
 {
-	MleDwpDatatype *rval = (MleDwpDatatype *)g_registry->find(type);
+	MleDwpDatatype *rval = (MleDwpDatatype *)g_registry.find(type);
 
 	// If not found, try a DSO load.
 	if ( rval == NULL && !MleDwpItem::g_loader.loadClass(type,"MleDwp") ) {
-		rval = (MleDwpDatatype *)g_registry->find(type);
+		rval = (MleDwpDatatype *)g_registry.find(type);
 	}
 
 	return rval;
@@ -212,7 +202,7 @@ MleDwpDatatype::operator delete[](void* p)
 void
 MleDwpDatatype::dumpRegistry(void)
 {
-	MleDwpDictIter iterator(*g_registry);
+	MleDwpDictIter iterator(g_registry);
 
 	do {
         const void *key = iterator.getKey();

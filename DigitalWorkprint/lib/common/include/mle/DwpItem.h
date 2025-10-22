@@ -561,11 +561,6 @@ class MLE_DWP_API MleDwpItem : public MleDwpMonitor
 	 */
 	virtual int writeContents(MleDwpOutput *out);
 
-#if defined(_WINDOWS)
-// Make sure that the registry can be shared if the library is
-// included as part of a DLL.
-#pragma data_seg( ".GLOBALS" )
-#endif
 	/**
 	 * Type registry to support reading files.
 	 *
@@ -578,9 +573,6 @@ class MLE_DWP_API MleDwpItem : public MleDwpMonitor
 	 * class is not found, an instance of type <code>MleDwpUnknown</code> is created.
 	 */
 	static MleDwpStrKeyDict typeRegistry;
-#if defined(_WINDOWS)
-#pragma data_seg()
-#endif
 
 	/**
 	 * Register the specified DWP item.

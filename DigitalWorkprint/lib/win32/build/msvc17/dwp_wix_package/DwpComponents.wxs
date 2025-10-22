@@ -82,19 +82,19 @@
 			</Component>
 		</DirectoryRef>
 		<ComponentGroup Id="DwpComponents" Directory="MLEROOT">
-			<Component Id="dwp_tools" Directory="LIB64_TOOLS">
+			<Component Id="dwp_tools_loc" Directory="LIB64_TOOLS">
 				<File Id="dwp_tools" Source="$(var.DWP.TargetPath)"/>
 			</Component>
-			<Component Id="dwpbase_tools" Directory="LIB64_TOOLS">
+			<Component Id="dwpbase_tools_loc" Directory="LIB64_TOOLS">
 				<File Id="dwpbase_tools" Source="$(var.DWPBase.TargetPath)"/>
 			</Component>
-			<Component Id="dwpmodel_tools" Directory="LIB64_TOOLS">
+			<Component Id="dwpmodel_tools_loc" Directory="LIB64_TOOLS">
 				<File Id="dwpmodel_tools" Source="$(var.DWPModel.TargetPath)"/>
 			</Component>
-			<Component Id="dwptypes_tools" Directory="LIB64_TOOLS">
+			<Component Id="dwptypes_tools_loc" Directory="LIB64_TOOLS">
 				<File Id="dwptypes_tools" Source="$(var.DWPType.TargetPath)"/>
 			</Component>
-			<Component Id="dwpchecker" Directory="BIN64">
+			<Component Id="dwpchecker_loc" Directory="BIN64">
 				<File Id="dwpchecker" Source="$(var.DwpChecker.TargetPath)"/>
 			</Component>
 			<ComponentRef Id="HeaderFiles" />

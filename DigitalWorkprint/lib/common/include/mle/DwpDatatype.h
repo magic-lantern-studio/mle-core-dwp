@@ -236,15 +236,7 @@ class MLE_DWP_API MleDwpDatatype
 
   protected:
 
-#if defined(_WINDOWS)
-// Make sure that the registry can be shared if the library is
-// included as part of a DLL.
-#pragma data_seg( ".GLOBALS" )
-#endif
-    static MleDwpDatatypeDict *g_registry;
-#if defined(_WINDOWS)
-#pragma data_seg()
-#endif
+    static MleDwpDatatypeDict g_registry;
 };
 
 /**
@@ -272,7 +264,7 @@ class MLE_DWP_API MleDwpDatatype
 		if ( type == typeId ) return 1; \
 		else return S::isa(type); \
 	} \
-	void C::initClass(void) { g_registry->set(N,new C); }
+	void C::initClass(void) { g_registry.set(N,new C); }
 
 /**
  * This macro should be used in place of MLE_DWP_DATATYPE_HEADER for abstract classes.
