@@ -291,6 +291,8 @@ add_library(
   # Install the header files
   install(
     FILES
+      ../include/mle/DwpPlatformDefs.h
+      ../include/mle/DwpPlatformTypes.h
       ../../common/include/mle/DwpActorDef.h
       ../../common/include/mle/DwpActor.h
       ../../common/include/mle/DwpActorSet.h
