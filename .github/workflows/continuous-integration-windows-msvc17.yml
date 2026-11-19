@@ -37,6 +37,13 @@ jobs:
         run: |
           cd DigitalWorkprint\lib\win32\build\msvc17
           msbuild DwpAccess.sln /p:Configuration=Release /p:Platform=x64
+      # The rehearsal player links the DLL (DSO) flavour of DWP, which the
+      # "DSO Release" configuration installs into lib64\rehearsal.
+      - name: Build DSO library with msbuild
+        shell: cmd
+        run: |
+          cd DigitalWorkprint\lib\win32\build\msvc17
+          msbuild DwpAccess.sln /p:Configuration="DSO Release" /p:Platform=x64
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
