@@ -7,6 +7,8 @@ on:
 
 env:
   MLE_ROOT: C:\opt\MagicLantern
+  # DWP.vcxproj post-build copies headers from $(MLE_HOME)\DigitalWorkprint\...
+  MLE_HOME: ${{ github.workspace }}
 
 jobs:
   windows-build:
