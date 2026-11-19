@@ -60,6 +60,13 @@ include(FindMLMATH)
 find_package(MLMATH REQUIRED)
 find_package(PkgConfig REQUIRED)
 
+# When built as part of the DigitalWorkprint project, libDWP is built in this
+# same project; otherwise (standalone) libdwp must be installed in MLE_ROOT.
+if (NOT TARGET dwpStatic)
+  include(FindDWP)
+  find_package(DWP REQUIRED)
+endif()
+
 # Check for Magic Lantern environment variables
 if (DEFINED ENV{MLE_ROOT})
   message(STATUS "MLE_ROOT=" $ENV{MLE_ROOT})
@@ -96,8 +103,15 @@ target_compile_definitions(DwpChecker
     $<$<CONFIG:Debug>: MLE_DEBUG DEBUG>
     $<$<CONFIG:Release>:>)
 
+if (TARGET dwpStatic)
+  set(DwpChecker_DWP_LIBRARY dwpStatic)
+else()
+  set(DwpChecker_DWP_LIBRARY
+    debug $ENV{MLE_ROOT}/lib/libdwpd.a optimized $ENV{MLE_ROOT}/lib/libdwp.a)
+endif()
+
 set(DwpChecker_LIBRARIES
-  debug ${DwpChecker_BINARY_DIR}/../libDWP/libdwpd.a optimized ${DwpChecker_BINARY_DIR}/../libDWP/libdwp.a
+  ${DwpChecker_DWP_LIBRARY}
   debug $ENV{MLE_ROOT}/lib/libmlmathd.a optimized $ENV{MLE_ROOT}/lib/libmlmath.a
   debug $ENV{MLE_ROOT}/lib/libmlutild.a optimized $ENV{MLE_ROOT}/lib/libmlutil.a)
 
