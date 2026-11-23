@@ -95,19 +95,9 @@ struct TypeInfo {
 	const MleDwpDatatype *(*get)(void);
 };
 
-// Datatypes that Dwp.cpp registers are found in the registry.
-template <const char *const *N>
-const MleDwpDatatype *registered(void) { return MleDwpDatatype::findType(*N); }
-
-// Datatypes that are not registered are created on demand.
-template <class T>
-const MleDwpDatatype *created(void) { static T datatype; return &datatype; }
-
 #define REGISTERED(NAME, CLASS, SIZE, COPY) \
 	{ NAME, CLASS::typeId, SIZE, COPY, \
 	  [](void) -> const MleDwpDatatype * { return MleDwpDatatype::findType(NAME); } }
-#define CREATED(NAME, CLASS, SIZE, COPY) \
-	{ NAME, CLASS::typeId, SIZE, COPY, created<CLASS> }
 
 const int g_arraySize = (int)sizeof(MleArray<char>);
 
@@ -126,13 +116,12 @@ const TypeInfo g_types[] = {
 	REGISTERED("string",      MleDwpString,     (int)sizeof(char *), CopyString),
 	REGISTERED("MediaRef",    MleDwpMediaRefType, (int)sizeof(void *), CopyString),
 
-	// These classes are in the library, but Dwp.cpp does not register them.
-	CREATED("float3",         MleDwpFloat3,       12, CopyRaw),
-	CREATED("float4",         MleDwpFloat4,       16, CopyRaw),
-	CREATED("MlMatrix34",     MleDwpMatrix34,     48, CopyRaw),
-	CREATED("ScalarArray",    MleDwpScalarArray,  g_arraySize, CopyArray),
-	CREATED("Vector3Array",   MleDwpVector3Array, g_arraySize, CopyArray),
-	CREATED("void*",          MleDwpVoidStar,     (int)sizeof(void *), CopyString),
+	REGISTERED("float3",         MleDwpFloat3,       12, CopyRaw),
+	REGISTERED("float4",         MleDwpFloat4,       16, CopyRaw),
+	REGISTERED("MlMatrix34",     MleDwpMatrix34,     48, CopyRaw),
+	REGISTERED("ScalarArray",    MleDwpScalarArray,  g_arraySize, CopyArray),
+	REGISTERED("Vector3Array",   MleDwpVector3Array, g_arraySize, CopyArray),
+	REGISTERED("void*",          MleDwpVoidStar,     (int)sizeof(void *), CopyString),
 };
 
 const TypeInfo *findTypeInfo(const std::string &name) {
@@ -209,10 +198,16 @@ const ValueCase g_values[] = {
 	{ "EnumZero",      "enum", "0",  "0" },
 	{ "EnumNegative",  "enum", "-1", "-1" },
 
-	// Arrays need at least one element, and a blank on each side of the comma.
+	// Arrays, with and without blanks around the comma, and empty.
 	{ "IntArraySingle",   "IntArray", "[ 5 ]",             "[ 5 ]" },
 	{ "IntArrayMany",     "IntArray", "[ 1 , 2 , 3 ]",     "[ 1 , 2 , 3 ]" },
 	{ "IntArrayNegative", "IntArray", "[ -1 , 0 , 1 ]",    "[ -1 , 0 , 1 ]" },
+	{ "IntArrayCommaAfterNumber", "IntArray", "[ 1, 2, 3 ]", "[ 1 , 2 , 3 ]" },
+	{ "IntArrayNoBlanks",  "IntArray", "[1,2,3]",          "[ 1 , 2 , 3 ]" },
+	{ "IntArrayEmpty",     "IntArray", "[ ]",              "[ ]" },
+	{ "IntArrayEmptyNoBlank", "IntArray", "[]",            "[ ]" },
+	{ "FloatArrayEmpty",   "FloatArray", "[ ]",            "[ ]" },
+	{ "FloatArrayCommaAfterNumber", "FloatArray", "[ 1.0, 2.0 ]", "[ 1 , 2 ]" },
 	{ "FloatArraySingle", "FloatArray", "[ 1.5 ]",         "[ 1.5 ]" },
 	{ "FloatArrayMany",   "FloatArray", "[ 0.5 , -2 , 1e30 ]", "[ 0.5 , -2 , 1e+30 ]" },
 
@@ -226,6 +221,9 @@ const ValueCase g_values[] = {
 	{ "Matrix34",        "MlMatrix34", "1 0 0 0 1 0 0 0 1 4 5 6", "1 0 0 0 1 0 0 0 1 4 5 6" },
 	{ "ScalarArray",     "ScalarArray", "[ 1.5 , 2.5 ]", "[ 1.5 , 2.5 ]" },
 	{ "Vector3Array",    "Vector3Array", "[ 1 2 3 , 4 5 6 ]", "[ 1 2 3 , 4 5 6 ]" },
+	{ "Vector3ArrayComma", "Vector3Array", "[ 1 2 3, 4 5 6 ]", "[ 1 2 3 , 4 5 6 ]" },
+	{ "ScalarArrayEmpty", "ScalarArray", "[ ]", "[ ]" },
+	{ "Vector3ArrayEmpty", "Vector3Array", "[ ]", "[ ]" },
 	{ "VoidStar",        "void*", "\"x/y\"",  "x/y" },
 };
 
@@ -238,7 +236,9 @@ const ValueCase g_invalid[] = {
 	{ "EnumWord",          "enum",       "red",          NULL },
 	{ "IntArrayNoComma",   "IntArray",   "[ 1 2 ]",      NULL },
 	{ "IntArrayNoBracket", "IntArray",   "1 , 2",        NULL },
-	{ "IntArrayEmpty",     "IntArray",   "[ ]",          NULL },
+	{ "IntArrayUnclosed",  "IntArray",   "[ 1 , 2",      NULL },
+	{ "Vector3Truncated",  "MlVector3",  "1 2",          NULL },
+	{ "IntNothing",        "int",        "",             NULL },
 	{ "FloatArrayWord",    "FloatArray", "[ x ]",        NULL },
 };
 
@@ -265,11 +265,10 @@ TEST_P(DatatypeTypeTest, Identity) {
 	EXPECT_EQ(info.size, datatype->getSize());
 }
 
-TEST_P(DatatypeTypeTest, RegistryFindsRegisteredTypes) {
+TEST_P(DatatypeTypeTest, IsRegistered) {
 	const TypeInfo &info = GetParam();
 	const MleDwpDatatype *found = MleDwpDatatype::findType(info.name);
-	if (found == NULL)
-		return;   // Not a registered datatype.
+	ASSERT_TRUE(found != NULL) << info.name << " is not registered";
 	EXPECT_EQ(found, MleDwpDatatype::findType(info.name));
 	EXPECT_STREQ(info.name, found->getName());
 }
@@ -475,7 +474,7 @@ TEST(DatatypeArrayTest, FloatArrayElements) {
 }
 
 TEST(DatatypeArrayTest, Vector3ArrayElements) {
-	const MleDwpDatatype *datatype = created<MleDwpVector3Array>();
+	const MleDwpDatatype *datatype = MleDwpDatatype::findType("Vector3Array");
 	MleDwpDataUnion data;
 	std::string text("[ 1 2 3 , 4 5 6 ]");
 	ASSERT_EQ(0, readValue(datatype, text, &data));
@@ -512,15 +511,60 @@ TEST(DatatypeArrayTest, LargeArray) {
 	EXPECT_EQ(text, body(datatype, &data));
 }
 
-// The comma directly after a number is lost when the input is a memory
-// buffer: putBackByte() moves the buffer back one byte, which is the blank
-// that ended the token, not the comma. Reading the same text from a file
-// works, which is why the workprint files load. Remove DISABLED_ when fixed.
-TEST(DatatypeArrayTest, DISABLED_CommaDirectlyAfterNumberInBuffer) {
+TEST(DatatypeArrayTest, EmptyArray) {
+	MleArray<int> array;
+	ASSERT_TRUE(getIntArray("[ ]", &array));
+	EXPECT_EQ(0, array.size());
+}
+
+TEST(DatatypeArrayTest, EmptyArraySetAndWrite) {
+	const MleDwpDatatype *datatype = MleDwpDatatype::findType("IntArray");
+	MleArray<int> source;
+	MleDwpDataUnion data;
+	datatype->set(&data, &source);
+	EXPECT_EQ(std::string("[ ]"), body(datatype, &data));
+}
+
+TEST(DatatypeArrayTest, GetReturnsAnIndependentCopy) {
+	// Changing the copy from get() does not change the data union.
+	const MleDwpDatatype *datatype = MleDwpDatatype::findType("IntArray");
+	MleDwpDataUnion data;
+	std::string text("[ 1 , 2 , 3 ]");
+	ASSERT_EQ(0, readValue(datatype, text, &data));
+
+	{
+		MleArray<int> copy;
+		datatype->get(&data, &copy);
+		ASSERT_EQ(3, copy.size());
+		copy[0] = 99;
+	}
+	EXPECT_EQ(std::string("[ 1 , 2 , 3 ]"), body(datatype, &data));
+}
+
+TEST(DatatypeArrayTest, CommaDirectlyAfterNumberInBuffer) {
+	// The input used to lose a comma that followed a number without a blank
+	// when it was read from a memory buffer. Files were not affected.
+	MleArray<float> array;
 	const MleDwpDatatype *datatype = MleDwpDatatype::findType("FloatArray");
 	MleDwpDataUnion data;
-	std::string text("[ 1.0, 2.0 ]");
-	EXPECT_EQ(0, readValue(datatype, text, &data));
+	std::string text("[ 1.5, 2.5,3.5 ]");
+	ASSERT_EQ(0, readValue(datatype, text, &data));
+	datatype->get(&data, &array);
+	ASSERT_EQ(3, array.size());
+	EXPECT_FLOAT_EQ(1.5f, array[0]);
+	EXPECT_FLOAT_EQ(2.5f, array[1]);
+	EXPECT_FLOAT_EQ(3.5f, array[2]);
+}
+
+TEST(DatatypeInputTest, ValueAtEndOfBufferIsReadOnce) {
+	// A token that ends with the buffer must not be read a second time.
+	MleDwpInput in(0);
+	std::string text("12");
+	ASSERT_EQ(0, in.setBuffer(text.c_str()));
+	int value = 0;
+	ASSERT_EQ(0, in.readInt(&value));
+	EXPECT_EQ(12, value);
+	EXPECT_EQ(1, in.readInt(&value));
 }
 
 // ---------------------------------------------------------------------------
@@ -614,11 +658,6 @@ INSTANTIATE_TEST_SUITE_P(Properties, PropertyDatatypeTest,
 
 // ---------------------------------------------------------------------------
 // EnumDef: the list of names for an enum.
-//
-// MleDwpEnumDef::readContents() grows its array with mlRealloc(strings, count),
-// which is count bytes, not count pointers. The tests use two names, which fit
-// in the slack of the smallest heap block, so they do not fail. A longer list
-// writes past the end of the array.
 
 namespace datatypetest {
 // readContents() and writeContents() are protected.
@@ -654,6 +693,23 @@ TEST(EnumDefTest, WriteNames) {
 	TestEnumDef def;
 	ASSERT_EQ(0, def.read("\"red\" \"green\""));
 	EXPECT_EQ(std::string("red green"), def.write());
+}
+
+TEST(EnumDefTest, LongList) {
+	// The array of names grows with the list.
+	std::string text, expected;
+	for (int i = 0; i < 100; i++) {
+		std::string name = "name" + std::to_string(i);
+		text += "\"" + name + "\" ";
+		expected += (i ? " " : "") + name;
+	}
+
+	TestEnumDef def;
+	ASSERT_EQ(0, def.read(text));
+	ASSERT_EQ(100, def.getNumEnums());
+	EXPECT_STREQ("name0", def.getString(0));
+	EXPECT_STREQ("name99", def.getString(99));
+	EXPECT_EQ(expected, def.write());
 }
 
 TEST(EnumDefTest, NoNames) {
