@@ -97,7 +97,7 @@ MleDwpEnumDef::readContents(MleDwpInput *in)
 	for ( ;in->readString(buffer) == 0; )
 	{
 	    m_length++;
-	    m_enumStrings = (char**) mlRealloc(m_enumStrings, m_length);
+	    m_enumStrings = (char**) mlRealloc(m_enumStrings, m_length * sizeof(char *));
 	    m_enumStrings[m_length-1] = strdup(buffer);
 	}
 
