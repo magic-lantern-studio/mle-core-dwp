@@ -92,6 +92,11 @@
 #include "mle/DwpIntArray.h"
 #include "mle/DwpFloatArray.h"
 #include "mle/DwpVoidStarType.h"
+#include "mle/DwpFloat3.h"
+#include "mle/DwpFloat4.h"
+#include "mle/DwpMatrix34.h"
+#include "mle/DwpScalarArray.h"
+#include "mle/DwpVector3Array.h"
 #include "mle/DwpEnum.h"
 #include "mle/DwpLimits.h"
 #include "mle/DwpDelegateForumMapping.h"	// deprecated
@@ -177,6 +182,12 @@ void mleDwpInit(void)
 	MleDwpFloatArray::initClass();
 	MleDwpString::initClass();
 	MleDwpMediaRefType::initClass();
+	MleDwpVoidStar::initClass();
+	MleDwpFloat3::initClass();
+	MleDwpFloat4::initClass();
+	MleDwpMatrix34::initClass();
+	MleDwpScalarArray::initClass();
+	MleDwpVector3Array::initClass();
 
 	MleDwpEnum::initClass();
 	MleDwpLimits::initClass();
