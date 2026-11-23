@@ -47,6 +47,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
+#include <errno.h>
+#include <limits.h>
 #include <sys/stat.h>
 
 // Include Magic Lantern header files.
@@ -688,12 +690,25 @@ MleDwpInput::readInt(int *d)
         return 1;
     
     // ... and try to create an int out of it.
-    *d = (int)strtol(buffer,&ptr,0);
+    errno = 0;
+    long long value = strtoll(buffer,&ptr,0);
     if ( ptr == buffer )
     {
         reportError("illegal conversion: bad int");
         return 1;
     }
+
+    // The value must fit in an int. The one exception is a hexadecimal or
+    // octal number up to UINT_MAX, which is a 32 bit pattern such as
+    // 0xFFFFFFFF and is stored as the int with the same bits.
+    const char *digits = buffer + (buffer[0] == '-' || buffer[0] == '+');
+    bool pattern = digits[0] == '0' && value > INT_MAX && value <= UINT_MAX;
+    if ( errno == ERANGE || ((value < INT_MIN || value > INT_MAX) && !pattern) )
+    {
+        reportError("illegal conversion: int out of range");
+        return 1;
+    }
+    *d = (int)value;
 
     // Push unused characters back onto the input stream.
     int n = strlen(ptr);
