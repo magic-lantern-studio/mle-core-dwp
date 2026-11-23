@@ -68,6 +68,16 @@ int MleDwpArray::read(MleDwpInput *in, MleDwpDataUnion *data) const
 		return 1;
 	}
 
+	// An array can be empty.
+	if ( in->readChar(&c) )
+	    return 1;
+	if ( c == ']' )
+	{
+	    data->m_u.v = new MleArray<char> ();
+	    return 0;
+	}
+	in->putBackByte(c);
+
 	int elementSize = getElementSize();
 	int arraySize = 0;
 
