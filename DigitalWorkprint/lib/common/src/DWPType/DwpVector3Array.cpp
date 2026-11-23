@@ -138,6 +138,8 @@ MleDwpVector3Array::set(MleDwpDataUnion *data,void *src) const
 {
     data->setDatatype(this);
 
+    release(data);
+
     data->m_u.v = new MleArray<MlVector3> ( *(MleArray<MlVector3> *)src );
 }
 

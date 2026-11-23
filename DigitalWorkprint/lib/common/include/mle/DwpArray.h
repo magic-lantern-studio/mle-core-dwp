@@ -73,13 +73,8 @@
  *
  * The final value may have a comma after it or it may be omitted.
  *
- * BUGS
- * There is currently a bug in many of the array types that causes input
- * errors when the commas separating array elements are not delimited by
- * spaces.  That is
- *
- *     [ 1,2,3,4 ]        will be read incorrectly,
- *     [ 1 , 2 , 3 , 4 ]  will be read correctly.
+ * Blanks around the commas are optional, so [ 1,2,3,4 ] is the same array.
+ * An array may be empty: [ ].
  *
  * @see MleDwpIntArray, MleDwpScalarArray, MleDwpVector3Array
  *
@@ -133,6 +128,13 @@ class MLE_DWP_API MleDwpArray : public MleDwpDatatype
     /**
 	 */
     virtual void get(MleDwpDataUnion *data,void *dst) const;
+
+    /**
+     * Delete the array held by the data union.
+     *
+     * @param data The data union that holds the array.
+     */
+    virtual void release(MleDwpDataUnion *data) const;
 
 	/**
 	 * Override operator new.

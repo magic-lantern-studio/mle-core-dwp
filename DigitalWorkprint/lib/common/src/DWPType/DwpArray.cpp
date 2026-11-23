@@ -59,6 +59,9 @@ int MleDwpArray::read(MleDwpInput *in, MleDwpDataUnion *data) const
 
 	char c;	// Input character buffer.
 
+	// Replace any array the data union already holds.
+	release(data);
+
 	if ( in->readChar(&c) )
 	    return 1;
 
@@ -87,12 +90,18 @@ int MleDwpArray::read(MleDwpInput *in, MleDwpDataUnion *data) const
 	    array = (char *)mlRealloc(array,arraySize);
 
 	    if ( readElement(in,array+arraySize-elementSize) )
+		{
+			mlFree(array);
 			return 1;
+		}
 
 	    numElements++;
 
 	    if ( in->readChar(&c) )
+		{
+			mlFree(array);
 			return 1;
+		}
 
 	    if ( c == ']' )
 			break;
@@ -100,6 +109,7 @@ int MleDwpArray::read(MleDwpInput *in, MleDwpDataUnion *data) const
 	    if ( c != ',' )
 	    {
 			in->reportError("illegal array: missing ,");
+			mlFree(array);
 			return 1;
 	    }
 	}
@@ -156,6 +166,7 @@ int MleDwpArray::getSize(void) const
 void MleDwpArray::set(MleDwpDataUnion *data,void *src) const
 {
 	data->setDatatype(this);
+	release(data);
 
 	data->m_u.v = new MleArray<char> ( *(MleArray<char> *)src );
 }
@@ -163,6 +174,15 @@ void MleDwpArray::set(MleDwpDataUnion *data,void *src) const
 void MleDwpArray::get(MleDwpDataUnion *data,void *dst) const
 {
 	*(MleArray<char> *)dst = *(MleArray<char> *)data->m_u.v;
+}
+
+// All of the array types keep a MleArray in the data union. The destructor
+// of MleArray does not depend on the element type, so any of them can be
+// deleted as a MleArray<char>.
+void MleDwpArray::release(MleDwpDataUnion *data) const
+{
+	delete (MleArray<char> *)data->m_u.v;
+	data->m_u.v = NULL;
 }
 
 void *

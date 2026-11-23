@@ -106,6 +106,8 @@ MleDwpScalarArray::set(MleDwpDataUnion *data,void *src) const
 {
     data->setDatatype(this);
 
+    release(data);
+
     data->m_u.v = new MleArray<MlScalar> ( *(MleArray<MlScalar> *)src );
 }
 

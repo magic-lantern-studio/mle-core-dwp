@@ -94,6 +94,8 @@ void MleDwpIntArray::set(MleDwpDataUnion *data, void *src) const
 {
     data->setDatatype(this);
 
+    release(data);
+
     data->m_u.v = new MleArray<int> ( *(MleArray<int> *)src );
 }
 
