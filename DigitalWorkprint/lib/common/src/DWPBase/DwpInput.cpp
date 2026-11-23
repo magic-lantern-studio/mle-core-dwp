@@ -967,6 +967,11 @@ MleDwpInput::setFilePointer(FILE *ufp)
 void
 MleDwpInput::putBackByte(int putBack)
 {
+    // The end of the input is not a byte that was read, so there is
+    // nothing to put back.
+    if ( putBack == 0 )
+        return;
+
     if ( m_fp )
         ungetc(putBack,m_fp);
     else if ( m_buffer )
@@ -1110,6 +1115,11 @@ int MleDwpInput::lex(char *token,int bufsize)
             }
             else if ( isspace(c) )
             {
+                // Put the delimiter back so that the input is positioned
+                // directly after the token. The readInt() and readFloat()
+                // functions push back what they did not use, and that must
+                // go in front of the delimiter, not in place of it.
+                putBackByte(c);
                 *token = 0;
                 return 0;
             }
