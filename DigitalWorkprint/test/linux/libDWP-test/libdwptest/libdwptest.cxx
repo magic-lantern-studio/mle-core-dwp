@@ -34,9 +34,14 @@
 // Include DWP test header files.
 #include "libdwptest.h"
 
+// Include Magic Lantern Digital Workprint header files.
+#include <mle/Dwp.h>
+
 // Include Google Test header files.
 #include "gtest/gtest.h"
 
 bool initDWPTest() {
+	// Initialize the DWP library. This must only be done once.
+	mleDwpInit();
 	return true;
 }

@@ -36,7 +36,6 @@
 
 // Include Magic Lantern header files.
 #include "math/vector.h"
-#include <mle/MleLoad.h>
 
 // Include Magic Lantern Digital Workprint header files.
 #include <mle/Dwp.h>
@@ -51,8 +50,6 @@ class FloatTestFixture: public ::testing::Test
 {
   public:
 	FloatTestFixture( ) {
-		// Initialize DWP library.
-		mleDwpInit();
     }
 
     void SetUp( ) {
