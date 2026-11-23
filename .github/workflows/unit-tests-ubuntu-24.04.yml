@@ -13,8 +13,12 @@ env:
 
 jobs:
   unit-tests:
-    name: Ubuntu 24.04 Unit Tests
+    name: Ubuntu 24.04 Unit Tests (${{ matrix.build_type }})
     runs-on: ubuntu-24.04
+    strategy:
+      fail-fast: false
+      matrix:
+        build_type: [ Release, Debug ]
     # Skip the tests if the build failed or was cancelled.
     if: github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success'
 
@@ -31,7 +35,8 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y build-essential cmake libgtest-dev
 
-      # Download the Debug libdwp built by the Ubuntu build into $MLE_ROOT.
+      # Download the libdwp built by the Ubuntu build into $MLE_ROOT. The Debug
+      # library has assertions enabled; the Release library is the one that ships.
       # When started manually, the latest successful build is used.
       - name: Download mle-core-dwp artifacts
         env:
@@ -40,14 +45,14 @@ jobs:
         run: |
           gh run download $RUN_ID \
             --repo ${{ github.repository }} \
-            --name mle-core-dwp-ubuntu-24.04-Debug \
+            --name mle-core-dwp-ubuntu-24.04-${{ matrix.build_type }} \
             --dir "$MLE_ROOT"
           ls -R "$MLE_ROOT"
 
       - name: Build unit tests
         run: |
           cmake -S DigitalWorkprint/test/linux/libDWP-test -B build/libDWP-test -G "Unix Makefiles" \
-            -DCMAKE_BUILD_TYPE=Debug \
+            -DCMAKE_BUILD_TYPE=${{ matrix.build_type }} \
             -DCMAKE_PREFIX_PATH="$MLE_ROOT"
           cmake --build build/libDWP-test --parallel 4
 
