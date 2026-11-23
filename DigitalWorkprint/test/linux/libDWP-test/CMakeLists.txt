@@ -71,14 +71,16 @@ foreach(lib dwp mlmath mlutil)
   message(STATUS "Using ${${upper}_LIBRARY}")
 endforeach()
 
-# Specify the compiler macro definitions
+# Specify the compiler macro definitions. MLE_DEBUG must match the libdwp
+# build because it changes the layout of some of its classes.
 add_compile_definitions(
   ML_MATH_DEBUG=0
   ML_FIXED_POINT=0
   MLE_NOT_UTIL_DLL
   MLE_NOT_MATH_DLL
   MLE_NOT_DWP_DLL
-  MLE_REHEARSAL)
+  MLE_REHEARSAL
+  $<$<CONFIG:Debug>:MLE_DEBUG>)
 
 # Specify the include directories for the header files
 include_directories(
@@ -96,9 +98,14 @@ add_library(dwptest SHARED
   libdwptest/testMlVector2.cxx
   libdwptest/testMlVector3.cxx
   libdwptest/testMlVector4.cxx
-  libdwptest/testFloatArray.cxx)
+  libdwptest/testFloatArray.cxx
+  libdwptest/testWorkprint.cxx)
 target_include_directories(dwptest PRIVATE
   $<TARGET_PROPERTY:GTest::gtest,INTERFACE_INCLUDE_DIRECTORIES>)
+
+# The tests find the test workprints by absolute path.
+target_compile_definitions(dwptest PRIVATE
+  DWPTEST_WORKPRINT_DIR="${CMAKE_CURRENT_SOURCE_DIR}/workprints")
 
 # The unit test runner.
 add_executable(exampleProgram exampleProgram/exampleProgram.cxx)
@@ -111,8 +118,10 @@ target_link_libraries(exampleProgram
   ${CMAKE_DL_LIBS}
   Threads::Threads)
 
-# Run the unit tests with ctest. The tests load workprints relative to this
-# directory.
+# Register each test with ctest, so a failure is reported for the test that
+# failed and tests can be selected with "ctest -R".
+include(GoogleTest)
 enable_testing()
-add_test(NAME libDWP-test COMMAND exampleProgram
-  WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
+gtest_discover_tests(exampleProgram
+  WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
+  DISCOVERY_TIMEOUT 30)

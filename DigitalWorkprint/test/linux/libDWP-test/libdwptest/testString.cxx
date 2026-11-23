@@ -46,36 +46,10 @@
 #include <mle/DwpString.h>
 #include <mle/DwpLoad.h>
 
-class StringTestFixture: public ::testing::Test
-{
-  public:
-	StringTestFixture( ) {
-    }
+// Include Digital Workprint test header files.
+#include "libdwptest.h"
 
-    void SetUp( ) {
-        // Code here will execute just before the test ensues .
-    	if (g_workprint == NULL)
-    	    g_workprint = mlLoadWorkprint("workprints/TestDWPProperties.dwp");
-    }
-
-    void TearDown( ) {
-        // Code here will be called just after the test completes.
-        // Ok to throw exceptions from here if need be.
-
-    	// TBD: unload the Digital Workprint.
-    }
-
-    ~StringTestFixture( )  {
-        // Cleanup any pending stuff, but no exceptions allowed.
-
-    	// TBD: delete m_workprint.
-    }
-
-    // Put in any custom data members that you need.
-    static MleDwpItem *g_workprint;
-};
-
-MleDwpItem *StringTestFixture::g_workprint = NULL;
+class StringTestFixture: public TestWorkprintFixture {};
 
 TEST_F(StringTestFixture, LoadWorkprint) {
     // This test is named "LoadWorkprint", and belongs to the "StringTestFixture"

@@ -36,12 +36,88 @@
 
 // Include Magic Lantern Digital Workprint header files.
 #include <mle/Dwp.h>
+#include <mle/DwpFinder.h>
+#include <mle/DwpInput.h>
+#include <mle/DwpOutput.h>
 
 // Include Google Test header files.
 #include "gtest/gtest.h"
 
+// The directory containing the test workprints. The build normally defines
+// this as the absolute path of the "workprints" source directory.
+#ifndef DWPTEST_WORKPRINT_DIR
+#define DWPTEST_WORKPRINT_DIR "workprints"
+#endif
+
+// Initializes the DWP library once, before any test runs. mleDwpInit() must
+// not be called more than once.
+class DwpEnvironment : public ::testing::Environment
+{
+  public:
+    void SetUp() override {
+        mleDwpInit();
+    }
+};
+
 bool initDWPTest() {
-	// Initialize the DWP library. This must only be done once.
-	mleDwpInit();
-	return true;
+    static bool registered = false;
+    if (! registered) {
+        // Google Test takes ownership of the environment.
+        ::testing::AddGlobalTestEnvironment(new DwpEnvironment);
+        registered = true;
+    }
+    return true;
+}
+
+namespace dwptest {
+
+std::string workprintPath(const char *name) {
+    return std::string(DWPTEST_WORKPRINT_DIR) + "/" + name;
+}
+
+WorkprintPtr loadFile(const std::string &filename) {
+    return WorkprintPtr(MleDwpItem::readAll(filename.c_str()));
+}
+
+WorkprintPtr loadString(const std::string &text) {
+    MleDwpInput in;
+
+    // setBuffer() returns zero on success. The input uses the string in place,
+    // so the string must stay alive until the parse is finished.
+    if (in.setBuffer(text.c_str()))
+        return WorkprintPtr();
+    return WorkprintPtr(MleDwpItem::readAll(&in));
+}
+
+MleDwpProperty *findProperty(MleDwpItem *root, const char *name) {
+    MleDwpFinder finder;
+    finder.setType(MleDwpProperty::typeId);
+    finder.setName(name);
+
+    MleDwpItem *item = finder.find(root);
+    if (item == NULL || ! item->isa(MleDwpProperty::typeId))
+        return NULL;
+    return static_cast<MleDwpProperty *>(item);
+}
+
+std::string writeString(MleDwpItem *root) {
+    // The output writes into a memory buffer owned by the output object, so
+    // copy it before the object goes away.
+    MleDwpOutput out;
+    root->write(&out);
+    return std::string(out.getBuffer());
+}
+
+} // namespace dwptest
+
+MleDwpItem *TestWorkprintFixture::g_workprint = NULL;
+
+void TestWorkprintFixture::SetUpTestSuite() {
+    g_workprint = dwptest::loadFile(
+        dwptest::workprintPath("TestDWPProperties.dwp")).release();
+}
+
+void TestWorkprintFixture::TearDownTestSuite() {
+    delete g_workprint;
+    g_workprint = NULL;
 }

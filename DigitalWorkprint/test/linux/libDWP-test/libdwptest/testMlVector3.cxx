@@ -46,36 +46,10 @@
 #include <mle/DwpVector3.h>
 #include <mle/DwpLoad.h>
 
-class MlVector3TestFixture: public ::testing::Test
-{
-  public:
-	MlVector3TestFixture( ) {
-    }
+// Include Digital Workprint test header files.
+#include "libdwptest.h"
 
-    void SetUp( ) {
-        // Code here will execute just before the test ensues .
-    	if (g_workprint == NULL)
-    	    g_workprint = mlLoadWorkprint("workprints/TestDWPProperties.dwp");
-    }
-
-    void TearDown( ) {
-        // Code here will be called just after the test completes.
-        // Ok to throw exceptions from here if need be.
-
-    	// TBD: unload the Digital Workprint.
-    }
-
-    ~MlVector3TestFixture( )  {
-        // Cleanup any pending stuff, but no exceptions allowed.
-
-    	// TBD: delete g_workprint.
-    }
-
-    // Put in any custom data members that you need.
-    static MleDwpItem *g_workprint;
-};
-
-MleDwpItem *MlVector3TestFixture::g_workprint = NULL;
+class MlVector3TestFixture: public TestWorkprintFixture {};
 
 TEST_F(MlVector3TestFixture, LoadWorkprint) {
     // This test is named "LoadWorkprint", and belongs to the "MlVector3TestFixture"
