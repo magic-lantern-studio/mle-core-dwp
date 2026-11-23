@@ -117,7 +117,7 @@ MleDwpFloat4::set(MleDwpDataUnion *data,void *src) const
 	((float *)data->m_u.v)[0] = ((float *)src)[0];
 	((float *)data->m_u.v)[1] = ((float *)src)[1];
 	((float *)data->m_u.v)[2] = ((float *)src)[2];
-	((float *)data->m_u.v)[2] = ((float *)src)[3];
+	((float *)data->m_u.v)[3] = ((float *)src)[3];
 }
 
 void
@@ -126,7 +126,7 @@ MleDwpFloat4::get(MleDwpDataUnion *data,void *dst) const
 	((float *)dst)[0] = ((float *)data->m_u.v)[0];
 	((float *)dst)[1] = ((float *)data->m_u.v)[1];
 	((float *)dst)[2] = ((float *)data->m_u.v)[2];
-	((float *)dst)[2] = ((float *)data->m_u.v)[3];
+	((float *)dst)[3] = ((float *)data->m_u.v)[3];
 }
 
 void
