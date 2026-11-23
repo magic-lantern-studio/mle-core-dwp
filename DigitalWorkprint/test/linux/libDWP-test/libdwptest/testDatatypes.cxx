@@ -39,6 +39,9 @@
 
 #include <string.h>
 #include <string>
+#if defined(__GLIBC__)
+#include <malloc.h>
+#endif
 #include <vector>
 #include "gtest/gtest.h"
 
@@ -169,6 +172,9 @@ const ValueCase g_values[] = {
 	{ "IntHex",        "int", "0x10",        "16" },
 	{ "IntMax",        "int", "2147483647",  "2147483647" },
 	{ "IntMin",        "int", "-2147483648", "-2147483648" },
+	{ "IntHexBitPattern", "int", "0xFFFFFFFF", "-1" },
+	{ "IntHexSignBit",    "int", "0x80000000", "-2147483648" },
+	{ "IntOctalBitPattern", "int", "037777777777", "-1" },
 
 	// float and MlScalar: zero, negative zero, very large and very small.
 	{ "FloatFraction", "float", "0.25",   "0.25" },
@@ -230,6 +236,14 @@ const ValueCase g_values[] = {
 // Input that must be rejected.
 const ValueCase g_invalid[] = {
 	{ "IntWord",           "int",        "abc",          NULL },
+	{ "IntAboveMax",       "int",        "2147483648",   NULL },
+	{ "IntFarAboveMax",    "int",        "4294967296",   NULL },
+	{ "IntBelowMin",       "int",        "-2147483649",  NULL },
+	{ "IntHexAbove32Bits", "int",        "0x100000000",  NULL },
+	{ "IntNegativeHexPattern", "int",    "-0xFFFFFFFF",  NULL },
+	{ "IntTooManyDigits",  "int",        "99999999999999999999", NULL },
+	{ "EnumTooLarge",      "enum",       "4294967296",   NULL },
+	{ "IntArrayElementTooLarge", "IntArray", "[ 1 , 4294967296 ]", NULL },
 	{ "FloatWord",         "float",      "xyz",          NULL },
 	{ "Vector3Word",       "MlVector3",  "1 two 3",      NULL },
 	{ "TransformWord",     "MlTransform","1 0 0 0 1 0 0 0 1 0 0 x", NULL },
@@ -554,6 +568,105 @@ TEST(DatatypeArrayTest, CommaDirectlyAfterNumberInBuffer) {
 	EXPECT_FLOAT_EQ(1.5f, array[0]);
 	EXPECT_FLOAT_EQ(2.5f, array[1]);
 	EXPECT_FLOAT_EQ(3.5f, array[2]);
+}
+
+// ---------------------------------------------------------------------------
+// Memory: an array in a data union must be released when it is replaced, when
+// the data union goes away and when a read fails.
+
+#if defined(__GLIBC__) && (__GLIBC__ > 2 || (__GLIBC__ == 2 && __GLIBC_MINOR__ >= 33))
+#define HAVE_HEAP_SIZE 1
+static size_t heapInUse() { return mallinfo2().uordblks; }
+#endif
+
+namespace datatypetest {
+// The text of an array of ints with count elements.
+std::string intArrayText(int count, const char *last = NULL) {
+	std::string text("[ ");
+	for (int i = 0; i < count; i++) {
+		if (i)
+			text += " , ";
+		text += std::to_string(i);
+	}
+	if (last)
+		text += std::string(" , ") + last;
+	return text + " ]";
+}
+}
+
+class DatatypeMemoryTest : public ::testing::Test {
+  protected:
+	enum { iterations = 200, elements = 1000, allowed = 64 * 1024 };
+
+	void SetUp() override {
+#ifndef HAVE_HEAP_SIZE
+		GTEST_SKIP() << "The heap size is only available with glibc.";
+#endif
+	}
+
+	// Run the operation once to warm up the allocator, then many times, and
+	// check that the heap did not grow by anything like an array per run.
+	template <class F> void expectNoGrowth(F operation) {
+#ifdef HAVE_HEAP_SIZE
+		operation();
+		size_t before = heapInUse();
+		for (int i = 0; i < iterations; i++)
+			operation();
+		size_t after = heapInUse();
+		EXPECT_LT(after, before + allowed)
+			<< "heap grew by " << (after - before) << " bytes in " << iterations
+			<< " runs; one array is " << elements * sizeof(int) << " bytes";
+#endif
+	}
+};
+
+TEST_F(DatatypeMemoryTest, DataUnionFreesItsArray) {
+	const MleDwpDatatype *datatype = MleDwpDatatype::findType("IntArray");
+	std::string text = intArrayText(elements);
+	expectNoGrowth([&] {
+		MleDwpDataUnion data;
+		ASSERT_EQ(0, readValue(datatype, text, &data));
+	});
+}
+
+TEST_F(DatatypeMemoryTest, ReadingOverAnArrayFreesTheOldOne) {
+	const MleDwpDatatype *datatype = MleDwpDatatype::findType("IntArray");
+	std::string text = intArrayText(elements);
+	MleDwpDataUnion data;
+	expectNoGrowth([&] {
+		ASSERT_EQ(0, readValue(datatype, text, &data));
+	});
+}
+
+TEST_F(DatatypeMemoryTest, SettingOverAnArrayFreesTheOldOne) {
+	const MleDwpDatatype *datatype = MleDwpDatatype::findType("IntArray");
+	MleArray<int> source(elements);
+	for (int i = 0; i < elements; i++)
+		source[i] = i;
+	MleDwpDataUnion data;
+	expectNoGrowth([&] {
+		datatype->set(&data, &source);
+	});
+}
+
+TEST_F(DatatypeMemoryTest, FailedReadFreesTheElements) {
+	// The error is in the last element, after the array has been built up.
+	const MleDwpDatatype *datatype = MleDwpDatatype::findType("IntArray");
+	std::string text = intArrayText(elements, "x");
+	expectNoGrowth([&] {
+		MleDwpDataUnion data;
+		ASSERT_EQ(1, readValue(datatype, text, &data));
+	});
+}
+
+TEST_F(DatatypeMemoryTest, MissingCommaFreesTheElements) {
+	const MleDwpDatatype *datatype = MleDwpDatatype::findType("IntArray");
+	std::string text = intArrayText(elements) ;
+	text.insert(text.rfind(" ,") , " 7");   // two numbers with no comma
+	expectNoGrowth([&] {
+		MleDwpDataUnion data;
+		ASSERT_EQ(1, readValue(datatype, text, &data));
+	});
 }
 
 TEST(DatatypeInputTest, ValueAtEndOfBufferIsReadOnce) {
