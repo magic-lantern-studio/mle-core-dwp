@@ -102,6 +102,7 @@ add_library(dwptest SHARED
   libdwptest/testWorkprint.cxx
   libdwptest/testDatatypes.cxx
   libdwptest/testItems.cxx
+  libdwptest/testFuzzFindings.cxx
   libdwptest/testBase.cxx
   libdwptest/testRoundTrip.cxx
   libdwptest/testChecker.cxx)
@@ -135,6 +136,36 @@ target_link_libraries(exampleProgram
   GTest::gtest
   ${CMAKE_DL_LIBS}
   Threads::Threads)
+
+# The fuzz target for the workprint reader. With -DDWPTEST_LIBFUZZER=ON and
+# clang it is a libFuzzer fuzzer; otherwise it is built with a driver that
+# replays the files it is given (and can mutate them), and ctest replays the
+# workprints in this directory through it.
+option(DWPTEST_LIBFUZZER "Build fuzzDwpInput with libFuzzer (needs clang)" OFF)
+add_executable(fuzzDwpInput fuzz/fuzzDwpInput.cxx)
+target_link_libraries(fuzzDwpInput
+  ${DWP_LIBRARY}
+  ${MLMATH_LIBRARY}
+  ${MLUTIL_LIBRARY}
+  ${CMAKE_DL_LIBS})
+if (DWPTEST_LIBFUZZER)
+  if (NOT CMAKE_CXX_COMPILER_ID MATCHES "Clang")
+    message(FATAL_ERROR "DWPTEST_LIBFUZZER needs clang (libFuzzer)")
+  endif()
+  target_compile_options(fuzzDwpInput PRIVATE -fsanitize=fuzzer,address,undefined)
+  target_link_options(fuzzDwpInput PRIVATE -fsanitize=fuzzer,address,undefined)
+else()
+  target_sources(fuzzDwpInput PRIVATE fuzz/standaloneDriver.cxx)
+  file(GLOB_RECURSE FUZZ_SEEDS
+    ${CMAKE_CURRENT_SOURCE_DIR}/workprints/*.dwp
+    ${CMAKE_CURRENT_SOURCE_DIR}/workprints/*.wpf)
+  list(SORT FUZZ_SEEDS)
+  enable_testing()
+  add_test(NAME fuzz-replay COMMAND fuzzDwpInput ${FUZZ_SEEDS})
+  add_test(NAME fuzz-mutate COMMAND fuzzDwpInput -mutate=20000 -seed=1 ${FUZZ_SEEDS})
+  set_tests_properties(fuzz-replay fuzz-mutate PROPERTIES ENVIRONMENT
+    "LSAN_OPTIONS=suppressions=${CMAKE_CURRENT_SOURCE_DIR}/fuzz/lsan.supp")
+endif()
 
 # Register each test with ctest, so a failure is reported for the test that
 # failed and tests can be selected with "ctest -R".

@@ -152,6 +152,13 @@ MleDwpVector3::get(MleDwpDataUnion *data,void *dst) const
 	}
 }
 
+void
+MleDwpVector3::release(MleDwpDataUnion *data) const
+{
+	mlFree(data->m_u.v);
+	data->m_u.v = NULL;
+}
+
 void *
 MleDwpVector3::operator new(size_t tSize)
 {

@@ -62,8 +62,8 @@ MleDwpFilename::MleDwpFilename(void)
 MleDwpFilename::~MleDwpFilename(void)
 {
 	// Deallocate memory.
-	if ( m_name ) delete m_name;
-	if ( m_path ) delete m_path;
+	if ( m_name ) delete [] m_name;
+	if ( m_path ) delete [] m_path;
 }
 
 
@@ -74,7 +74,7 @@ MleDwpFilename::setName(const char *n)
 {
 	// Free storage if it already exists.
 	if ( m_name )
-		delete m_name;
+		delete [] m_name;
 	
 	// Allocate and copy the string.
 	m_name = n ? strcpy(new char[strlen(n) + 1],n) : NULL;
@@ -87,7 +87,7 @@ MleDwpFilename::setPath(const char *p)
 {
 	// Free storage if it already exists.
 	if ( m_path )
-		delete m_path;
+		delete [] m_path;
 	
 	// Allocate and copy the string.
 	m_path = p ? strcpy(new char[strlen(p) + 1],p) : NULL;

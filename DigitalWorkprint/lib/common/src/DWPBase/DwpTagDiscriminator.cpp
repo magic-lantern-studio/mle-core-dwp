@@ -68,7 +68,7 @@ MleDwpTagDiscriminator::~MleDwpTagDiscriminator()
 		_MleDwpTag *tmp = m_tagList;
 		m_tagList = m_tagList->m_next;
 
-		delete tmp->m_tag;
+		delete [] tmp->m_tag;
 		delete tmp;
 	}
 }
@@ -137,7 +137,7 @@ MleDwpTagDiscriminator::removeTag(const char *tag)
 			*entry = (*entry)->m_next;
 
 			// Do teardown and deletion.
-			delete tmp->m_tag;
+			delete [] tmp->m_tag;
 			delete tmp;
 
 			break;

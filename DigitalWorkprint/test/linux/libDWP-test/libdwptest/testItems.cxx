@@ -266,7 +266,7 @@ std::string itemText(const ItemCase &c, const char *tags = "") {
 std::string written(MleDwpItem *item, int children = 0) {
 	MleDwpOutput out;
 	item->write(&out, children);
-	std::string text(out.getBuffer());
+	std::string text = dwptest::takeBuffer(out);
 	text.erase(0, text.find('\n') + 1);
 	while (! text.empty() && isspace((unsigned char)text.back()))
 		text.pop_back();
@@ -777,14 +777,14 @@ INSTANTIATE_TEST_SUITE_P(Items, DefaultItemTest, ::testing::ValuesIn(g_items), c
 TEST(OutputNullTest, WriteString) {
 	MleDwpOutput out;
 	EXPECT_EQ(0, out.writeString(NULL));
-	std::string text(out.getBuffer());
+	std::string text = dwptest::takeBuffer(out);
 	EXPECT_EQ("NULL", text.substr(text.find('\n') + 1, 4));
 }
 
 TEST(OutputNullTest, WriteFancyString) {
 	MleDwpOutput out;
 	EXPECT_EQ(0, out.writeFancyString(NULL));
-	std::string text(out.getBuffer());
+	std::string text = dwptest::takeBuffer(out);
 	EXPECT_EQ("NULL", text.substr(text.find('\n') + 1, 4));
 }
 

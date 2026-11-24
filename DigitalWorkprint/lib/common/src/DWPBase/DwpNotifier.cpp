@@ -77,7 +77,7 @@ MleDwpNotifierPool::~MleDwpNotifierPool()
     while ( m_link )
     {
         MleDwpNotifierEntry *next = m_link->next;
-        delete m_link;
+        delete [] m_link;
         m_link = next;
     }
 }
@@ -173,6 +173,7 @@ MleDwpNotifierPool::operator delete[](void* p)
 MleDwpNotifier::MleDwpNotifier(int hashsize,int poolsize)
 {
     m_pool = new MleDwpNotifierPool(poolsize);
+    m_ownsPool = 1;
 
     initialize(hashsize);
 }
@@ -182,6 +183,7 @@ MleDwpNotifier::MleDwpNotifier(int hashsize,int poolsize)
 MleDwpNotifier::MleDwpNotifier(int hashsize,MleDwpNotifierPool *p)
 {
     m_pool = p;
+    m_ownsPool = 0;
 
     initialize(hashsize);
 }
@@ -206,6 +208,11 @@ MleDwpNotifier::~MleDwpNotifier()
             m_pool->m_unused = m_bucket[i];
         }
     }
+
+    // Free the hash table, and the pool if this notifier made it.
+    delete [] m_bucket;
+    if ( m_ownsPool )
+        delete m_pool;
 }
 
 

@@ -183,6 +183,16 @@ int parseArgs(int argc, char *argv[], ArgStruct *args)
 }
 
 
+// Release the strings that parseArgs() allocated.
+static void freeArgs(ArgStruct *args)
+{
+    free(args->workprint);
+    free(args->tags);
+    args->workprint = NULL;
+    args->tags = NULL;
+}
+
+
 //extern MleDwpDatatypeDict *g_registry;
 
 void printDwpDatatypeDictionary(ArgStruct *args)
@@ -206,6 +216,7 @@ int main(int argc,char **argv)
     args.verbose = FALSE;
     if (! parseArgs(argc, argv, &args))
     {
+        freeArgs(&args);
         exit(1);
     }
 
@@ -218,6 +229,7 @@ int main(int argc,char **argv)
         if (args.verbose)
             fprintf(stdout, "*** Dumping DWP Registries ****\n");
         printDwpDatatypeDictionary(&args);
+        freeArgs(&args);
     } else
     {
         // Check the Digital Workprint.
@@ -227,6 +239,7 @@ int main(int argc,char **argv)
         if (in.openFile(args.workprint))
         {
             fprintf(stderr, "DwpChecker: can't open file '%s'\n", args.workprint);
+            freeArgs(&args);
             return 1;
         }
     
@@ -240,17 +253,20 @@ int main(int argc,char **argv)
         // Check the semantics of the DWP.
         MleDwpChecker checker(root);
         MlErr err = checker.check();
+        int status = 0;
         if (err)
         {
             fprintf(stderr, "DwpChecker: file '%s': %s\n",
                     args.workprint, checker.getErrorMsg());
-            return err;
-        }
-        if (inputErrors > 0)
-            return 1;
+            status = err;
+        } else if (inputErrors > 0)
+            status = 1;
+
+        delete root;
+        freeArgs(&args);
 
         // Return status of 0 indicates that there were no known issues with
         // the specified Digital Workprint.
-        return 0;
+        return status;
     }
 }

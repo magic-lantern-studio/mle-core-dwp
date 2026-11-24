@@ -14,6 +14,7 @@
 
 // Include Magic Lantern Digital Workprint header files.
 #include <mle/DwpItem.h>
+#include <mle/DwpOutput.h>
 #include <mle/DwpProperty.h>
 
 // Declare external prototypes.
@@ -46,6 +47,10 @@ MleDwpProperty *findProperty(MleDwpItem *root, const char *name);
 
 // Write a workprint hierarchy to a string.
 std::string writeString(MleDwpItem *root);
+
+// The text in the memory buffer of an output. The output hands over the
+// buffer to the caller, which frees it, so this copies the text and frees it.
+std::string takeBuffer(MleDwpOutput &out);
 
 } // namespace dwptest
 

@@ -393,13 +393,13 @@ std::string headerLine(const std::string &text) { return text.substr(0, text.fin
 TEST(HeaderTest, OutputStartsWithTheMagicLine) {
 	MleDwpOutput out;
 	out.writeString("( ActorDef a )");
-	EXPECT_EQ("#DWP 1.0 ascii ", headerLine(out.getBuffer()));
+	EXPECT_EQ("#DWP 1.0 ascii ", headerLine(dwptest::takeBuffer(out)));
 }
 
 TEST(HeaderTest, MagicCanBeLeftOut) {
 	MleDwpOutput out(0);
 	out.writeString("( ActorDef a )");
-	std::string text = out.getBuffer();
+	std::string text = dwptest::takeBuffer(out);
 	EXPECT_EQ(std::string::npos, text.find("#DWP")) << text;
 	EXPECT_EQ(0u, text.find("( ActorDef a )"));
 }
@@ -408,7 +408,7 @@ TEST(HeaderTest, SetMagicChangesWhatIsWritten) {
 	MleDwpOutput out;
 	out.setMagic(0);
 	out.writeString("x");
-	EXPECT_EQ(std::string::npos, std::string(out.getBuffer()).find("#DWP"));
+	EXPECT_EQ(std::string::npos, dwptest::takeBuffer(out).find("#DWP"));
 }
 
 TEST(HeaderTest, HeaderIsWrittenOnlyOnce) {
@@ -416,7 +416,7 @@ TEST(HeaderTest, HeaderIsWrittenOnlyOnce) {
 	out.writeString("a");
 	out.writeTerminal();
 	out.writeString("b");
-	std::string text = out.getBuffer();
+	std::string text = dwptest::takeBuffer(out);
 	EXPECT_EQ(text.find("#DWP"), text.rfind("#DWP"));
 }
 

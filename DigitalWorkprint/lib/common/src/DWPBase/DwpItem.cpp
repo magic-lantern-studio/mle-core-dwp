@@ -165,12 +165,12 @@ MleDwpItem::~MleDwpItem()
 		_MleDwpTag *tmp = m_tagFirst;
 		m_tagFirst = m_tagFirst->next;
 
-		delete tmp->tag;
+		delete [] tmp->tag;
 		delete tmp;
 	}
 
 	/* free allocated storage */
-	delete m_name;
+	delete [] m_name;
 }
 
 
@@ -276,7 +276,7 @@ MleDwpItem::setName(const char *n)
 {
 	/* free the old name */
 	if ( m_name )
-		delete m_name;
+		delete [] m_name;
 	
 	/* check to see if the pointer is non-null */
 	if ( n )
@@ -825,7 +825,7 @@ MleDwpItem::removeTag(const char *tag)
 				m_tagLast = last;	// fix last pointer
 
 			// do teardown and deletion
-			delete tmp->tag;
+			delete [] tmp->tag;
 			delete tmp;
 
 			break;

@@ -78,8 +78,8 @@ MleDwpRoleAttachment::~MleDwpRoleAttachment()
 	m_notifier.notify(NULL, this, MleDwpDeleteNotification);
 
 	/* Free storage. */
-	delete m_parent;
-	delete m_child;
+	delete [] m_parent;
+	delete [] m_child;
 }
 
 int
@@ -135,7 +135,7 @@ MleDwpRoleAttachment::writeContents(MleDppActorGroupOutput *out)
 void
 MleDwpRoleAttachment::setParent(const char *p)
 {
-	delete m_parent;
+	delete [] m_parent;
 
 	m_parent = p ? strcpy(new char[strlen(p) + 1],p) : NULL;
 }
@@ -143,7 +143,7 @@ MleDwpRoleAttachment::setParent(const char *p)
 void
 MleDwpRoleAttachment::setChild(const char *c)
 {
-	delete m_child;
+	delete [] m_child;
 
 	m_child = c ? strcpy(new char[strlen(c) + 1],c) : NULL;
 }

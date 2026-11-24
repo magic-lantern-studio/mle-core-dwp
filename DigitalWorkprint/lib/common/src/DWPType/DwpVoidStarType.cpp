@@ -66,12 +66,18 @@ MleDwpVoidStar::read(MleDwpInput *in,MleDwpDataUnion *data) const
     // Set the datatype (and allow release of any existing data).
     data->setDatatype(this);
 
+    // Replace any string the data union already holds.
+    release(data);
+
     // Malloc space.
     data->m_u.v = mlMalloc(MLE_DWP_INPUT_BUFSIZE);
 
-    // Read the string.
+    // Read the string. A string that was not read is not left in the data.
     if ( in->readString((char *)data->m_u.v) )
+    {
+        release(data);
         return 1;
+    }
 
     // Realloc to conserve space.
 	data->m_u.v = mlRealloc(data->m_u.v,strlen((char *)data->m_u.v) + 1);

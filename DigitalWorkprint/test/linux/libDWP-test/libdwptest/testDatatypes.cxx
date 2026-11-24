@@ -139,7 +139,7 @@ const TypeInfo *findTypeInfo(const std::string &name) {
 std::string body(const MleDwpDatatype *datatype, MleDwpDataUnion *data) {
 	MleDwpOutput out;
 	datatype->write(&out, data);
-	std::string text(out.getBuffer());
+	std::string text = dwptest::takeBuffer(out);
 	text.erase(0, text.find('\n') + 1);
 	while (! text.empty() && isspace((unsigned char)text.back()))
 		text.pop_back();
@@ -785,7 +785,7 @@ class TestEnumDef : public MleDwpEnumDef {
 	std::string write() {
 		MleDwpOutput out;
 		writeContents(&out);
-		std::string text(out.getBuffer());
+		std::string text = dwptest::takeBuffer(out);
 		text.erase(0, text.find('\n') + 1);
 		while (! text.empty() && isspace((unsigned char)text.back()))
 			text.pop_back();

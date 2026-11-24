@@ -80,7 +80,7 @@ namespace basetest {
 std::string text(MleDwpItem *item, int children = 1) {
 	MleDwpOutput out;
 	item->write(&out, children);
-	std::string s(out.getBuffer());
+	std::string s = dwptest::takeBuffer(out);
 	s.erase(0, s.find('\n') + 1);
 	// Squeeze the white space so that the tests do not depend on indenting.
 	std::string r;

@@ -127,7 +127,8 @@ int MleDwpArray::write(MleDwpOutput *out, MleDwpDataUnion *data) const
 
 	out->writeString ( "[" );
 
-	for ( int i = 0; i < array->size(); i++ )
+	// A value that has not been read has no array.
+	for ( int i = 0; array && i < array->size(); i++ )
 	{
 	    writeElement ( out, *array + i * size );
 
@@ -173,7 +174,11 @@ void MleDwpArray::set(MleDwpDataUnion *data,void *src) const
 
 void MleDwpArray::get(MleDwpDataUnion *data,void *dst) const
 {
-	*(MleArray<char> *)dst = *(MleArray<char> *)data->m_u.v;
+	// A value that has not been read has no array.
+	if ( data->m_u.v )
+		*(MleArray<char> *)dst = *(MleArray<char> *)data->m_u.v;
+	else
+		*(MleArray<char> *)dst = MleArray<char>();
 }
 
 // All of the array types keep a MleArray in the data union. The destructor

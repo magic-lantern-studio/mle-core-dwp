@@ -370,6 +370,7 @@ class MLE_DWP_API MleDwpNotifier
     unsigned int hash(const void *key) const;
 
     MleDwpNotifierPool *m_pool;      /**< Pointer to the allocation pool. */
+    int m_ownsPool;                  /**< Nonzero if this notifier made the pool. */
 };
 
 #endif /* __MLE_DWP_NOTIFIER_H_ */

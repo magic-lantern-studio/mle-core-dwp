@@ -698,11 +698,17 @@ MleDwpInput::readFilename(MleDwpFilename *f)
     // See if this is an absolute path and
     // return success if it is.
     if ( *expand == '/' )
+    {
+        mlFree(expand);
         return 0;    // Success.
+    }
     
     // Otherwise we'll look for it in the current directory.
     if ( getPath() == NULL )
+    {
+        mlFree(expand);
         return 0;    // No current directory, just return.
+    }
     
     // Allocate space for the path.
     char *path = new char[strlen(getPath()) + strlen(expand) + 1];
@@ -1054,7 +1060,7 @@ MleDwpInput::putBackByte(int putBack)
     
     if ( putBack == '\n' )
         m_lineno--;
-    else
+    else if ( m_lineIndex > 0 )
         m_lineIndex--;
 }
 
@@ -1078,7 +1084,8 @@ MleDwpInput::getNextByte(void)
         if ( *m_buffer == 0 )
             return 0;
 
-        c = *m_buffer++;
+        // A byte above 127 must not turn into a negative number (EOF).
+        c = (unsigned char)*m_buffer++;
     }
     else 
     {

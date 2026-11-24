@@ -80,8 +80,8 @@ MleDwpDelegateAttachment::~MleDwpDelegateAttachment()
 	m_notifier.notify(NULL, this, MleDwpDeleteNotification);
 
 	/* Free storage. */
-	delete m_parent;
-	delete m_child;
+	delete [] m_parent;
+	delete [] m_child;
 }
 
 int
@@ -137,7 +137,7 @@ MleDwpDelegateAttachment::writeContents(MleDppActorGroupOutput *out)
 void
 MleDwpDelegateAttachment::setParent(const char *p)
 {
-	delete m_parent;
+	delete [] m_parent;
 
 	m_parent = p ? strcpy(new char[strlen(p) + 1],p) : NULL;
 }
@@ -145,7 +145,7 @@ MleDwpDelegateAttachment::setParent(const char *p)
 void
 MleDwpDelegateAttachment::setChild(const char *c)
 {
-	delete m_child;
+	delete [] m_child;
 
 	m_child = c ? strcpy(new char[strlen(c) + 1],c) : NULL;
 }

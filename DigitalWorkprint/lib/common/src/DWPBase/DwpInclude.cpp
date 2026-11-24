@@ -87,7 +87,7 @@ MleDwpInclude::~MleDwpInclude()
 
 	// Free memory.
 	if ( m_path )
-		delete m_path;
+		delete [] m_path;
 }
 
 
@@ -132,7 +132,7 @@ MleDwpInclude::readContents(MleDwpInput *in)
 	if ( errString )
 	{
 		in->reportError(errString);
-		delete errString;
+		delete [] errString;
 		return 1;
 	}
 	else
@@ -177,7 +177,7 @@ MleDwpInclude::populate()
 	    // XXX should 'in' be a ptr passed by caller, to get his error
 	    // report back?
 	    in.reportError(errString);
-	    delete errString;
+	    delete [] errString;
 	    return 1;
     }
 
@@ -280,7 +280,7 @@ void
 MleDwpInclude::setPath(const char *p)
 {
 	if ( m_path )
-		delete m_path;
+		delete [] m_path;
 	
 	m_path = p ? strcpy(new char[strlen(p) + 1],p) : NULL;
 

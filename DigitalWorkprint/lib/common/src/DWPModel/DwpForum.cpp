@@ -77,7 +77,7 @@ MleDwpForum::~MleDwpForum(void)
 	// general interest on all wp items (NULL key).
 	m_notifier.notify(NULL, this, MleDwpDeleteNotification);
 
-	delete m_type;
+	delete [] m_type;
 }
 
 int
@@ -109,7 +109,7 @@ MleDwpForum::readContents(MleDwpInput *in)
 void
 MleDwpForum::setType(const char *t)
 {
-	delete m_type;
+	delete [] m_type;
 
 	m_type = t ? strcpy(new char[strlen(t) + 1],t) : NULL;
 

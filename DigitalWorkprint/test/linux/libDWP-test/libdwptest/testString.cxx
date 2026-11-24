@@ -35,6 +35,7 @@
 #include "gtest/gtest.h"
 
 // Include Magic Lantern header files.
+#include "mle/mlMalloc.h"
 #include "math/vector.h"
 
 // Include Magic Lantern Digital Workprint header files.
@@ -84,7 +85,7 @@ TEST_F(StringTestFixture, ProcessStringProperty) {
 	stringtype->get(&property->m_data, &testStr);
 	ASSERT_STREQ("Test", testStr);
 
-	// Note that memory is allocated for the returned string.
-	delete testStr;
+	// Note that memory is allocated for the returned string, with mlMalloc().
+	mlFree(testStr);
 }
 

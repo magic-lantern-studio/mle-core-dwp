@@ -32,6 +32,7 @@
 // COPYRIGHT_END
 
 // Include DWP test header files.
+#include <mle/mlMalloc.h>
 #include "libdwptest.h"
 
 // Include Magic Lantern Digital Workprint header files.
@@ -101,11 +102,16 @@ MleDwpProperty *findProperty(MleDwpItem *root, const char *name) {
 }
 
 std::string writeString(MleDwpItem *root) {
-    // The output writes into a memory buffer owned by the output object, so
-    // copy it before the object goes away.
     MleDwpOutput out;
     root->write(&out);
-    return std::string(out.getBuffer());
+    return takeBuffer(out);
+}
+
+std::string takeBuffer(MleDwpOutput &out) {
+    char *buffer = out.getBuffer();
+    std::string text(buffer ? buffer : "");
+    mlFree(buffer);
+    return text;
 }
 
 } // namespace dwptest

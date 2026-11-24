@@ -71,6 +71,9 @@ MleDwpConverter::~MleDwpConverter(void)
 	// Call the notification callbacks for those who registered
 	// general interest on all wp items (NULL key).
 	m_notifier.notify(NULL, this, MleDwpDeleteNotification);
+
+	if (m_string)
+		mlFree(m_string);
 }
 
 int
@@ -85,6 +88,8 @@ MleDwpConverter::readContents(MleDwpInput *in)
 		return 1;
 	}
 
+	if (m_string)
+		mlFree(m_string);
 	m_string = strdup(buffer);
 
 	// call the modification notification callbacks for this wp item

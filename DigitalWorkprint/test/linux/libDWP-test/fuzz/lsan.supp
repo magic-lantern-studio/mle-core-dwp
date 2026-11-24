@@ -1,0 +1,4 @@
+# Known and open: a keyword that names a datatype (Vector2, ...) makes the DSO
+# loader call initClass() again, which makes another datatype object and
+# replaces the registered one. Eight bytes per read.
+leak:initClass

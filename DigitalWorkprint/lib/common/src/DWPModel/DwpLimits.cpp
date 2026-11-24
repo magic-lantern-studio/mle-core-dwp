@@ -93,7 +93,7 @@ MleDwpLimits::readContents(MleDwpInput *in)
 		sprintf(msg,"unknown datatype %s",buffer);
 		in->reportError(msg);
 		in->skip();
-		delete msg;
+		delete [] msg;
 		return 1;
 	}
 

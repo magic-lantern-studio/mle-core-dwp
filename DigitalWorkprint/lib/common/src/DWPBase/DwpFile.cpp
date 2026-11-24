@@ -79,7 +79,7 @@ MleDwpFile::~MleDwpFile()
 
 	// Free memory.
 	if ( m_path )
-		delete m_path;
+		delete [] m_path;
 }
 
 
@@ -112,15 +112,16 @@ MleDwpFile::readContents(MleDwpInput *in)
 		// Add the contents to this item as children.
 		while ( read(in,this) )
 			; // Do nothing loop.
+
+		// Close the file. A file that was not opened has already been
+		// closed.
+		in->closeFile();
 	}
-	
-	// Close the file.
-	in->closeFile();
 
 	if ( errString )
 	{
 		in->reportError(errString);
-		delete errString;
+		delete [] errString;
 		return 1;
 	}
 	else
@@ -185,7 +186,7 @@ void
 MleDwpFile::setPath(const char *p)
 {
 	if ( m_path )
-		delete m_path;
+		delete [] m_path;
 	
 	m_path = p ? strcpy(new char[strlen(p) + 1],p) : NULL;
 

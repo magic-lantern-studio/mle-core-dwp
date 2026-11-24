@@ -167,6 +167,13 @@ MleDwpTransform::get(MleDwpDataUnion *data,void *dst) const
 	}
 }
 
+void
+MleDwpTransform::release(MleDwpDataUnion *data) const
+{
+	mlFree(data->m_u.v);
+	data->m_u.v = NULL;
+}
+
 void *
 MleDwpTransform::operator new(size_t tSize)
 {

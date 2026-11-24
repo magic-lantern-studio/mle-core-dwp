@@ -53,10 +53,10 @@
 unsigned int
 MleDwpStrKeyDict::hash(const void *key) const
 {
-	int value = 0;
+	unsigned int value = 0;
 
 	/* Stop at the terminator, which an empty string starts with. */
-	for ( const char *p = (const char *)key; *p; p++ )
+	for ( const unsigned char *p = (const unsigned char *)key; *p; p++ )
 	{
 		/* Rotate left. */
 		value = (value << 8) | (value >> 24);
@@ -112,14 +112,14 @@ MleDwpStrKeyDict::makeEntry(void)
 
 MleDwpStrKeyDictEntry::~MleDwpStrKeyDictEntry()
 {
-	delete (char *)m_key;
+	delete [] (char *)m_key;
 }
 
 
 void
 MleDwpStrKeyDictEntry::setKey(const void *k)
 {
-	delete (char *)m_key;
+	delete [] (char *)m_key;
 
 	m_key = k ? strcpy(new char[strlen((char *)k) + 1],(char *)k) : NULL;
 }

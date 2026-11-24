@@ -1,0 +1,69 @@
+name: Sanitizers (Ubuntu 24.04)
+
+# Build the library and the unit tests with AddressSanitizer and
+# UndefinedBehaviorSanitizer, and run the whole suite (and the fuzz replay)
+# under them, after the Ubuntu build has completed successfully. Any memory
+# error, leak or undefined behavior fails the job.
+on:
+  workflow_run:
+    workflows: [ "Continuous Integration Build (Ubuntu 24.04)" ]
+    types: [ completed ]
+    branches: [ main, master ]
+  workflow_dispatch:  # Allow manual triggers
+
+env:
+  MLE_ROOT: ${{ github.workspace }}/MagicLantern
+  SANITIZE: -fsanitize=address,undefined -fno-sanitize-recover=undefined -fno-omit-frame-pointer
+
+jobs:
+  sanitizers:
+    name: Ubuntu 24.04 ASan + UBSan
+    runs-on: ubuntu-24.04
+    if: github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success'
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.workflow_run.head_sha || github.sha }}
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y build-essential cmake pkg-config libgtest-dev
+
+      # The mle-core-math artifact has the mle-core-math and mle-core-util
+      # libraries and headers. They are not built with the sanitizers.
+      - name: Download mle-core-math artifacts
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh run download \
+            --repo magic-lantern-studio/mle-core-math \
+            --name mle-core-math-ubuntu-24.04-Debug \
+            --dir "$MLE_ROOT"
+
+      # A Debug library, so that assertions are on.
+      - name: Build and install the library with the sanitizers
+        run: |
+          cmake -S DigitalWorkprint/lib/linux -B build/lib -G "Unix Makefiles" \
+            -DCMAKE_BUILD_TYPE=Debug \
+            -DCMAKE_C_FLAGS="$SANITIZE" -DCMAKE_CXX_FLAGS="$SANITIZE" \
+            -DCMAKE_INSTALL_PREFIX="$MLE_ROOT" -DCMAKE_PREFIX_PATH="$MLE_ROOT"
+          cmake --build build/lib
+          cmake --install build/lib
+          chmod +x "$MLE_ROOT"/bin/* 2>/dev/null || true
+
+      - name: Build the unit tests and the fuzz target with the sanitizers
+        run: |
+          cmake -S DigitalWorkprint/test/linux/libDWP-test -B build/test -G "Unix Makefiles" \
+            -DCMAKE_BUILD_TYPE=Debug \
+            -DCMAKE_C_FLAGS="$SANITIZE" -DCMAKE_CXX_FLAGS="$SANITIZE" \
+            -DCMAKE_PREFIX_PATH="$MLE_ROOT"
+          cmake --build build/test --parallel 4
+
+      - name: Run the unit tests and the fuzz replay
+        env:
+          ASAN_OPTIONS: detect_leaks=1:abort_on_error=0
+          UBSAN_OPTIONS: print_stacktrace=1:halt_on_error=1
+        run: ctest --test-dir build/test --output-on-failure

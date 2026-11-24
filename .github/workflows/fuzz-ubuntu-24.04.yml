@@ -1,0 +1,85 @@
+name: Fuzz (Ubuntu 24.04)
+
+# Fuzz the workprint reader with libFuzzer (clang) for a fixed time, starting
+# from the workprints in the test directory. A crash fails the job and the
+# input that caused it is uploaded. Run weekly, or by hand with a longer time.
+#
+# Note: scheduled workflows are switched off by GitHub after 60 days without
+# activity in the repository.
+on:
+  schedule:
+    - cron: "17 4 * * 0"
+  workflow_dispatch:
+    inputs:
+      seconds:
+        description: "Seconds to fuzz"
+        default: "600"
+
+env:
+  MLE_ROOT: ${{ github.workspace }}/MagicLantern
+  FUZZ_DIR: DigitalWorkprint/test/linux/libDWP-test
+  SANITIZE: -fsanitize=address,undefined -fno-omit-frame-pointer
+
+jobs:
+  fuzz:
+    name: libFuzzer (${{ github.event.inputs.seconds || '300' }} s)
+    runs-on: ubuntu-24.04
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y build-essential clang cmake pkg-config libgtest-dev
+
+      - name: Download mle-core-math artifacts
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh run download \
+            --repo magic-lantern-studio/mle-core-math \
+            --name mle-core-math-ubuntu-24.04-Debug \
+            --dir "$MLE_ROOT"
+
+      - name: Build and install the library with the sanitizers
+        env:
+          CC: clang
+          CXX: clang++
+        run: |
+          cmake -S DigitalWorkprint/lib/linux -B build/lib -G "Unix Makefiles" \
+            -DCMAKE_BUILD_TYPE=Debug \
+            -DCMAKE_C_FLAGS="$SANITIZE" -DCMAKE_CXX_FLAGS="$SANITIZE" \
+            -DCMAKE_INSTALL_PREFIX="$MLE_ROOT" -DCMAKE_PREFIX_PATH="$MLE_ROOT"
+          cmake --build build/lib
+          cmake --install build/lib
+
+      - name: Build the fuzzer
+        env:
+          CC: clang
+          CXX: clang++
+        run: |
+          cmake -S $FUZZ_DIR -B build/test -G "Unix Makefiles" \
+            -DCMAKE_BUILD_TYPE=Debug -DDWPTEST_LIBFUZZER=ON \
+            -DCMAKE_PREFIX_PATH="$MLE_ROOT"
+          cmake --build build/test --target fuzzDwpInput
+
+      # The corpus is the workprints in the test directory; new inputs go to
+      # a separate directory.
+      - name: Fuzz
+        env:
+          LSAN_OPTIONS: suppressions=${{ github.workspace }}/DigitalWorkprint/test/linux/libDWP-test/fuzz/lsan.supp
+        run: |
+          mkdir -p corpus-new crashes
+          build/test/fuzzDwpInput corpus-new $FUZZ_DIR/workprints \
+            -dict=$FUZZ_DIR/fuzz/dwp.dict \
+            -max_total_time=${{ github.event.inputs.seconds || '300' }} \
+            -artifact_prefix=crashes/ -timeout=20
+
+      - name: Upload crashes
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: fuzz-crashes
+          path: crashes

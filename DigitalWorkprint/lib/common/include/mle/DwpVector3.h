@@ -80,6 +80,11 @@ class MLE_DWP_API MleDwpVector3 : public MleDwpDatatype
 	virtual void get(MleDwpDataUnion *data,void *dst) const;
 
 	/**
+	 * Release the memory that holds the value.
+	 */
+	virtual void release(MleDwpDataUnion *data) const;
+
+	/**
 	 * Override operator new.
 	 *
 	 * @param tSize The size, in bytes, to allocate.

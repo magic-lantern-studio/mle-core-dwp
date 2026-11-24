@@ -158,6 +158,13 @@ MleDwpRotation::get(MleDwpDataUnion *data,void *dst) const
 	}
 }
 
+void
+MleDwpRotation::release(MleDwpDataUnion *data) const
+{
+	mlFree(data->m_u.v);
+	data->m_u.v = NULL;
+}
+
 void *
 MleDwpRotation::operator new(size_t tSize)
 {

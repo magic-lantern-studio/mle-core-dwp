@@ -74,7 +74,7 @@ MleDwpSet::~MleDwpSet(void)
 	// general interest on all wp items (NULL key).
 	m_notifier.notify(NULL, this, MleDwpDeleteNotification);
 
-	delete m_type;
+	delete [] m_type;
 }
 
 int
@@ -106,7 +106,7 @@ MleDwpSet::readContents(MleDwpInput *in)
 void
 MleDwpSet::setType(const char *t)
 {
-	delete m_type;
+	delete [] m_type;
 
 	m_type = t ? strcpy(new char[strlen(t) + 1],t) : NULL;
 
