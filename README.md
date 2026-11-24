@@ -14,6 +14,11 @@ Actions CI for Ubuntu 24.04 LTS 64-bit
   <img src="https://github.com/magic-lantern-studio/mle-core-dwp/actions/workflows/continuous-integration-ubuntu-24.04.yml/badge.svg" alt="Continuous Integration Ubuntu 24.04 build">
 </a>
 
+Actions unit tests for Ubuntu 24.04 LTS 64-bit
+<a href="https://github.com/magic-lantern-studio/mle-core-dwp/actions/workflows/unit-tests-ubuntu-24.04.yml">
+  <img src="https://github.com/magic-lantern-studio/mle-core-dwp/actions/workflows/unit-tests-ubuntu-24.04.yml/badge.svg" alt="Unit Tests Ubuntu 24.04">
+</a>
+
 Actions CI for Visual Studio 2022
 <a href="https://github.com/magic-lantern-studio/mle-core-dwp/actions/workflows/continuous-integration-windows-msvc17.yml">
   <img src="https://github.com/magic-lantern-studio/mle-core-dwp/actions/workflows/continuous-integration-windows-msvc17.yml/badge.svg" alt="Continuous Integration Windows build">
