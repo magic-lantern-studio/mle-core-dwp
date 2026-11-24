@@ -335,6 +335,7 @@ MleDwpInput::MleDwpInput(int magicFlag)
     m_buffer = NULL;
     m_fp = NULL;
     m_userFp = NULL;
+    m_errorCount = 0;
     m_stack = NULL;
 
     setMagic(magicFlag);
@@ -990,6 +991,8 @@ MleDwpInput::skipComment(void)
 void
 MleDwpInput::reportError(const char *reason)
 {
+    m_errorCount++;
+
     fprintf(stderr,"DWP input error: %s at line %d of %s\n",reason,m_lineno,
         m_stack ? (char *)m_stack->m_path->getPath() : "memory buffer");
 

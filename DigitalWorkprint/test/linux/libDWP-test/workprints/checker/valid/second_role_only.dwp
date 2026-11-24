@@ -1,0 +1,11 @@
+#DWP 1.0 ascii
+( SetDef Mle2dSet )
+( SetDef Mle3dSet )
+( Stage MyStage Mle2dStage ( Set s2 Mle2dSet ) ( Set s3 Mle3dSet ) )
+( ActorDef Two
+  ( RoleSetMapping Role2d Mle2dSet )
+  ( RoleSetMapping Role3d Mle3dSet )
+)
+( Group g MleGroup
+  ( Actor a Two ( RoleBinding Role3d s3 ) )
+)

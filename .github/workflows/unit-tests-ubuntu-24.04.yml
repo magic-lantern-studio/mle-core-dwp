@@ -47,6 +47,8 @@ jobs:
             --repo ${{ github.repository }} \
             --name mle-core-dwp-ubuntu-24.04-${{ matrix.build_type }} \
             --dir "$MLE_ROOT"
+          # An artifact does not keep the permissions of the files in it.
+          chmod +x "$MLE_ROOT"/bin/* 2>/dev/null || true
           ls -R "$MLE_ROOT"
 
       - name: Build unit tests

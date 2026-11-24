@@ -155,7 +155,10 @@ int parseArgs(int argc, char *argv[], ArgStruct *args)
     {
         // The -r option is mutually exclusive to <workprint> specification.
         if (args->dumpRegistry)
+        {
+            fprintf(stderr,"%s\n",usage_str);
             return FALSE;
+        }
 
         if (! args->workprint)
         {
@@ -227,10 +230,12 @@ int main(int argc,char **argv)
             return 1;
         }
     
-        // Read the DWP.
-        MleDwpItem *root = new MleDwpItem;
-        while ( MleDwpItem::read(&in,root) )
-            ;
+        // Read the DWP. Each problem in the input has been reported.
+        MleDwpItem *root = MleDwpItem::readAll(&in);
+        int inputErrors = in.getErrorCount();
+        if (inputErrors > 0)
+            fprintf(stderr, "DwpChecker: file '%s': %d error(s) in the input\n",
+                    args.workprint, inputErrors);
         
         // Check the semantics of the DWP.
         MleDwpChecker checker(root);
@@ -241,6 +246,8 @@ int main(int argc,char **argv)
                     args.workprint, checker.getErrorMsg());
             return err;
         }
+        if (inputErrors > 0)
+            return 1;
 
         // Return status of 0 indicates that there were no known issues with
         // the specified Digital Workprint.

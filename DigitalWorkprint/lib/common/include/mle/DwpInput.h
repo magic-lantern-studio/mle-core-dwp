@@ -342,6 +342,15 @@ class MLE_DWP_API MleDwpInput
 	 * @param str A message string to use to report the error with.
 	 */
 	void reportError(const char *msg);
+
+	/**
+	 * Get the number of errors that have been reported.
+	 *
+	 * @return The number of times <i>reportError()</i> has been called
+	 * is returned.
+	 */
+	int getErrorCount(void) const
+	{ return m_errorCount; }
 	
 	/**
 	 * Attempts to skip to the end of the workprint item.
@@ -410,6 +419,9 @@ class MLE_DWP_API MleDwpInput
 	FILE *m_fp;
 	// The file pointer given to setFilePointer(), if any.
 	FILE *m_userFp;
+
+	// The number of errors that have been reported.
+	int m_errorCount;
 	// The stack of files being processed.
 	MleDwpInputFile *m_stack;
 

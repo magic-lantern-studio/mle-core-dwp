@@ -1,0 +1,15 @@
+#DWP 1.0 ascii
+( SetDef Mle2dSet )
+( Stage MyStage Mle2dStage
+  ( Set 2dSet Mle2dSet )
+)
+( ActorDef LabelActor
+  ( RoleSetMapping LabelRole Mle2dSet )
+)
+( RoleDef LabelRole )
+( ActorTemplate TitleActor MissingActor )
+( Scene scene1 MleScene
+  ( Group group1 MleGroup
+    ( Actor title TitleActor )
+  )
+)

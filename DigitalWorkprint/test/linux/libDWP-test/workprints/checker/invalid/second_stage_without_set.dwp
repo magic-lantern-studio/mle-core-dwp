@@ -1,0 +1,4 @@
+#DWP 1.0 ascii
+( SetDef S )
+( Stage A C ( Set one S ) )
+( Stage B C )

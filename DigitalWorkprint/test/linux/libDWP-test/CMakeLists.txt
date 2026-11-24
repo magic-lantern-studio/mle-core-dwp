@@ -103,13 +103,27 @@ add_library(dwptest SHARED
   libdwptest/testDatatypes.cxx
   libdwptest/testItems.cxx
   libdwptest/testBase.cxx
-  libdwptest/testRoundTrip.cxx)
+  libdwptest/testRoundTrip.cxx
+  libdwptest/testChecker.cxx)
 target_include_directories(dwptest PRIVATE
   $<TARGET_PROPERTY:GTest::gtest,INTERFACE_INCLUDE_DIRECTORIES>)
 
 # The tests find the test workprints by absolute path.
 target_compile_definitions(dwptest PRIVATE
   DWPTEST_WORKPRINT_DIR="${CMAKE_CURRENT_SOURCE_DIR}/workprints")
+
+# The DwpChecker command line tool is tested if it is installed in MLE_ROOT.
+find_program(DWPCHECKER_TOOL
+  NAMES DwpChecker DwpCheckerd
+  HINTS $ENV{MLE_ROOT}/bin
+  NO_DEFAULT_PATH)
+if (DWPCHECKER_TOOL)
+  message(STATUS "Using ${DWPCHECKER_TOOL}")
+  target_compile_definitions(dwptest PRIVATE
+    DWPTEST_CHECKER_TOOL="${DWPCHECKER_TOOL}")
+else()
+  message(STATUS "DwpChecker not found in $ENV{MLE_ROOT}/bin; its tests are not built")
+endif()
 
 # The unit test runner.
 add_executable(exampleProgram exampleProgram/exampleProgram.cxx)

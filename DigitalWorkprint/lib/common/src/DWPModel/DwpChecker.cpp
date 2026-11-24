@@ -104,7 +104,12 @@ MleDwpChecker::~MleDwpChecker()
 
 MlErr MleDwpChecker::check()
 {
-    MLE_ASSERT(m_dwp);
+    // There is nothing to check.
+    if (! m_dwp)
+    {
+        setErrorMsg("There is no Digital Workprint to check.");
+        return 1;
+    }
 
     MlErr err;
     
@@ -146,8 +151,8 @@ MlErr MleDwpChecker::actorsInGroups()
 
     if (problemActor != NULL)
     {
-		char s[200];
-		sprintf(s, "Actor '%s' is not inside any Group", 
+		char s[1024];
+		snprintf(s, sizeof(s), "Actor '%s' is not inside any Group", 
 			problemActor->getName());
 		setErrorMsg(s);
 		return 1;
@@ -171,10 +176,17 @@ MleDwpChecker::getActorClassFromTemplate(MleDwpActorTemplate *templt)
     if (! actorClass)
         return(NULL);
 
-    // Traverse upwards through any/all ancestor tempaltes.
+    // Traverse upwards through any/all ancestor tempaltes. A chain that is
+    // longer than the number of templates in the workprint goes around in a
+    // circle, and has no actor class.
+    MleDwpFinder templateFinder(MleDwpActorTemplate::typeId, NULL, 1);
+    templateFinder.find(m_dwp);
+    unsigned int limit = templateFinder.getNumItems();
     MleDwpActorTemplate *t = getTemplate(templt);
     while (t)
     {
+        if (limit-- == 0)
+            return(NULL);
         actorClass = t->getActorClass();
         t = getTemplate(t);
     }
@@ -232,14 +244,17 @@ MlErr MleDwpChecker::actorsHaveActorDefs()
         const char *actorType = actorList[i]->getActorClass();
 
         // ... resolve ActorTemplate hierarchy ...
-        MleDwpFinder actortemplateFinder(MleDwpActorTemplate::typeId, actorType);
-        MleDwpActorTemplate *t = (MleDwpActorTemplate *)actortemplateFinder.find(m_dwp);
-	if (t)
-            actorType = getActorClassFromTemplate(t);
+        if (actorType)
+        {
+            MleDwpFinder actortemplateFinder(MleDwpActorTemplate::typeId, actorType);
+            MleDwpActorTemplate *t = (MleDwpActorTemplate *)actortemplateFinder.find(m_dwp);
+            if (t)
+                actorType = getActorClassFromTemplate(t);
+        }
 
         // ... and check against each ActorDef found
         actordefFound = FALSE;
-        for (int j= 0; j < (int)actordefCount; j++)
+        for (int j= 0; actorType && j < (int)actordefCount; j++)
 		{
             if (! strcmp(actorType,actordefList[j]->getName()))
 			{
@@ -259,7 +274,7 @@ MlErr MleDwpChecker::actorsHaveActorDefs()
 	{
         char errorMessage[1024];
 
-		sprintf(errorMessage, "Actor %s doesn't have a ActorDef.",
+		snprintf(errorMessage, sizeof(errorMessage), "Actor %s doesn't have a ActorDef.",
 			actorList[i]->getName());
 		setErrorMsg(errorMessage);
 			return 1;
@@ -431,16 +446,7 @@ MlErr MleDwpChecker::actorSetTypeMatches(void)
 {
     MlErr error = MlNoErr;
     MleDwpActor **actorList;
-    unsigned int i, actorCount;
-    MleDwpFinder *dbFinder;
-    MleDwpRoleBinding *binding;
-    const char *setName;
-    MleDwpFinder *setFinder;
-    MleDwpSet *set;
-    MleDwpFinder *defFinder;
-    MleDwpActorDef *actorDef;
-    MleDwpFinder *mappingFinder;
-    MleDwpRoleSetMapping *mapping;
+    unsigned int i, j, actorCount;
 
     MleDwpFinder actorFinder(MleDwpActor::typeId, NULL, 1);
     actorFinder.find(m_dwp);
@@ -450,67 +456,39 @@ MlErr MleDwpChecker::actorSetTypeMatches(void)
 	{
 		// Iterate and check each actor.
 		actorList = (MleDwpActor **) actorFinder.getItems();
-		for (i = 0; i < actorCount; i++)
+		for (i = 0; i < actorCount && error == MlNoErr; i++)
 		{
-			// Find this actor's role binding.
-			dbFinder = new MleDwpFinder(MleDwpRoleBinding::typeId, NULL);
-			binding = (MleDwpRoleBinding *) dbFinder->find(actorList[i]);
-			if (binding != NULL)
-			{
-				setName = binding->getSet();
-
-				// Find set in workprint.
-				setFinder = new MleDwpFinder(MleDwpSet::typeId, setName);
-				setFinder->find(m_dwp);
-				if (setFinder->getNumItems() != 1)
-				{
-					char errorBuffer[1024];
-
-					sprintf(errorBuffer, "Actor %s doesn't have set %s.",
-						actorList[i]->getName(), setName);
-					setErrorMsg(errorBuffer);
-					error = 1;
-					break;
-				}
-
-				set = (MleDwpSet *) setFinder->getItem();
-				MLE_ASSERT(set != NULL);
-			} else
-			{
-				// Not all actors define a role binding.
-				delete dbFinder;
+			// Find this actor's role bindings. Not all actors define one.
+			MleDwpFinder bindingFinder(MleDwpRoleBinding::typeId, NULL, 1);
+			bindingFinder.find(actorList[i]);
+			if (bindingFinder.getNumItems() == 0)
 				continue;
+
+			// Find the actor definition, which may be defined from an actor
+			// template.
+			const char *className = actorList[i]->getActorClass();
+			MleDwpActorDef *actorDef = NULL;
+			if (className)
+			{
+				MleDwpFinder defFinder(MleDwpActorDef::typeId, className);
+				actorDef = (MleDwpActorDef *) defFinder.find(m_dwp);
 			}
-
-			// Find actor definition's role set mapping, if any.
-			defFinder = new MleDwpFinder(MleDwpActorDef::typeId,
-						   actorList[i]->getActorClass());
-			defFinder->find(m_dwp);
-			if (defFinder->getNumItems() > 0)
+			if (actorDef == NULL)
 			{
-				actorDef = (MleDwpActorDef *) defFinder->getItem();
-				MLE_ASSERT(actorDef != NULL);
-			} else
-			{
-				// Must be defined from an actor template.
-				const char * className;
-				MleDwpFinder *atFinder;
-				MleDwpActorTemplate *actorTemplate;
-
-				className = actorList[i]->getActorClass();
-				MLE_ASSERT(className);
-
 				// Look for actor template by that name.
-				atFinder = new MleDwpFinder(MleDwpActorTemplate::typeId, className);
-				atFinder->find(m_dwp);
-				actorTemplate = (MleDwpActorTemplate *) atFinder->getItem();
-				delete atFinder;
+				MleDwpActorTemplate *actorTemplate = NULL;
+				if (className)
+				{
+					MleDwpFinder atFinder(MleDwpActorTemplate::typeId, className);
+					actorTemplate = (MleDwpActorTemplate *) atFinder.find(m_dwp);
+				}
 
 				if (actorTemplate == NULL)
 				{
 					char errorBuffer[1024];
 
-					sprintf(errorBuffer, "Actor %s doesn't have either an %s", actorList[i]->getName(),
+					snprintf(errorBuffer, sizeof(errorBuffer),
+						"Actor %s doesn't have either an %s", actorList[i]->getName(),
 						"ActorDef or an ActorTemplate.");
 					setErrorMsg(errorBuffer);
 					error = 1;
@@ -519,68 +497,93 @@ MlErr MleDwpChecker::actorSetTypeMatches(void)
 				MLE_ASSERT(actorTemplate->isa(MleDwpActorTemplate::typeId));
 
 				// Search up containment for top level template.
-				while (actorTemplate != NULL)
-				{
-					className = actorTemplate->getActorClass();
-					MLE_ASSERT(className != NULL);
-
-					// Look for actor template by that name.
-					atFinder = new MleDwpFinder(MleDwpActorTemplate::typeId,
-								  className);
-					atFinder->find(m_dwp);
-					actorTemplate = (MleDwpActorTemplate *) atFinder->getItem();
-					delete atFinder;
-				}
+				className = getActorClassFromTemplate(actorTemplate);
 
 				// Top actorDef found, parent should be ActorDef
-				MleDwpFinder adFinder(MleDwpActorDef::typeId, className);
-				adFinder.find(m_dwp);
+				if (className)
+				{
+					MleDwpFinder adFinder(MleDwpActorDef::typeId, className);
+					actorDef = (MleDwpActorDef *) adFinder.find(m_dwp);
+				}
 
-				if (adFinder.getNumItems() < 1 ||
-					(actorDef = (MleDwpActorDef *) adFinder.getItem()) == NULL)
+				if (actorDef == NULL)
 				{
 					char errorBuffer[1024];
 
-					sprintf(errorBuffer, "Can't find top actor definition for "
+					snprintf(errorBuffer, sizeof(errorBuffer),
+						"Can't find top actor definition for "
 						"actor %s.  Encountered dead end at %s.",
 						actorList[i]->getName(),
-						className);
+						className ? className : "(circular template)");
 					setErrorMsg(errorBuffer);
 					error = 1;
 					break;
 				}
 			}
 
-			// Find RoleSetMapping in actor definition.
-			mappingFinder = new MleDwpFinder(MleDwpRoleSetMapping::typeId);
-			mappingFinder->find(actorDef);
-			if (mappingFinder->getNumItems() > 0)
-			{
-				// Found a role set mapping, compare forum types.
-				mapping = (MleDwpRoleSetMapping *)
-				mappingFinder->getItem();
-				MLE_ASSERT(mapping != NULL);
+			// Find the role set mappings in the actor definition.
+			MleDwpFinder mappingFinder(MleDwpRoleSetMapping::typeId, NULL, 1);
+			mappingFinder.find(actorDef);
 
-				if (strcmp(set->getType(), mapping->getSet()) != 0)
+			// Check each of the actor's role bindings.
+			MleDwpRoleBinding **bindingList = (MleDwpRoleBinding **) bindingFinder.getItems();
+			for (j = 0; j < bindingFinder.getNumItems(); j++)
+			{
+				MleDwpRoleBinding *binding = bindingList[j];
+				const char *setName = binding->getSet();
+
+				// Find set in workprint.
+				MleDwpSet *set = NULL;
+				if (setName)
+				{
+					MleDwpFinder setFinder(MleDwpSet::typeId, setName);
+					set = (MleDwpSet *) setFinder.find(m_dwp);
+				}
+				if (set == NULL)
 				{
 					char errorBuffer[1024];
 
-					sprintf(errorBuffer,
+					snprintf(errorBuffer, sizeof(errorBuffer), "Actor %s doesn't have set %s.",
+						actorList[i]->getName(), setName ? setName : "(none)");
+					setErrorMsg(errorBuffer);
+					error = 1;
+					break;
+				}
+
+				// Find the role set mapping of this binding's role, if any.
+				MleDwpRoleSetMapping *mapping = NULL;
+				MleDwpItem **mappings = mappingFinder.getItems();
+				for (unsigned int k = 0; k < mappingFinder.getNumItems(); k++)
+				{
+					MleDwpRoleSetMapping *m = (MleDwpRoleSetMapping *) mappings[k];
+					if (m->getRoleClass() && binding->getRoleType() &&
+						strcmp(m->getRoleClass(), binding->getRoleType()) == 0)
+					{
+						mapping = m;
+						break;
+					}
+				}
+
+				// Compare the type of the set to the type the mapping asks for.
+				if (mapping != NULL &&
+					(set->getType() == NULL || mapping->getSet() == NULL ||
+					 strcmp(set->getType(), mapping->getSet()) != 0))
+				{
+					char errorBuffer[1024];
+
+					snprintf(errorBuffer, sizeof(errorBuffer),
 						"The RoleBinding for Actor %s specifies "
 						"set %s of type %s,\nwhich doesn't match the "
 						"set type %s specified in the "
 						"RoleSetMapping in the ActorDef.",
 						actorList[i]->getName(), setName,
-						set->getType(), mapping->getSet());
+						set->getType() ? set->getType() : "(none)",
+						mapping->getSet() ? mapping->getSet() : "(none)");
 					setErrorMsg(errorBuffer);
 					error = 1;
 					break;
 				}
 			}
-
-			delete mappingFinder;
-			delete defFinder;
-			delete dbFinder;
 		} // For each actor.
     }
     
@@ -615,7 +618,7 @@ MlErr MleDwpChecker::oneSetExists(MleDwpStage *stage)
     {
         char	errorMessage[1024];
 
-		sprintf(errorMessage, "Stage %s doesn't have at least one set.",
+		snprintf(errorMessage, sizeof(errorMessage), "Stage %s doesn't have at least one set.",
 			stage->getName());
 		setErrorMsg(errorMessage);
 		return 1;
@@ -654,7 +657,7 @@ MlErr MleDwpChecker::stagesHaveASet(void)
     unsigned int	stageCount, i;
     MleDwpStage **	stageList;
 
-    MleDwpFinder f(MleDwpStage::typeId, NULL);
+    MleDwpFinder f(MleDwpStage::typeId, NULL, 1);
     f.find(m_dwp);
     
     stageCount = f.getNumItems();
@@ -739,7 +742,7 @@ MlErr MleDwpChecker::setsHaveSetDefs()
     MleDwpFinder setFinder(MleDwpSet::typeId);
     MleDwpSetDef **setdefList;
     MleDwpFinder setdefFinder(MleDwpSetDef::typeId);
-    MlBoolean setdefFound = FALSE;
+    MlBoolean setdefFound = TRUE;
 
     // Find Set workprint items.
     setFinder.setFindAll(1);
@@ -762,7 +765,7 @@ MlErr MleDwpChecker::setsHaveSetDefs()
         const char *setType = setList[i]->getType();
 
         setdefFound = FALSE;
-        for (int j= 0; j < (int)setdefCount; j++)
+        for (int j= 0; setType && j < (int)setdefCount; j++)
 		{
             if (! strcmp(setType,setdefList[j]->getName()))
 			{
@@ -781,13 +784,8 @@ MlErr MleDwpChecker::setsHaveSetDefs()
     } else {
         char errorMessage[1024];
 
-		if (setList == NULL)
-		{
-			sprintf(errorMessage, "SetDef or Set not found.");
-		} else {
-		    sprintf(errorMessage, "Set %s doesn't have a SetDef.",
-			        setList[i]->getName());
-		}
+		snprintf(errorMessage, sizeof(errorMessage), "Set %s doesn't have a SetDef.",
+			setList[i]->getName());
 		setErrorMsg(errorMessage);
         return 1;
     }
@@ -804,7 +802,9 @@ MlErr MleDwpChecker::hasScenes()
 
 static int _groupNameCompare( const void *s1, const void *s2 )
 {
-    return strcmp((*(MleDwpGroup **)s1)->getName(),(*(MleDwpGroup **)s2)->getName());
+    const char *n1 = (*(MleDwpGroup **)s1)->getName();
+    const char *n2 = (*(MleDwpGroup **)s2)->getName();
+    return strcmp(n1 ? n1 : "", n2 ? n2 : "");
 }
 
 
@@ -907,7 +907,7 @@ unsigned int MleDwpChecker::getFlags(void)
 
 void MleDwpChecker::setFlags(unsigned int value,unsigned int mask)
 {
-    m_flags |= (value & mask);
+    m_flags = (m_flags & ~mask) | (value & mask);
 }
 
 
