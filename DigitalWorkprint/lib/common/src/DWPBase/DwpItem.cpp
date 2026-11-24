@@ -1014,6 +1014,35 @@ int MleDwpItem::write(MleDwpOutput *out,int writeChildren)
 	If the class has not been registered, a special MleDwpUnknown item
 	is instanced in its place.
 */
+// Items are read, written, copied and deleted recursively, so the number of
+// items that can be nested is limited. A workprint is not nested more than a
+// few items deep, but one that is nested without end must not use up the stack.
+static const int MLE_DWP_MAX_NESTING = 256;
+
+// Skip to the right paren that ends an item, after its left paren has been
+// read, going past the items that are inside it.
+static void skipToEndOfItem(MleDwpInput *in)
+{
+	int nesting = 1;
+	bool quoted = false;
+	char c;
+
+	while ( nesting > 0 )
+	{
+		if ( in->readChar(&c) )
+		{
+			in->reportError("unexpected end of file");
+			return;
+		}
+		if ( c == '"' )
+			quoted = !quoted;
+		else if ( ! quoted && c == '(' )
+			nesting++;
+		else if ( ! quoted && c == ')' )
+			nesting--;
+	}
+}
+
 MleDwpItem *
 MleDwpItem::read(MleDwpInput *in,MleDwpItem *parent)
 {
@@ -1076,6 +1105,17 @@ MleDwpItem::read(MleDwpInput *in,MleDwpItem *parent)
 	/* add to parent */
 	if ( parent )
 		parent->insertChild(item);
+
+	/* refuse to go deeper than the limit, and go on with the next item */
+	int depth = 0;
+	for ( MleDwpItem *p = parent; p; p = p->m_parent )
+		depth++;
+	if ( depth >= MLE_DWP_MAX_NESTING )
+	{
+		in->reportError("items are nested too deeply");
+		skipToEndOfItem(in);
+		return item;
+	}
 
 	// look for any tags
 	while ( 1 )
