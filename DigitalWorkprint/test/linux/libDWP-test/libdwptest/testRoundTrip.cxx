@@ -60,12 +60,6 @@
 
 namespace roundtrip {
 
-// Known bugs are tests that are skipped, with the reason, unless the
-// environment variable DWPTEST_RUN_KNOWN_BUGS is set. Setting it runs them, so
-// that a fix can be checked.
-#define KNOWN_BUG(REASON) \
-	do { if (getenv("DWPTEST_RUN_KNOWN_BUGS") == NULL) GTEST_SKIP() << "Known bug: " << REASON; } while (0)
-
 // The files of the corpus, sorted.
 std::vector<std::string> corpusFiles() {
 	std::vector<std::string> names;
@@ -279,12 +273,10 @@ TEST(CorpusFilesTest, TheCorpusIsThere) {
 // Reading from a FILE.
 
 TEST(InputFromAFilePointerTest, IncludeDoesNotEndTheInput) {
-	// When an included file is closed and there is no file stack, the input
-	// has a file pointer of NULL and nothing to read: an assertion in a debug
+	// When an included file is closed the input goes back to the file pointer
+	// it was given. It was set to NULL, which was an assertion in a debug
 	// build, and "unexpected end of file" with the rest of the workprint lost
 	// otherwise.
-	KNOWN_BUG("MleDwpInput::closeFile() sets the file pointer to NULL when the file stack is empty, "
-		"which discards a pointer given to setFilePointer().");
 	char dirName[] = "/tmp/dwpfpXXXXXX";
 	ASSERT_TRUE(mkdtemp(dirName) != NULL);
 	std::string dir = dirName;
@@ -337,8 +329,9 @@ TEST(MediaTestWorkprint, ALineBeforeTheHeaderIsNotAWorkprint) {
 }
 
 TEST(CopyOfTheRootTest, WritesTheSameTextAsTheRoot) {
-	KNOWN_BUG("MleDwpInclude::copy() always makes an MleDwpInclude, so a copy of the root of a "
-		"workprint is written as ( Include file ) and not as its children.");
+	// The root of a workprint is an Include that does not write itself, and
+	// its copy is the same kind of item. It was an ordinary Include, which was
+	// written as ( Include file ).
 	Loaded l = loadText("#DWP 1.0 ascii\n( ActorDef a )\n( ActorDef b )\n");
 	ASSERT_TRUE(l.root != NULL);
 	dwptest::WorkprintPtr copy(l.root->copy());
@@ -547,12 +540,13 @@ std::vector<BadInput> badInputs() {
 	// Includes.
 	v.push_back({ "IncludeOfAMissingFile",   withHeader("( Include /nonexistent/dir/none.dwp )"), true });
 	v.push_back({ "IncludeWithoutAName",     withHeader("( Include )"), true });
-	v.push_back({ "IncludeOfADirectory",     withHeader("( Include /tmp )"), false });
+	v.push_back({ "IncludeOfADirectory",     withHeader("( Include /tmp )"), true });
 	// Input that is not text.
 	v.push_back({ "BinaryBytes",             withHeader(std::string("( ActorDef \xff\xfe\x01\x02 )")), false });
 	v.push_back({ "OnlyTheHeader",           "#DWP 1.0 ascii", false });
-	v.push_back({ "EmptyInput",              "", false });
-	v.push_back({ "TruncatedHeader",         "#D", false });
+	v.push_back({ "EmptyInput",              "", true });
+	v.push_back({ "TruncatedHeader",         "#D", true });
+	v.push_back({ "HeaderCutShort",          "#DWP", false });
 	v.push_back({ "OnlyWhitespace",          "   \n\n\t", true });
 	// Sizes.
 	v.push_back({ "VeryLongName",            withHeader("( ActorDef " + std::string(100000, 'a') + " )"), false });
@@ -560,7 +554,9 @@ std::vector<BadInput> badInputs() {
 	v.push_back({ "VeryLongLine",            withHeader(std::string(100000, ' ') + "( ActorDef a )"), false });
 	v.push_back({ "VeryLongComment",         withHeader("# " + std::string(100000, 'c') + "\n( ActorDef a )"), false });
 	v.push_back({ "ManySiblings",            [] { std::string s = "#DWP 1.0 ascii\n"; for (int i = 0; i < 20000; i++) s += "( ActorDef a )\n"; return s; }(), false });
-	v.push_back({ "DeepNesting",             nested(3000), false });
+	v.push_back({ "DeepNesting",             nested(3000), true });
+	v.push_back({ "VeryDeepNesting",         nested(100000), true });
+	v.push_back({ "UnterminatedVeryDeepNesting", [] { std::string s = "#DWP 1.0 ascii\n"; for (int i = 0; i < 100000; i++) s += "( Group g MleGroup\n"; return s; }(), true });
 	v.push_back({ "LongItemKeyword",         withHeader("( " + std::string(200, 'k') + " x )"), false });
 	return v;
 }
@@ -643,23 +639,133 @@ TEST(BadInputKeptTest, EmbeddedNulEndsTheInput) {
 }
 
 // ---------------------------------------------------------------------------
-// Known bugs found by the input tests.
+// An item keyword is also the name of a library that may define the item, and
+// the names of the library and its entry point are built in buffers of 256
+// bytes. A keyword that is too long to be a file name is an unknown item.
 
-TEST(KnownBugTest, ALongItemKeywordDoesNotSmashTheStack) {
-	KNOWN_BUG("MleDsoLoader::loadClass() formats the item keyword into a 256 byte buffer with sprintf(), so "
-		"a keyword of about 250 characters or more in a workprint overwrites the stack.");
-	EXPECT_EXIT(readAndLeave(withHeader("( " + std::string(300, 'k') + " x )")), ::testing::ExitedWithCode(0), "");
+TEST(ItemKeywordTest, LongKeywordsAreUnknownItems) {
+	for (size_t length : { 100, 249, 250, 252, 253, 256, 300, 1000 }) {
+		std::string keyword(length, 'k');
+		EXPECT_EXIT(readAndLeave(withHeader("( " + keyword + " x )")), ::testing::ExitedWithCode(0), "") << length;
+	}
 }
 
-TEST(KnownBugTest, VeryDeepNestingDoesNotOverflowTheStack) {
-	KNOWN_BUG("Items are read, written and deleted recursively, so a workprint nested 10000 deep or more "
-		"overflows the stack.");
-	EXPECT_EXIT(readAndLeave(nested(100000)), ::testing::ExitedWithCode(0), "");
+TEST(ItemKeywordTest, LongKeywordIsKeptAndWrittenBack) {
+	std::string keyword(300, 'k');
+	Loaded l;
+	std::string text;
+	// In a process of its own, as a bug in a library would be a crash.
+	EXPECT_EXIT({
+			dwptest::WorkprintPtr root = dwptest::loadString(withHeader("( " + keyword + " x )\n( ActorDef after )\n"));
+			std::string out = dwptest::writeString(root.get());
+			bool kept = out.find("( " + keyword + " x )") != std::string::npos &&
+				out.find("( ActorDef after )") != std::string::npos;
+			exit(kept ? 0 : 1);
+		}, ::testing::ExitedWithCode(0), "");
 }
 
-TEST(KnownBugTest, EmptyInputIsAnError) {
-	KNOWN_BUG("MleDwpInput::readMagic() stops at the end of the input as if the header had matched, so empty "
-		"input, a truncated header such as \"#D\", and a directory are accepted without an error.");
+// ---------------------------------------------------------------------------
+// Nesting. Items are read, written, copied and deleted recursively, so a
+// workprint can be nested only so deep. The limit is 255 items inside the root.
+
+namespace roundtrip {
+// The number of items down the first child of each, from the root.
+int depthOf(MleDwpItem *root) {
+	int depth = 0;
+	for (MleDwpItem *item = root->getFirstChild(); item; item = item->getFirstChild())
+		depth++;
+	return depth;
+}
+}
+
+TEST(NestingTest, DeepButNotTooDeepIsRead) {
+	Loaded l = loadText(nested(255));
+	ASSERT_TRUE(l.root != NULL);
+	EXPECT_EQ("", l.errors);
+	EXPECT_EQ(255, depthOf(l.root.get()));
+}
+
+TEST(NestingTest, OneTooManyIsReportedAndLeftEmpty) {
+	Loaded l = loadText(nested(256));
+	ASSERT_TRUE(l.root != NULL);
+	EXPECT_NE(std::string::npos, l.errors.find("items are nested too deeply")) << l.errors.substr(0, 300);
+	EXPECT_EQ(256, depthOf(l.root.get()));
+	// What is past the limit is not read.
+	MleDwpItem *last = l.root.get();
+	while (last->getFirstChild()) last = last->getFirstChild();
+	EXPECT_TRUE(last->getFirstChild() == NULL);
+}
+
+TEST(NestingTest, TooDeepIsReportedOnceAndTheRestIsRead) {
+	// The items past the limit are skipped as a group, and reading goes on with
+	// what follows them.
+	Loaded l = loadText(nested(1000) + "( ActorDef after )\n");
+	ASSERT_TRUE(l.root != NULL);
+	size_t errors = 0;
+	for (size_t pos = l.errors.find("items are nested too deeply"); pos != std::string::npos;
+			pos = l.errors.find("items are nested too deeply", pos + 1))
+		errors++;
+	EXPECT_EQ(1u, errors) << l.errors.substr(0, 300);
+	EXPECT_EQ(2u, [&] { size_t n = 0; for (MleDwpItem *c = l.root->getFirstChild(); c; c = c->getNext()) n++; return n; }());
+	EXPECT_STREQ("after", l.root->getLastChild()->getName());
+}
+
+TEST(NestingTest, TheSkippedItemsAreNotMistakenForTheEndOfAnItem) {
+	// Parentheses in a string are not the end of an item.
+	std::string text = nested(255);
+	text.insert(text.find("MleGroup\n", text.rfind("( Group")) + 9, "( Property s string \"))((\" ) ( Actor a b )\n");
+	// Put the extra items in the deepest group, which is too deep for them.
+	Loaded l = loadText(text + "( ActorDef after )\n");
+	ASSERT_TRUE(l.root != NULL);
+	EXPECT_STREQ("after", l.root->getLastChild()->getName());
+}
+
+TEST(NestingTest, SiblingsDoNotCountAsDepth) {
+	std::string text = "#DWP 1.0 ascii\n( Group g MleGroup\n";
+	for (int i = 0; i < 5000; i++)
+		text += "( Group h MleGroup )\n";
+	text += ")\n";
+	Loaded l = loadText(text);
+	ASSERT_TRUE(l.root != NULL);
+	EXPECT_EQ("", l.errors);
+	EXPECT_EQ(2, depthOf(l.root.get()));
+}
+
+TEST(NestingTest, DeepestWorkprintCanBeWrittenCopiedAndDeleted) {
+	Loaded l = loadText(nested(255));
+	ASSERT_TRUE(l.root != NULL);
+	std::string text = dwptest::writeString(l.root.get());
+	dwptest::WorkprintPtr copy(l.root->getFirstChild()->copy());
+	ASSERT_TRUE(copy != NULL);
+	EXPECT_EQ(text.substr(0, 40), dwptest::writeString(copy.get()).substr(0, 40));
+	Loaded again = loadText(text);
+	ASSERT_TRUE(again.root != NULL);
+	EXPECT_EQ(255, depthOf(again.root.get()));
+	// Everything is deleted when the roots go out of scope.
+}
+
+TEST(NestingTest, IncludesCountToo) {
+	// A file that is included is read inside the item that includes it.
+	char dirName[] = "/tmp/dwpnestXXXXXX";
+	ASSERT_TRUE(mkdtemp(dirName) != NULL);
+	std::string dir = dirName;
+	std::string text = "#DWP 1.0 ascii\n( ActorDef end )\n";
+	for (int i = 0; i < 300; i++) {
+		std::string name = dir + "/f" + std::to_string(i) + ".dwp";
+		std::ofstream(name) << text;
+		text = "#DWP 1.0 ascii\n( Include " + name + " )\n";
+	}
+	RoundTripFixture fixture;
+	Loaded l = loadText(text);
+	std::filesystem::remove_all(dir);
+	ASSERT_TRUE(l.root != NULL);
+	EXPECT_NE(std::string::npos, l.errors.find("items are nested too deeply")) << l.errors.substr(0, 300);
+}
+
+// ---------------------------------------------------------------------------
+// The end of the input before the header is complete.
+
+TEST(HeaderTest, InputThatEndsBeforeTheHeaderIsNotAWorkprint) {
 	for (const char *text : { "", "#", "#D", "#DW" }) {
 		Loaded l = loadText(text);
 		EXPECT_TRUE(l.root == NULL) << "[" << text << "]";
@@ -667,18 +773,152 @@ TEST(KnownBugTest, EmptyInputIsAnError) {
 	}
 }
 
-TEST(KnownBugTest, SavingAnIncludeThatDidNotLoadKeepsTheFile) {
-	KNOWN_BUG("MleDwpInclude::write() opens its file for writing even when reading it failed, so saving a "
-		"workprint truncates an included file that has no header.");
-	char dirName[] = "/tmp/dwpkeepXXXXXX";
+TEST(HeaderTest, HeaderWithNothingAfterItIsAnEmptyWorkprint) {
+	for (const char *text : { "#DWP", "#DWP\n", "#DWP 1.0 ascii" }) {
+		Loaded l = loadText(text);
+		ASSERT_TRUE(l.root != NULL) << text;
+		EXPECT_EQ("", l.errors) << text;
+		EXPECT_TRUE(l.root->getFirstChild() == NULL) << text;
+	}
+}
+
+TEST(HeaderTest, EmptyFileIsNotAWorkprint) {
+	std::string path = "/tmp/dwpempty" + std::to_string(getpid()) + ".dwp";
+	{ std::ofstream out(path); }
+	Loaded l = loadFile(path);
+	std::remove(path.c_str());
+	EXPECT_TRUE(l.root == NULL);
+}
+
+TEST(HeaderTest, DirectoryIsNotAWorkprint) {
+	Loaded l = loadFile("/tmp");
+	EXPECT_TRUE(l.root == NULL);
+}
+
+TEST(HeaderTest, EmptyIncludedFileIsReported) {
+	char dirName[] = "/tmp/dwpemptyincXXXXXX";
 	ASSERT_TRUE(mkdtemp(dirName) != NULL);
 	std::string dir = dirName;
+	{ std::ofstream out(dir + "/empty.dwp"); }
+	Loaded l = loadText(withHeader("( Include " + dir + "/empty.dwp )\n( ActorDef after )\n"));
+	std::filesystem::remove_all(dir);
+	ASSERT_TRUE(l.root != NULL);
+	EXPECT_NE(std::string::npos, l.errors.find("error opening included file")) << l.errors;
+	EXPECT_STREQ("after", l.root->getLastChild()->getName());
+}
+
+// ---------------------------------------------------------------------------
+// An include that could not be read is saved as the include it was.
+
+namespace roundtrip {
+std::string tempDir(const char *name) {
+	std::string pattern = std::string("/tmp/") + name + "XXXXXX";
+	std::vector<char> buffer(pattern.begin(), pattern.end());
+	buffer.push_back('\0');
+	if (mkdtemp(buffer.data()) == NULL)
+		return "";
+	return buffer.data();
+}
+}
+
+TEST(IncludeSaveTest, FileThatCouldNotBeReadIsNotEmptied) {
+	std::string dir = tempDir("dwpkeep");
+	ASSERT_FALSE(dir.empty());
 	std::string inc = dir + "/notaworkprint.txt";
 	{ std::ofstream(inc) << "Notes that are not a workprint.\n"; }
 	Loaded l = loadText(withHeader("( Include " + inc + " )\n"));
 	ASSERT_TRUE(l.root != NULL);
-	dwptest::writeString(l.root.get());
+	EXPECT_NE(std::string::npos, l.errors.find("error opening included file")) << l.errors;
+	std::string text = dwptest::writeString(l.root.get());
 	std::string after = readFile(inc);
 	std::filesystem::remove_all(dir);
 	EXPECT_EQ("Notes that are not a workprint.\n", after);
+	// The include is still in the workprint.
+	EXPECT_NE(std::string::npos, text.find("( Include " + inc + " )")) << text;
+}
+
+TEST(IncludeSaveTest, MissingFileIsNotCreated) {
+	std::string dir = tempDir("dwpmissing");
+	ASSERT_FALSE(dir.empty());
+	std::string inc = dir + "/missing.dwp";
+	Loaded l = loadText(withHeader("( Include " + inc + " )\n"));
+	ASSERT_TRUE(l.root != NULL);
+	dwptest::writeString(l.root.get());
+	bool created = std::filesystem::exists(inc);
+	std::filesystem::remove_all(dir);
+	EXPECT_FALSE(created);
+}
+
+TEST(IncludeSaveTest, CopyOfAnIncludeThatCouldNotBeReadIsNotEmptied) {
+	std::string dir = tempDir("dwpcopy");
+	ASSERT_FALSE(dir.empty());
+	std::string inc = dir + "/notaworkprint.txt";
+	{ std::ofstream(inc) << "Keep me.\n"; }
+	Loaded l = loadText(withHeader("( Include " + inc + " )\n"));
+	ASSERT_TRUE(l.root != NULL);
+	dwptest::WorkprintPtr copy(l.root->getFirstChild()->copy());
+	ASSERT_TRUE(copy != NULL);
+	dwptest::writeString(copy.get());
+	std::string after = readFile(inc);
+	std::filesystem::remove_all(dir);
+	EXPECT_EQ("Keep me.\n", after);
+}
+
+TEST(IncludeSaveTest, ChildrenAddedToAnIncludeThatCouldNotBeReadAreSaved) {
+	// Once there is something to save, it is saved.
+	std::string dir = tempDir("dwpadd");
+	ASSERT_FALSE(dir.empty());
+	std::string inc = dir + "/new.dwp";
+	Loaded l = loadText(withHeader("( Include " + inc + " )\n"));
+	ASSERT_TRUE(l.root != NULL);
+	Loaded extra = loadText(withHeader("( ActorDef added )\n"));
+	MleDwpItem *child = extra.root->getFirstChild();
+	extra.root->removeChild(child);
+	l.root->getFirstChild()->insertChild(child, NULL);
+	dwptest::writeString(l.root.get());
+	std::string saved = readFile(inc);
+	std::filesystem::remove_all(dir);
+	EXPECT_NE(std::string::npos, saved.find("( ActorDef added")) << saved;
+}
+
+TEST(IncludeSaveTest, IncludeThatWasReadIsSavedWithItsChildren) {
+	std::string dir = tempDir("dwpread");
+	ASSERT_FALSE(dir.empty());
+	std::string inc = dir + "/inc.dwp";
+	{ std::ofstream(inc) << "#DWP 1.0 ascii\n( ActorDef a )\n( ActorDef b )\n"; }
+	Loaded l = loadText(withHeader("( Include " + inc + " )\n"));
+	ASSERT_TRUE(l.root != NULL);
+	std::remove(inc.c_str());
+	dwptest::writeString(l.root.get());
+	std::string saved = readFile(inc);
+	std::filesystem::remove_all(dir);
+	EXPECT_NE(std::string::npos, saved.find("( ActorDef a")) << saved;
+	EXPECT_NE(std::string::npos, saved.find("( ActorDef b")) << saved;
+}
+
+TEST(IncludeSaveTest, PopulateOfAMissingFileIsNotEmptied) {
+	std::string dir = tempDir("dwppop");
+	ASSERT_FALSE(dir.empty());
+	std::string inc = dir + "/inc.dwp";
+	{ std::ofstream(inc) << "#DWP 1.0 ascii\n( ActorDef a )\n"; }
+	Loaded l = loadText(withHeader("( Include " + inc + " )\n"));
+	ASSERT_TRUE(l.root != NULL);
+	MleDwpInclude *include = (MleDwpInclude *)l.root->getFirstChild();
+	{ std::ofstream(inc) << "Not a workprint any more.\n"; }
+	::testing::internal::CaptureStderr();
+	EXPECT_NE(0, include->populate());
+	::testing::internal::GetCapturedStderr();
+	dwptest::writeString(l.root.get());
+	std::string after = readFile(inc);
+	std::filesystem::remove_all(dir);
+	EXPECT_EQ("Not a workprint any more.\n", after);
+}
+
+TEST(CopyOfTheRootTest, KeepsTheClassOfTheIncludeItCopies) {
+	Loaded l = loadText(withHeader("( ActorDef a )\n"));
+	ASSERT_TRUE(l.root != NULL);
+	dwptest::WorkprintPtr copy(l.root->copy());
+	ASSERT_TRUE(copy != NULL);
+	EXPECT_EQ(std::string(l.root->getTypeName()), std::string(copy->getTypeName()));
+	EXPECT_EQ(l.root->getTypeId(), copy->getTypeId());
 }
