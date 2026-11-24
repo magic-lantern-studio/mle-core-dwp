@@ -114,7 +114,14 @@ MleDwpProperty::readContents(MleDwpInput *in)
 		return 1;
 	}
 
-	m_data.m_datatype->read(in,&m_data);
+	if ( m_data.m_datatype->read(in,&m_data) )
+	{
+		// Report the error, since not every datatype does, and skip
+		// the rest of the item.
+		in->reportError("error reading Property value");
+		in->skip();
+		return 1;
+	}
 
 	// Call the modification notification callbacks for this dwp item.
 	notify(MleDwpChangeNotification);
