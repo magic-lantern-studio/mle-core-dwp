@@ -55,13 +55,15 @@ MleDwpStrKeyDict::hash(const void *key) const
 {
 	int value = 0;
 
-	do {
+	/* Stop at the terminator, which an empty string starts with. */
+	for ( const char *p = (const char *)key; *p; p++ )
+	{
 		/* Rotate left. */
 		value = (value << 8) | (value >> 24);
 
 		/* Add character. */
-		value += *(char *)key;
-	} while ( *(char *)(key = (char *)key + 1) );
+		value += *p;
+	}
 
 	return value;
 }
