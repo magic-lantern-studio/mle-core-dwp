@@ -391,6 +391,43 @@ MleDwpInput::readMagic(void)
 }
 
 
+// Returns true if the file on the top of the stack is also open further down,
+// which means that it has been included by itself.
+static bool isAlreadyOpen(const MleDwpInputFile *top)
+{
+    if ( top->m_path == NULL )
+        return false;
+
+    char thisFile[4096];
+    char otherFile[4096];
+#if defined(_WINDOWS)
+    if ( _fullpath(thisFile,(const char *)top->m_path->getPlatformPath(),sizeof(thisFile)) == NULL )
+        return false;
+#else
+    if ( realpath((const char *)top->m_path->getPlatformPath(),thisFile) == NULL )
+        return false;
+#endif
+
+    for ( const MleDwpInputFile *file = top->m_next; file; file = file->m_next )
+    {
+        if ( file->m_fp == NULL || file->m_path == NULL )
+            continue;
+#if defined(_WINDOWS)
+        if ( _fullpath(otherFile,(const char *)file->m_path->getPlatformPath(),sizeof(otherFile)) == NULL )
+            continue;
+        if ( _stricmp(thisFile,otherFile) == 0 )
+            return true;
+#else
+        if ( realpath((const char *)file->m_path->getPlatformPath(),otherFile) == NULL )
+            continue;
+        if ( strcmp(thisFile,otherFile) == 0 )
+            return true;
+#endif
+    }
+    return false;
+}
+
+
 /*
  * This function opens a file for input.  Calling this function
  * more than once creates a file stack.
@@ -416,6 +453,15 @@ MleDwpInput::openFile(const char *filename)
     // Check for a successful file open.
     if ( m_fp )
     {
+        // A file that is already open has included itself, directly or
+        // through other files, and would be read until the stack ran out.
+        if ( isAlreadyOpen(m_stack) )
+        {
+            closeFile();
+            reportError("file includes itself");
+            return 1;
+        }
+
         // and if this is a real workprint file.
         if ( readMagic() )
         {
