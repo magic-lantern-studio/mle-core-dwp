@@ -102,7 +102,8 @@ add_library(dwptest SHARED
   libdwptest/testWorkprint.cxx
   libdwptest/testDatatypes.cxx
   libdwptest/testItems.cxx
-  libdwptest/testBase.cxx)
+  libdwptest/testBase.cxx
+  libdwptest/testRoundTrip.cxx)
 target_include_directories(dwptest PRIVATE
   $<TARGET_PROPERTY:GTest::gtest,INTERFACE_INCLUDE_DIRECTORIES>)
 

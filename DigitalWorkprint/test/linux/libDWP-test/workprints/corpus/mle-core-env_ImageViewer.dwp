@@ -1,0 +1,32 @@
+#DWP 1.0 ascii
+( Include MleJ2dSet.wpd )
+( Stage +rehearsal +inventor inventor MleIvStage
+   ( Set 2dSet Mle2dSet )
+)
+( Stage +android MyStage Mle2dStage 
+  ( Set 2dSet Mle2dSet
+    ( Property position MlVector2 0 0 ) 
+    ( Property size MlVector2 640 480 ) 
+  ) 
+)
+( Include MleImageActor.wpd ) 
+( Include MleImageRole.wpd )
+( Scene Scene1 MleScene 
+	( Package com.wizzer.mle.runtime.core ) 
+	( Group g0 MleGroup 
+		( Package com.wizzer.mle.runtime.core ) 
+		( Actor a0 MleImageActor 
+			( Property filename MediaRef logoImage ) 
+			( RoleBinding MleImageRole 2dSet )
+		) 
+	) 
+) 
+( MediaRef +android logoImage MleImageMediaRef
+	( Package com.wizzer.mle.parts.mrefs ) 
+	( MediaRefSource 
+		( Media 0 logo media/WwLogo.gif ) 
+	) 
+	( MediaRefTarget +android 0 
+		( Media 0 logo wwlogo ) 
+	) 
+) 

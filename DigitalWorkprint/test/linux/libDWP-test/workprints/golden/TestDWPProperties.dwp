@@ -1,0 +1,38 @@
+#DWP 1.0 ascii 
+( Include MleIv2dSet.wpf ) 
+( Stage MyStage MleIvStage 
+	( Set 2dSet Mle2dSet 
+		( Property position MlVector2 0 0 ) 
+		( Property size MlVector2 640 480 ) 
+	) 
+) 
+( ActorDef TestActor 
+	( HeaderFile actors/TestActor.h ) 
+	( PropertyDef stringTest string ) 
+	( PropertyDef intTest int ) 
+	( PropertyDef floatTest float ) 
+	( PropertyDef vector2Test MlVector2 ) 
+	( PropertyDef vector3Test MlVector3 ) 
+	( PropertyDef vector4Test MlVector4 ) 
+	( PropertyDef floatArrayTest FloatArray ) 
+	( RoleSetMapping TestRole Mle2dSet ) 
+) 
+( RoleDef TestRole 
+	( HeaderFile roles/TestRole.h ) 
+) 
+( Scene testscene MleScene 
+	( HeaderFile mle/MleScene.h ) 
+	( Group testgroup MleGroup 
+		( HeaderFile mle/MleGroup.h ) 
+		( Actor test TestActor 
+			( Property stringTest string Test ) 
+			( Property intTest int 100 ) 
+			( Property floatTest float 0.25 ) 
+			( Property vector2Test MlVector2 50 50 ) 
+			( Property vector3Test MlVector3 50 50 50 ) 
+			( Property vector4Test MlVector4 50 50 50 50 ) 
+			( Property floatArrayTest FloatArray [ 1 , 2 , 3 , 4 , 5 ] ) 
+			( RoleBinding TestRole 2dSet ) 
+		) 
+	) 
+) 

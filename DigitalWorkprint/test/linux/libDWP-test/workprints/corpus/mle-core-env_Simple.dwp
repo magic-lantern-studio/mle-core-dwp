@@ -1,0 +1,17 @@
+#DWP 1.0 ascii
+( Include  $MLE_WORKPRINTS/Parts/sets/android/workprints/MleAndroid2dSet.wpf )
+( Stage +rehearsal +inventor inventor MleIvStage
+   ( Set 2dSet Mle2dSet )
+)
+( Stage +android MyStage Mle2dStage 
+  ( Set 2dSet Mle2dSet
+    ( Property position MlVector2 0 0 ) 
+    ( Property size MlVector2 320 480 ) 
+  ) 
+) 
+( Scene  scene1 MleScene
+  ( Package  com.wizzer.mle.runtime.core )
+  ( Group  group1 MleGroup
+    ( Package com.wizzer.mle.runtime.core )
+  )
+)

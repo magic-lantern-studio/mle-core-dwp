@@ -1,0 +1,30 @@
+#DWP 1.0 ascii 
+( Include MleJ2dSet.wpd )
+( Stage +java2d MyStage Mle2dStage 
+	( Set MySet Mle2dSet
+		( Package com.wizzer.mle.runtime.core )
+		( Property position MlVector2 0 0 ) 
+		( Property size MlVector2 640 480 ) 
+	) 
+) 
+( Include MleImageActor.wpd ) 
+( Include MleImageRole.wpd )
+( Scene Scene1 MleScene 
+	( Package com.wizzer.mle.runtime.core ) 
+	( Group g0 MleGroup 
+		( Package com.wizzer.mle.runtime.core ) 
+		( Actor a0 MleImageActor 
+			( Property filename MediaRef logoImage ) 
+			( RoleBinding MleImageRole MySet )
+		) 
+	) 
+) 
+( MediaRef +java2d logoImage MleImageMediaRef
+	( Package com.wizzer.mle.parts.mrefs ) 
+	( MediaRefSource 
+		( Media 0 logo media/WwLogo.gif ) 
+	) 
+	( MediaRefTarget +java2d 0 
+		( Media 0 logo media/WwLogo.gif ) 
+	) 
+) 

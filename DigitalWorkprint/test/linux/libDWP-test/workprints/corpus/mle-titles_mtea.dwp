@@ -1,0 +1,88 @@
+#DWP 1.0 ascii 
+( Include $MLE_WORKPRINTS/Parts/sets/brender/workprints/MleBr3dSet.wpf )
+( Stage +rehearsal +inventor inventor MleIvStage 
+	( Set teaSet Mle3dSet ) 
+) 
+( Stage +brender +win32 brender MlePCBrStage 
+	( Set teaSet Mle3dSet 
+		( Property position MlVector2 0 0 ) 
+		( Property size MlVector2 320 240 ) 
+	) 
+) 
+( Include $MLE_WORKPRINTS/Titles/mtea/src/SpinnerActor.wpd ) 
+( Include $MLE_WORKPRINTS/Parts/actors/workprints/Mle3dCameraActor.wpd ) 
+( Include $MLE_WORKPRINTS/Parts/actors/workprints/MleEscapeActor.wpd )
+( Include $MLE_WORKPRINTS/Parts/roles/workprints/Mle3dRole.wpd )
+( Scene Scene1 MleScene 
+	( HeaderFile mle/MleScene.h ) 
+	( Package com.wizzer.auteur.mle.runtime.core ) 
+	( Group g0 MleGroup 
+		( HeaderFile mle/MleGroup.h ) 
+		( Package com.wizzer.auteur.mle.runtime.core ) 
+		( Actor escapeKeyActor MleEscapeActor ) 
+		( Actor a0 SpinnerActor 
+			( Property model MediaRef teapot ) 
+			( Property +brender texture MediaRef mandrill ) 
+			( Property +rehearsal texture MediaRef mandrill ) 
+			( Property +win32 colorMap MediaRef winshade ) 
+			( Property position MlVector3 0 0 0 ) 
+			( Property orientation MlRotation 0 0 0 1 ) 
+			( Property scale MlVector3 1 1 1 ) 
+			( RoleBinding Mle3dRole teaSet ) 
+		) 
+		( Actor a1 Mle3dCameraActor 
+			( Property position MlVector3 0.175095 1.34198 5.81336 ) 
+			( Property orientation MlRotation -0.135436 0.0179219 0.00180402 0.990622 ) 
+			( RoleBinding Mle3dRole teaSet ) 
+		) 
+	) 
+) 
+( MediaRef +brender teapot Mle3dModelMediaRef 
+	( MediaRefSource 
+		( Media 0 geometry ../media/teapot.dat ) 
+	) 
+	( MediaRefTarget +win32 0 
+		( Media 0 geometry ..\\media\\teapot.dat ) 
+	) 
+	( MediaRefTarget +rehearsal 0 
+		( Media 0 geometry ../media/teapot.dat ) 
+	) 
+) 
+( MediaRef +inventor teapot Mle3dModelMediaRef 
+	( MediaRefSource 
+		( Media 0 geometry ../media/teapot.iv ) 
+	) 
+	( MediaRefTarget +rehearsal 0 
+		( Media 0 geometry ../media/teapot.iv ) 
+	) 
+) 
+( MediaRef +brender mandrill Mle3dTextureMapMediaRef 
+	( MediaRefSource 
+		( Media 0 texture ../media/mandrill.rgb ) 
+	) 
+	( MediaRefTarget +win32 0 
+		( Media 0 texture ..\\media\\mandrill.pix ) 
+	) 
+	( MediaRefTarget +rehearsal 0 
+		( Media 0 texture ../media/mandrill.rgb ) 
+	) 
+) 
+( MediaRef +rehearsal mandrill Mle3dTextureMapMediaRef 
+	( MediaRefSource 
+		( Media 0 texture ../media/mandrill.rgb ) 
+	) 
+	( MediaRefTarget 0 
+		( Media 0 texture ../media/mandrill.rgb ) 
+	) 
+) 
+( MediaRef +brender winshade Mle3dColorMapMediaRef 
+	( MediaRefSource 
+		( Media 0 shadetable ../media/winshade.tab ) 
+	) 
+	( MediaRefTarget +win32 0 
+		( Media 0 shadetable ..\\media\\winshade.tab ) 
+	) 
+	( MediaRefTarget +rehearsal 0 
+		( Media 0 shadetable ../media/winshade.tab ) 
+	) 
+) 
