@@ -34,10 +34,6 @@
 // Tests of the base classes in DWPBase: the dictionaries, the item tree and
 // container, the discriminators, the finder, filenames and includes, and the
 // monitor and notifier.
-//
-// Known bugs are tests that are skipped, with the reason, unless the
-// environment variable DWPTEST_RUN_KNOWN_BUGS is set. Setting it runs them, so
-// that a fix can be checked.
 
 #include <stdlib.h>
 #include <string.h>
@@ -79,11 +75,6 @@
 #include "libdwptest.h"
 
 namespace basetest {
-
-bool runKnownBugs() { return getenv("DWPTEST_RUN_KNOWN_BUGS") != NULL; }
-
-#define KNOWN_BUG(REASON) \
-	do { if (! basetest::runKnownBugs()) GTEST_SKIP() << "Known bug: " << REASON; } while (0)
 
 // The text an item is written as, without the "#DWP" header.
 std::string text(MleDwpItem *item, int children = 1) {
@@ -318,11 +309,19 @@ TEST(StrKeyDictTest, KeysThatDifferByOneCharacter) {
 	EXPECT_EQ(value(4), dict.find("ab "));
 }
 
+TEST(StrKeyDictTest, EmptyStringKeyCanBeRemoved) {
+	MleDwpStrKeyDict dict;
+	dict.set("", value(1));
+	dict.set("a", value(2));
+	EXPECT_EQ(value(1), dict.find(""));
+	dict.remove("");
+	EXPECT_TRUE(dict.find("") == NULL);
+	EXPECT_EQ(value(2), dict.find("a"));
+}
+
 TEST(StrKeyDictTest, EmptyStringKey) {
 	// The hash of "" must not depend on what follows the terminator, so the
 	// key is found through a buffer with different bytes after it.
-	KNOWN_BUG("MleDwpStrKeyDict::hash() is a do/while, so the hash of an empty "
-		"string reads past its terminator");
 	MleDwpStrKeyDict dict;
 	char first[2] = { 0, 'x' };
 	char second[2] = { 0, 'y' };
@@ -819,9 +818,7 @@ TEST(FinderTest, SetNameReplacesTheName) {
 }
 
 TEST(FinderTest, ChangingTheTypeFromANameToATypeId) {
-	// setType(MleDwpType) frees the type name, but does not clear the pointer,
-	// so the finder frees it again when it is destroyed.
-	KNOWN_BUG("MleDwpFinder::setType(MleDwpType) leaves m_typeString dangling");
+	// The type name must not be freed again when the finder is destroyed.
 	EXPECT_EXIT({
 			MleDwpFinder *finder = new MleDwpFinder("MleDwpScene");
 			finder->setType(MleDwpActorDef::typeId);
@@ -830,14 +827,37 @@ TEST(FinderTest, ChangingTheTypeFromANameToATypeId) {
 		}, ::testing::ExitedWithCode(0), "");
 }
 
+TEST(FinderTest, ChangingFromATypeIdToAName) {
+	dwptest::WorkprintPtr root = load(g_findable);
+	ASSERT_TRUE(root != NULL);
+	MleDwpFinder finder(MleDwpActorDef::typeId, NULL, 1);
+	finder.setType("MleDwpScene");
+	finder.find(root.get());
+	EXPECT_EQ(2, finder.getNumItems());
+}
+
+TEST(FinderTest, TheNewTypeReplacesTheOldOne) {
+	dwptest::WorkprintPtr root = load(g_findable);
+	ASSERT_TRUE(root != NULL);
+	MleDwpFinder finder("MleDwpScene", NULL, 1);
+	finder.setType("MleDwpGroup");
+	finder.find(root.get());
+	EXPECT_EQ(2, finder.getNumItems());
+	finder.setType(MleDwpActorDef::typeId);
+	finder.find(root.get());
+	EXPECT_EQ(3, finder.getNumItems());
+}
+
 TEST(FinderTest, ChangingTheTypeNameTwice) {
-	KNOWN_BUG("MleDwpFinder::setType(const char *) does not free the previous type name");
 #if defined(HAVE_HEAP_SIZE)
-	size_t before = heapInUse();
-	for (int i = 0; i < 1000; i++) {
+	auto once = [] {
 		MleDwpFinder finder("MleDwpScene");
 		finder.setType("MleDwpGroup");
-	}
+	};
+	// Warm up, so that memory the library keeps for good is not counted.
+	for (int i = 0; i < 10; i++) once();
+	size_t before = heapInUse();
+	for (int i = 0; i < 1000; i++) once();
 	EXPECT_EQ(before, heapInUse());
 #else
 	GTEST_SKIP() << "No heap statistics.";
@@ -1281,14 +1301,77 @@ TEST_F(IncludeTest, ExpandsEnvironmentVariablesInTheName) {
 	EXPECT_EQ("fromEnv", childNames(include));
 }
 
-TEST_F(IncludeTest, AFileThatIncludesItselfDoesNotRecurseForever) {
-	KNOWN_BUG("an Include that includes its own file is read until the process runs out of file "
-		"descriptors or stack");
+TEST_F(IncludeTest, AFileThatIncludesItselfIsReported) {
 	std::string self = dir + "/self.dwp";
-	file("self.dwp", "#DWP 1.0 ascii\n( Include " + self + " )\n");
-	EXPECT_EXIT({
-			dwptest::WorkprintPtr root = dwptest::loadString(
-				std::string(g_header) + "( Include " + self + " )\n");
-			exit(0);
-		}, ::testing::ExitedWithCode(0), "");
+	file("self.dwp", "#DWP 1.0 ascii\n( ActorDef before )\n( Include " + self + " )\n( ActorDef after )\n");
+	::testing::internal::CaptureStderr();
+	dwptest::WorkprintPtr root = dwptest::loadString(
+		std::string(g_header) + "( Include " + self + " )\n( ActorDef end )\n");
+	std::string errors = ::testing::internal::GetCapturedStderr();
+	ASSERT_TRUE(root != NULL);
+	EXPECT_NE(std::string::npos, errors.find("file includes itself")) << errors;
+
+	// The file is read once, and reading goes on after the include of itself,
+	// which is kept as an Include with nothing in it.
+	MleDwpItem *include = root->getFirstChild();
+	ASSERT_TRUE(include != NULL);
+	EXPECT_EQ("before " + self + " after", childNames(include));
+	EXPECT_TRUE(include->getFirstChild()->getNext()->getFirstChild() == NULL);
+	EXPECT_STREQ("end", root->getLastChild()->getName());
+}
+
+TEST_F(IncludeTest, FilesThatIncludeEachOtherAreReported) {
+	std::string a = dir + "/a.dwp";
+	std::string b = dir + "/b.dwp";
+	file("a.dwp", "#DWP 1.0 ascii\n( Include " + b + " )\n( ActorDef inA )\n");
+	file("b.dwp", "#DWP 1.0 ascii\n( Include " + a + " )\n( ActorDef inB )\n");
+	::testing::internal::CaptureStderr();
+	dwptest::WorkprintPtr root = dwptest::loadString(std::string(g_header) + "( Include " + a + " )\n");
+	std::string errors = ::testing::internal::GetCapturedStderr();
+	ASSERT_TRUE(root != NULL);
+	EXPECT_NE(std::string::npos, errors.find("file includes itself")) << errors;
+	MleDwpItem *includeA = root->getFirstChild();
+	ASSERT_TRUE(includeA != NULL);
+	// a includes b, which includes a. That last include is empty.
+	MleDwpItem *includeB = includeA->getFirstChild();
+	ASSERT_TRUE(includeB != NULL);
+	EXPECT_EQ(a + " inB", childNames(includeB));
+	EXPECT_TRUE(includeB->getFirstChild()->getFirstChild() == NULL);
+	EXPECT_STREQ("inA", includeB->getNext()->getName());
+}
+
+TEST_F(IncludeTest, AFileSpelledDifferentlyIsStillTheSameFile) {
+	std::string self = dir + "/self.dwp";
+	file("self.dwp", "#DWP 1.0 ascii\n( Include " + dir + "/./self.dwp )\n");
+	::testing::internal::CaptureStderr();
+	dwptest::WorkprintPtr root = dwptest::loadString(std::string(g_header) + "( Include " + self + " )\n");
+	std::string errors = ::testing::internal::GetCapturedStderr();
+	ASSERT_TRUE(root != NULL);
+	EXPECT_NE(std::string::npos, errors.find("file includes itself")) << errors;
+}
+
+TEST_F(IncludeTest, TheSameFileIncludedTwiceIsNotACycle) {
+	std::string shared = file("shared.dwp", "#DWP 1.0 ascii\n( ActorDef s )\n");
+	::testing::internal::CaptureStderr();
+	dwptest::WorkprintPtr root = dwptest::loadString(
+		std::string(g_header) + "( Include " + shared + " )\n( Include " + shared + " )\n");
+	std::string errors = ::testing::internal::GetCapturedStderr();
+	ASSERT_TRUE(root != NULL);
+	EXPECT_EQ("", errors);
+	std::vector<MleDwpItem *> items = children(root.get());
+	ASSERT_EQ(2u, items.size());
+	EXPECT_EQ("s", childNames(items[0]));
+	EXPECT_EQ("s", childNames(items[1]));
+}
+
+TEST_F(IncludeTest, TheSameFileIncludedFromTwoLevelsIsNotACycle) {
+	// shared is included by the top and, as a sibling, by the file the top includes.
+	std::string shared = file("shared.dwp", "#DWP 1.0 ascii\n( ActorDef s )\n");
+	std::string mid = file("mid.dwp", "#DWP 1.0 ascii\n( Include " + shared + " )\n");
+	::testing::internal::CaptureStderr();
+	dwptest::WorkprintPtr root = dwptest::loadString(
+		std::string(g_header) + "( Include " + mid + " )\n( Include " + shared + " )\n");
+	std::string errors = ::testing::internal::GetCapturedStderr();
+	ASSERT_TRUE(root != NULL);
+	EXPECT_EQ("", errors);
 }
