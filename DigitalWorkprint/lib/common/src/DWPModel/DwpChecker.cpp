@@ -46,7 +46,6 @@
 
 // Include Digital Workprint header files.
 #include "mle/mlTypes.h"
-#include "mle/mlUnique.h"
 #include "mle/mlMalloc.h"
 #include "mle/mlAssert.h"
 
@@ -95,6 +94,29 @@ MleDwpChecker::MleDwpChecker(MleDwpItem *top)
 }
 
 
+MleDwpChecker::MleDwpChecker(const MleDwpChecker &other)
+    :m_dwp(other.m_dwp),
+     m_errorMsg(other.m_errorMsg ? strdup(other.m_errorMsg) : NULL),
+     m_flags(other.m_flags)
+{ 
+    // Do nothing extra.
+}
+
+
+MleDwpChecker &MleDwpChecker::operator=(const MleDwpChecker &other)
+{
+    if (this != &other)
+    {
+        if (m_errorMsg)
+            mlFree(m_errorMsg);
+        m_dwp = other.m_dwp;
+        m_errorMsg = other.m_errorMsg ? strdup(other.m_errorMsg) : NULL;
+        m_flags = other.m_flags;
+    }
+    return *this;
+}
+
+
 MleDwpChecker::~MleDwpChecker()
 { 
     if (m_errorMsg)
@@ -112,6 +134,13 @@ MlErr MleDwpChecker::check()
     }
 
     MlErr err;
+
+    // Forget the message of an earlier check.
+    if (m_errorMsg)
+    {
+        mlFree(m_errorMsg);
+        m_errorMsg = NULL;
+    }
     
 	// Basic workprint semantics.
     if ((err = actorsInGroups()) != MlNoErr)
@@ -810,7 +839,7 @@ static int _groupNameCompare( const void *s1, const void *s2 )
 
 MlErr MleDwpChecker::uniqueGroupNames()
 {
-    unsigned int groupCount,i;
+    unsigned int groupCount,i,j;
     MleDwpGroup **groupList;
 
     MleDwpFinder f(MleDwpGroup::typeId, NULL);
@@ -820,18 +849,23 @@ MlErr MleDwpChecker::uniqueGroupNames()
     groupCount = f.getNumItems();
     groupList = (MleDwpGroup **) f.getItems();
 
-    i = mlUnique((void *)groupList,groupCount,sizeof(MleDwpGroup *),
-             _groupNameCompare);
-    if (i != groupCount)
+    for (i = 0; i < groupCount; i++)
 	{
-        char errorMessage[1024];
+        for (j = i + 1; j < groupCount; j++)
+		{
+            if (_groupNameCompare(&groupList[i],&groupList[j]) == 0)
+			{
+                char errorMessage[1024];
 
-		sprintf(errorMessage,
-					"%s\n\t%s\n",
-					"Workprint contains duplicate group entries:",
-					"Group names must be unique.");
-		setErrorMsg(errorMessage);
-			return 1;
+				snprintf(errorMessage, sizeof(errorMessage),
+							"%s\n\tGroup name '%s' is used more than once.\n\t%s\n",
+							"Workprint contains duplicate group entries:",
+							groupList[i]->getName() ? groupList[i]->getName() : "",
+							"Group names must be unique.");
+				setErrorMsg(errorMessage);
+				return 1;
+            }
+        }
     }
 
     return MlNoErr;

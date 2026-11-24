@@ -78,6 +78,19 @@ class MLE_DWP_API MleDwpChecker
     MleDwpChecker(MleDwpItem *top);
 
 	/**
+	 * The copy constructor. The copy has its own copy of the error message
+	 * and checks the same Digital Workprint.
+	 * @param other The checker to copy.
+	 */
+    MleDwpChecker(const MleDwpChecker &other);
+
+	/**
+	 * The assignment operator.
+	 * @param other The checker to copy.
+	 */
+    MleDwpChecker &operator=(const MleDwpChecker &other);
+
+	/**
 	 * The destructor.
 	 */
     virtual ~MleDwpChecker(void);

@@ -358,6 +358,14 @@ TEST(CheckerRuleTest, WorkprintWithoutSetsHasNothingToCheck) {
 	EXPECT_EQ(MlNoErr, checkText("").err);
 }
 
+TEST(CheckerRuleTest, DuplicateGroupMessageNamesTheGroup) {
+	Result r = checkFile("invalid/duplicate_group_names.dwp");
+	EXPECT_NE(std::string::npos, r.message.find("Group name 'group1' is used more than once.")) << r.message;
+	// The second name that is duplicated is not the one reported first.
+	r = checkText("( Group a MleGroup )\n( Group b MleGroup )\n( Group c MleGroup )\n( Group b MleGroup )\n( Group c MleGroup )\n");
+	EXPECT_NE(std::string::npos, r.message.find("'b'")) << r.message;
+}
+
 TEST(CheckerRuleTest, GroupNamesAreUniqueAcrossScenes) {
 	Result r = checkText(
 		"( Scene one MleScene ( Group g MleGroup ) )\n( Scene two MleScene ( Group g MleGroup ) )\n");
@@ -410,6 +418,75 @@ TEST(CheckerTest, ErrorMessageIsReplacedByTheNextError) {
 	checker.setWorkprint(b.get());
 	EXPECT_NE(MlNoErr, checker.check());
 	EXPECT_NE(std::string::npos, std::string(checker.getErrorMsg()).find("SetDef"));
+}
+
+TEST(CheckerTest, MessageOfAFailedCheckIsForgottenWhenTheNextCheckPasses) {
+	dwptest::WorkprintPtr good = dwptest::loadFile(fixture("valid/complete.dwp"));
+	dwptest::WorkprintPtr bad = dwptest::loadFile(fixture("invalid/stage_without_set.dwp"));
+	ASSERT_TRUE(good != NULL);
+	ASSERT_TRUE(bad != NULL);
+	MleDwpChecker checker(bad.get());
+	EXPECT_NE(MlNoErr, checker.check());
+	ASSERT_TRUE(checker.getErrorMsg() != NULL);
+	checker.setWorkprint(good.get());
+	EXPECT_EQ(MlNoErr, checker.check());
+	EXPECT_EQ(NULL, checker.getErrorMsg());
+}
+
+TEST(CheckerTest, CopyHasItsOwnMessageAndFlags) {
+	dwptest::WorkprintPtr bad = dwptest::loadFile(fixture("invalid/stage_without_set.dwp"));
+	ASSERT_TRUE(bad != NULL);
+	std::unique_ptr<MleDwpChecker> original(new MleDwpChecker(bad.get()));
+	MleDwpChecker_SetTargetToPC(original.get());
+	EXPECT_NE(MlNoErr, original->check());
+
+	MleDwpChecker copy(*original);
+	EXPECT_STREQ(original->getErrorMsg(), copy.getErrorMsg());
+	EXPECT_NE(original->getErrorMsg(), copy.getErrorMsg());
+	EXPECT_TRUE(MleDwpChecker_TargetIsPC(&copy));
+	EXPECT_NE(MlNoErr, copy.check());
+
+	// The copy outlives the original.
+	std::string message = copy.getErrorMsg();
+	original.reset();
+	EXPECT_EQ(message, copy.getErrorMsg());
+}
+
+TEST(CheckerTest, AssignmentCopiesTheMessage) {
+	dwptest::WorkprintPtr bad = dwptest::loadFile(fixture("invalid/set_without_setdef.dwp"));
+	dwptest::WorkprintPtr other = dwptest::loadFile(fixture("invalid/stage_without_set.dwp"));
+	ASSERT_TRUE(bad != NULL);
+	ASSERT_TRUE(other != NULL);
+	MleDwpChecker a(bad.get());
+	MleDwpChecker b(other.get());
+	EXPECT_NE(MlNoErr, a.check());
+	EXPECT_NE(MlNoErr, b.check());
+	b = a;
+	EXPECT_STREQ(a.getErrorMsg(), b.getErrorMsg());
+	EXPECT_NE(a.getErrorMsg(), b.getErrorMsg());
+	MleDwpChecker &self = b;
+	b = self;
+	EXPECT_STREQ(a.getErrorMsg(), b.getErrorMsg());
+
+	// A checker with no message replaces one that has a message.
+	MleDwpChecker empty;
+	b = empty;
+	EXPECT_EQ(NULL, b.getErrorMsg());
+}
+
+TEST(CheckerTest, CopyDoesNotLeak) {
+#if defined(HAVE_HEAP_SIZE)
+	dwptest::WorkprintPtr bad = dwptest::loadFile(fixture("invalid/stage_without_set.dwp"));
+	ASSERT_TRUE(bad != NULL);
+	MleDwpChecker checker(bad.get());
+	checker.check();
+	for (int i = 0; i < 5; i++) { MleDwpChecker c(checker); MleDwpChecker d; d = c; }
+	size_t before = heapInUse();
+	for (int i = 0; i < 200; i++) { MleDwpChecker c(checker); MleDwpChecker d; d = c; d = checker; }
+	EXPECT_EQ(before, heapInUse());
+#else
+	GTEST_SKIP() << "No heap statistics.";
+#endif
 }
 
 TEST(CheckerTest, NoErrorMessageBeforeACheck) {
