@@ -287,7 +287,10 @@ MleDwpOutput::expandBuffer(void)
 int
 MleDwpOutput::writeString(const char *s)
 {
-	MLE_ASSERT(s);
+	// A string that was never set is written as "NULL", the same as the
+	// name of an item that was never set.
+	if ( s == NULL )
+		s = "NULL";
 
 	/* indent if this is the first thing on a new line */
 	if ( newline ) indent();
@@ -358,6 +361,11 @@ MleDwpOutput::writeString(const char *s)
 int
 MleDwpOutput::writeFancyString(const char *s)
 {
+	// A string that was never set is written as "NULL", the same as the
+	// name of an item that was never set.
+	if ( s == NULL )
+		s = "NULL";
+
 	/* indent if this is the first thing on a new line */
 	if ( newline ) indent();
 
