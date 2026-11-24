@@ -711,12 +711,16 @@ TEST(ItemCompatibilityTest, ErrorsInOneItemDoNotStopTheNext) {
 		"( Stage s )",
 		"( Actor a )",
 		"( Property p nosuchtype 1 )",
+		"( Property p int abc )",
+		"( Property p int )",
 		"( Limits nosuchtype 1 2 )",
 		"( MediaRefSource x )",
 	};
 	for (const char *item : bad) {
 		std::string text = std::string("#DWP 1.0 ascii\n") + item + "\n( ActorDef After )\n";
+		::testing::internal::CaptureStderr();
 		dwptest::WorkprintPtr root = dwptest::loadString(text);
+		::testing::internal::GetCapturedStderr();
 		ASSERT_TRUE(root != NULL) << item;
 		std::vector<MleDwpItem *> items = children(root.get());
 		ASSERT_EQ(2u, items.size()) << item;
@@ -729,27 +733,13 @@ TEST(ItemCompatibilityTest, ErrorsInOneItemDoNotStopTheNext) {
 // An item that has never been given its arguments, such as one read from a
 // workprint with an error, must still be written without crashing.
 
-namespace itemtest {
-// These write a NULL string, which MleDwpOutput::writeString() asserts on.
-// Their getters return NULL when the attribute was never set, unlike the
-// getName() and the group, scene and cast classes, which return "NULL".
-const char *g_writeNullCrashes[] = {
-	"Actor", "ActorTemplate", "Converter", "DelegateBinding", "DelegateForumMapping",
-	"Filetype", "Forum", "Media", "MediaRef", "MediaRefClass", "PropertyDef",
-	"RoleBinding", "RoleSetMapping", "Set", "Stage",
-};
-}
-
 class DefaultItemTest : public ::testing::TestWithParam<ItemCase> {};
 
 TEST_P(DefaultItemTest, CanBeWritten) {
 	const ItemCase &c = GetParam();
-	for (const char *keyword : g_writeNullCrashes)
-		if (std::string(keyword) == c.keyword)
-			GTEST_SKIP() << "Writing a " << c.keyword << " with no arguments set "
-				"passes NULL to MleDwpOutput::writeString().";
 
-	// typeId() creates an item with nothing set.
+	// typeId() creates an item with nothing set. It runs in another process
+	// so that an assertion or crash is a failure of this test only.
 	EXPECT_EXIT({
 			MleDwpItem *item = c.typeId();
 			std::string text = written(item);
@@ -758,4 +748,129 @@ TEST_P(DefaultItemTest, CanBeWritten) {
 		}, ::testing::ExitedWithCode(0), "");
 }
 
+TEST_P(DefaultItemTest, IsWrittenAsTheKeyword) {
+	const ItemCase &c = GetParam();
+	std::unique_ptr<MleDwpItem> item(c.typeId());
+	std::string text = written(item.get());
+	EXPECT_EQ(0u, text.find(std::string("( ") + c.keyword)) << text;
+	EXPECT_EQ(")", text.substr(text.size() - 1)) << text;
+}
+
+TEST_P(DefaultItemTest, CanBeReadBack) {
+	// An item with nothing set can be saved and loaded again as the same kind
+	// of item. Errors in its arguments are reported but are not fatal.
+	const ItemCase &c = GetParam();
+	std::unique_ptr<MleDwpItem> item(c.typeId());
+	std::string text = std::string("#DWP 1.0 ascii\n") + written(item.get()) + "\n";
+
+	::testing::internal::CaptureStderr();
+	dwptest::WorkprintPtr root = dwptest::loadString(text);
+	::testing::internal::GetCapturedStderr();
+	ASSERT_TRUE(root != NULL);
+	ASSERT_TRUE(root->getFirstChild() != NULL) << text;
+	EXPECT_EQ(c.typeId, root->getFirstChild()->getTypeId()) << text;
+}
+
 INSTANTIATE_TEST_SUITE_P(Items, DefaultItemTest, ::testing::ValuesIn(g_items), caseName);
+
+// A string that was never set is written as "NULL", as an unset name is.
+TEST(OutputNullTest, WriteString) {
+	MleDwpOutput out;
+	EXPECT_EQ(0, out.writeString(NULL));
+	std::string text(out.getBuffer());
+	EXPECT_EQ("NULL", text.substr(text.find('\n') + 1, 4));
+}
+
+TEST(OutputNullTest, WriteFancyString) {
+	MleDwpOutput out;
+	EXPECT_EQ(0, out.writeFancyString(NULL));
+	std::string text(out.getBuffer());
+	EXPECT_EQ("NULL", text.substr(text.find('\n') + 1, 4));
+}
+
+namespace itemtest {
+struct SavedCase {
+	const char *label;
+	const char *text;       // An item with arguments missing.
+	const char *saved;      // How it is written.
+};
+
+const SavedCase g_saved[] = {
+	{ "MediaRef",       "( MediaRef m )",        "( MediaRef m NULL )" },
+	{ "Actor",          "( Actor a )",           "( Actor a NULL )" },
+	{ "Stage",          "( Stage s )",           "( Stage s NULL )" },
+	{ "PropertyDef",    "( PropertyDef p )",     "( PropertyDef p NULL )" },
+	{ "Set",            "( Set s )",             "( Set s NULL )" },
+	{ "RoleBinding",    "( RoleBinding R )",     "( RoleBinding R NULL )" },
+	{ "MediaRefClass",  "( MediaRefClass n )",   "( MediaRefClass n NULL )" },
+	{ "Forum",          "( Forum f )",           "( Forum f NULL )" },
+	{ "DelegateBinding","( DelegateBinding D )", "( DelegateBinding D NULL )" },
+};
+
+std::string savedName(const ::testing::TestParamInfo<SavedCase> &info) {
+	return info.param.label;
+}
+} // namespace itemtest
+
+class SavedItemTest : public ::testing::TestWithParam<SavedCase> {};
+
+TEST_P(SavedItemTest, WorkprintWithAnErrorCanBeSaved) {
+	// Loading a workprint with an error and saving it must not crash.
+	std::string text = std::string("#DWP 1.0 ascii\n") + GetParam().text + "\n";
+	::testing::internal::CaptureStderr();
+	dwptest::WorkprintPtr root = dwptest::loadString(text);
+	::testing::internal::GetCapturedStderr();
+	ASSERT_TRUE(root != NULL && root->getFirstChild() != NULL);
+	EXPECT_EQ(GetParam().saved, written(root->getFirstChild()));
+}
+
+INSTANTIATE_TEST_SUITE_P(Saved, SavedItemTest, ::testing::ValuesIn(g_saved), savedName);
+
+// ---------------------------------------------------------------------------
+// Property values that cannot be read.
+
+TEST(PropertyReadTest, GoodValueReportsNoError) {
+	::testing::internal::CaptureStderr();
+	dwptest::WorkprintPtr root = dwptest::loadString("#DWP 1.0 ascii\n( Property p int 5 )\n");
+	std::string errors = ::testing::internal::GetCapturedStderr();
+	ASSERT_TRUE(root != NULL);
+	EXPECT_EQ("", errors);
+}
+
+TEST(PropertyReadTest, BadValueIsReported) {
+	::testing::internal::CaptureStderr();
+	dwptest::WorkprintPtr root = dwptest::loadString(
+		"#DWP 1.0 ascii\n( Property p int abc )\n( ActorDef After )\n");
+	std::string errors = ::testing::internal::GetCapturedStderr();
+	ASSERT_TRUE(root != NULL);
+	EXPECT_NE(std::string::npos, errors.find("error reading Property value")) << errors;
+	EXPECT_NE(std::string::npos, errors.find("line 2")) << errors;
+
+	// The item after it is read.
+	std::vector<MleDwpItem *> items = children(root.get());
+	ASSERT_EQ(2u, items.size());
+	EXPECT_STREQ("After", items[1]->getName());
+}
+
+TEST(PropertyReadTest, MissingValueIsReported) {
+	::testing::internal::CaptureStderr();
+	dwptest::WorkprintPtr root = dwptest::loadString(
+		"#DWP 1.0 ascii\n( Property p int )\n( ActorDef After )\n");
+	std::string errors = ::testing::internal::GetCapturedStderr();
+	ASSERT_TRUE(root != NULL);
+	EXPECT_NE(std::string::npos, errors.find("error reading Property value")) << errors;
+	EXPECT_EQ(2u, children(root.get()).size());
+}
+
+TEST(PropertyReadTest, ExtraValuesAreSkipped) {
+	// After an error the rest of the item is skipped, so the leftovers are
+	// not mistaken for the start of the next item.
+	::testing::internal::CaptureStderr();
+	dwptest::WorkprintPtr root = dwptest::loadString(
+		"#DWP 1.0 ascii\n( Property p MlVector3 1 2 x 4 5 )\n( ActorDef After )\n");
+	::testing::internal::GetCapturedStderr();
+	ASSERT_TRUE(root != NULL);
+	std::vector<MleDwpItem *> items = children(root.get());
+	ASSERT_EQ(2u, items.size());
+	EXPECT_EQ(std::string("MleDwpActorDef"), items[1]->getTypeName());
+}
