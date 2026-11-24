@@ -1,5 +1,5 @@
 # Tokens of the Digital Workprint format, for libFuzzer (-dict=fuzz/dwp.dict).
-magic="#DWP 1.0 ascii\n"
+magic="#DWP 1.0 ascii\x0a"
 open="( "
 close=" )"
 quote="\""
