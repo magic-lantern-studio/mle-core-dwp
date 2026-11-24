@@ -67,6 +67,7 @@ MleDwpInclude::MleDwpInclude(void)
 {
 	// Initialize path.
 	m_path = NULL;
+	m_loadFailed = 0;
 
 	m_localWriteEnable = DEFAULT;
 
@@ -100,6 +101,7 @@ MleDwpInclude::readContents(MleDwpInput *in)
 	{
 		in->reportError("error reading file name");
 		in->skip();
+		m_loadFailed = 1;
 		return 1;
 	}
 	setName(buffer);
@@ -110,9 +112,12 @@ MleDwpInclude::readContents(MleDwpInput *in)
 	{
 		errString = new char[strlen(buffer) + 128];
 		sprintf(errString,"error opening included file %s",buffer);
+		m_loadFailed = 1;
 	}
 	else
 	{
+		m_loadFailed = 0;
+
 		// Set the path parameter.
 		setPath(in->getPath());
 
@@ -156,9 +161,12 @@ MleDwpInclude::populate()
     {
 	    errString = new char[strlen(getName()) + 128];
 	    sprintf(errString,"error opening included file %s", getName());
+	    m_loadFailed = 1;
     }
     else
     {
+	    m_loadFailed = 0;
+
 	    // Add the contents to this item as children.
 	    while ( read(&in,this) )
 	        ;
@@ -212,6 +220,11 @@ MleDwpInclude::write(MleDwpOutput *out,int writeChildren)
 		case DEFAULT:
 		case WRITE_FILE:
 		{
+		    // A file that could not be read has no children to save, and
+		    // opening it for output would empty it.
+		    if ( m_loadFailed && getFirstChild() == NULL )
+			    break;
+
 		    // Create an output object for the new file
 		    // use the path if it exists, else use the filename.
 		    MleDwpOutput fileOut;
@@ -287,8 +300,8 @@ MleDwpInclude::getPath(void) const
 MleDwpItem *
 MleDwpInclude::copy(int copyChildren,MleDwpItem *parent)
 {
-	// Create a new Include item.
-	MleDwpInclude *rval = new MleDwpInclude;
+	// Create a new item of the same class, which is not always an Include.
+	MleDwpInclude *rval = (MleDwpInclude *)(*getTypeId())();
 
 	// Attach to parent.
 	if ( parent )
@@ -299,6 +312,7 @@ MleDwpInclude::copy(int copyChildren,MleDwpItem *parent)
 
 	// Set the path.
 	rval->setPath(getPath());
+	rval->m_loadFailed = m_loadFailed;
 
 	// Set instance writing.
 	rval->setInstanceWriteChildren(getInstanceWriteChildren());

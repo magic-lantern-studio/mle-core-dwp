@@ -271,6 +271,8 @@ class MLE_DWP_API MleDwpInclude : public MleDwpItem
 
 	/** The name of the path for the Include file. */
 	char *m_path;
+	/** Nonzero if the file could not be read, so there is nothing to write to it. */
+	int m_loadFailed;
 	/** Flag indicating mode of local write policy. */
 	Enabling m_localWriteEnable;
 
