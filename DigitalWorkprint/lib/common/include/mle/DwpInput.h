@@ -408,6 +408,8 @@ class MLE_DWP_API MleDwpInput
 	const char *m_buffer;
 	// The file pointer being processed.
 	FILE *m_fp;
+	// The file pointer given to setFilePointer(), if any.
+	FILE *m_userFp;
 	// The stack of files being processed.
 	MleDwpInputFile *m_stack;
 

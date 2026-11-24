@@ -334,6 +334,7 @@ MleDwpInput::MleDwpInput(int magicFlag)
     m_lineIndex = 0;
     m_buffer = NULL;
     m_fp = NULL;
+    m_userFp = NULL;
     m_stack = NULL;
 
     setMagic(magicFlag);
@@ -379,6 +380,13 @@ MleDwpInput::readMagic(void)
         
         if ( *magic == 0 )
             break;
+    }
+
+    // The input ended before the magic did.
+    if ( c == 0 )
+    {
+        reportError("no magic");
+        return 1;
     }
 
     // That much has confirmed that this is a workprint file.
@@ -496,11 +504,12 @@ MleDwpInput::closeFile(void)
     m_stack = m_stack->m_next;
     delete tmp;
 
-    // Set the file pointer.
+    // Set the file pointer. When the last file is closed, go back to the
+    // file pointer that was given, if there is one.
     if ( m_stack )
         m_fp = m_stack->m_fp;
     else
-        m_fp = NULL;
+        m_fp = m_userFp;
 }
 
 
@@ -1006,6 +1015,7 @@ MleDwpInput::setFilePointer(FILE *ufp)
     MLE_ASSERT(m_stack == NULL);
 
     m_fp = ufp;
+    m_userFp = ufp;
 
     m_lineno = 1;
     m_lineIndex = 0;
@@ -1013,6 +1023,7 @@ MleDwpInput::setFilePointer(FILE *ufp)
     if ( readMagic() )
     {
         m_fp = NULL;
+        m_userFp = NULL;
         return 1;
     }
     else
