@@ -145,6 +145,7 @@ MleDwpFinder::setType(MleDwpType t)
 {
 	/* Free memory if necessary. */
 	if ( m_typeString ) mlFree(m_typeString);
+	m_typeString = NULL;
 
 	m_type = t;
 }
@@ -156,9 +157,12 @@ MleDwpFinder::setType(MleDwpType t)
 void
 MleDwpFinder::setType(const char *t)
 {
+	/* Free memory if necessary. */
+	if ( m_typeString ) mlFree(m_typeString);
+
 	m_type = NULL;
 
-	m_typeString = strdup(t);
+	m_typeString = t ? strdup(t) : NULL;
 }
 
 /*
