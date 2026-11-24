@@ -100,7 +100,8 @@ add_library(dwptest SHARED
   libdwptest/testMlVector4.cxx
   libdwptest/testFloatArray.cxx
   libdwptest/testWorkprint.cxx
-  libdwptest/testDatatypes.cxx)
+  libdwptest/testDatatypes.cxx
+  libdwptest/testItems.cxx)
 target_include_directories(dwptest PRIVATE
   $<TARGET_PROPERTY:GTest::gtest,INTERFACE_INCLUDE_DIRECTORIES>)
 
